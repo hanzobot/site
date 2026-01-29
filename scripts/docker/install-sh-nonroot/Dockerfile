@@ -18,10 +18,10 @@ WORKDIR /home/app
 ENV NPM_CONFIG_FUND=false
 ENV NPM_CONFIG_AUDIT=false
 
-COPY scripts/docker/install-sh-nonroot/run.sh /usr/local/bin/clawdbot-install-nonroot
-COPY public/install.sh /opt/clawdbot-install.sh
-COPY public/install-cli.sh /opt/clawdbot-install-cli.sh
-RUN sudo chmod +x /usr/local/bin/clawdbot-install-nonroot \
-  && sudo chmod a+r /opt/clawdbot-install.sh /opt/clawdbot-install-cli.sh
+COPY scripts/docker/install-sh-nonroot/run.sh /usr/local/bin/botbot-install-nonroot
+COPY public/install.sh /opt/botbot-install.sh
+COPY public/install-cli.sh /opt/botbot-install-cli.sh
+RUN sudo chmod +x /usr/local/bin/botbot-install-nonroot \
+  && sudo chmod a+r /opt/botbot-install.sh /opt/botbot-install-cli.sh
 
-ENTRYPOINT ["/usr/local/bin/clawdbot-install-nonroot"]
+ENTRYPOINT ["/usr/local/bin/botbot-install-nonroot"]

@@ -1,6 +1,6 @@
-# Clawdbot Installer for Windows
-# Usage: iwr -useb https://clawd.bot/install.ps1 | iex
-#        & ([scriptblock]::Create((iwr -useb https://clawd.bot/install.ps1))) -Tag beta -NoOnboard -DryRun
+# Botbot Installer for Windows
+# Usage: iwr -useb https://hanzo.bot/install.ps1 | iex
+#        & ([scriptblock]::Create((iwr -useb https://hanzo.bot/install.ps1))) -Tag beta -NoOnboard -DryRun
 
 param(
     [string]$Tag = "latest",
@@ -15,7 +15,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 Write-Host ""
-Write-Host "  Clawdbot Installer" -ForegroundColor Cyan
+Write-Host "  Botbot Installer" -ForegroundColor Cyan
 Write-Host ""
 
 # Check if running in PowerShell
@@ -27,34 +27,34 @@ if ($PSVersionTable.PSVersion.Major -lt 5) {
 Write-Host "[OK] Windows detected" -ForegroundColor Green
 
 if (-not $PSBoundParameters.ContainsKey("InstallMethod")) {
-    if (-not [string]::IsNullOrWhiteSpace($env:CLAWDBOT_INSTALL_METHOD)) {
-        $InstallMethod = $env:CLAWDBOT_INSTALL_METHOD
+    if (-not [string]::IsNullOrWhiteSpace($env:BOTBOT_INSTALL_METHOD)) {
+        $InstallMethod = $env:BOTBOT_INSTALL_METHOD
     }
 }
 if (-not $PSBoundParameters.ContainsKey("GitDir")) {
-    if (-not [string]::IsNullOrWhiteSpace($env:CLAWDBOT_GIT_DIR)) {
-        $GitDir = $env:CLAWDBOT_GIT_DIR
+    if (-not [string]::IsNullOrWhiteSpace($env:BOTBOT_GIT_DIR)) {
+        $GitDir = $env:BOTBOT_GIT_DIR
     }
 }
 if (-not $PSBoundParameters.ContainsKey("NoOnboard")) {
-    if ($env:CLAWDBOT_NO_ONBOARD -eq "1") {
+    if ($env:BOTBOT_NO_ONBOARD -eq "1") {
         $NoOnboard = $true
     }
 }
 if (-not $PSBoundParameters.ContainsKey("NoGitUpdate")) {
-    if ($env:CLAWDBOT_GIT_UPDATE -eq "0") {
+    if ($env:BOTBOT_GIT_UPDATE -eq "0") {
         $NoGitUpdate = $true
     }
 }
 if (-not $PSBoundParameters.ContainsKey("DryRun")) {
-    if ($env:CLAWDBOT_DRY_RUN -eq "1") {
+    if ($env:BOTBOT_DRY_RUN -eq "1") {
         $DryRun = $true
     }
 }
 
 if ([string]::IsNullOrWhiteSpace($GitDir)) {
     $userHome = [Environment]::GetFolderPath("UserProfile")
-    $GitDir = (Join-Path $userHome "clawdbot")
+    $GitDir = (Join-Path $userHome "botbot")
 }
 
 # Check for Node.js
@@ -123,11 +123,11 @@ function Install-Node {
     exit 1
 }
 
-# Check for existing Clawdbot installation
-function Check-ExistingClawdbot {
+# Check for existing Botbot installation
+function Check-ExistingBotbot {
     try {
-        $null = Get-Command clawdbot -ErrorAction Stop
-    Write-Host "[*] Existing Clawdbot installation detected" -ForegroundColor Yellow
+        $null = Get-Command botbot -ErrorAction Stop
+    Write-Host "[*] Existing Botbot installation detected" -ForegroundColor Yellow
     return $true
     } catch {
         return $false
@@ -153,8 +153,8 @@ function Require-Git {
     exit 1
 }
 
-function Ensure-ClawdbotOnPath {
-    if (Get-Command clawdbot -ErrorAction SilentlyContinue) {
+function Ensure-BotbotOnPath {
+    if (Get-Command botbot -ErrorAction SilentlyContinue) {
         return $true
     }
 
@@ -173,12 +173,12 @@ function Ensure-ClawdbotOnPath {
             $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
             Write-Host "[!] Added $npmBin to user PATH (restart terminal if command not found)" -ForegroundColor Yellow
         }
-        if (Test-Path (Join-Path $npmBin "clawdbot.cmd")) {
+        if (Test-Path (Join-Path $npmBin "botbot.cmd")) {
             return $true
         }
     }
 
-    Write-Host "[!] clawdbot is not on PATH yet." -ForegroundColor Yellow
+    Write-Host "[!] botbot is not on PATH yet." -ForegroundColor Yellow
     Write-Host "Restart PowerShell or add the npm global bin folder to PATH." -ForegroundColor Yellow
     if ($npmPrefix) {
         Write-Host "Expected path: $npmPrefix\\bin" -ForegroundColor Cyan
@@ -209,12 +209,12 @@ function Ensure-Pnpm {
     Write-Host "[OK] pnpm installed" -ForegroundColor Green
 }
 
-# Install Clawdbot
-function Install-Clawdbot {
+# Install Botbot
+function Install-Botbot {
     if ([string]::IsNullOrWhiteSpace($Tag)) {
         $Tag = "latest"
     }
-    Write-Host "[*] Installing Clawdbot@$Tag..." -ForegroundColor Yellow
+    Write-Host "[*] Installing Botbot@$Tag..." -ForegroundColor Yellow
     $prevLogLevel = $env:NPM_CONFIG_LOGLEVEL
     $prevUpdateNotifier = $env:NPM_CONFIG_UPDATE_NOTIFIER
     $prevFund = $env:NPM_CONFIG_FUND
@@ -224,7 +224,7 @@ function Install-Clawdbot {
     $env:NPM_CONFIG_FUND = "false"
     $env:NPM_CONFIG_AUDIT = "false"
     try {
-        $npmOutput = npm install -g "clawdbot@$Tag" 2>&1
+        $npmOutput = npm install -g "botbot@$Tag" 2>&1
         if ($LASTEXITCODE -ne 0) {
             Write-Host "[!] npm install failed" -ForegroundColor Red
             if ($npmOutput -match "spawn git" -or $npmOutput -match "ENOENT.*git") {
@@ -233,7 +233,7 @@ function Install-Clawdbot {
                 Write-Host "  https://git-scm.com/download/win" -ForegroundColor Cyan
             } else {
                 Write-Host "Re-run with verbose output to see the full error:" -ForegroundColor Yellow
-                Write-Host "  iwr -useb https://clawd.bot/install.ps1 | iex" -ForegroundColor Cyan
+                Write-Host "  iwr -useb https://hanzo.bot/install.ps1 | iex" -ForegroundColor Cyan
             }
             $npmOutput | ForEach-Object { Write-Host $_ }
             exit 1
@@ -244,11 +244,11 @@ function Install-Clawdbot {
         $env:NPM_CONFIG_FUND = $prevFund
         $env:NPM_CONFIG_AUDIT = $prevAudit
     }
-    Write-Host "[OK] Clawdbot installed" -ForegroundColor Green
+    Write-Host "[OK] Botbot installed" -ForegroundColor Green
 }
 
-# Install Clawdbot from GitHub
-function Install-ClawdbotFromGit {
+# Install Botbot from GitHub
+function Install-BotbotFromGit {
     param(
         [string]$RepoDir,
         [switch]$SkipUpdate
@@ -256,8 +256,8 @@ function Install-ClawdbotFromGit {
     Require-Git
     Ensure-Pnpm
 
-    $repoUrl = "https://github.com/clawdbot/clawdbot.git"
-    Write-Host "[*] Installing Clawdbot from GitHub ($repoUrl)..." -ForegroundColor Yellow
+    $repoUrl = "https://github.com/botbot/botbot.git"
+    Write-Host "[*] Installing Botbot from GitHub ($repoUrl)..." -ForegroundColor Yellow
 
     if (-not (Test-Path $RepoDir)) {
         git clone $repoUrl $RepoDir
@@ -285,7 +285,7 @@ function Install-ClawdbotFromGit {
     if (-not (Test-Path $binDir)) {
         New-Item -ItemType Directory -Force -Path $binDir | Out-Null
     }
-    $cmdPath = Join-Path $binDir "clawdbot.cmd"
+    $cmdPath = Join-Path $binDir "botbot.cmd"
     $cmdContents = "@echo off`r`nnode ""$RepoDir\\dist\\entry.js"" %*`r`n"
     Set-Content -Path $cmdPath -Value $cmdContents -NoNewline
 
@@ -296,7 +296,7 @@ function Install-ClawdbotFromGit {
         Write-Host "[!] Added $binDir to user PATH (restart terminal if command not found)" -ForegroundColor Yellow
     }
 
-    Write-Host "[OK] Clawdbot wrapper installed to $cmdPath" -ForegroundColor Green
+    Write-Host "[OK] Botbot wrapper installed to $cmdPath" -ForegroundColor Green
     Write-Host "[i] This checkout uses pnpm. For deps, run: pnpm install (avoid npm install in the repo)." -ForegroundColor Gray
 }
 
@@ -304,7 +304,7 @@ function Install-ClawdbotFromGit {
 function Run-Doctor {
     Write-Host "[*] Running doctor to migrate settings..." -ForegroundColor Yellow
     try {
-        clawdbot doctor --non-interactive
+        botbot doctor --non-interactive
     } catch {
         # Ignore errors from doctor
     }
@@ -312,11 +312,11 @@ function Run-Doctor {
 }
 
 function Get-LegacyRepoDir {
-    if (-not [string]::IsNullOrWhiteSpace($env:CLAWDBOT_GIT_DIR)) {
-        return $env:CLAWDBOT_GIT_DIR
+    if (-not [string]::IsNullOrWhiteSpace($env:BOTBOT_GIT_DIR)) {
+        return $env:BOTBOT_GIT_DIR
     }
     $userHome = [Environment]::GetFolderPath("UserProfile")
-    return (Join-Path $userHome "clawdbot")
+    return (Join-Path $userHome "botbot")
 }
 
 function Remove-LegacySubmodule {
@@ -360,7 +360,7 @@ function Main {
     Remove-LegacySubmodule -RepoDir $RepoDir
 
     # Check for existing installation
-    $isUpgrade = Check-ExistingClawdbot
+    $isUpgrade = Check-ExistingBotbot
 
     # Step 1: Node.js
     if (-not (Check-Node)) {
@@ -377,17 +377,17 @@ function Main {
 
     $finalGitDir = $null
 
-    # Step 2: Clawdbot
+    # Step 2: Botbot
     if ($InstallMethod -eq "git") {
         $finalGitDir = $GitDir
-        Install-ClawdbotFromGit -RepoDir $GitDir -SkipUpdate:$NoGitUpdate
+        Install-BotbotFromGit -RepoDir $GitDir -SkipUpdate:$NoGitUpdate
     } else {
-        Install-Clawdbot
+        Install-Botbot
     }
 
-    if (-not (Ensure-ClawdbotOnPath)) {
-        Write-Host "Install completed, but Clawdbot is not on PATH yet." -ForegroundColor Yellow
-        Write-Host "Open a new terminal, then run: clawdbot doctor" -ForegroundColor Cyan
+    if (-not (Ensure-BotbotOnPath)) {
+        Write-Host "Install completed, but Botbot is not on PATH yet." -ForegroundColor Yellow
+        Write-Host "Open a new terminal, then run: botbot doctor" -ForegroundColor Cyan
         return
     }
 
@@ -398,15 +398,15 @@ function Main {
 
     $installedVersion = $null
     try {
-        $installedVersion = (clawdbot --version 2>$null).Trim()
+        $installedVersion = (botbot --version 2>$null).Trim()
     } catch {
         $installedVersion = $null
     }
     if (-not $installedVersion) {
         try {
             $npmList = npm list -g --depth 0 --json 2>$null | ConvertFrom-Json
-            if ($npmList -and $npmList.dependencies -and $npmList.dependencies.clawdbot -and $npmList.dependencies.clawdbot.version) {
-                $installedVersion = $npmList.dependencies.clawdbot.version
+            if ($npmList -and $npmList.dependencies -and $npmList.dependencies.botbot -and $npmList.dependencies.botbot.version) {
+                $installedVersion = $npmList.dependencies.botbot.version
             }
         } catch {
             $installedVersion = $null
@@ -415,9 +415,9 @@ function Main {
 
     Write-Host ""
     if ($installedVersion) {
-        Write-Host "Clawdbot installed successfully ($installedVersion)!" -ForegroundColor Green
+        Write-Host "Botbot installed successfully ($installedVersion)!" -ForegroundColor Green
     } else {
-        Write-Host "Clawdbot installed successfully!" -ForegroundColor Green
+        Write-Host "Botbot installed successfully!" -ForegroundColor Green
     }
     Write-Host ""
     if ($isUpgrade) {
@@ -464,23 +464,23 @@ function Main {
 
     if ($InstallMethod -eq "git") {
         Write-Host "Source checkout: $finalGitDir" -ForegroundColor Cyan
-        Write-Host "Wrapper: $env:USERPROFILE\\.local\\bin\\clawdbot.cmd" -ForegroundColor Cyan
+        Write-Host "Wrapper: $env:USERPROFILE\\.local\\bin\\botbot.cmd" -ForegroundColor Cyan
         Write-Host ""
     }
 
     if ($isUpgrade) {
         Write-Host "Upgrade complete. Run " -NoNewline
-        Write-Host "clawdbot doctor" -ForegroundColor Cyan -NoNewline
+        Write-Host "botbot doctor" -ForegroundColor Cyan -NoNewline
         Write-Host " to check for additional migrations."
     } else {
         if ($NoOnboard) {
             Write-Host "Skipping onboard (requested). Run " -NoNewline
-            Write-Host "clawdbot onboard" -ForegroundColor Cyan -NoNewline
+            Write-Host "botbot onboard" -ForegroundColor Cyan -NoNewline
             Write-Host " later."
         } else {
             Write-Host "Starting setup..." -ForegroundColor Cyan
             Write-Host ""
-            clawdbot onboard
+            botbot onboard
         }
     }
 }

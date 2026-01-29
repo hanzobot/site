@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Clawdbot CLI installer (non-interactive, no onboarding)
-# Usage: curl -fsSL --proto '=https' --tlsv1.2 https://clawd.bot/install-cli.sh | bash -s -- [--json] [--prefix <path>] [--version <ver>] [--node-version <ver>] [--onboard]
+# Botbot CLI installer (non-interactive, no onboarding)
+# Usage: curl -fsSL --proto '=https' --tlsv1.2 https://hanzo.bot/install-cli.sh | bash -s -- [--json] [--prefix <path>] [--version <ver>] [--node-version <ver>] [--onboard]
 
-PREFIX="${CLAWDBOT_PREFIX:-${HOME}/.clawdbot}"
-CLAWDBOT_VERSION="${CLAWDBOT_VERSION:-latest}"
-NODE_VERSION="${CLAWDBOT_NODE_VERSION:-22.22.0}"
+PREFIX="${BOTBOT_PREFIX:-${HOME}/.botbot}"
+BOTBOT_VERSION="${BOTBOT_VERSION:-latest}"
+NODE_VERSION="${BOTBOT_NODE_VERSION:-22.22.0}"
 SHARP_IGNORE_GLOBAL_LIBVIPS="${SHARP_IGNORE_GLOBAL_LIBVIPS:-1}"
-NPM_LOGLEVEL="${CLAWDBOT_NPM_LOGLEVEL:-error}"
+NPM_LOGLEVEL="${BOTBOT_NPM_LOGLEVEL:-error}"
 JSON=0
 RUN_ONBOARD=0
 SET_NPM_PREFIX=0
@@ -17,16 +17,16 @@ print_usage() {
   cat <<EOF
 Usage: install-cli.sh [options]
   --json                Emit NDJSON events (no human output)
-  --prefix <path>        Install prefix (default: ~/.clawdbot)
-  --version <ver>        Clawdbot version (default: latest)
+  --prefix <path>        Install prefix (default: ~/.botbot)
+  --version <ver>        Botbot version (default: latest)
   --node-version <ver>   Node version (default: 22.22.0)
-  --onboard              Run "clawdbot onboard" after install
+  --onboard              Run "botbot onboard" after install
   --no-onboard           Skip onboarding (default)
   --set-npm-prefix       Force npm prefix to ~/.npm-global if current prefix is not writable (Linux)
 
 Environment variables:
   SHARP_IGNORE_GLOBAL_LIBVIPS=0|1    Default: 1 (avoid sharp building against global libvips)
-  CLAWDBOT_NPM_LOGLEVEL=error|warn|notice  Default: error (hide npm deprecation noise)
+  BOTBOT_NPM_LOGLEVEL=error|warn|notice  Default: error (hide npm deprecation noise)
 EOF
 }
 
@@ -63,7 +63,7 @@ download_file() {
 }
 
 cleanup_legacy_submodules() {
-  local repo_dir="${CLAWDBOT_GIT_DIR:-${HOME}/clawdbot}"
+  local repo_dir="${BOTBOT_GIT_DIR:-${HOME}/botbot}"
   local legacy_dir="${repo_dir}/Peekaboo"
   if [[ -d "$legacy_dir" ]]; then
     emit_json "{\"event\":\"step\",\"name\":\"legacy-submodule\",\"status\":\"start\",\"path\":\"${legacy_dir//\"/\\\"}\"}"
@@ -187,7 +187,7 @@ parse_args() {
         shift 2
         ;;
       --version)
-        CLAWDBOT_VERSION="$2"
+        BOTBOT_VERSION="$2"
         shift 2
         ;;
       --node-version)
@@ -342,44 +342,44 @@ fix_npm_prefix_if_needed() {
   log "Configured npm prefix to ${target}"
 }
 
-install_clawdbot() {
-  local requested="${CLAWDBOT_VERSION:-latest}"
+install_botbot() {
+  local requested="${BOTBOT_VERSION:-latest}"
   local npm_args=(
     --loglevel "$NPM_LOGLEVEL"
     --no-fund
     --no-audit
   )
-  emit_json "{\"event\":\"step\",\"name\":\"clawdbot\",\"status\":\"start\",\"version\":\"${requested}\"}"
-  log "Installing Clawdbot (${requested})..."
+  emit_json "{\"event\":\"step\",\"name\":\"botbot\",\"status\":\"start\",\"version\":\"${requested}\"}"
+  log "Installing Botbot (${requested})..."
   if [[ "$SET_NPM_PREFIX" -eq 1 ]]; then
     fix_npm_prefix_if_needed
   fi
 
   if [[ "${requested}" == "latest" ]]; then
-    if ! SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" "$(npm_bin)" install -g --prefix "$PREFIX" "${npm_args[@]}" "clawdbot@latest"; then
-      log "npm install clawdbot@latest failed; retrying clawdbot@next"
-      emit_json "{\"event\":\"step\",\"name\":\"clawdbot\",\"status\":\"retry\",\"version\":\"next\"}"
-      SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" "$(npm_bin)" install -g --prefix "$PREFIX" "${npm_args[@]}" "clawdbot@next"
+    if ! SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" "$(npm_bin)" install -g --prefix "$PREFIX" "${npm_args[@]}" "botbot@latest"; then
+      log "npm install botbot@latest failed; retrying botbot@next"
+      emit_json "{\"event\":\"step\",\"name\":\"botbot\",\"status\":\"retry\",\"version\":\"next\"}"
+      SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" "$(npm_bin)" install -g --prefix "$PREFIX" "${npm_args[@]}" "botbot@next"
       requested="next"
     fi
   else
-    SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" "$(npm_bin)" install -g --prefix "$PREFIX" "${npm_args[@]}" "clawdbot@${requested}"
+    SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" "$(npm_bin)" install -g --prefix "$PREFIX" "${npm_args[@]}" "botbot@${requested}"
   fi
 
-  rm -f "${PREFIX}/bin/clawdbot"
-  cat > "${PREFIX}/bin/clawdbot" <<EOF
+  rm -f "${PREFIX}/bin/botbot"
+  cat > "${PREFIX}/bin/botbot" <<EOF
 #!/usr/bin/env bash
 set -euo pipefail
-exec "${PREFIX}/tools/node/bin/node" "${PREFIX}/lib/node_modules/clawdbot/dist/entry.js" "\$@"
+exec "${PREFIX}/tools/node/bin/node" "${PREFIX}/lib/node_modules/botbot/dist/entry.js" "\$@"
 EOF
-  chmod +x "${PREFIX}/bin/clawdbot"
-  emit_json "{\"event\":\"step\",\"name\":\"clawdbot\",\"status\":\"ok\",\"version\":\"${requested}\"}"
+  chmod +x "${PREFIX}/bin/botbot"
+  emit_json "{\"event\":\"step\",\"name\":\"botbot\",\"status\":\"ok\",\"version\":\"${requested}\"}"
 }
 
-resolve_clawdbot_version() {
+resolve_botbot_version() {
   local version=""
-  if [[ -x "${PREFIX}/bin/clawdbot" ]]; then
-    version="$("${PREFIX}/bin/clawdbot" --version 2>/dev/null | head -n 1 | tr -d '\r')"
+  if [[ -x "${PREFIX}/bin/botbot" ]]; then
+    version="$("${PREFIX}/bin/botbot" --version 2>/dev/null | head -n 1 | tr -d '\r')"
   fi
   echo "$version"
 }
@@ -387,7 +387,7 @@ resolve_clawdbot_version() {
 main() {
   parse_args "$@"
 
-  if [[ "${CLAWDBOT_NO_ONBOARD:-0}" == "1" ]]; then
+  if [[ "${BOTBOT_NO_ONBOARD:-0}" == "1" ]]; then
     RUN_ONBOARD=0
   fi
 
@@ -401,20 +401,20 @@ main() {
   if [[ "$SET_NPM_PREFIX" -eq 1 ]]; then
     fix_npm_prefix_if_needed
   fi
-  install_clawdbot
+  install_botbot
 
   local installed_version
-  installed_version="$(resolve_clawdbot_version)"
+  installed_version="$(resolve_botbot_version)"
   if [[ -n "$installed_version" ]]; then
     emit_json "{\"event\":\"done\",\"ok\":true,\"version\":\"${installed_version//\"/\\\"}\"}"
-    log "Clawdbot installed (${installed_version})."
+    log "Botbot installed (${installed_version})."
   else
     emit_json "{\"event\":\"done\",\"ok\":true}"
-    log "Clawdbot installed."
+    log "Botbot installed."
   fi
 
   if [[ "$RUN_ONBOARD" -eq 1 ]]; then
-    "${PREFIX}/bin/clawdbot" onboard
+    "${PREFIX}/bin/botbot" onboard
   fi
 }
 

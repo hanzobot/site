@@ -1,4 +1,4 @@
-# clawd.bot Landing Page
+# hanzo.bot Landing Page
 
 ## Data Files
 

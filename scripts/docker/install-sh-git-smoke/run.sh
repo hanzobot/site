@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-LOCAL_INSTALL_PATH="/opt/clawdbot-install.sh"
-if [[ -n "${CLAWDBOT_INSTALL_URL:-}" ]]; then
-  INSTALL_URL="$CLAWDBOT_INSTALL_URL"
+LOCAL_INSTALL_PATH="/opt/botbot-install.sh"
+if [[ -n "${BOTBOT_INSTALL_URL:-}" ]]; then
+  INSTALL_URL="$BOTBOT_INSTALL_URL"
 elif [[ -f "$LOCAL_INSTALL_PATH" ]]; then
   INSTALL_URL="file://${LOCAL_INSTALL_PATH}"
 else
-  INSTALL_URL="https://clawd.bot/install.sh"
+  INSTALL_URL="https://hanzo.bot/install.sh"
 fi
 
 curl_install() {
@@ -22,10 +22,10 @@ echo "==> Installer: --help"
 curl_install | bash -s -- --help >/tmp/install-help.txt
 grep -q -- "--install-method" /tmp/install-help.txt
 
-echo "==> Clone Clawdbot repo"
-REPO_DIR="/tmp/clawdbot-src"
+echo "==> Clone Botbot repo"
+REPO_DIR="/tmp/botbot-src"
 rm -rf "$REPO_DIR"
-git clone --depth 1 https://github.com/clawdbot/clawdbot.git "$REPO_DIR"
+git clone --depth 1 https://github.com/botbot/botbot.git "$REPO_DIR"
 
 echo "==> Verify autodetect defaults to npm (no TTY)"
 (
@@ -53,18 +53,18 @@ echo "==> Install from Git (using detected checkout)"
 )
 
 echo "==> Verify wrapper exists"
-test -x "$HOME/.local/bin/clawdbot"
+test -x "$HOME/.local/bin/botbot"
 
-echo "==> Verify clawdbot runs"
+echo "==> Verify botbot runs"
 export PATH="$HOME/.local/bin:$PATH"
-clawdbot --help >/dev/null
+botbot --help >/dev/null
 
 echo "==> Verify version matches checkout"
 EXPECTED_VERSION="$(node -e "console.log(JSON.parse(require('fs').readFileSync('${REPO_DIR}/package.json','utf8')).version)")"
-INSTALLED_VERSION="$(clawdbot --version 2>/dev/null | head -n 1 | tr -d '\r')"
+INSTALLED_VERSION="$(botbot --version 2>/dev/null | head -n 1 | tr -d '\r')"
 echo "installed=$INSTALLED_VERSION expected=$EXPECTED_VERSION"
 if [[ "$INSTALLED_VERSION" != "$EXPECTED_VERSION" ]]; then
-  echo "ERROR: expected clawdbot@$EXPECTED_VERSION, got $INSTALLED_VERSION" >&2
+  echo "ERROR: expected botbot@$EXPECTED_VERSION, got $INSTALLED_VERSION" >&2
   exit 1
 fi
 

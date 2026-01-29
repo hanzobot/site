@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "clawd-bot-landing",
+      "name": "bot-bot-landing",
       "dependencies": {
         "@vercel/analytics": "latest",
         "@vercel/speed-insights": "latest",

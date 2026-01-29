@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-# Clawdbot Installer for macOS and Linux
-# Usage: curl -fsSL --proto '=https' --tlsv1.2 https://clawd.bot/install.sh | bash
+# Botbot Installer for macOS and Linux
+# Usage: curl -fsSL --proto '=https' --tlsv1.2 https://hanzo.bot/install.sh | bash
 
 BOLD='\033[1m'
 ACCENT='\033[38;2;255;90;45m'
@@ -16,7 +16,7 @@ ERROR='\033[38;2;226;61;45m'
 MUTED='\033[38;2;139;127;119m'
 NC='\033[0m' # No Color
 
-DEFAULT_TAGLINE="All your chats, one Clawdbot."
+DEFAULT_TAGLINE="All your chats, one Botbot."
 
 ORIGINAL_PATH="${PATH:-}"
 
@@ -80,23 +80,23 @@ cleanup_legacy_submodules() {
     fi
 }
 
-cleanup_npm_clawdbot_paths() {
+cleanup_npm_botbot_paths() {
     local npm_root=""
     npm_root="$(npm root -g 2>/dev/null || true)"
     if [[ -z "$npm_root" || "$npm_root" != *node_modules* ]]; then
         return 1
     fi
-    rm -rf "$npm_root"/.clawdbot-* "$npm_root"/clawdbot 2>/dev/null || true
+    rm -rf "$npm_root"/.botbot-* "$npm_root"/botbot 2>/dev/null || true
 }
 
-install_clawdbot_npm() {
+install_botbot_npm() {
     local spec="$1"
     local log
     log="$(mktempfile)"
     if ! SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" npm --loglevel "$NPM_LOGLEVEL" ${NPM_SILENT_FLAG:+$NPM_SILENT_FLAG} --no-fund --no-audit install -g "$spec" 2>&1 | tee "$log"; then
-        if grep -q "ENOTEMPTY: directory not empty, rename .*clawdbot" "$log"; then
-            echo -e "${WARN}→${NC} npm left a stale clawdbot directory; cleaning and retrying..."
-            cleanup_npm_clawdbot_paths
+        if grep -q "ENOTEMPTY: directory not empty, rename .*botbot" "$log"; then
+            echo -e "${WARN}→${NC} npm left a stale botbot directory; cleaning and retrying..."
+            cleanup_npm_botbot_paths
             SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" npm --loglevel "$NPM_LOGLEVEL" ${NPM_SILENT_FLAG:+$NPM_SILENT_FLAG} --no-fund --no-audit install -g "$spec"
             return $?
         fi
@@ -213,9 +213,9 @@ pick_tagline() {
         echo "$DEFAULT_TAGLINE"
         return
     fi
-    if [[ -n "${CLAWDBOT_TAGLINE_INDEX:-}" ]]; then
-        if [[ "${CLAWDBOT_TAGLINE_INDEX}" =~ ^[0-9]+$ ]]; then
-            local idx=$((CLAWDBOT_TAGLINE_INDEX % count))
+    if [[ -n "${BOTBOT_TAGLINE_INDEX:-}" ]]; then
+        if [[ "${BOTBOT_TAGLINE_INDEX}" =~ ^[0-9]+$ ]]; then
+            local idx=$((BOTBOT_TAGLINE_INDEX % count))
             echo "${TAGLINES[$idx]}"
             return
         fi
@@ -226,28 +226,28 @@ pick_tagline() {
 
 TAGLINE=$(pick_tagline)
 
-NO_ONBOARD=${CLAWDBOT_NO_ONBOARD:-0}
-NO_PROMPT=${CLAWDBOT_NO_PROMPT:-0}
-DRY_RUN=${CLAWDBOT_DRY_RUN:-0}
-INSTALL_METHOD=${CLAWDBOT_INSTALL_METHOD:-}
-CLAWDBOT_VERSION=${CLAWDBOT_VERSION:-latest}
-USE_BETA=${CLAWDBOT_BETA:-0}
-GIT_DIR_DEFAULT="${HOME}/clawdbot"
-GIT_DIR=${CLAWDBOT_GIT_DIR:-$GIT_DIR_DEFAULT}
-GIT_UPDATE=${CLAWDBOT_GIT_UPDATE:-1}
+NO_ONBOARD=${BOTBOT_NO_ONBOARD:-0}
+NO_PROMPT=${BOTBOT_NO_PROMPT:-0}
+DRY_RUN=${BOTBOT_DRY_RUN:-0}
+INSTALL_METHOD=${BOTBOT_INSTALL_METHOD:-}
+BOTBOT_VERSION=${BOTBOT_VERSION:-latest}
+USE_BETA=${BOTBOT_BETA:-0}
+GIT_DIR_DEFAULT="${HOME}/botbot"
+GIT_DIR=${BOTBOT_GIT_DIR:-$GIT_DIR_DEFAULT}
+GIT_UPDATE=${BOTBOT_GIT_UPDATE:-1}
 SHARP_IGNORE_GLOBAL_LIBVIPS="${SHARP_IGNORE_GLOBAL_LIBVIPS:-1}"
-NPM_LOGLEVEL="${CLAWDBOT_NPM_LOGLEVEL:-error}"
+NPM_LOGLEVEL="${BOTBOT_NPM_LOGLEVEL:-error}"
 NPM_SILENT_FLAG="--silent"
-VERBOSE="${CLAWDBOT_VERBOSE:-0}"
-CLAWDBOT_BIN=""
+VERBOSE="${BOTBOT_VERBOSE:-0}"
+BOTBOT_BIN=""
 HELP=0
 
 print_usage() {
     cat <<EOF
-Clawdbot installer (macOS + Linux)
+Botbot installer (macOS + Linux)
 
 Usage:
-  curl -fsSL --proto '=https' --tlsv1.2 https://clawd.bot/install.sh | bash -s -- [options]
+  curl -fsSL --proto '=https' --tlsv1.2 https://hanzo.bot/install.sh | bash -s -- [options]
 
 Options:
   --install-method, --method npm|git   Install via npm (default) or from a git checkout
@@ -255,7 +255,7 @@ Options:
   --git, --github                     Shortcut for --install-method git
   --version <version|dist-tag>         npm install: version (default: latest)
   --beta                               Use beta if available, else latest
-  --git-dir, --dir <path>             Checkout directory (default: ~/clawdbot)
+  --git-dir, --dir <path>             Checkout directory (default: ~/botbot)
   --no-git-update                      Skip git pull for existing checkout
   --no-onboard                          Skip onboarding (non-interactive)
   --no-prompt                           Disable prompts (required in CI/automation)
@@ -264,22 +264,22 @@ Options:
   --help, -h                            Show this help
 
 Environment variables:
-  CLAWDBOT_INSTALL_METHOD=git|npm
-  CLAWDBOT_VERSION=latest|next|<semver>
-  CLAWDBOT_BETA=0|1
-  CLAWDBOT_GIT_DIR=...
-  CLAWDBOT_GIT_UPDATE=0|1
-  CLAWDBOT_NO_PROMPT=1
-  CLAWDBOT_DRY_RUN=1
-  CLAWDBOT_NO_ONBOARD=1
-  CLAWDBOT_VERBOSE=1
-  CLAWDBOT_NPM_LOGLEVEL=error|warn|notice  Default: error (hide npm deprecation noise)
+  BOTBOT_INSTALL_METHOD=git|npm
+  BOTBOT_VERSION=latest|next|<semver>
+  BOTBOT_BETA=0|1
+  BOTBOT_GIT_DIR=...
+  BOTBOT_GIT_UPDATE=0|1
+  BOTBOT_NO_PROMPT=1
+  BOTBOT_DRY_RUN=1
+  BOTBOT_NO_ONBOARD=1
+  BOTBOT_VERBOSE=1
+  BOTBOT_NPM_LOGLEVEL=error|warn|notice  Default: error (hide npm deprecation noise)
   SHARP_IGNORE_GLOBAL_LIBVIPS=0|1    Default: 1 (avoid sharp building against global libvips)
 
 Examples:
-  curl -fsSL --proto '=https' --tlsv1.2 https://clawd.bot/install.sh | bash
-  curl -fsSL --proto '=https' --tlsv1.2 https://clawd.bot/install.sh | bash -s -- --no-onboard
-  curl -fsSL --proto '=https' --tlsv1.2 https://clawd.bot/install.sh | bash -s -- --install-method git --no-onboard
+  curl -fsSL --proto '=https' --tlsv1.2 https://hanzo.bot/install.sh | bash
+  curl -fsSL --proto '=https' --tlsv1.2 https://hanzo.bot/install.sh | bash -s -- --no-onboard
+  curl -fsSL --proto '=https' --tlsv1.2 https://hanzo.bot/install.sh | bash -s -- --install-method git --no-onboard
 EOF
 }
 
@@ -315,7 +315,7 @@ parse_args() {
                 shift 2
                 ;;
             --version)
-                CLAWDBOT_VERSION="$2"
+                BOTBOT_VERSION="$2"
                 shift 2
                 ;;
             --beta)
@@ -377,7 +377,7 @@ prompt_choice() {
     echo "$answer"
 }
 
-detect_clawdbot_checkout() {
+detect_botbot_checkout() {
     local dir="$1"
     if [[ ! -f "$dir/package.json" ]]; then
         return 1
@@ -385,7 +385,7 @@ detect_clawdbot_checkout() {
     if [[ ! -f "$dir/pnpm-workspace.yaml" ]]; then
         return 1
     fi
-    if ! grep -q '"name"[[:space:]]*:[[:space:]]*"clawdbot"' "$dir/package.json" 2>/dev/null; then
+    if ! grep -q '"name"[[:space:]]*:[[:space:]]*"botbot"' "$dir/package.json" 2>/dev/null; then
         return 1
     fi
     echo "$dir"
@@ -393,7 +393,7 @@ detect_clawdbot_checkout() {
 }
 
 echo -e "${ACCENT}${BOLD}"
-echo "  🦞 Clawdbot Installer"
+echo "  🦞 Botbot Installer"
 echo -e "${NC}${ACCENT_DIM}  ${TAGLINE}${NC}"
 echo ""
 
@@ -408,7 +408,7 @@ fi
 if [[ "$OS" == "unknown" ]]; then
     echo -e "${ERROR}Error: Unsupported operating system${NC}"
     echo "This installer supports macOS and Linux (including WSL)."
-    echo "For Windows, use: iwr -useb https://clawd.bot/install.ps1 | iex"
+    echo "For Windows, use: iwr -useb https://hanzo.bot/install.ps1 | iex"
     exit 1
 fi
 
@@ -570,24 +570,24 @@ fix_npm_permissions() {
     echo -e "${SUCCESS}✓${NC} npm configured for user installs"
 }
 
-resolve_clawdbot_bin() {
-    if command -v clawdbot &> /dev/null; then
-        command -v clawdbot
+resolve_botbot_bin() {
+    if command -v botbot &> /dev/null; then
+        command -v botbot
         return 0
     fi
     local npm_bin=""
     npm_bin="$(npm_global_bin_dir || true)"
-    if [[ -n "$npm_bin" && -x "${npm_bin}/clawdbot" ]]; then
-        echo "${npm_bin}/clawdbot"
+    if [[ -n "$npm_bin" && -x "${npm_bin}/botbot" ]]; then
+        echo "${npm_bin}/botbot"
         return 0
     fi
     return 1
 }
 
-ensure_clawdbot_bin_link() {
+ensure_botbot_bin_link() {
     local npm_root=""
     npm_root="$(npm root -g 2>/dev/null || true)"
-    if [[ -z "$npm_root" || ! -d "$npm_root/clawdbot" ]]; then
+    if [[ -z "$npm_root" || ! -d "$npm_root/botbot" ]]; then
         return 1
     fi
     local npm_bin=""
@@ -596,17 +596,17 @@ ensure_clawdbot_bin_link() {
         return 1
     fi
     mkdir -p "$npm_bin"
-    if [[ ! -x "${npm_bin}/clawdbot" ]]; then
-        ln -sf "$npm_root/clawdbot/dist/entry.js" "${npm_bin}/clawdbot"
-        echo -e "${WARN}→${NC} Installed clawdbot bin link at ${INFO}${npm_bin}/clawdbot${NC}"
+    if [[ ! -x "${npm_bin}/botbot" ]]; then
+        ln -sf "$npm_root/botbot/dist/entry.js" "${npm_bin}/botbot"
+        echo -e "${WARN}→${NC} Installed botbot bin link at ${INFO}${npm_bin}/botbot${NC}"
     fi
     return 0
 }
 
-# Check for existing Clawdbot installation
-check_existing_clawdbot() {
-    if [[ -n "$(type -P clawdbot 2>/dev/null || true)" ]]; then
-        echo -e "${WARN}→${NC} Existing Clawdbot installation detected"
+# Check for existing Botbot installation
+check_existing_botbot() {
+    if [[ -n "$(type -P botbot 2>/dev/null || true)" ]]; then
+        echo -e "${WARN}→${NC} Existing Botbot installation detected"
         return 0
     fi
     return 1
@@ -697,10 +697,10 @@ warn_shell_path_missing_dir() {
 
     echo ""
     echo -e "${WARN}→${NC} PATH warning: missing ${label}: ${INFO}${dir}${NC}"
-    echo -e "This can make ${INFO}clawdbot${NC} show as \"command not found\" in new terminals."
+    echo -e "This can make ${INFO}botbot${NC} show as \"command not found\" in new terminals."
     echo -e "Fix (zsh: ~/.zshrc, bash: ~/.bashrc):"
     echo -e "  export PATH=\"${dir}:\\$PATH\""
-    echo -e "Docs: ${INFO}https://docs.clawd.bot/install#nodejs--npm-path-sanity${NC}"
+    echo -e "Docs: ${INFO}https://docs.hanzo.bot/install#nodejs--npm-path-sanity${NC}"
 }
 
 ensure_npm_global_bin_on_path() {
@@ -717,14 +717,14 @@ maybe_nodenv_rehash() {
     fi
 }
 
-warn_clawdbot_not_found() {
-    echo -e "${WARN}→${NC} Installed, but ${INFO}clawdbot${NC} is not discoverable on PATH in this shell."
+warn_botbot_not_found() {
+    echo -e "${WARN}→${NC} Installed, but ${INFO}botbot${NC} is not discoverable on PATH in this shell."
     echo -e "Try: ${INFO}hash -r${NC} (bash) or ${INFO}rehash${NC} (zsh), then retry."
-    echo -e "Docs: ${INFO}https://docs.clawd.bot/install#nodejs--npm-path-sanity${NC}"
+    echo -e "Docs: ${INFO}https://docs.hanzo.bot/install#nodejs--npm-path-sanity${NC}"
     local t=""
-    t="$(type -t clawdbot 2>/dev/null || true)"
+    t="$(type -t botbot 2>/dev/null || true)"
     if [[ "$t" == "alias" || "$t" == "function" ]]; then
-        echo -e "${WARN}→${NC} Found a shell ${INFO}${t}${NC} named ${INFO}clawdbot${NC}; it may shadow the real binary."
+        echo -e "${WARN}→${NC} Found a shell ${INFO}${t}${NC} named ${INFO}botbot${NC}; it may shadow the real binary."
     fi
     if command -v nodenv &> /dev/null; then
         echo -e "Using nodenv? Run: ${INFO}nodenv rehash${NC}"
@@ -743,10 +743,10 @@ warn_clawdbot_not_found() {
     fi
 }
 
-resolve_clawdbot_bin() {
+resolve_botbot_bin() {
     refresh_shell_command_cache
     local resolved=""
-    resolved="$(type -P clawdbot 2>/dev/null || true)"
+    resolved="$(type -P botbot 2>/dev/null || true)"
     if [[ -n "$resolved" && -x "$resolved" ]]; then
         echo "$resolved"
         return 0
@@ -754,7 +754,7 @@ resolve_clawdbot_bin() {
 
     ensure_npm_global_bin_on_path
     refresh_shell_command_cache
-    resolved="$(type -P clawdbot 2>/dev/null || true)"
+    resolved="$(type -P botbot 2>/dev/null || true)"
     if [[ -n "$resolved" && -x "$resolved" ]]; then
         echo "$resolved"
         return 0
@@ -762,21 +762,21 @@ resolve_clawdbot_bin() {
 
     local npm_bin=""
     npm_bin="$(npm_global_bin_dir || true)"
-    if [[ -n "$npm_bin" && -x "${npm_bin}/clawdbot" ]]; then
-        echo "${npm_bin}/clawdbot"
+    if [[ -n "$npm_bin" && -x "${npm_bin}/botbot" ]]; then
+        echo "${npm_bin}/botbot"
         return 0
     fi
 
     maybe_nodenv_rehash
     refresh_shell_command_cache
-    resolved="$(type -P clawdbot 2>/dev/null || true)"
+    resolved="$(type -P botbot 2>/dev/null || true)"
     if [[ -n "$resolved" && -x "$resolved" ]]; then
         echo "$resolved"
         return 0
     fi
 
-    if [[ -n "$npm_bin" && -x "${npm_bin}/clawdbot" ]]; then
-        echo "${npm_bin}/clawdbot"
+    if [[ -n "$npm_bin" && -x "${npm_bin}/botbot" ]]; then
+        echo "${npm_bin}/botbot"
         return 0
     fi
 
@@ -784,11 +784,11 @@ resolve_clawdbot_bin() {
     return 1
 }
 
-install_clawdbot_from_git() {
+install_botbot_from_git() {
     local repo_dir="$1"
-    local repo_url="https://github.com/clawdbot/clawdbot.git"
+    local repo_url="https://github.com/botbot/botbot.git"
 
-    echo -e "${WARN}→${NC} Installing Clawdbot from GitHub (${repo_url})..."
+    echo -e "${WARN}→${NC} Installing Botbot from GitHub (${repo_url})..."
 
     if ! check_git; then
         install_git
@@ -819,86 +819,86 @@ install_clawdbot_from_git() {
 
     ensure_user_local_bin_on_path
 
-    cat > "$HOME/.local/bin/clawdbot" <<EOF
+    cat > "$HOME/.local/bin/botbot" <<EOF
 #!/usr/bin/env bash
 set -euo pipefail
 exec node "${repo_dir}/dist/entry.js" "\$@"
 EOF
-    chmod +x "$HOME/.local/bin/clawdbot"
-    echo -e "${SUCCESS}✓${NC} Clawdbot wrapper installed to \$HOME/.local/bin/clawdbot"
+    chmod +x "$HOME/.local/bin/botbot"
+    echo -e "${SUCCESS}✓${NC} Botbot wrapper installed to \$HOME/.local/bin/botbot"
     echo -e "${INFO}i${NC} This checkout uses pnpm. For deps, run: ${INFO}pnpm install${NC} (avoid npm install in the repo)."
 }
 
-# Install Clawdbot
+# Install Botbot
 resolve_beta_version() {
     local beta=""
-    beta="$(npm view clawdbot dist-tags.beta 2>/dev/null || true)"
+    beta="$(npm view botbot dist-tags.beta 2>/dev/null || true)"
     if [[ -z "$beta" || "$beta" == "undefined" || "$beta" == "null" ]]; then
         return 1
     fi
     echo "$beta"
 }
 
-install_clawdbot() {
+install_botbot() {
     if [[ "$USE_BETA" == "1" ]]; then
         local beta_version=""
         beta_version="$(resolve_beta_version || true)"
         if [[ -n "$beta_version" ]]; then
-            CLAWDBOT_VERSION="$beta_version"
+            BOTBOT_VERSION="$beta_version"
             echo -e "${INFO}i${NC} Beta tag detected (${beta_version}); installing beta."
         else
-            CLAWDBOT_VERSION="latest"
+            BOTBOT_VERSION="latest"
             echo -e "${INFO}i${NC} No beta tag found; installing latest."
         fi
     fi
 
-    if [[ -z "${CLAWDBOT_VERSION}" ]]; then
-        CLAWDBOT_VERSION="latest"
+    if [[ -z "${BOTBOT_VERSION}" ]]; then
+        BOTBOT_VERSION="latest"
     fi
 
     local resolved_version=""
-    resolved_version="$(npm view "clawdbot@${CLAWDBOT_VERSION}" version 2>/dev/null || true)"
+    resolved_version="$(npm view "botbot@${BOTBOT_VERSION}" version 2>/dev/null || true)"
     if [[ -n "$resolved_version" ]]; then
-        echo -e "${WARN}→${NC} Installing Clawdbot ${INFO}${resolved_version}${NC}..."
+        echo -e "${WARN}→${NC} Installing Botbot ${INFO}${resolved_version}${NC}..."
     else
-        echo -e "${WARN}→${NC} Installing Clawdbot (${INFO}${CLAWDBOT_VERSION}${NC})..."
+        echo -e "${WARN}→${NC} Installing Botbot (${INFO}${BOTBOT_VERSION}${NC})..."
     fi
     local install_spec=""
-    if [[ "${CLAWDBOT_VERSION}" == "latest" ]]; then
-        install_spec="clawdbot@latest"
+    if [[ "${BOTBOT_VERSION}" == "latest" ]]; then
+        install_spec="botbot@latest"
     else
-        install_spec="clawdbot@${CLAWDBOT_VERSION}"
+        install_spec="botbot@${BOTBOT_VERSION}"
     fi
 
-    if ! install_clawdbot_npm "${install_spec}"; then
+    if ! install_botbot_npm "${install_spec}"; then
         echo -e "${WARN}→${NC} npm install failed; cleaning up and retrying..."
-        cleanup_npm_clawdbot_paths
-        install_clawdbot_npm "${install_spec}"
+        cleanup_npm_botbot_paths
+        install_botbot_npm "${install_spec}"
     fi
 
-    if [[ "${CLAWDBOT_VERSION}" == "latest" ]]; then
-        if ! resolve_clawdbot_bin &> /dev/null; then
-            echo -e "${WARN}→${NC} npm install clawdbot@latest failed; retrying clawdbot@next"
-            cleanup_npm_clawdbot_paths
-            install_clawdbot_npm "clawdbot@next"
+    if [[ "${BOTBOT_VERSION}" == "latest" ]]; then
+        if ! resolve_botbot_bin &> /dev/null; then
+            echo -e "${WARN}→${NC} npm install botbot@latest failed; retrying botbot@next"
+            cleanup_npm_botbot_paths
+            install_botbot_npm "botbot@next"
         fi
     fi
 
-    ensure_clawdbot_bin_link || true
+    ensure_botbot_bin_link || true
 
-    echo -e "${SUCCESS}✓${NC} Clawdbot installed"
+    echo -e "${SUCCESS}✓${NC} Botbot installed"
 }
 
 # Run doctor for migrations (safe, non-interactive)
 run_doctor() {
     echo -e "${WARN}→${NC} Running doctor to migrate settings..."
-    local claw="${CLAWDBOT_BIN:-}"
+    local claw="${BOTBOT_BIN:-}"
     if [[ -z "$claw" ]]; then
-        claw="$(resolve_clawdbot_bin || true)"
+        claw="$(resolve_botbot_bin || true)"
     fi
     if [[ -z "$claw" ]]; then
-        echo -e "${WARN}→${NC} Skipping doctor: ${INFO}clawdbot${NC} not on PATH yet."
-        warn_clawdbot_not_found
+        echo -e "${WARN}→${NC} Skipping doctor: ${INFO}botbot${NC} not on PATH yet."
+        warn_botbot_not_found
         return 0
     fi
     "$claw" doctor --non-interactive || true
@@ -906,11 +906,11 @@ run_doctor() {
 }
 
 resolve_workspace_dir() {
-    local profile="${CLAWDBOT_PROFILE:-default}"
+    local profile="${BOTBOT_PROFILE:-default}"
     if [[ "${profile}" != "default" ]]; then
-        echo "${HOME}/clawd-${profile}"
+        echo "${HOME}/bot-${profile}"
     else
-        echo "${HOME}/clawd"
+        echo "${HOME}/bot"
     fi
 }
 
@@ -929,32 +929,32 @@ run_bootstrap_onboarding_if_needed() {
 
     if [[ ! -r /dev/tty || ! -w /dev/tty ]]; then
         echo -e "${WARN}→${NC} BOOTSTRAP.md found at ${INFO}${bootstrap}${NC}; no TTY, skipping onboarding."
-        echo -e "Run ${INFO}clawdbot onboard${NC} later to finish setup."
+        echo -e "Run ${INFO}botbot onboard${NC} later to finish setup."
         return
     fi
 
     echo -e "${WARN}→${NC} BOOTSTRAP.md found at ${INFO}${bootstrap}${NC}; starting onboarding..."
-    local claw="${CLAWDBOT_BIN:-}"
+    local claw="${BOTBOT_BIN:-}"
     if [[ -z "$claw" ]]; then
-        claw="$(resolve_clawdbot_bin || true)"
+        claw="$(resolve_botbot_bin || true)"
     fi
     if [[ -z "$claw" ]]; then
-        echo -e "${WARN}→${NC} BOOTSTRAP.md found, but ${INFO}clawdbot${NC} not on PATH yet; skipping onboarding."
-        warn_clawdbot_not_found
+        echo -e "${WARN}→${NC} BOOTSTRAP.md found, but ${INFO}botbot${NC} not on PATH yet; skipping onboarding."
+        warn_botbot_not_found
         return
     fi
 
     "$claw" onboard || {
-        echo -e "${ERROR}Onboarding failed; BOOTSTRAP.md still present. Re-run ${INFO}clawdbot onboard${ERROR}.${NC}"
+        echo -e "${ERROR}Onboarding failed; BOOTSTRAP.md still present. Re-run ${INFO}botbot onboard${ERROR}.${NC}"
         return
     }
 }
 
-resolve_clawdbot_version() {
+resolve_botbot_version() {
     local version=""
-    local claw="${CLAWDBOT_BIN:-}"
-    if [[ -z "$claw" ]] && command -v clawdbot &> /dev/null; then
-        claw="$(command -v clawdbot)"
+    local claw="${BOTBOT_BIN:-}"
+    if [[ -z "$claw" ]] && command -v botbot &> /dev/null; then
+        claw="$(command -v botbot)"
     fi
     if [[ -n "$claw" ]]; then
         version=$("$claw" --version 2>/dev/null | head -n 1 | tr -d '\r')
@@ -962,8 +962,8 @@ resolve_clawdbot_version() {
     if [[ -z "$version" ]]; then
         local npm_root=""
         npm_root=$(npm root -g 2>/dev/null || true)
-        if [[ -n "$npm_root" && -f "$npm_root/clawdbot/package.json" ]]; then
-            version=$(node -e "console.log(require('${npm_root}/clawdbot/package.json').version)" 2>/dev/null || true)
+        if [[ -n "$npm_root" && -f "$npm_root/botbot/package.json" ]]; then
+            version=$(node -e "console.log(require('${npm_root}/botbot/package.json').version)" 2>/dev/null || true)
         fi
     fi
     echo "$version"
@@ -1002,16 +1002,16 @@ main() {
     fi
 
     local detected_checkout=""
-    detected_checkout="$(detect_clawdbot_checkout "$PWD" || true)"
+    detected_checkout="$(detect_botbot_checkout "$PWD" || true)"
 
     if [[ -z "$INSTALL_METHOD" && -n "$detected_checkout" ]]; then
         if ! is_promptable; then
-            echo -e "${WARN}→${NC} Found a Clawdbot checkout, but no TTY; defaulting to npm install."
+            echo -e "${WARN}→${NC} Found a Botbot checkout, but no TTY; defaulting to npm install."
             INSTALL_METHOD="npm"
         else
             local choice=""
             choice="$(prompt_choice "$(cat <<EOF
-${WARN}→${NC} Detected a Clawdbot source checkout in: ${INFO}${detected_checkout}${NC}
+${WARN}→${NC} Detected a Botbot source checkout in: ${INFO}${detected_checkout}${NC}
 Choose install method:
   1) Update this checkout (git) and use it
   2) Install global via npm (migrate away from git)
@@ -1024,7 +1024,7 @@ EOF
                 2) INSTALL_METHOD="npm" ;;
                 *)
                     echo -e "${ERROR}Error: no install method selected.${NC}"
-                    echo "Re-run with: --install-method git|npm (or set CLAWDBOT_INSTALL_METHOD)."
+                    echo "Re-run with: --install-method git|npm (or set BOTBOT_INSTALL_METHOD)."
                     exit 2
                     ;;
             esac
@@ -1057,7 +1057,7 @@ EOF
 
     # Check for existing installation
     local is_upgrade=false
-    if check_existing_clawdbot; then
+    if check_existing_botbot; then
         is_upgrade=true
     fi
 
@@ -1072,9 +1072,9 @@ EOF
     local final_git_dir=""
     if [[ "$INSTALL_METHOD" == "git" ]]; then
         # Clean up npm global install if switching to git
-        if npm list -g clawdbot &>/dev/null; then
+        if npm list -g botbot &>/dev/null; then
             echo -e "${WARN}→${NC} Removing npm global install (switching to git)..."
-            npm uninstall -g clawdbot 2>/dev/null || true
+            npm uninstall -g botbot 2>/dev/null || true
             echo -e "${SUCCESS}✓${NC} npm global install removed"
         fi
 
@@ -1083,12 +1083,12 @@ EOF
             repo_dir="$detected_checkout"
         fi
         final_git_dir="$repo_dir"
-        install_clawdbot_from_git "$repo_dir"
+        install_botbot_from_git "$repo_dir"
     else
         # Clean up git wrapper if switching to npm
-        if [[ -x "$HOME/.local/bin/clawdbot" ]]; then
+        if [[ -x "$HOME/.local/bin/botbot" ]]; then
             echo -e "${WARN}→${NC} Removing git wrapper (switching to npm)..."
-            rm -f "$HOME/.local/bin/clawdbot"
+            rm -f "$HOME/.local/bin/botbot"
             echo -e "${SUCCESS}✓${NC} git wrapper removed"
         fi
 
@@ -1100,11 +1100,11 @@ EOF
         # Step 4: npm permissions (Linux)
         fix_npm_permissions
 
-        # Step 5: Clawdbot
-        install_clawdbot
+        # Step 5: Botbot
+        install_botbot
     fi
 
-    CLAWDBOT_BIN="$(resolve_clawdbot_bin || true)"
+    BOTBOT_BIN="$(resolve_botbot_bin || true)"
 
     # PATH warning: installs can succeed while the user's login shell still lacks npm's global bin dir.
     local npm_bin=""
@@ -1113,7 +1113,7 @@ EOF
         warn_shell_path_missing_dir "$npm_bin" "npm global bin dir"
     fi
     if [[ "$INSTALL_METHOD" == "git" ]]; then
-        if [[ -x "$HOME/.local/bin/clawdbot" ]]; then
+        if [[ -x "$HOME/.local/bin/botbot" ]]; then
             warn_shell_path_missing_dir "$HOME/.local/bin" "user-local bin dir (~/.local/bin)"
         fi
     fi
@@ -1131,13 +1131,13 @@ EOF
     run_bootstrap_onboarding_if_needed
 
     local installed_version
-    installed_version=$(resolve_clawdbot_version)
+    installed_version=$(resolve_botbot_version)
 
     echo ""
     if [[ -n "$installed_version" ]]; then
-        echo -e "${SUCCESS}${BOLD}🦞 Clawdbot installed successfully (${installed_version})!${NC}"
+        echo -e "${SUCCESS}${BOLD}🦞 Botbot installed successfully (${installed_version})!${NC}"
     else
-        echo -e "${SUCCESS}${BOLD}🦞 Clawdbot installed successfully!${NC}"
+        echo -e "${SUCCESS}${BOLD}🦞 Botbot installed successfully!${NC}"
     fi
     if [[ "$is_upgrade" == "true" ]]; then
         local update_messages=(
@@ -1186,19 +1186,19 @@ EOF
 
     if [[ "$INSTALL_METHOD" == "git" && -n "$final_git_dir" ]]; then
         echo -e "Source checkout: ${INFO}${final_git_dir}${NC}"
-        echo -e "Wrapper: ${INFO}\$HOME/.local/bin/clawdbot${NC}"
-        echo -e "Installed from source. To update later, run: ${INFO}clawdbot update --restart${NC}"
-        echo -e "Switch to global install later: ${INFO}curl -fsSL --proto '=https' --tlsv1.2 https://clawd.bot/install.sh | bash -s -- --install-method npm${NC}"
+        echo -e "Wrapper: ${INFO}\$HOME/.local/bin/botbot${NC}"
+        echo -e "Installed from source. To update later, run: ${INFO}botbot update --restart${NC}"
+        echo -e "Switch to global install later: ${INFO}curl -fsSL --proto '=https' --tlsv1.2 https://hanzo.bot/install.sh | bash -s -- --install-method npm${NC}"
     elif [[ "$is_upgrade" == "true" ]]; then
         echo -e "Upgrade complete."
         if [[ -r /dev/tty && -w /dev/tty ]]; then
-            local claw="${CLAWDBOT_BIN:-}"
+            local claw="${BOTBOT_BIN:-}"
             if [[ -z "$claw" ]]; then
-                claw="$(resolve_clawdbot_bin || true)"
+                claw="$(resolve_botbot_bin || true)"
             fi
             if [[ -z "$claw" ]]; then
-                echo -e "${WARN}→${NC} Skipping doctor: ${INFO}clawdbot${NC} not on PATH yet."
-                warn_clawdbot_not_found
+                echo -e "${WARN}→${NC} Skipping doctor: ${INFO}botbot${NC} not on PATH yet."
+                warn_botbot_not_found
                 return 0
             fi
             local -a doctor_args=()
@@ -1207,63 +1207,63 @@ EOF
                     doctor_args+=("--non-interactive")
                 fi
             fi
-            echo -e "Running ${INFO}clawdbot doctor${NC}..."
+            echo -e "Running ${INFO}botbot doctor${NC}..."
             local doctor_ok=0
             if (( ${#doctor_args[@]} )); then
-                CLAWDBOT_UPDATE_IN_PROGRESS=1 "$claw" doctor "${doctor_args[@]}" </dev/tty && doctor_ok=1
+                BOTBOT_UPDATE_IN_PROGRESS=1 "$claw" doctor "${doctor_args[@]}" </dev/tty && doctor_ok=1
             else
-                CLAWDBOT_UPDATE_IN_PROGRESS=1 "$claw" doctor </dev/tty && doctor_ok=1
+                BOTBOT_UPDATE_IN_PROGRESS=1 "$claw" doctor </dev/tty && doctor_ok=1
             fi
             if (( doctor_ok )); then
-                echo -e "Updating plugins (${INFO}clawdbot plugins update --all${NC})..."
-                CLAWDBOT_UPDATE_IN_PROGRESS=1 "$claw" plugins update --all || true
+                echo -e "Updating plugins (${INFO}botbot plugins update --all${NC})..."
+                BOTBOT_UPDATE_IN_PROGRESS=1 "$claw" plugins update --all || true
             else
                 echo -e "${WARN}→${NC} Doctor failed; skipping plugin updates."
             fi
         else
             echo -e "${WARN}→${NC} No TTY available; skipping doctor."
-            echo -e "Run ${INFO}clawdbot doctor${NC}, then ${INFO}clawdbot plugins update --all${NC}."
+            echo -e "Run ${INFO}botbot doctor${NC}, then ${INFO}botbot plugins update --all${NC}."
         fi
     else
         if [[ "$NO_ONBOARD" == "1" ]]; then
-            echo -e "Skipping onboard (requested). Run ${INFO}clawdbot onboard${NC} later."
+            echo -e "Skipping onboard (requested). Run ${INFO}botbot onboard${NC} later."
         else
             echo -e "Starting setup..."
             echo ""
             if [[ -r /dev/tty && -w /dev/tty ]]; then
-                local claw="${CLAWDBOT_BIN:-}"
+                local claw="${BOTBOT_BIN:-}"
                 if [[ -z "$claw" ]]; then
-                    claw="$(resolve_clawdbot_bin || true)"
+                    claw="$(resolve_botbot_bin || true)"
                 fi
                 if [[ -z "$claw" ]]; then
-                    echo -e "${WARN}→${NC} Skipping onboarding: ${INFO}clawdbot${NC} not on PATH yet."
-                    warn_clawdbot_not_found
+                    echo -e "${WARN}→${NC} Skipping onboarding: ${INFO}botbot${NC} not on PATH yet."
+                    warn_botbot_not_found
                     return 0
                 fi
                 exec </dev/tty
                 exec "$claw" onboard
             fi
             echo -e "${WARN}→${NC} No TTY available; skipping onboarding."
-            echo -e "Run ${INFO}clawdbot onboard${NC} later."
+            echo -e "Run ${INFO}botbot onboard${NC} later."
             return 0
         fi
     fi
 
-    if command -v clawdbot &> /dev/null; then
-        local claw="${CLAWDBOT_BIN:-}"
+    if command -v botbot &> /dev/null; then
+        local claw="${BOTBOT_BIN:-}"
         if [[ -z "$claw" ]]; then
-            claw="$(resolve_clawdbot_bin || true)"
+            claw="$(resolve_botbot_bin || true)"
         fi
         if [[ -n "$claw" ]] && is_gateway_daemon_loaded "$claw"; then
-            echo -e "${INFO}i${NC} Gateway daemon detected; restart with: ${INFO}clawdbot daemon restart${NC}"
+            echo -e "${INFO}i${NC} Gateway daemon detected; restart with: ${INFO}botbot daemon restart${NC}"
         fi
     fi
 
     echo ""
-    echo -e "FAQ: ${INFO}https://docs.clawd.bot/start/faq${NC}"
+    echo -e "FAQ: ${INFO}https://docs.hanzo.bot/start/faq${NC}"
 }
 
-if [[ "${CLAWDBOT_INSTALL_SH_NO_RUN:-0}" != "1" ]]; then
+if [[ "${BOTBOT_INSTALL_SH_NO_RUN:-0}" != "1" ]]; then
     parse_args "$@"
     configure_verbose
     main
