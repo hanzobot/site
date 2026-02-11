@@ -80,23 +80,23 @@ cleanup_legacy_submodules() {
     fi
 }
 
-cleanup_npm_botbot_paths() {
+cleanup_npm_bot_paths() {
     local npm_root=""
     npm_root="$(npm root -g 2>/dev/null || true)"
     if [[ -z "$npm_root" || "$npm_root" != *node_modules* ]]; then
         return 1
     fi
-    rm -rf "$npm_root"/.botbot-* "$npm_root"/botbot 2>/dev/null || true
+    rm -rf "$npm_root"/.bot-* "$npm_root"/bot 2>/dev/null || true
 }
 
-install_botbot_npm() {
+install_bot_npm() {
     local spec="$1"
     local log
     log="$(mktempfile)"
     if ! SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" npm --loglevel "$NPM_LOGLEVEL" ${NPM_SILENT_FLAG:+$NPM_SILENT_FLAG} --no-fund --no-audit install -g "$spec" 2>&1 | tee "$log"; then
-        if grep -q "ENOTEMPTY: directory not empty, rename .*botbot" "$log"; then
-            echo -e "${WARN}→${NC} npm left a stale botbot directory; cleaning and retrying..."
-            cleanup_npm_botbot_paths
+        if grep -q "ENOTEMPTY: directory not empty, rename .*bot" "$log"; then
+            echo -e "${WARN}→${NC} npm left a stale bot directory; cleaning and retrying..."
+            cleanup_npm_bot_paths
             SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" npm --loglevel "$NPM_LOGLEVEL" ${NPM_SILENT_FLAG:+$NPM_SILENT_FLAG} --no-fund --no-audit install -g "$spec"
             return $?
         fi
@@ -232,7 +232,7 @@ DRY_RUN=${BOTBOT_DRY_RUN:-0}
 INSTALL_METHOD=${BOTBOT_INSTALL_METHOD:-}
 BOTBOT_VERSION=${BOTBOT_VERSION:-latest}
 USE_BETA=${BOTBOT_BETA:-0}
-GIT_DIR_DEFAULT="${HOME}/botbot"
+GIT_DIR_DEFAULT="${HOME}/bot"
 GIT_DIR=${BOTBOT_GIT_DIR:-$GIT_DIR_DEFAULT}
 GIT_UPDATE=${BOTBOT_GIT_UPDATE:-1}
 SHARP_IGNORE_GLOBAL_LIBVIPS="${SHARP_IGNORE_GLOBAL_LIBVIPS:-1}"
@@ -255,7 +255,7 @@ Options:
   --git, --github                     Shortcut for --install-method git
   --version <version|dist-tag>         npm install: version (default: latest)
   --beta                               Use beta if available, else latest
-  --git-dir, --dir <path>             Checkout directory (default: ~/botbot)
+  --git-dir, --dir <path>             Checkout directory (default: ~/bot)
   --no-git-update                      Skip git pull for existing checkout
   --no-onboard                          Skip onboarding (non-interactive)
   --no-prompt                           Disable prompts (required in CI/automation)
@@ -377,7 +377,7 @@ prompt_choice() {
     echo "$answer"
 }
 
-detect_botbot_checkout() {
+detect_bot_checkout() {
     local dir="$1"
     if [[ ! -f "$dir/package.json" ]]; then
         return 1
@@ -385,7 +385,7 @@ detect_botbot_checkout() {
     if [[ ! -f "$dir/pnpm-workspace.yaml" ]]; then
         return 1
     fi
-    if ! grep -q '"name"[[:space:]]*:[[:space:]]*"botbot"' "$dir/package.json" 2>/dev/null; then
+    if ! grep -q '"name"[[:space:]]*:[[:space:]]*"bot"' "$dir/package.json" 2>/dev/null; then
         return 1
     fi
     echo "$dir"
@@ -570,24 +570,24 @@ fix_npm_permissions() {
     echo -e "${SUCCESS}✓${NC} npm configured for user installs"
 }
 
-resolve_botbot_bin() {
-    if command -v botbot &> /dev/null; then
-        command -v botbot
+resolve_bot_bin() {
+    if command -v bot &> /dev/null; then
+        command -v bot
         return 0
     fi
     local npm_bin=""
     npm_bin="$(npm_global_bin_dir || true)"
-    if [[ -n "$npm_bin" && -x "${npm_bin}/botbot" ]]; then
-        echo "${npm_bin}/botbot"
+    if [[ -n "$npm_bin" && -x "${npm_bin}/bot" ]]; then
+        echo "${npm_bin}/bot"
         return 0
     fi
     return 1
 }
 
-ensure_botbot_bin_link() {
+ensure_bot_bin_link() {
     local npm_root=""
     npm_root="$(npm root -g 2>/dev/null || true)"
-    if [[ -z "$npm_root" || ! -d "$npm_root/botbot" ]]; then
+    if [[ -z "$npm_root" || ! -d "$npm_root/bot" ]]; then
         return 1
     fi
     local npm_bin=""
@@ -596,16 +596,16 @@ ensure_botbot_bin_link() {
         return 1
     fi
     mkdir -p "$npm_bin"
-    if [[ ! -x "${npm_bin}/botbot" ]]; then
-        ln -sf "$npm_root/botbot/dist/entry.js" "${npm_bin}/botbot"
-        echo -e "${WARN}→${NC} Installed botbot bin link at ${INFO}${npm_bin}/botbot${NC}"
+    if [[ ! -x "${npm_bin}/bot" ]]; then
+        ln -sf "$npm_root/bot/dist/entry.js" "${npm_bin}/bot"
+        echo -e "${WARN}→${NC} Installed bot bin link at ${INFO}${npm_bin}/bot${NC}"
     fi
     return 0
 }
 
 # Check for existing Botbot installation
-check_existing_botbot() {
-    if [[ -n "$(type -P botbot 2>/dev/null || true)" ]]; then
+check_existing_bot() {
+    if [[ -n "$(type -P bot 2>/dev/null || true)" ]]; then
         echo -e "${WARN}→${NC} Existing Botbot installation detected"
         return 0
     fi
@@ -697,7 +697,7 @@ warn_shell_path_missing_dir() {
 
     echo ""
     echo -e "${WARN}→${NC} PATH warning: missing ${label}: ${INFO}${dir}${NC}"
-    echo -e "This can make ${INFO}botbot${NC} show as \"command not found\" in new terminals."
+    echo -e "This can make ${INFO}bot${NC} show as \"command not found\" in new terminals."
     echo -e "Fix (zsh: ~/.zshrc, bash: ~/.bashrc):"
     echo -e "  export PATH=\"${dir}:\\$PATH\""
     echo -e "Docs: ${INFO}https://docs.hanzo.bot/install#nodejs--npm-path-sanity${NC}"
@@ -717,14 +717,14 @@ maybe_nodenv_rehash() {
     fi
 }
 
-warn_botbot_not_found() {
-    echo -e "${WARN}→${NC} Installed, but ${INFO}botbot${NC} is not discoverable on PATH in this shell."
+warn_bot_not_found() {
+    echo -e "${WARN}→${NC} Installed, but ${INFO}bot${NC} is not discoverable on PATH in this shell."
     echo -e "Try: ${INFO}hash -r${NC} (bash) or ${INFO}rehash${NC} (zsh), then retry."
     echo -e "Docs: ${INFO}https://docs.hanzo.bot/install#nodejs--npm-path-sanity${NC}"
     local t=""
-    t="$(type -t botbot 2>/dev/null || true)"
+    t="$(type -t bot 2>/dev/null || true)"
     if [[ "$t" == "alias" || "$t" == "function" ]]; then
-        echo -e "${WARN}→${NC} Found a shell ${INFO}${t}${NC} named ${INFO}botbot${NC}; it may shadow the real binary."
+        echo -e "${WARN}→${NC} Found a shell ${INFO}${t}${NC} named ${INFO}bot${NC}; it may shadow the real binary."
     fi
     if command -v nodenv &> /dev/null; then
         echo -e "Using nodenv? Run: ${INFO}nodenv rehash${NC}"
@@ -743,10 +743,10 @@ warn_botbot_not_found() {
     fi
 }
 
-resolve_botbot_bin() {
+resolve_bot_bin() {
     refresh_shell_command_cache
     local resolved=""
-    resolved="$(type -P botbot 2>/dev/null || true)"
+    resolved="$(type -P bot 2>/dev/null || true)"
     if [[ -n "$resolved" && -x "$resolved" ]]; then
         echo "$resolved"
         return 0
@@ -754,7 +754,7 @@ resolve_botbot_bin() {
 
     ensure_npm_global_bin_on_path
     refresh_shell_command_cache
-    resolved="$(type -P botbot 2>/dev/null || true)"
+    resolved="$(type -P bot 2>/dev/null || true)"
     if [[ -n "$resolved" && -x "$resolved" ]]; then
         echo "$resolved"
         return 0
@@ -762,21 +762,21 @@ resolve_botbot_bin() {
 
     local npm_bin=""
     npm_bin="$(npm_global_bin_dir || true)"
-    if [[ -n "$npm_bin" && -x "${npm_bin}/botbot" ]]; then
-        echo "${npm_bin}/botbot"
+    if [[ -n "$npm_bin" && -x "${npm_bin}/bot" ]]; then
+        echo "${npm_bin}/bot"
         return 0
     fi
 
     maybe_nodenv_rehash
     refresh_shell_command_cache
-    resolved="$(type -P botbot 2>/dev/null || true)"
+    resolved="$(type -P bot 2>/dev/null || true)"
     if [[ -n "$resolved" && -x "$resolved" ]]; then
         echo "$resolved"
         return 0
     fi
 
-    if [[ -n "$npm_bin" && -x "${npm_bin}/botbot" ]]; then
-        echo "${npm_bin}/botbot"
+    if [[ -n "$npm_bin" && -x "${npm_bin}/bot" ]]; then
+        echo "${npm_bin}/bot"
         return 0
     fi
 
@@ -784,9 +784,9 @@ resolve_botbot_bin() {
     return 1
 }
 
-install_botbot_from_git() {
+install_bot_from_git() {
     local repo_dir="$1"
-    local repo_url="https://github.com/botbot/botbot.git"
+    local repo_url="https://github.com/bot/bot.git"
 
     echo -e "${WARN}→${NC} Installing Botbot from GitHub (${repo_url})..."
 
@@ -819,27 +819,27 @@ install_botbot_from_git() {
 
     ensure_user_local_bin_on_path
 
-    cat > "$HOME/.local/bin/botbot" <<EOF
+    cat > "$HOME/.local/bin/bot" <<EOF
 #!/usr/bin/env bash
 set -euo pipefail
 exec node "${repo_dir}/dist/entry.js" "\$@"
 EOF
-    chmod +x "$HOME/.local/bin/botbot"
-    echo -e "${SUCCESS}✓${NC} Botbot wrapper installed to \$HOME/.local/bin/botbot"
+    chmod +x "$HOME/.local/bin/bot"
+    echo -e "${SUCCESS}✓${NC} Botbot wrapper installed to \$HOME/.local/bin/bot"
     echo -e "${INFO}i${NC} This checkout uses pnpm. For deps, run: ${INFO}pnpm install${NC} (avoid npm install in the repo)."
 }
 
 # Install Botbot
 resolve_beta_version() {
     local beta=""
-    beta="$(npm view botbot dist-tags.beta 2>/dev/null || true)"
+    beta="$(npm view bot dist-tags.beta 2>/dev/null || true)"
     if [[ -z "$beta" || "$beta" == "undefined" || "$beta" == "null" ]]; then
         return 1
     fi
     echo "$beta"
 }
 
-install_botbot() {
+install_bot() {
     if [[ "$USE_BETA" == "1" ]]; then
         local beta_version=""
         beta_version="$(resolve_beta_version || true)"
@@ -857,7 +857,7 @@ install_botbot() {
     fi
 
     local resolved_version=""
-    resolved_version="$(npm view "botbot@${BOTBOT_VERSION}" version 2>/dev/null || true)"
+    resolved_version="$(npm view "bot@${BOTBOT_VERSION}" version 2>/dev/null || true)"
     if [[ -n "$resolved_version" ]]; then
         echo -e "${WARN}→${NC} Installing Botbot ${INFO}${resolved_version}${NC}..."
     else
@@ -865,26 +865,26 @@ install_botbot() {
     fi
     local install_spec=""
     if [[ "${BOTBOT_VERSION}" == "latest" ]]; then
-        install_spec="botbot@latest"
+        install_spec="bot@latest"
     else
-        install_spec="botbot@${BOTBOT_VERSION}"
+        install_spec="bot@${BOTBOT_VERSION}"
     fi
 
-    if ! install_botbot_npm "${install_spec}"; then
+    if ! install_bot_npm "${install_spec}"; then
         echo -e "${WARN}→${NC} npm install failed; cleaning up and retrying..."
-        cleanup_npm_botbot_paths
-        install_botbot_npm "${install_spec}"
+        cleanup_npm_bot_paths
+        install_bot_npm "${install_spec}"
     fi
 
     if [[ "${BOTBOT_VERSION}" == "latest" ]]; then
-        if ! resolve_botbot_bin &> /dev/null; then
-            echo -e "${WARN}→${NC} npm install botbot@latest failed; retrying botbot@next"
-            cleanup_npm_botbot_paths
-            install_botbot_npm "botbot@next"
+        if ! resolve_bot_bin &> /dev/null; then
+            echo -e "${WARN}→${NC} npm install bot@latest failed; retrying bot@next"
+            cleanup_npm_bot_paths
+            install_bot_npm "bot@next"
         fi
     fi
 
-    ensure_botbot_bin_link || true
+    ensure_bot_bin_link || true
 
     echo -e "${SUCCESS}✓${NC} Botbot installed"
 }
@@ -894,11 +894,11 @@ run_doctor() {
     echo -e "${WARN}→${NC} Running doctor to migrate settings..."
     local claw="${BOTBOT_BIN:-}"
     if [[ -z "$claw" ]]; then
-        claw="$(resolve_botbot_bin || true)"
+        claw="$(resolve_bot_bin || true)"
     fi
     if [[ -z "$claw" ]]; then
-        echo -e "${WARN}→${NC} Skipping doctor: ${INFO}botbot${NC} not on PATH yet."
-        warn_botbot_not_found
+        echo -e "${WARN}→${NC} Skipping doctor: ${INFO}bot${NC} not on PATH yet."
+        warn_bot_not_found
         return 0
     fi
     "$claw" doctor --non-interactive || true
@@ -929,32 +929,32 @@ run_bootstrap_onboarding_if_needed() {
 
     if [[ ! -r /dev/tty || ! -w /dev/tty ]]; then
         echo -e "${WARN}→${NC} BOOTSTRAP.md found at ${INFO}${bootstrap}${NC}; no TTY, skipping onboarding."
-        echo -e "Run ${INFO}botbot onboard${NC} later to finish setup."
+        echo -e "Run ${INFO}bot onboard${NC} later to finish setup."
         return
     fi
 
     echo -e "${WARN}→${NC} BOOTSTRAP.md found at ${INFO}${bootstrap}${NC}; starting onboarding..."
     local claw="${BOTBOT_BIN:-}"
     if [[ -z "$claw" ]]; then
-        claw="$(resolve_botbot_bin || true)"
+        claw="$(resolve_bot_bin || true)"
     fi
     if [[ -z "$claw" ]]; then
-        echo -e "${WARN}→${NC} BOOTSTRAP.md found, but ${INFO}botbot${NC} not on PATH yet; skipping onboarding."
-        warn_botbot_not_found
+        echo -e "${WARN}→${NC} BOOTSTRAP.md found, but ${INFO}bot${NC} not on PATH yet; skipping onboarding."
+        warn_bot_not_found
         return
     fi
 
     "$claw" onboard || {
-        echo -e "${ERROR}Onboarding failed; BOOTSTRAP.md still present. Re-run ${INFO}botbot onboard${ERROR}.${NC}"
+        echo -e "${ERROR}Onboarding failed; BOOTSTRAP.md still present. Re-run ${INFO}bot onboard${ERROR}.${NC}"
         return
     }
 }
 
-resolve_botbot_version() {
+resolve_bot_version() {
     local version=""
     local claw="${BOTBOT_BIN:-}"
-    if [[ -z "$claw" ]] && command -v botbot &> /dev/null; then
-        claw="$(command -v botbot)"
+    if [[ -z "$claw" ]] && command -v bot &> /dev/null; then
+        claw="$(command -v bot)"
     fi
     if [[ -n "$claw" ]]; then
         version=$("$claw" --version 2>/dev/null | head -n 1 | tr -d '\r')
@@ -962,8 +962,8 @@ resolve_botbot_version() {
     if [[ -z "$version" ]]; then
         local npm_root=""
         npm_root=$(npm root -g 2>/dev/null || true)
-        if [[ -n "$npm_root" && -f "$npm_root/botbot/package.json" ]]; then
-            version=$(node -e "console.log(require('${npm_root}/botbot/package.json').version)" 2>/dev/null || true)
+        if [[ -n "$npm_root" && -f "$npm_root/bot/package.json" ]]; then
+            version=$(node -e "console.log(require('${npm_root}/bot/package.json').version)" 2>/dev/null || true)
         fi
     fi
     echo "$version"
@@ -1002,7 +1002,7 @@ main() {
     fi
 
     local detected_checkout=""
-    detected_checkout="$(detect_botbot_checkout "$PWD" || true)"
+    detected_checkout="$(detect_bot_checkout "$PWD" || true)"
 
     if [[ -z "$INSTALL_METHOD" && -n "$detected_checkout" ]]; then
         if ! is_promptable; then
@@ -1057,7 +1057,7 @@ EOF
 
     # Check for existing installation
     local is_upgrade=false
-    if check_existing_botbot; then
+    if check_existing_bot; then
         is_upgrade=true
     fi
 
@@ -1072,9 +1072,9 @@ EOF
     local final_git_dir=""
     if [[ "$INSTALL_METHOD" == "git" ]]; then
         # Clean up npm global install if switching to git
-        if npm list -g botbot &>/dev/null; then
+        if npm list -g bot &>/dev/null; then
             echo -e "${WARN}→${NC} Removing npm global install (switching to git)..."
-            npm uninstall -g botbot 2>/dev/null || true
+            npm uninstall -g bot 2>/dev/null || true
             echo -e "${SUCCESS}✓${NC} npm global install removed"
         fi
 
@@ -1083,12 +1083,12 @@ EOF
             repo_dir="$detected_checkout"
         fi
         final_git_dir="$repo_dir"
-        install_botbot_from_git "$repo_dir"
+        install_bot_from_git "$repo_dir"
     else
         # Clean up git wrapper if switching to npm
-        if [[ -x "$HOME/.local/bin/botbot" ]]; then
+        if [[ -x "$HOME/.local/bin/bot" ]]; then
             echo -e "${WARN}→${NC} Removing git wrapper (switching to npm)..."
-            rm -f "$HOME/.local/bin/botbot"
+            rm -f "$HOME/.local/bin/bot"
             echo -e "${SUCCESS}✓${NC} git wrapper removed"
         fi
 
@@ -1101,10 +1101,10 @@ EOF
         fix_npm_permissions
 
         # Step 5: Botbot
-        install_botbot
+        install_bot
     fi
 
-    BOTBOT_BIN="$(resolve_botbot_bin || true)"
+    BOTBOT_BIN="$(resolve_bot_bin || true)"
 
     # PATH warning: installs can succeed while the user's login shell still lacks npm's global bin dir.
     local npm_bin=""
@@ -1113,7 +1113,7 @@ EOF
         warn_shell_path_missing_dir "$npm_bin" "npm global bin dir"
     fi
     if [[ "$INSTALL_METHOD" == "git" ]]; then
-        if [[ -x "$HOME/.local/bin/botbot" ]]; then
+        if [[ -x "$HOME/.local/bin/bot" ]]; then
             warn_shell_path_missing_dir "$HOME/.local/bin" "user-local bin dir (~/.local/bin)"
         fi
     fi
@@ -1131,7 +1131,7 @@ EOF
     run_bootstrap_onboarding_if_needed
 
     local installed_version
-    installed_version=$(resolve_botbot_version)
+    installed_version=$(resolve_bot_version)
 
     echo ""
     if [[ -n "$installed_version" ]]; then
@@ -1186,19 +1186,19 @@ EOF
 
     if [[ "$INSTALL_METHOD" == "git" && -n "$final_git_dir" ]]; then
         echo -e "Source checkout: ${INFO}${final_git_dir}${NC}"
-        echo -e "Wrapper: ${INFO}\$HOME/.local/bin/botbot${NC}"
-        echo -e "Installed from source. To update later, run: ${INFO}botbot update --restart${NC}"
+        echo -e "Wrapper: ${INFO}\$HOME/.local/bin/bot${NC}"
+        echo -e "Installed from source. To update later, run: ${INFO}bot update --restart${NC}"
         echo -e "Switch to global install later: ${INFO}curl -fsSL --proto '=https' --tlsv1.2 https://hanzo.bot/install.sh | bash -s -- --install-method npm${NC}"
     elif [[ "$is_upgrade" == "true" ]]; then
         echo -e "Upgrade complete."
         if [[ -r /dev/tty && -w /dev/tty ]]; then
             local claw="${BOTBOT_BIN:-}"
             if [[ -z "$claw" ]]; then
-                claw="$(resolve_botbot_bin || true)"
+                claw="$(resolve_bot_bin || true)"
             fi
             if [[ -z "$claw" ]]; then
-                echo -e "${WARN}→${NC} Skipping doctor: ${INFO}botbot${NC} not on PATH yet."
-                warn_botbot_not_found
+                echo -e "${WARN}→${NC} Skipping doctor: ${INFO}bot${NC} not on PATH yet."
+                warn_bot_not_found
                 return 0
             fi
             local -a doctor_args=()
@@ -1207,7 +1207,7 @@ EOF
                     doctor_args+=("--non-interactive")
                 fi
             fi
-            echo -e "Running ${INFO}botbot doctor${NC}..."
+            echo -e "Running ${INFO}bot doctor${NC}..."
             local doctor_ok=0
             if (( ${#doctor_args[@]} )); then
                 BOTBOT_UPDATE_IN_PROGRESS=1 "$claw" doctor "${doctor_args[@]}" </dev/tty && doctor_ok=1
@@ -1215,47 +1215,47 @@ EOF
                 BOTBOT_UPDATE_IN_PROGRESS=1 "$claw" doctor </dev/tty && doctor_ok=1
             fi
             if (( doctor_ok )); then
-                echo -e "Updating plugins (${INFO}botbot plugins update --all${NC})..."
+                echo -e "Updating plugins (${INFO}bot plugins update --all${NC})..."
                 BOTBOT_UPDATE_IN_PROGRESS=1 "$claw" plugins update --all || true
             else
                 echo -e "${WARN}→${NC} Doctor failed; skipping plugin updates."
             fi
         else
             echo -e "${WARN}→${NC} No TTY available; skipping doctor."
-            echo -e "Run ${INFO}botbot doctor${NC}, then ${INFO}botbot plugins update --all${NC}."
+            echo -e "Run ${INFO}bot doctor${NC}, then ${INFO}bot plugins update --all${NC}."
         fi
     else
         if [[ "$NO_ONBOARD" == "1" ]]; then
-            echo -e "Skipping onboard (requested). Run ${INFO}botbot onboard${NC} later."
+            echo -e "Skipping onboard (requested). Run ${INFO}bot onboard${NC} later."
         else
             echo -e "Starting setup..."
             echo ""
             if [[ -r /dev/tty && -w /dev/tty ]]; then
                 local claw="${BOTBOT_BIN:-}"
                 if [[ -z "$claw" ]]; then
-                    claw="$(resolve_botbot_bin || true)"
+                    claw="$(resolve_bot_bin || true)"
                 fi
                 if [[ -z "$claw" ]]; then
-                    echo -e "${WARN}→${NC} Skipping onboarding: ${INFO}botbot${NC} not on PATH yet."
-                    warn_botbot_not_found
+                    echo -e "${WARN}→${NC} Skipping onboarding: ${INFO}bot${NC} not on PATH yet."
+                    warn_bot_not_found
                     return 0
                 fi
                 exec </dev/tty
                 exec "$claw" onboard
             fi
             echo -e "${WARN}→${NC} No TTY available; skipping onboarding."
-            echo -e "Run ${INFO}botbot onboard${NC} later."
+            echo -e "Run ${INFO}bot onboard${NC} later."
             return 0
         fi
     fi
 
-    if command -v botbot &> /dev/null; then
+    if command -v bot &> /dev/null; then
         local claw="${BOTBOT_BIN:-}"
         if [[ -z "$claw" ]]; then
-            claw="$(resolve_botbot_bin || true)"
+            claw="$(resolve_bot_bin || true)"
         fi
         if [[ -n "$claw" ]] && is_gateway_daemon_loaded "$claw"; then
-            echo -e "${INFO}i${NC} Gateway daemon detected; restart with: ${INFO}botbot daemon restart${NC}"
+            echo -e "${INFO}i${NC} Gateway daemon detected; restart with: ${INFO}bot daemon restart${NC}"
         fi
     fi
 

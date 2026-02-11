@@ -10,8 +10,8 @@ docker build -t "$IMAGE_NAME" -f "$ROOT_DIR/scripts/e2e/Dockerfile" "$ROOT_DIR"
 echo "Running install-cli E2E..."
 docker run --rm -t "$IMAGE_NAME" bash -lc '
   set -euo pipefail
-  install_prefix="/tmp/botbot"
+  install_prefix="/tmp/bot"
   /app/public/install-cli.sh --json --no-onboard --prefix "$install_prefix" > /tmp/install.jsonl
   grep "\"event\":\"done\"" /tmp/install.jsonl
-  "$install_prefix/bin/botbot" --version
+  "$install_prefix/bin/bot" --version
 '

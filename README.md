@@ -1,6 +1,6 @@
 # hanzo.bot
 
-Landing page for [Botbot](https://github.com/botbot/botbot) — your personal AI assistant.
+Landing page for [Botbot](https://github.com/bot/bot) — your personal AI assistant.
 
 **Live**: [hanzo.bot](https://hanzo.bot)
 
@@ -45,12 +45,12 @@ The landing page hosts installer scripts:
 These scripts:
 1. Install Homebrew (macOS) or detect package managers (Windows)
 2. Install Node.js 22+ if needed
-3. Install botbot globally via npm
-4. Run `botbot doctor --non-interactive` for migrations (upgrades only)
-5. Prompt to run `botbot onboard` (new installs)
+3. Install bot globally via npm
+4. Run `bot doctor --non-interactive` for migrations (upgrades only)
+5. Prompt to run `bot onboard` (new installs)
 
 ## Related
 
-- [Botbot](https://github.com/botbot/botbot) — Main repository
+- [Botbot](https://github.com/bot/bot) — Main repository
 - [Docs](https://docs.hanzo.bot) — Documentation
 - [Discord](https://discord.gg/bot) — Community

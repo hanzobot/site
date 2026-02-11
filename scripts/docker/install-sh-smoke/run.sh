@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-LOCAL_INSTALL_PATH="/opt/botbot-install.sh"
+LOCAL_INSTALL_PATH="/opt/bot-install.sh"
 if [[ -n "${BOTBOT_INSTALL_URL:-}" ]]; then
   INSTALL_URL="$BOTBOT_INSTALL_URL"
 elif [[ -f "$LOCAL_INSTALL_PATH" ]]; then
@@ -14,7 +14,7 @@ fetch_registry_versions() {
   node - <<'NODE'
 const https = require("node:https");
 
-const url = process.env.NPM_REGISTRY_URL || "https://registry.npmjs.org/botbot";
+const url = process.env.NPM_REGISTRY_URL || "https://registry.npmjs.org/bot";
 
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -95,29 +95,29 @@ curl_install | bash -s -- --help >/tmp/install-help.txt
 grep -q -- "--install-method" /tmp/install-help.txt
 
 echo "==> Preinstall previous (forces installer upgrade path)"
-npm install -g "botbot@${PREVIOUS_VERSION}"
+npm install -g "bot@${PREVIOUS_VERSION}"
 
 echo "==> Run official installer one-liner"
 curl_install | bash -s -- --no-onboard
 
 echo "==> Verify installed version"
-INSTALLED_VERSION="$(botbot --version 2>/dev/null | head -n 1 | tr -d '\r')"
+INSTALLED_VERSION="$(bot --version 2>/dev/null | head -n 1 | tr -d '\r')"
 echo "installed=$INSTALLED_VERSION latest=$LATEST_VERSION next=$NEXT_VERSION"
 
 if [[ "$INSTALLED_VERSION" != "$LATEST_VERSION" && "$INSTALLED_VERSION" != "$NEXT_VERSION" ]]; then
-  echo "ERROR: expected botbot@$LATEST_VERSION (latest) or @$NEXT_VERSION (next), got @$INSTALLED_VERSION" >&2
+  echo "ERROR: expected bot@$LATEST_VERSION (latest) or @$NEXT_VERSION (next), got @$INSTALLED_VERSION" >&2
   exit 1
 fi
 
 echo "==> Sanity: CLI runs"
-botbot --help >/dev/null
+bot --help >/dev/null
 
 echo "==> Installer: detect source checkout (dry-run)"
-TMP_REPO="/tmp/botbot-repo-detect"
+TMP_REPO="/tmp/bot-repo-detect"
 rm -rf "$TMP_REPO"
 mkdir -p "$TMP_REPO"
 cat > "$TMP_REPO/package.json" <<'EOF'
-{"name":"botbot"}
+{"name":"bot"}
 EOF
 touch "$TMP_REPO/pnpm-workspace.yaml"
 
@@ -141,6 +141,6 @@ touch "$TMP_REPO/pnpm-workspace.yaml"
 
 echo "==> Installer: dry-run (explicit methods)"
 curl_install | bash -s -- --dry-run --no-onboard --install-method npm --no-prompt >/dev/null
-curl_install | bash -s -- --dry-run --no-onboard --install-method git --git-dir /tmp/botbot-src --no-prompt >/dev/null
+curl_install | bash -s -- --dry-run --no-onboard --install-method git --git-dir /tmp/bot-src --no-prompt >/dev/null
 
 echo "OK"

@@ -4,7 +4,7 @@ set -euo pipefail
 # Botbot CLI installer (non-interactive, no onboarding)
 # Usage: curl -fsSL --proto '=https' --tlsv1.2 https://hanzo.bot/install-cli.sh | bash -s -- [--json] [--prefix <path>] [--version <ver>] [--node-version <ver>] [--onboard]
 
-PREFIX="${BOTBOT_PREFIX:-${HOME}/.botbot}"
+PREFIX="${BOTBOT_PREFIX:-${HOME}/.bot}"
 BOTBOT_VERSION="${BOTBOT_VERSION:-latest}"
 NODE_VERSION="${BOTBOT_NODE_VERSION:-22.22.0}"
 SHARP_IGNORE_GLOBAL_LIBVIPS="${SHARP_IGNORE_GLOBAL_LIBVIPS:-1}"
@@ -17,10 +17,10 @@ print_usage() {
   cat <<EOF
 Usage: install-cli.sh [options]
   --json                Emit NDJSON events (no human output)
-  --prefix <path>        Install prefix (default: ~/.botbot)
+  --prefix <path>        Install prefix (default: ~/.bot)
   --version <ver>        Botbot version (default: latest)
   --node-version <ver>   Node version (default: 22.22.0)
-  --onboard              Run "botbot onboard" after install
+  --onboard              Run "bot onboard" after install
   --no-onboard           Skip onboarding (default)
   --set-npm-prefix       Force npm prefix to ~/.npm-global if current prefix is not writable (Linux)
 
@@ -63,7 +63,7 @@ download_file() {
 }
 
 cleanup_legacy_submodules() {
-  local repo_dir="${BOTBOT_GIT_DIR:-${HOME}/botbot}"
+  local repo_dir="${BOTBOT_GIT_DIR:-${HOME}/bot}"
   local legacy_dir="${repo_dir}/Peekaboo"
   if [[ -d "$legacy_dir" ]]; then
     emit_json "{\"event\":\"step\",\"name\":\"legacy-submodule\",\"status\":\"start\",\"path\":\"${legacy_dir//\"/\\\"}\"}"
@@ -342,44 +342,44 @@ fix_npm_prefix_if_needed() {
   log "Configured npm prefix to ${target}"
 }
 
-install_botbot() {
+install_bot() {
   local requested="${BOTBOT_VERSION:-latest}"
   local npm_args=(
     --loglevel "$NPM_LOGLEVEL"
     --no-fund
     --no-audit
   )
-  emit_json "{\"event\":\"step\",\"name\":\"botbot\",\"status\":\"start\",\"version\":\"${requested}\"}"
+  emit_json "{\"event\":\"step\",\"name\":\"bot\",\"status\":\"start\",\"version\":\"${requested}\"}"
   log "Installing Botbot (${requested})..."
   if [[ "$SET_NPM_PREFIX" -eq 1 ]]; then
     fix_npm_prefix_if_needed
   fi
 
   if [[ "${requested}" == "latest" ]]; then
-    if ! SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" "$(npm_bin)" install -g --prefix "$PREFIX" "${npm_args[@]}" "botbot@latest"; then
-      log "npm install botbot@latest failed; retrying botbot@next"
-      emit_json "{\"event\":\"step\",\"name\":\"botbot\",\"status\":\"retry\",\"version\":\"next\"}"
-      SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" "$(npm_bin)" install -g --prefix "$PREFIX" "${npm_args[@]}" "botbot@next"
+    if ! SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" "$(npm_bin)" install -g --prefix "$PREFIX" "${npm_args[@]}" "bot@latest"; then
+      log "npm install bot@latest failed; retrying bot@next"
+      emit_json "{\"event\":\"step\",\"name\":\"bot\",\"status\":\"retry\",\"version\":\"next\"}"
+      SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" "$(npm_bin)" install -g --prefix "$PREFIX" "${npm_args[@]}" "bot@next"
       requested="next"
     fi
   else
-    SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" "$(npm_bin)" install -g --prefix "$PREFIX" "${npm_args[@]}" "botbot@${requested}"
+    SHARP_IGNORE_GLOBAL_LIBVIPS="$SHARP_IGNORE_GLOBAL_LIBVIPS" "$(npm_bin)" install -g --prefix "$PREFIX" "${npm_args[@]}" "bot@${requested}"
   fi
 
-  rm -f "${PREFIX}/bin/botbot"
-  cat > "${PREFIX}/bin/botbot" <<EOF
+  rm -f "${PREFIX}/bin/bot"
+  cat > "${PREFIX}/bin/bot" <<EOF
 #!/usr/bin/env bash
 set -euo pipefail
-exec "${PREFIX}/tools/node/bin/node" "${PREFIX}/lib/node_modules/botbot/dist/entry.js" "\$@"
+exec "${PREFIX}/tools/node/bin/node" "${PREFIX}/lib/node_modules/bot/dist/entry.js" "\$@"
 EOF
-  chmod +x "${PREFIX}/bin/botbot"
-  emit_json "{\"event\":\"step\",\"name\":\"botbot\",\"status\":\"ok\",\"version\":\"${requested}\"}"
+  chmod +x "${PREFIX}/bin/bot"
+  emit_json "{\"event\":\"step\",\"name\":\"bot\",\"status\":\"ok\",\"version\":\"${requested}\"}"
 }
 
-resolve_botbot_version() {
+resolve_bot_version() {
   local version=""
-  if [[ -x "${PREFIX}/bin/botbot" ]]; then
-    version="$("${PREFIX}/bin/botbot" --version 2>/dev/null | head -n 1 | tr -d '\r')"
+  if [[ -x "${PREFIX}/bin/bot" ]]; then
+    version="$("${PREFIX}/bin/bot" --version 2>/dev/null | head -n 1 | tr -d '\r')"
   fi
   echo "$version"
 }
@@ -401,10 +401,10 @@ main() {
   if [[ "$SET_NPM_PREFIX" -eq 1 ]]; then
     fix_npm_prefix_if_needed
   fi
-  install_botbot
+  install_bot
 
   local installed_version
-  installed_version="$(resolve_botbot_version)"
+  installed_version="$(resolve_bot_version)"
   if [[ -n "$installed_version" ]]; then
     emit_json "{\"event\":\"done\",\"ok\":true,\"version\":\"${installed_version//\"/\\\"}\"}"
     log "Botbot installed (${installed_version})."
@@ -414,7 +414,7 @@ main() {
   fi
 
   if [[ "$RUN_ONBOARD" -eq 1 ]]; then
-    "${PREFIX}/bin/botbot" onboard
+    "${PREFIX}/bin/bot" onboard
   fi
 }
 

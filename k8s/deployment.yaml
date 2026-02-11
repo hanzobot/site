@@ -1,0 +1,106 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hanzo-bot-site
+  namespace: hanzo
+  labels:
+    app: hanzo-bot-site
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hanzo-bot-site
+  template:
+    metadata:
+      labels:
+        app: hanzo-bot-site
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: hanzo-bot-site
+          image: ghcr.io/hanzoai/bot-site:latest
+          ports:
+            - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "10m"
+            limits:
+              memory: "64Mi"
+              cpu: "100m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hanzo-bot-site
+  namespace: hanzo
+spec:
+  selector:
+    app: hanzo-bot-site
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hanzo-bot-site
+  namespace: hanzo
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - hanzo.bot
+      secretName: hanzo-bot-tls
+    - hosts:
+        - skills.hanzo.bot
+      secretName: skills-hanzo-bot-tls
+    - hosts:
+        - app.hanzo.bot
+      secretName: app-hanzo-bot-tls
+  rules:
+    - host: hanzo.bot
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hanzo-bot-site
+                port:
+                  number: 80
+    - host: skills.hanzo.bot
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hanzo-bot-site
+                port:
+                  number: 80
+    - host: app.hanzo.bot
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: console
+                port:
+                  number: 80
