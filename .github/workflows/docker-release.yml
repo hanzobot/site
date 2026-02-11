@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE: ghcr.io/hanzoai/bot-site
+  IMAGE: ghcr.io/hanzobot/site
 
 jobs:
   build-and-push:
