@@ -19,7 +19,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: hanzo-bot-site
-          image: ghcr.io/hanzoai/bot-site:latest
+          image: ghcr.io/hanzobot/site:latest
           ports:
             - containerPort: 80
           livenessProbe:
