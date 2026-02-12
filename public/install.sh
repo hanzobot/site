@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# Botbot Installer for macOS and Linux
+# Hanzo Bot Installer for macOS and Linux
 # Usage: curl -fsSL --proto '=https' --tlsv1.2 https://hanzo.bot/install.sh | bash
 
 BOLD='\033[1m'
@@ -16,7 +16,7 @@ ERROR='\033[38;2;226;61;45m'
 MUTED='\033[38;2;139;127;119m'
 NC='\033[0m' # No Color
 
-DEFAULT_TAGLINE="All your chats, one Botbot."
+DEFAULT_TAGLINE="Your AI team, deployed everywhere."
 
 ORIGINAL_PATH="${PATH:-}"
 
@@ -123,7 +123,7 @@ TAGLINES+=("I can grep it, git blame it, and gently roast it—pick your coping 
 TAGLINES+=("Hot reload for config, cold sweat for deploys.")
 TAGLINES+=("I'm the assistant your terminal demanded, not the one your sleep schedule requested.")
 TAGLINES+=("I keep secrets like a vault... unless you print them in debug logs again.")
-TAGLINES+=("Automation with claws: minimal fuss, maximal pinch.")
+TAGLINES+=("Automation with precision: minimal fuss, maximal impact.")
 TAGLINES+=("I'm basically a Swiss Army knife, but with more opinions and fewer sharp edges.")
 TAGLINES+=("If you're lost, run doctor; if you're brave, run prod; if you're wise, run tests.")
 TAGLINES+=("Your task has been queued; your dignity has been deprecated.")
@@ -142,14 +142,14 @@ TAGLINES+=("If you can describe it, I can probably automate it—or at least mak
 TAGLINES+=("Your config is valid, your assumptions are not.")
 TAGLINES+=("I don't just autocomplete—I auto-commit (emotionally), then ask you to review (logically).")
 TAGLINES+=("Less clicking, more shipping, fewer \"where did that file go\" moments.")
-TAGLINES+=("Claws out, commit in—let's ship something mildly responsible.")
-TAGLINES+=("I'll butter your workflow like a lobster roll: messy, delicious, effective.")
-TAGLINES+=("Shell yeah—I'm here to pinch the toil and leave you the glory.")
+TAGLINES+=("Blades out, commit in—let's ship something mildly responsible.")
+TAGLINES+=("I'll streamline your workflow like a ninja: silent, precise, effective.")
+TAGLINES+=("Shell yeah—I'm here to cut the toil and leave you the glory.")
 TAGLINES+=("If it's repetitive, I'll automate it; if it's hard, I'll bring jokes and a rollback plan.")
 TAGLINES+=("Because texting yourself reminders is so 2024.")
 TAGLINES+=("WhatsApp, but make it ✨engineering✨.")
 TAGLINES+=("Turning \"I'll reply later\" into \"my bot replied instantly\".")
-TAGLINES+=("The only crab in your contacts you actually want to hear from. 🦞")
+TAGLINES+=("The only AI in your contacts that actually gets things done. 🥷")
 TAGLINES+=("Chat automation for people who peaked at IRC.")
 TAGLINES+=("Because Siri wasn't answering at 3AM.")
 TAGLINES+=("IPC, but it's your phone.")
@@ -213,9 +213,9 @@ pick_tagline() {
         echo "$DEFAULT_TAGLINE"
         return
     fi
-    if [[ -n "${BOTBOT_TAGLINE_INDEX:-}" ]]; then
-        if [[ "${BOTBOT_TAGLINE_INDEX}" =~ ^[0-9]+$ ]]; then
-            local idx=$((BOTBOT_TAGLINE_INDEX % count))
+    if [[ -n "${HANZO_BOT_TAGLINE_INDEX:-}" ]]; then
+        if [[ "${HANZO_BOT_TAGLINE_INDEX}" =~ ^[0-9]+$ ]]; then
+            local idx=$((HANZO_BOT_TAGLINE_INDEX % count))
             echo "${TAGLINES[$idx]}"
             return
         fi
@@ -226,25 +226,25 @@ pick_tagline() {
 
 TAGLINE=$(pick_tagline)
 
-NO_ONBOARD=${BOTBOT_NO_ONBOARD:-0}
-NO_PROMPT=${BOTBOT_NO_PROMPT:-0}
-DRY_RUN=${BOTBOT_DRY_RUN:-0}
-INSTALL_METHOD=${BOTBOT_INSTALL_METHOD:-}
-BOTBOT_VERSION=${BOTBOT_VERSION:-latest}
-USE_BETA=${BOTBOT_BETA:-0}
+NO_ONBOARD=${HANZO_BOT_NO_ONBOARD:-0}
+NO_PROMPT=${HANZO_BOT_NO_PROMPT:-0}
+DRY_RUN=${HANZO_BOT_DRY_RUN:-0}
+INSTALL_METHOD=${HANZO_BOT_INSTALL_METHOD:-}
+HANZO_BOT_VERSION=${HANZO_BOT_VERSION:-latest}
+USE_BETA=${HANZO_BOT_BETA:-0}
 GIT_DIR_DEFAULT="${HOME}/bot"
-GIT_DIR=${BOTBOT_GIT_DIR:-$GIT_DIR_DEFAULT}
-GIT_UPDATE=${BOTBOT_GIT_UPDATE:-1}
+GIT_DIR=${HANZO_BOT_GIT_DIR:-$GIT_DIR_DEFAULT}
+GIT_UPDATE=${HANZO_BOT_GIT_UPDATE:-1}
 SHARP_IGNORE_GLOBAL_LIBVIPS="${SHARP_IGNORE_GLOBAL_LIBVIPS:-1}"
-NPM_LOGLEVEL="${BOTBOT_NPM_LOGLEVEL:-error}"
+NPM_LOGLEVEL="${HANZO_BOT_NPM_LOGLEVEL:-error}"
 NPM_SILENT_FLAG="--silent"
-VERBOSE="${BOTBOT_VERBOSE:-0}"
-BOTBOT_BIN=""
+VERBOSE="${HANZO_BOT_VERBOSE:-0}"
+HANZO_BOT_BIN=""
 HELP=0
 
 print_usage() {
     cat <<EOF
-Botbot installer (macOS + Linux)
+Hanzo Bot installer (macOS + Linux)
 
 Usage:
   curl -fsSL --proto '=https' --tlsv1.2 https://hanzo.bot/install.sh | bash -s -- [options]
@@ -264,16 +264,16 @@ Options:
   --help, -h                            Show this help
 
 Environment variables:
-  BOTBOT_INSTALL_METHOD=git|npm
-  BOTBOT_VERSION=latest|next|<semver>
-  BOTBOT_BETA=0|1
-  BOTBOT_GIT_DIR=...
-  BOTBOT_GIT_UPDATE=0|1
-  BOTBOT_NO_PROMPT=1
-  BOTBOT_DRY_RUN=1
-  BOTBOT_NO_ONBOARD=1
-  BOTBOT_VERBOSE=1
-  BOTBOT_NPM_LOGLEVEL=error|warn|notice  Default: error (hide npm deprecation noise)
+  HANZO_BOT_INSTALL_METHOD=git|npm
+  HANZO_BOT_VERSION=latest|next|<semver>
+  HANZO_BOT_BETA=0|1
+  HANZO_BOT_GIT_DIR=...
+  HANZO_BOT_GIT_UPDATE=0|1
+  HANZO_BOT_NO_PROMPT=1
+  HANZO_BOT_DRY_RUN=1
+  HANZO_BOT_NO_ONBOARD=1
+  HANZO_BOT_VERBOSE=1
+  HANZO_BOT_NPM_LOGLEVEL=error|warn|notice  Default: error (hide npm deprecation noise)
   SHARP_IGNORE_GLOBAL_LIBVIPS=0|1    Default: 1 (avoid sharp building against global libvips)
 
 Examples:
@@ -315,7 +315,7 @@ parse_args() {
                 shift 2
                 ;;
             --version)
-                BOTBOT_VERSION="$2"
+                HANZO_BOT_VERSION="$2"
                 shift 2
                 ;;
             --beta)
@@ -393,7 +393,7 @@ detect_bot_checkout() {
 }
 
 echo -e "${ACCENT}${BOLD}"
-echo "  🦞 Botbot Installer"
+echo "  🥷 Hanzo Bot Installer"
 echo -e "${NC}${ACCENT_DIM}  ${TAGLINE}${NC}"
 echo ""
 
@@ -603,10 +603,10 @@ ensure_bot_bin_link() {
     return 0
 }
 
-# Check for existing Botbot installation
+# Check for existing Hanzo Bot installation
 check_existing_bot() {
     if [[ -n "$(type -P bot 2>/dev/null || true)" ]]; then
-        echo -e "${WARN}→${NC} Existing Botbot installation detected"
+        echo -e "${WARN}→${NC} Existing Hanzo Bot installation detected"
         return 0
     fi
     return 1
@@ -788,7 +788,7 @@ install_bot_from_git() {
     local repo_dir="$1"
     local repo_url="https://github.com/bot/bot.git"
 
-    echo -e "${WARN}→${NC} Installing Botbot from GitHub (${repo_url})..."
+    echo -e "${WARN}→${NC} Installing Hanzo Bot from GitHub (${repo_url})..."
 
     if ! check_git; then
         install_git
@@ -825,11 +825,11 @@ set -euo pipefail
 exec node "${repo_dir}/dist/entry.js" "\$@"
 EOF
     chmod +x "$HOME/.local/bin/bot"
-    echo -e "${SUCCESS}✓${NC} Botbot wrapper installed to \$HOME/.local/bin/bot"
+    echo -e "${SUCCESS}✓${NC} Hanzo Bot wrapper installed to \$HOME/.local/bin/bot"
     echo -e "${INFO}i${NC} This checkout uses pnpm. For deps, run: ${INFO}pnpm install${NC} (avoid npm install in the repo)."
 }
 
-# Install Botbot
+# Install Hanzo Bot
 resolve_beta_version() {
     local beta=""
     beta="$(npm view bot dist-tags.beta 2>/dev/null || true)"
@@ -844,30 +844,30 @@ install_bot() {
         local beta_version=""
         beta_version="$(resolve_beta_version || true)"
         if [[ -n "$beta_version" ]]; then
-            BOTBOT_VERSION="$beta_version"
+            HANZO_BOT_VERSION="$beta_version"
             echo -e "${INFO}i${NC} Beta tag detected (${beta_version}); installing beta."
         else
-            BOTBOT_VERSION="latest"
+            HANZO_BOT_VERSION="latest"
             echo -e "${INFO}i${NC} No beta tag found; installing latest."
         fi
     fi
 
-    if [[ -z "${BOTBOT_VERSION}" ]]; then
-        BOTBOT_VERSION="latest"
+    if [[ -z "${HANZO_BOT_VERSION}" ]]; then
+        HANZO_BOT_VERSION="latest"
     fi
 
     local resolved_version=""
-    resolved_version="$(npm view "bot@${BOTBOT_VERSION}" version 2>/dev/null || true)"
+    resolved_version="$(npm view "bot@${HANZO_BOT_VERSION}" version 2>/dev/null || true)"
     if [[ -n "$resolved_version" ]]; then
-        echo -e "${WARN}→${NC} Installing Botbot ${INFO}${resolved_version}${NC}..."
+        echo -e "${WARN}→${NC} Installing Hanzo Bot ${INFO}${resolved_version}${NC}..."
     else
-        echo -e "${WARN}→${NC} Installing Botbot (${INFO}${BOTBOT_VERSION}${NC})..."
+        echo -e "${WARN}→${NC} Installing Hanzo Bot (${INFO}${HANZO_BOT_VERSION}${NC})..."
     fi
     local install_spec=""
-    if [[ "${BOTBOT_VERSION}" == "latest" ]]; then
+    if [[ "${HANZO_BOT_VERSION}" == "latest" ]]; then
         install_spec="bot@latest"
     else
-        install_spec="bot@${BOTBOT_VERSION}"
+        install_spec="bot@${HANZO_BOT_VERSION}"
     fi
 
     if ! install_bot_npm "${install_spec}"; then
@@ -876,7 +876,7 @@ install_bot() {
         install_bot_npm "${install_spec}"
     fi
 
-    if [[ "${BOTBOT_VERSION}" == "latest" ]]; then
+    if [[ "${HANZO_BOT_VERSION}" == "latest" ]]; then
         if ! resolve_bot_bin &> /dev/null; then
             echo -e "${WARN}→${NC} npm install bot@latest failed; retrying bot@next"
             cleanup_npm_bot_paths
@@ -886,13 +886,13 @@ install_bot() {
 
     ensure_bot_bin_link || true
 
-    echo -e "${SUCCESS}✓${NC} Botbot installed"
+    echo -e "${SUCCESS}✓${NC} Hanzo Bot installed"
 }
 
 # Run doctor for migrations (safe, non-interactive)
 run_doctor() {
     echo -e "${WARN}→${NC} Running doctor to migrate settings..."
-    local claw="${BOTBOT_BIN:-}"
+    local claw="${HANZO_BOT_BIN:-}"
     if [[ -z "$claw" ]]; then
         claw="$(resolve_bot_bin || true)"
     fi
@@ -906,7 +906,7 @@ run_doctor() {
 }
 
 resolve_workspace_dir() {
-    local profile="${BOTBOT_PROFILE:-default}"
+    local profile="${HANZO_BOT_PROFILE:-default}"
     if [[ "${profile}" != "default" ]]; then
         echo "${HOME}/bot-${profile}"
     else
@@ -934,7 +934,7 @@ run_bootstrap_onboarding_if_needed() {
     fi
 
     echo -e "${WARN}→${NC} BOOTSTRAP.md found at ${INFO}${bootstrap}${NC}; starting onboarding..."
-    local claw="${BOTBOT_BIN:-}"
+    local claw="${HANZO_BOT_BIN:-}"
     if [[ -z "$claw" ]]; then
         claw="$(resolve_bot_bin || true)"
     fi
@@ -952,7 +952,7 @@ run_bootstrap_onboarding_if_needed() {
 
 resolve_bot_version() {
     local version=""
-    local claw="${BOTBOT_BIN:-}"
+    local claw="${HANZO_BOT_BIN:-}"
     if [[ -z "$claw" ]] && command -v bot &> /dev/null; then
         claw="$(command -v bot)"
     fi
@@ -1006,12 +1006,12 @@ main() {
 
     if [[ -z "$INSTALL_METHOD" && -n "$detected_checkout" ]]; then
         if ! is_promptable; then
-            echo -e "${WARN}→${NC} Found a Botbot checkout, but no TTY; defaulting to npm install."
+            echo -e "${WARN}→${NC} Found a Hanzo Bot checkout, but no TTY; defaulting to npm install."
             INSTALL_METHOD="npm"
         else
             local choice=""
             choice="$(prompt_choice "$(cat <<EOF
-${WARN}→${NC} Detected a Botbot source checkout in: ${INFO}${detected_checkout}${NC}
+${WARN}→${NC} Detected a Hanzo Bot source checkout in: ${INFO}${detected_checkout}${NC}
 Choose install method:
   1) Update this checkout (git) and use it
   2) Install global via npm (migrate away from git)
@@ -1024,7 +1024,7 @@ EOF
                 2) INSTALL_METHOD="npm" ;;
                 *)
                     echo -e "${ERROR}Error: no install method selected.${NC}"
-                    echo "Re-run with: --install-method git|npm (or set BOTBOT_INSTALL_METHOD)."
+                    echo "Re-run with: --install-method git|npm (or set HANZO_BOT_INSTALL_METHOD)."
                     exit 2
                     ;;
             esac
@@ -1100,11 +1100,11 @@ EOF
         # Step 4: npm permissions (Linux)
         fix_npm_permissions
 
-        # Step 5: Botbot
+        # Step 5: Hanzo Bot
         install_bot
     fi
 
-    BOTBOT_BIN="$(resolve_bot_bin || true)"
+    HANZO_BOT_BIN="$(resolve_bot_bin || true)"
 
     # PATH warning: installs can succeed while the user's login shell still lacks npm's global bin dir.
     local npm_bin=""
@@ -1135,23 +1135,23 @@ EOF
 
     echo ""
     if [[ -n "$installed_version" ]]; then
-        echo -e "${SUCCESS}${BOLD}🦞 Botbot installed successfully (${installed_version})!${NC}"
+        echo -e "${SUCCESS}${BOLD}🥷 Hanzo Bot installed successfully (${installed_version})!${NC}"
     else
-        echo -e "${SUCCESS}${BOLD}🦞 Botbot installed successfully!${NC}"
+        echo -e "${SUCCESS}${BOLD}🥷 Hanzo Bot installed successfully!${NC}"
     fi
     if [[ "$is_upgrade" == "true" ]]; then
         local update_messages=(
             "Leveled up! New skills unlocked. You're welcome."
-            "Fresh code, same lobster. Miss me?"
+            "Fresh code, same ninja. Miss me?"
             "Back and better. Did you even notice I was gone?"
             "Update complete. I learned some new tricks while I was out."
             "Upgraded! Now with 23% more sass."
-            "I've evolved. Try to keep up. 🦞"
+            "I've evolved. Try to keep up. 🥷"
             "New version, who dis? Oh right, still me but shinier."
             "Patched, polished, and ready to pinch. Let's go."
-            "The lobster has molted. Harder shell, sharper claws."
+            "The ninja has trained. Faster reflexes, sharper skills."
             "Update done! Check the changelog or just trust me, it's good."
-            "Reborn from the boiling waters of npm. Stronger now."
+            "Reborn from the fires of npm. Stronger now."
             "I went away and came back smarter. You should try it sometime."
             "Update complete. The bugs feared me, so they left."
             "New version installed. Old version sends its regards."
@@ -1159,7 +1159,7 @@ EOF
             "I've seen things you wouldn't believe. Anyway, I'm updated."
             "Back online. The changelog is long but our friendship is longer."
             "Upgraded! Peter fixed stuff. Blame him if it breaks."
-            "Molting complete. Please don't look at my soft shell phase."
+            "Training complete. Please don't look at my rookie phase."
             "Version bump! Same chaos energy, fewer crashes (probably)."
         )
         local update_message
@@ -1174,8 +1174,8 @@ EOF
             "Settled in. Time to automate your life whether you're ready or not."
             "Cozy. I've already read your calendar. We need to talk."
             "Finally unpacked. Now point me at your problems."
-            "cracks claws Alright, what are we building?"
-            "The lobster has landed. Your terminal will never be the same."
+            "cracks knuckles Alright, what are we building?"
+            "The ninja has arrived. Your terminal will never be the same."
             "All done! I promise to only judge your code a little bit."
         )
         local completion_message
@@ -1192,7 +1192,7 @@ EOF
     elif [[ "$is_upgrade" == "true" ]]; then
         echo -e "Upgrade complete."
         if [[ -r /dev/tty && -w /dev/tty ]]; then
-            local claw="${BOTBOT_BIN:-}"
+            local claw="${HANZO_BOT_BIN:-}"
             if [[ -z "$claw" ]]; then
                 claw="$(resolve_bot_bin || true)"
             fi
@@ -1210,13 +1210,13 @@ EOF
             echo -e "Running ${INFO}bot doctor${NC}..."
             local doctor_ok=0
             if (( ${#doctor_args[@]} )); then
-                BOTBOT_UPDATE_IN_PROGRESS=1 "$claw" doctor "${doctor_args[@]}" </dev/tty && doctor_ok=1
+                HANZO_BOT_UPDATE_IN_PROGRESS=1 "$claw" doctor "${doctor_args[@]}" </dev/tty && doctor_ok=1
             else
-                BOTBOT_UPDATE_IN_PROGRESS=1 "$claw" doctor </dev/tty && doctor_ok=1
+                HANZO_BOT_UPDATE_IN_PROGRESS=1 "$claw" doctor </dev/tty && doctor_ok=1
             fi
             if (( doctor_ok )); then
                 echo -e "Updating plugins (${INFO}bot plugins update --all${NC})..."
-                BOTBOT_UPDATE_IN_PROGRESS=1 "$claw" plugins update --all || true
+                HANZO_BOT_UPDATE_IN_PROGRESS=1 "$claw" plugins update --all || true
             else
                 echo -e "${WARN}→${NC} Doctor failed; skipping plugin updates."
             fi
@@ -1231,7 +1231,7 @@ EOF
             echo -e "Starting setup..."
             echo ""
             if [[ -r /dev/tty && -w /dev/tty ]]; then
-                local claw="${BOTBOT_BIN:-}"
+                local claw="${HANZO_BOT_BIN:-}"
                 if [[ -z "$claw" ]]; then
                     claw="$(resolve_bot_bin || true)"
                 fi
@@ -1250,7 +1250,7 @@ EOF
     fi
 
     if command -v bot &> /dev/null; then
-        local claw="${BOTBOT_BIN:-}"
+        local claw="${HANZO_BOT_BIN:-}"
         if [[ -z "$claw" ]]; then
             claw="$(resolve_bot_bin || true)"
         fi
@@ -1263,7 +1263,7 @@ EOF
     echo -e "FAQ: ${INFO}https://docs.hanzo.bot/start/faq${NC}"
 }
 
-if [[ "${BOTBOT_INSTALL_SH_NO_RUN:-0}" != "1" ]]; then
+if [[ "${HANZO_BOT_INSTALL_SH_NO_RUN:-0}" != "1" ]]; then
     parse_args "$@"
     configure_verbose
     main
