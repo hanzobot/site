@@ -90,7 +90,7 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
           {row1.map((t) => (
             <a href={t.url} target="_blank" rel="noopener" class="testimonial-card">
               <img
-                src={`https://ui-avatars.com/api/?name=${encodeURIComponent(t.author)}&background=0d9488&color=fff&size=88&bold=true`}
+                src={`https://ui-avatars.com/api/?name=${encodeURIComponent(t.author)}&background=fd4444&color=fff&size=88&bold=true`}
                 alt={t.author}
                 class="testimonial-avatar"
                 loading="lazy"
@@ -107,7 +107,7 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
           {row2.map((t) => (
             <a href={t.url} target="_blank" rel="noopener" class="testimonial-card">
               <img
-                src={`https://ui-avatars.com/api/?name=${encodeURIComponent(t.author)}&background=0d9488&color=fff&size=88&bold=true`}
+                src={`https://ui-avatars.com/api/?name=${encodeURIComponent(t.author)}&background=fd4444&color=fff&size=88&bold=true`}
                 alt={t.author}
                 class="testimonial-avatar"
                 loading="lazy"
@@ -678,9 +678,9 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
       radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
       radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.4), transparent),
       radial-gradient(1px 1px at 160px 120px, rgba(255,255,255,0.7), transparent),
-      radial-gradient(2px 2px at 200px 60px, rgba(0,229,204,0.6), transparent),
+      radial-gradient(2px 2px at 200px 60px, rgba(255,77,77,0.6), transparent),
       radial-gradient(1px 1px at 250px 150px, rgba(255,255,255,0.5), transparent),
-      radial-gradient(2px 2px at 300px 40px, rgba(0,229,204,0.4), transparent);
+      radial-gradient(2px 2px at 300px 40px, rgba(255,77,77,0.4), transparent);
     background-size: 350px 200px;
     animation: twinkle 8s ease-in-out infinite alternate;
     pointer-events: none;
@@ -697,9 +697,9 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
     position: fixed;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0, 229, 204, 0.10), transparent 50%),
-      radial-gradient(ellipse 60% 60% at 80% 30%, rgba(167, 139, 250, 0.08), transparent 50%),
-      radial-gradient(ellipse 90% 70% at 50% 90%, rgba(0, 229, 204, 0.06), transparent 50%);
+      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(255, 77, 77, 0.12), transparent 50%),
+      radial-gradient(ellipse 60% 60% at 80% 30%, rgba(0, 229, 204, 0.08), transparent 50%),
+      radial-gradient(ellipse 90% 70% at 50% 90%, rgba(255, 77, 77, 0.06), transparent 50%);
     pointer-events: none;
     z-index: 0;
   }
@@ -751,12 +751,12 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
   .hanzo-logo svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 0 20px rgba(0, 229, 204, 0.4));
+    filter: drop-shadow(0 0 20px rgba(255, 77, 77, 0.4));
     transition: filter 0.3s ease;
   }
 
   .hanzo-logo:hover svg {
-    filter: drop-shadow(0 0 30px rgba(167, 139, 250, 0.6));
+    filter: drop-shadow(0 0 30px rgba(0, 229, 204, 0.6));
   }
 
   @keyframes float {
@@ -825,19 +825,19 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
     font-size: 1.15rem;
     font-weight: 600;
     color: #050810;
-    background: linear-gradient(135deg, #00e5cc 0%, #14b8a6 100%);
+    background: linear-gradient(135deg, #fd4444 0%, #e03e3e 100%);
     border: none;
     border-radius: 14px;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 24px rgba(0, 229, 204, 0.3);
+    box-shadow: 0 4px 24px rgba(255, 77, 77, 0.3);
   }
 
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 40px rgba(0, 229, 204, 0.45);
-    background: linear-gradient(135deg, #14f0d8 0%, #00e5cc 100%);
+    box-shadow: 0 8px 40px rgba(255, 77, 77, 0.45);
+    background: linear-gradient(135deg, #ff6b6b 0%, #fd4444 100%);
   }
 
   .btn-icon {
@@ -885,7 +885,7 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
     transform: translateY(-4px);
     border-color: var(--border-accent);
     box-shadow:
-      0 12px 40px rgba(0, 229, 204, 0.15),
+      0 12px 40px rgba(255, 77, 77, 0.15),
       inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
 
@@ -900,15 +900,15 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
     transform: scale(1.1);
   }
 
-  .cta-signin { border-color: rgba(0, 229, 204, 0.25); background: rgba(0, 229, 204, 0.06); }
-  .cta-signin .cta-icon { color: #00e5cc; }
-  .cta-signin:hover { border-color: #00e5cc; box-shadow: 0 12px 40px rgba(0, 229, 204, 0.25); }
-  .cta-signin:hover .cta-icon { color: #00e5cc; }
+  .cta-signin { border-color: rgba(255, 77, 77, 0.25); background: rgba(255, 77, 77, 0.06); }
+  .cta-signin .cta-icon { color: #fd4444; }
+  .cta-signin:hover { border-color: #fd4444; box-shadow: 0 12px 40px rgba(255, 77, 77, 0.25); }
+  .cta-signin:hover .cta-icon { color: #fd4444; }
 
   .cta-discord:hover { border-color: #5865F2; box-shadow: 0 12px 40px rgba(88, 101, 242, 0.2); }
   .cta-discord:hover .cta-icon { color: #5865F2; }
 
-  .cta-docs:hover { border-color: var(--cyan-bright); box-shadow: 0 12px 40px rgba(167, 139, 250, 0.15); }
+  .cta-docs:hover { border-color: var(--cyan-bright); box-shadow: 0 12px 40px rgba(0, 229, 204, 0.15); }
   .cta-docs:hover .cta-icon { color: var(--cyan-bright); }
 
   .cta-github:hover { border-color: #f0f4ff; box-shadow: 0 12px 40px rgba(240, 244, 255, 0.1); }
@@ -1097,7 +1097,7 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
   .press-card:hover {
     transform: translateY(-4px);
     border-color: var(--coral-bright);
-    box-shadow: 0 12px 40px rgba(0, 229, 204, 0.15);
+    box-shadow: 0 12px 40px rgba(255, 77, 77, 0.15);
   }
 
   .press-logo {
@@ -1137,8 +1137,8 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
   }
 
   .press-featured {
-    border-color: rgba(0, 229, 204, 0.3);
-    background: linear-gradient(135deg, rgba(0, 229, 204, 0.05) 0%, rgba(10, 15, 26, 0.7) 100%);
+    border-color: rgba(255, 77, 77, 0.3);
+    background: linear-gradient(135deg, rgba(255, 77, 77, 0.05) 0%, rgba(10, 15, 26, 0.7) 100%);
   }
 
   /* Quick Start */
@@ -1446,7 +1446,7 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
   }
 
   .os-change-btn:hover {
-    background: rgba(0, 229, 204, 0.15);
+    background: rgba(255, 77, 77, 0.15);
     color: var(--cyan-bright);
   }
 
@@ -1493,12 +1493,12 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 20px rgba(0, 229, 204, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 77, 77, 0.3);
   }
 
   .macos-download-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0, 229, 204, 0.4);
+    box-shadow: 0 8px 30px rgba(255, 77, 77, 0.4);
   }
 
   .macos-download-btn svg {
@@ -1627,7 +1627,7 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
   .testimonial-card:hover {
     border-color: var(--coral-bright);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 229, 204, 0.15);
+    box-shadow: 0 8px 24px rgba(255, 77, 77, 0.15);
   }
 
   .testimonials-row:hover {
