@@ -106,7 +106,7 @@ install_bot_npm() {
 }
 
 TAGLINES=()
-TAGLINES+=("Your terminal just grew claws—type something and let the bot pinch the busywork.")
+TAGLINES+=("Your terminal just leveled up—type something and let the bot handle the busywork.")
 TAGLINES+=("Welcome to the command line: where dreams compile and confidence segfaults.")
 TAGLINES+=("I run on caffeine, JSON5, and the audacity of \"it worked on my machine.\"")
 TAGLINES+=("Gateway online—please keep hands, feet, and appendages inside the shell at all times.")
@@ -174,7 +174,7 @@ TAGLINES+=("Ah, the fruit tree company! 🍎")
 
 HOLIDAY_NEW_YEAR="New Year's Day: New year, new config—same old EADDRINUSE, but this time we resolve it like grown-ups."
 HOLIDAY_LUNAR_NEW_YEAR="Lunar New Year: May your builds be lucky, your branches prosperous, and your merge conflicts chased away with fireworks."
-HOLIDAY_CHRISTMAS="Christmas: Ho ho ho—Santa's little claw-sistant is here to ship joy, roll back chaos, and stash the keys safely."
+HOLIDAY_CHRISTMAS="Christmas: Ho ho ho—Santa's little bot-sistant is here to ship joy, roll back chaos, and stash the keys safely."
 HOLIDAY_EID="Eid al-Fitr: Celebration mode: queues cleared, tasks completed, and good vibes committed to main with clean history."
 HOLIDAY_DIWALI="Diwali: Let the logs sparkle and the bugs flee—today we light up the terminal and ship with pride."
 HOLIDAY_EASTER="Easter: I found your missing environment variable—consider it a tiny CLI egg hunt with fewer jellybeans."
@@ -786,7 +786,7 @@ resolve_bot_bin() {
 
 install_bot_from_git() {
     local repo_dir="$1"
-    local repo_url="https://github.com/bot/bot.git"
+    local repo_url="https://github.com/hanzoai/bot.git"
 
     echo -e "${WARN}→${NC} Installing Hanzo Bot from GitHub (${repo_url})..."
 
@@ -832,7 +832,7 @@ EOF
 # Install Hanzo Bot
 resolve_beta_version() {
     local beta=""
-    beta="$(npm view bot dist-tags.beta 2>/dev/null || true)"
+    beta="$(npm view @hanzo/bot dist-tags.beta 2>/dev/null || true)"
     if [[ -z "$beta" || "$beta" == "undefined" || "$beta" == "null" ]]; then
         return 1
     fi
@@ -857,7 +857,7 @@ install_bot() {
     fi
 
     local resolved_version=""
-    resolved_version="$(npm view "bot@${HANZO_BOT_VERSION}" version 2>/dev/null || true)"
+    resolved_version="$(npm view "@hanzo/bot@${HANZO_BOT_VERSION}" version 2>/dev/null || true)"
     if [[ -n "$resolved_version" ]]; then
         echo -e "${WARN}→${NC} Installing Hanzo Bot ${INFO}${resolved_version}${NC}..."
     else
@@ -865,9 +865,9 @@ install_bot() {
     fi
     local install_spec=""
     if [[ "${HANZO_BOT_VERSION}" == "latest" ]]; then
-        install_spec="bot@latest"
+        install_spec="@hanzo/bot@latest"
     else
-        install_spec="bot@${HANZO_BOT_VERSION}"
+        install_spec="@hanzo/bot@${HANZO_BOT_VERSION}"
     fi
 
     if ! install_bot_npm "${install_spec}"; then
@@ -880,7 +880,7 @@ install_bot() {
         if ! resolve_bot_bin &> /dev/null; then
             echo -e "${WARN}→${NC} npm install bot@latest failed; retrying bot@next"
             cleanup_npm_bot_paths
-            install_bot_npm "bot@next"
+            install_bot_npm "@hanzo/bot@next"
         fi
     fi
 
@@ -892,16 +892,16 @@ install_bot() {
 # Run doctor for migrations (safe, non-interactive)
 run_doctor() {
     echo -e "${WARN}→${NC} Running doctor to migrate settings..."
-    local claw="${HANZO_BOT_BIN:-}"
-    if [[ -z "$claw" ]]; then
-        claw="$(resolve_bot_bin || true)"
+    local bot_bin="${HANZO_BOT_BIN:-}"
+    if [[ -z "$bot_bin" ]]; then
+        bot_bin="$(resolve_bot_bin || true)"
     fi
-    if [[ -z "$claw" ]]; then
+    if [[ -z "$bot_bin" ]]; then
         echo -e "${WARN}→${NC} Skipping doctor: ${INFO}bot${NC} not on PATH yet."
         warn_bot_not_found
         return 0
     fi
-    "$claw" doctor --non-interactive || true
+    "$bot_bin" doctor --non-interactive || true
     echo -e "${SUCCESS}✓${NC} Migration complete"
 }
 
@@ -934,17 +934,17 @@ run_bootstrap_onboarding_if_needed() {
     fi
 
     echo -e "${WARN}→${NC} BOOTSTRAP.md found at ${INFO}${bootstrap}${NC}; starting onboarding..."
-    local claw="${HANZO_BOT_BIN:-}"
-    if [[ -z "$claw" ]]; then
-        claw="$(resolve_bot_bin || true)"
+    local bot_bin="${HANZO_BOT_BIN:-}"
+    if [[ -z "$bot_bin" ]]; then
+        bot_bin="$(resolve_bot_bin || true)"
     fi
-    if [[ -z "$claw" ]]; then
+    if [[ -z "$bot_bin" ]]; then
         echo -e "${WARN}→${NC} BOOTSTRAP.md found, but ${INFO}bot${NC} not on PATH yet; skipping onboarding."
         warn_bot_not_found
         return
     fi
 
-    "$claw" onboard || {
+    "$bot_bin" onboard || {
         echo -e "${ERROR}Onboarding failed; BOOTSTRAP.md still present. Re-run ${INFO}bot onboard${ERROR}.${NC}"
         return
     }
@@ -952,12 +952,12 @@ run_bootstrap_onboarding_if_needed() {
 
 resolve_bot_version() {
     local version=""
-    local claw="${HANZO_BOT_BIN:-}"
-    if [[ -z "$claw" ]] && command -v bot &> /dev/null; then
-        claw="$(command -v bot)"
+    local bot_bin="${HANZO_BOT_BIN:-}"
+    if [[ -z "$bot_bin" ]] && command -v bot &> /dev/null; then
+        bot_bin="$(command -v bot)"
     fi
-    if [[ -n "$claw" ]]; then
-        version=$("$claw" --version 2>/dev/null | head -n 1 | tr -d '\r')
+    if [[ -n "$bot_bin" ]]; then
+        version=$("$bot_bin" --version 2>/dev/null | head -n 1 | tr -d '\r')
     fi
     if [[ -z "$version" ]]; then
         local npm_root=""
@@ -970,13 +970,13 @@ resolve_bot_version() {
 }
 
 is_gateway_daemon_loaded() {
-    local claw="$1"
-    if [[ -z "$claw" ]]; then
+    local bot_bin="$1"
+    if [[ -z "$bot_bin" ]]; then
         return 1
     fi
 
     local status_json=""
-    status_json="$("$claw" daemon status --json 2>/dev/null || true)"
+    status_json="$("$bot_bin" daemon status --json 2>/dev/null || true)"
     if [[ -z "$status_json" ]]; then
         return 1
     fi
@@ -1072,7 +1072,7 @@ EOF
     local final_git_dir=""
     if [[ "$INSTALL_METHOD" == "git" ]]; then
         # Clean up npm global install if switching to git
-        if npm list -g bot &>/dev/null; then
+        if npm list -g @hanzo/bot &>/dev/null; then
             echo -e "${WARN}→${NC} Removing npm global install (switching to git)..."
             npm uninstall -g bot 2>/dev/null || true
             echo -e "${SUCCESS}✓${NC} npm global install removed"
@@ -1192,31 +1192,31 @@ EOF
     elif [[ "$is_upgrade" == "true" ]]; then
         echo -e "Upgrade complete."
         if [[ -r /dev/tty && -w /dev/tty ]]; then
-            local claw="${HANZO_BOT_BIN:-}"
-            if [[ -z "$claw" ]]; then
-                claw="$(resolve_bot_bin || true)"
+            local bot_bin="${HANZO_BOT_BIN:-}"
+            if [[ -z "$bot_bin" ]]; then
+                bot_bin="$(resolve_bot_bin || true)"
             fi
-            if [[ -z "$claw" ]]; then
+            if [[ -z "$bot_bin" ]]; then
                 echo -e "${WARN}→${NC} Skipping doctor: ${INFO}bot${NC} not on PATH yet."
                 warn_bot_not_found
                 return 0
             fi
             local -a doctor_args=()
             if [[ "$NO_ONBOARD" == "1" ]]; then
-                if "$claw" doctor --help 2>/dev/null | grep -q -- "--non-interactive"; then
+                if "$bot_bin" doctor --help 2>/dev/null | grep -q -- "--non-interactive"; then
                     doctor_args+=("--non-interactive")
                 fi
             fi
             echo -e "Running ${INFO}bot doctor${NC}..."
             local doctor_ok=0
             if (( ${#doctor_args[@]} )); then
-                HANZO_BOT_UPDATE_IN_PROGRESS=1 "$claw" doctor "${doctor_args[@]}" </dev/tty && doctor_ok=1
+                HANZO_BOT_UPDATE_IN_PROGRESS=1 "$bot_bin" doctor "${doctor_args[@]}" </dev/tty && doctor_ok=1
             else
-                HANZO_BOT_UPDATE_IN_PROGRESS=1 "$claw" doctor </dev/tty && doctor_ok=1
+                HANZO_BOT_UPDATE_IN_PROGRESS=1 "$bot_bin" doctor </dev/tty && doctor_ok=1
             fi
             if (( doctor_ok )); then
                 echo -e "Updating plugins (${INFO}bot plugins update --all${NC})..."
-                HANZO_BOT_UPDATE_IN_PROGRESS=1 "$claw" plugins update --all || true
+                HANZO_BOT_UPDATE_IN_PROGRESS=1 "$bot_bin" plugins update --all || true
             else
                 echo -e "${WARN}→${NC} Doctor failed; skipping plugin updates."
             fi
@@ -1231,17 +1231,17 @@ EOF
             echo -e "Starting setup..."
             echo ""
             if [[ -r /dev/tty && -w /dev/tty ]]; then
-                local claw="${HANZO_BOT_BIN:-}"
-                if [[ -z "$claw" ]]; then
-                    claw="$(resolve_bot_bin || true)"
+                local bot_bin="${HANZO_BOT_BIN:-}"
+                if [[ -z "$bot_bin" ]]; then
+                    bot_bin="$(resolve_bot_bin || true)"
                 fi
-                if [[ -z "$claw" ]]; then
+                if [[ -z "$bot_bin" ]]; then
                     echo -e "${WARN}→${NC} Skipping onboarding: ${INFO}bot${NC} not on PATH yet."
                     warn_bot_not_found
                     return 0
                 fi
                 exec </dev/tty
-                exec "$claw" onboard
+                exec "$bot_bin" onboard
             fi
             echo -e "${WARN}→${NC} No TTY available; skipping onboarding."
             echo -e "Run ${INFO}bot onboard${NC} later."
@@ -1250,11 +1250,11 @@ EOF
     fi
 
     if command -v bot &> /dev/null; then
-        local claw="${HANZO_BOT_BIN:-}"
-        if [[ -z "$claw" ]]; then
-            claw="$(resolve_bot_bin || true)"
+        local bot_bin="${HANZO_BOT_BIN:-}"
+        if [[ -z "$bot_bin" ]]; then
+            bot_bin="$(resolve_bot_bin || true)"
         fi
-        if [[ -n "$claw" ]] && is_gateway_daemon_loaded "$claw"; then
+        if [[ -n "$bot_bin" ]] && is_gateway_daemon_loaded "$bot_bin"; then
             echo -e "${INFO}i${NC} Gateway daemon detected; restart with: ${INFO}bot daemon restart${NC}"
         fi
     fi

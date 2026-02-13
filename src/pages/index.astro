@@ -69,13 +69,58 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
         <span class="title-main">Hanzo Bot</span>
       </h1>
 
-      <p class="tagline" id="tagline">Your autonomous AI team in a box.</p>
+      <p class="tagline" id="tagline">Your AI team, deployed everywhere.</p>
 
       <p class="description">
-        A full team of AI agents that runs your business, manages customers, automates workflows, handles finances, and scales operations.<br/>
-        Every role. Every channel. Every platform. Powered by Hanzo AI.
+        Run locally on your Mac, or deploy to Hanzo Cloud with a full desktop VM and 100+ AI models.<br/>
+        Every channel. Every platform. Private by default. Powered by Hanzo AI.
       </p>
+
+      <div class="hero-ctas">
+        <a href="#quickstart" class="hero-btn hero-btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </a>
+        <a href="https://app.hanzo.bot" class="hero-btn hero-btn-secondary" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          Launch in Cloud
+        </a>
+      </div>
     </header>
+
+    <!-- Models Section -->
+    <section class="models">
+      <h2 class="section-title">
+        <span class="accent-mark">&#x27E9;</span> 100+ AI Models
+      </h2>
+      <div class="models-grid">
+        <div class="model-card">
+          <span class="model-provider">Anthropic</span>
+          <span class="model-names">Claude Opus 4.6, Sonnet 4.5</span>
+        </div>
+        <div class="model-card">
+          <span class="model-provider">OpenAI</span>
+          <span class="model-names">GPT-5.2, GPT-5.1 Codex</span>
+        </div>
+        <div class="model-card">
+          <span class="model-provider">Google</span>
+          <span class="model-names">Gemini 3 Pro, Flash</span>
+        </div>
+        <div class="model-card">
+          <span class="model-provider">Open Source</span>
+          <span class="model-names">Qwen 3, GLM 4.7, Llama</span>
+        </div>
+        <div class="model-card">
+          <span class="model-provider">Together AI</span>
+          <span class="model-names">DeepSeek, Mixtral, more</span>
+        </div>
+        <div class="model-card">
+          <span class="model-provider">OpenRouter</span>
+          <span class="model-names">100+ models, one API</span>
+        </div>
+      </div>
+      <p class="models-note">Bring your own API keys or use Hanzo Cloud for instant access to all models.</p>
+    </section>
 
     <!-- Testimonials (moved up for social proof) -->
     <section class="testimonials">
@@ -1664,6 +1709,120 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--coral-bright);
+  }
+
+  /* Hero CTAs */
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 32px;
+    animation: fadeInUp 0.8s ease-out 0.45s both;
+  }
+
+  .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hero-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .hero-btn-primary {
+    color: #050810;
+    background: linear-gradient(135deg, #fd4444 0%, #e03e3e 100%);
+    box-shadow: 0 4px 24px rgba(255, 77, 77, 0.3);
+  }
+
+  .hero-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px rgba(255, 77, 77, 0.45);
+    background: linear-gradient(135deg, #ff6b6b 0%, #fd4444 100%);
+  }
+
+  .hero-btn-secondary {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-accent);
+    box-shadow: 0 4px 24px rgba(0, 229, 204, 0.1);
+  }
+
+  .hero-btn-secondary:hover {
+    transform: translateY(-2px);
+    background: rgba(0, 229, 204, 0.08);
+    border-color: var(--cyan-bright);
+    box-shadow: 0 8px 40px rgba(0, 229, 204, 0.2);
+  }
+
+  /* Models Section */
+  .models {
+    margin-bottom: 56px;
+    animation: fadeInUp 0.8s ease-out 0.5s both;
+  }
+
+  .models .section-title {
+    margin-bottom: 20px;
+  }
+
+  .models-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  @media (min-width: 640px) {
+    .models-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .model-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(10, 15, 26, 0.6);
+    backdrop-filter: blur(8px);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .model-card:hover {
+    border-color: var(--coral-bright);
+    transform: translateY(-2px);
+  }
+
+  .model-provider {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--coral-bright);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .model-names {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .models-note {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
   }
 
   /* Responsive */
