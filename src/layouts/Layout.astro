@@ -1,13 +1,15 @@
 ---
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = "Hanzo Bot — Autonomous AI team in a box. Every role, every channel, every platform." } = Astro.props;
+const { title, description = "Hanzo Bot — Your AI team in a box. One bot. Every role. Every channel. Run free on your Mac or deploy to the cloud starting at $5/mo." } = Astro.props;
 ---
 
 <!doctype html>
@@ -37,10 +39,10 @@ const { title, description = "Hanzo Bot — Autonomous AI team in a box. Every r
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://hanzo.bot/og-image.png" />
 
-    <!-- Fonts: Inter + JetBrains Mono from Google Fonts -->
+    <!-- Fonts: Geist Sans + Geist Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <title>{title}</title>
 
@@ -71,9 +73,9 @@ const { title, description = "Hanzo Bot — Autonomous AI team in a box. Every r
         --border-accent: rgba(253, 68, 68, 0.3);
 
         /* Fonts */
-        --font-display: 'Inter', system-ui, sans-serif;
-        --font-body: 'Inter', system-ui, sans-serif;
-        --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+        --font-display: 'Geist', system-ui, sans-serif;
+        --font-body: 'Geist', system-ui, sans-serif;
+        --font-mono: 'Geist Mono', 'SF Mono', 'Fira Code', monospace;
       }
 
       *, *::before, *::after {
@@ -92,6 +94,7 @@ const { title, description = "Hanzo Bot — Autonomous AI team in a box. Every r
         color: var(--text-primary);
         line-height: 1.6;
         min-height: 100vh;
+        padding-top: 56px;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
@@ -103,7 +106,9 @@ const { title, description = "Hanzo Bot — Autonomous AI team in a box. Every r
     </style>
   </head>
   <body>
+    <Header />
     <slot />
+    <Footer />
     <Analytics />
     <SpeedInsights />
   </body>
