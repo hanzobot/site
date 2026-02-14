@@ -81,7 +81,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: hanzo-bot-site
+                name: bot-docs
                 port:
                   number: 80
     - host: skills.hanzo.bot
@@ -91,7 +91,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: hanzo-bot-site
+                name: bot-docs
                 port:
                   number: 80
     - host: app.hanzo.bot
