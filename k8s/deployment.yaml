@@ -22,6 +22,10 @@ spec:
           image: ghcr.io/hanzobot/site:latest
           ports:
             - containerPort: 80
+          envFrom:
+            - secretRef:
+                name: bot-secrets
+                optional: true
           livenessProbe:
             httpGet:
               path: /health
@@ -81,7 +85,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: bot-docs
+                name: hanzo-bot-site
                 port:
                   number: 80
     - host: skills.hanzo.bot
@@ -91,7 +95,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: bot-docs
+                name: hanzo-bot-site
                 port:
                   number: 80
     - host: app.hanzo.bot
@@ -101,6 +105,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: console
+                name: hanzo-bot-site
                 port:
                   number: 80
