@@ -74,9 +74,6 @@ spec:
     - hosts:
         - skills.hanzo.bot
       secretName: skills-hanzo-bot-tls
-    - hosts:
-        - app.hanzo.bot
-      secretName: app-hanzo-bot-tls
   rules:
     - host: hanzo.bot
       http:
@@ -89,16 +86,6 @@ spec:
                 port:
                   number: 80
     - host: skills.hanzo.bot
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: hanzo-bot-site
-                port:
-                  number: 80
-    - host: app.hanzo.bot
       http:
         paths:
           - path: /
