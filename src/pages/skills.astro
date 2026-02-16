@@ -33,6 +33,9 @@ const totalAuthors = new Set(skills.map((s: any) => s.author)).size;
       <span class="stat-sep">·</span>
       <span class="stat">Open source</span>
     </div>
+    <p class="cli-hint">
+      CLI: <code>npm i -g @hanzo/skills</code> then <code>skills install &lt;slug&gt;</code> or <code>bot skills install &lt;slug&gt;</code>
+    </p>
 
     <div class="skills-grid" id="skills-grid">
       {skills.map((skill: any) => (
@@ -51,7 +54,7 @@ const totalAuthors = new Set(skills.map((s: any) => s.author)).size;
             <p class="skill-desc">{skill.description.length > 160 ? skill.description.slice(0, 160) + '...' : skill.description}</p>
           )}
           <div class="skill-footer">
-            <code class="install-cmd">skills install {skill.author}/{skill.slug}</code>
+            <code class="install-cmd">skills install {skill.slug}</code>
           </div>
         </div>
       ))}
@@ -231,6 +234,23 @@ const totalAuthors = new Set(skills.map((s: any) => s.author)).size;
     margin-bottom: 32px;
     font-size: 0.9rem;
     color: var(--text-muted);
+  }
+
+  .cli-hint {
+    text-align: center;
+    color: var(--text-secondary);
+    margin: -12px 0 28px;
+    font-size: 0.95rem;
+  }
+
+  .cli-hint code {
+    color: var(--text-primary);
+    background: rgba(10, 15, 26, 0.75);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 2px 6px;
+    font-family: var(--font-mono);
+    font-size: 0.9em;
   }
 
   .stat {

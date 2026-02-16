@@ -122,6 +122,40 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
       <p class="models-note">Bring your own API keys or use Hanzo Cloud for instant access to all models.</p>
     </section>
 
+    <!-- Playground Section -->
+    <section class="playground-promo">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="accent-mark">&#x27E9;</span> Hanzo Playground
+        </h2>
+        <a href="/playground" class="section-link">Learn more &rarr;</a>
+      </div>
+      <div class="playground-card">
+        <div class="playground-preview">
+          <div class="pg-grid"></div>
+          <div class="pg-node pg-node-1">
+            <span class="pg-dot busy"></span>
+            <span class="pg-name">dev-agent</span>
+          </div>
+          <div class="pg-node pg-node-2">
+            <span class="pg-dot idle"></span>
+            <span class="pg-name">qa-agent</span>
+          </div>
+          <div class="pg-node pg-node-3">
+            <span class="pg-dot busy"></span>
+            <span class="pg-name">ops-agent</span>
+          </div>
+        </div>
+        <div class="playground-info">
+          <h3 class="playground-title">Visual Agent Canvas</h3>
+          <p class="playground-desc">See all your bots on an infinite canvas. Click any agent to see its terminal, chat, desktop, and files. Approve tool calls, provision teams, and orchestrate &mdash; all from one UI.</p>
+          <a href="https://app.hanzo.bot/ui/" class="playground-cta" target="_blank" rel="noopener">
+            Open Playground &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- Testimonials (moved up for social proof) -->
     <section class="testimonials">
       <div class="section-header">
@@ -564,17 +598,16 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
       // Ninja poof animation - cycles through roles
       const roles = [
         { emoji: '🥷', label: 'ninja' },
-        { emoji: '🥷', label: 'devops engineer' },
-        { emoji: '🥷', label: 'code reviewer' },
-        { emoji: '🥷', label: 'customer support' },
-        { emoji: '🥷', label: 'data analyst' },
-        { emoji: '🥷', label: 'content writer' },
-        { emoji: '🥷', label: 'security auditor' },
-        { emoji: '🥷', label: 'qa tester' },
-        { emoji: '🥷', label: 'project manager' },
-        { emoji: '🥷', label: 'sysadmin' },
-        { emoji: '🥷', label: 'designer' },
-        { emoji: '🥷', label: 'researcher' },
+        { emoji: '👷', label: 'devops engineer' },
+        { emoji: '🧑‍💻', label: 'code reviewer' },
+        { emoji: '💁', label: 'customer support' },
+        { emoji: '🕵️', label: 'data analyst' },
+        { emoji: '💂', label: 'security auditor' },
+        { emoji: '🧑‍🔬', label: 'qa tester' },
+        { emoji: '🧑‍💼', label: 'project manager' },
+        { emoji: '🧙', label: 'sysadmin' },
+        { emoji: '🧑‍🎨', label: 'designer' },
+        { emoji: '🧑‍🎓', label: 'researcher' },
       ];
 
       const ninjaEmoji = document.getElementById('ninja-emoji');
@@ -583,12 +616,12 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
       let currentRoleIndex = 0;
 
       const poofColors = [
-        'rgba(253, 68, 68, 0.8)',
-        'rgba(0, 229, 204, 0.8)',
-        'rgba(240, 244, 255, 0.6)',
-        'rgba(253, 68, 68, 0.5)',
-        'rgba(0, 229, 204, 0.5)',
-        'rgba(255, 200, 100, 0.6)',
+        'rgba(240, 244, 255, 0.7)',
+        'rgba(200, 210, 230, 0.6)',
+        'rgba(240, 244, 255, 0.5)',
+        'rgba(180, 195, 220, 0.5)',
+        'rgba(240, 244, 255, 0.4)',
+        'rgba(255, 230, 200, 0.5)',
       ];
 
       function createPoofParticles() {
@@ -966,7 +999,7 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
     line-height: 1;
     display: block;
     transition: opacity 0.15s ease, transform 0.15s ease;
-    filter: drop-shadow(0 0 16px rgba(253, 68, 68, 0.3));
+    filter: drop-shadow(0 0 12px rgba(240, 244, 255, 0.2));
     cursor: default;
   }
 
@@ -2262,6 +2295,126 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
     text-align: center;
     font-size: 0.9rem;
     color: var(--text-muted);
+  }
+
+  /* Playground Promo */
+  .playground-promo {
+    margin-bottom: 56px;
+  }
+
+  .playground-card {
+    display: flex;
+    gap: 0;
+    border-radius: 16px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(10, 15, 26, 0.7);
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .playground-card:hover {
+    border-color: var(--border-accent);
+    box-shadow: 0 12px 48px rgba(253, 68, 68, 0.1);
+  }
+
+  .playground-preview {
+    position: relative;
+    width: 340px;
+    min-height: 200px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .pg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(136, 146, 176, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(136, 146, 176, 0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .pg-node {
+    position: absolute;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(10, 15, 26, 0.9);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+  }
+
+  .pg-node-1 { top: 32px; left: 24px; }
+  .pg-node-2 { top: 80px; left: 160px; }
+  .pg-node-3 { top: 140px; left: 80px; }
+
+  .pg-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+
+  .pg-dot.busy {
+    background: var(--cyan-bright);
+    box-shadow: 0 0 6px var(--cyan-glow);
+  }
+
+  .pg-dot.idle {
+    background: var(--text-muted);
+  }
+
+  .pg-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .playground-info {
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .playground-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 10px;
+  }
+
+  .playground-desc {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    margin: 0 0 18px;
+  }
+
+  .playground-cta {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--coral-bright);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .playground-cta:hover {
+    color: var(--cyan-bright);
+  }
+
+  @media (max-width: 640px) {
+    .playground-card {
+      flex-direction: column;
+    }
+
+    .playground-preview {
+      width: 100%;
+      min-height: 160px;
+    }
   }
 
   /* Responsive */
