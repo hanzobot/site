@@ -47,8 +47,7 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
 ---
 
 <Layout title="Hanzo Bot — Autonomous AI Team in a Box">
-  <div class="stars"></div>
-  <div class="nebula"></div>
+  <!-- clean dark bg, no effects -->
 
   <main class="container">
     <!-- Hero Section -->
@@ -56,7 +55,6 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
       <div class="ninja-stage" aria-hidden="true">
         <div class="ninja-container" id="ninja-container">
           <span class="ninja-emoji" id="ninja-emoji">🥷</span>
-          <div class="poof-particles" id="poof-particles"></div>
         </div>
         <span class="ninja-role" id="ninja-role">ninja</span>
       </div>
@@ -612,71 +610,28 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
 
       const ninjaEmoji = document.getElementById('ninja-emoji');
       const ninjaRole = document.getElementById('ninja-role');
-      const poofParticles = document.getElementById('poof-particles');
       let currentRoleIndex = 0;
 
-      const poofColors = [
-        'rgba(240, 244, 255, 0.7)',
-        'rgba(200, 210, 230, 0.6)',
-        'rgba(240, 244, 255, 0.5)',
-        'rgba(180, 195, 220, 0.5)',
-        'rgba(240, 244, 255, 0.4)',
-        'rgba(255, 230, 200, 0.5)',
-      ];
-
-      function createPoofParticles() {
-        poofParticles.innerHTML = '';
-        const count = 8;
-        for (let i = 0; i < count; i++) {
-          const particle = document.createElement('div');
-          particle.className = 'poof-particle';
-          const angle = (i / count) * Math.PI * 2 + (Math.random() - 0.5) * 0.5;
-          const dist = 30 + Math.random() * 25;
-          const dx = Math.cos(angle) * dist;
-          const dy = Math.sin(angle) * dist;
-          particle.style.cssText = `
-            --dx: ${dx}px;
-            --dy: ${dy}px;
-            background: ${poofColors[i % poofColors.length]};
-            width: ${8 + Math.random() * 8}px;
-            height: ${8 + Math.random() * 8}px;
-          `;
-          poofParticles.appendChild(particle);
-          // Trigger animation
-          requestAnimationFrame(() => particle.classList.add('active'));
-        }
-      }
-
       function cycleRole() {
-        // Fade out role label
+        // Fade out
         ninjaRole.classList.remove('visible');
-
-        // Poof out ninja
         ninjaEmoji.classList.remove('poof-in');
         ninjaEmoji.classList.add('poof-out');
 
-        // Create particles on poof out
-        createPoofParticles();
-
         setTimeout(() => {
-          // Advance role
           currentRoleIndex = (currentRoleIndex + 1) % roles.length;
           const role = roles[currentRoleIndex];
           ninjaEmoji.textContent = role.emoji;
           ninjaRole.textContent = role.label;
 
-          // Poof in
+          // Fade in
           ninjaEmoji.classList.remove('poof-out');
           ninjaEmoji.classList.add('poof-in');
 
-          // Create particles on poof in
-          createPoofParticles();
-
-          // Show role label after ninja appears
           setTimeout(() => {
             ninjaRole.classList.add('visible');
           }, 200);
-        }, 350);
+        }, 300);
       }
 
       // Initial state - show first role after a beat
@@ -910,41 +865,7 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
 </Layout>
 
 <style>
-  /* Starfield Background */
-  .stars {
-    position: fixed;
-    inset: 0;
-    background-image:
-      radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent),
-      radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.5), transparent),
-      radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.6), transparent),
-      radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.4), transparent),
-      radial-gradient(1px 1px at 160px 120px, rgba(255,255,255,0.7), transparent),
-      radial-gradient(2px 2px at 200px 60px, rgba(255,77,77,0.6), transparent),
-      radial-gradient(1px 1px at 250px 150px, rgba(255,255,255,0.5), transparent),
-      radial-gradient(2px 2px at 300px 40px, rgba(255,77,77,0.4), transparent);
-    background-size: 350px 200px;
-    animation: twinkle 8s ease-in-out infinite alternate;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  @keyframes twinkle {
-    0% { opacity: 0.4; }
-    100% { opacity: 0.7; }
-  }
-
-  /* Nebula Gradient */
-  .nebula {
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(255, 255, 255, 0.04), transparent 50%),
-      radial-gradient(ellipse 60% 60% at 80% 30%, rgba(255, 255, 255, 0.03), transparent 50%),
-      radial-gradient(ellipse 90% 70% at 50% 90%, rgba(255, 255, 255, 0.02), transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-  }
+  /* Background: clean dark, no effects */
 
   .container {
     position: relative;
@@ -999,8 +920,10 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
     line-height: 1;
     display: block;
     transition: opacity 0.15s ease, transform 0.15s ease;
-    filter: drop-shadow(0 0 12px rgba(240, 244, 255, 0.2));
     cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    caret-color: transparent;
   }
 
   .ninja-emoji.poof-out {
@@ -1027,44 +950,7 @@ const duration2 = (row2.length / 2 * pixelsPerItem) / pixelsPerSecond;
     }
   }
 
-  /* Poof particles */
-  .poof-particles {
-    position: absolute;
-    inset: -20px;
-    pointer-events: none;
-  }
-
-  .poof-particle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .poof-particle.active {
-    animation: poofBurst 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  }
-
-  @keyframes poofBurst {
-    0% {
-      opacity: 0.9;
-      transform: translate(-50%, -50%) scale(0.5);
-    }
-    50% {
-      opacity: 0.6;
-    }
-    100% {
-      opacity: 0;
-      transform: translate(
-        calc(-50% + var(--dx)),
-        calc(-50% + var(--dy))
-      ) scale(0);
-    }
-  }
+  /* No poof particles — clean transitions only */
 
   /* Role label */
   .ninja-role {
