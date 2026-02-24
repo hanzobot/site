@@ -91,14 +91,64 @@ const currentPath = Astro.url.pathname;
     </div>
 
     <div class="nav-actions">
-      <a href="https://github.com/hanzoai/bot" class="nav-github" target="_blank" rel="noopener" aria-label="GitHub">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
-      </a>
-      <a href="https://app.hanzo.bot" class="nav-cta" target="_blank" rel="noopener">
-        Get Started Free
-      </a>
+      <a href="https://app.hanzo.bot/auth/login" class="nav-login">Log in</a>
+      <div class="try-hanzo-wrapper" id="try-hanzo-wrapper">
+        <button class="nav-cta try-hanzo-trigger" id="try-hanzo-trigger" aria-expanded="false" aria-haspopup="true">
+          Try Hanzo
+          <svg class="try-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="try-hanzo-dropdown" id="try-hanzo-dropdown">
+          <div class="try-section-label">Get started</div>
+          <a href="https://app.hanzo.bot" class="try-item" target="_blank" rel="noopener">
+            <span class="try-item-icon">☁️</span>
+            <div class="try-item-text">
+              <span class="try-item-label">Hanzo Cloud</span>
+              <span class="try-item-desc">Launch instantly — $5/mo</span>
+            </div>
+          </a>
+          <a href="#quickstart" class="try-item">
+            <span class="try-item-icon">💻</span>
+            <div class="try-item-text">
+              <span class="try-item-label">Self-hosted</span>
+              <span class="try-item-desc">Free on your machine</span>
+            </div>
+          </a>
+          <a href="/playground" class="try-item">
+            <span class="try-item-icon">🎨</span>
+            <div class="try-item-text">
+              <span class="try-item-label">Playground</span>
+              <span class="try-item-desc">Visual agent canvas</span>
+            </div>
+          </a>
+          <div class="try-divider"></div>
+          <div class="try-section-label">Resources</div>
+          <a href="https://docs.hanzo.ai/docs/bot" class="try-item" target="_blank" rel="noopener">
+            <span class="try-item-icon">📖</span>
+            <div class="try-item-text">
+              <span class="try-item-label">Documentation</span>
+              <span class="try-item-desc">Guides, API reference</span>
+            </div>
+          </a>
+          <a href="https://github.com/hanzoai/bot" class="try-item" target="_blank" rel="noopener">
+            <span class="try-item-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </span>
+            <div class="try-item-text">
+              <span class="try-item-label">GitHub</span>
+              <span class="try-item-desc">Source code, issues</span>
+            </div>
+          </a>
+          <a href="/pricing" class="try-item">
+            <span class="try-item-icon">💰</span>
+            <div class="try-item-text">
+              <span class="try-item-label">Pricing</span>
+              <span class="try-item-desc">Plans and comparison</span>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
 
     <button class="nav-mobile-toggle" aria-label="Toggle menu" id="mobile-toggle">
@@ -137,8 +187,8 @@ const currentPath = Astro.url.pathname;
       </a>
     ))}
     <div class="mobile-actions">
-      <a href="https://github.com/hanzoai/bot" class="mobile-link" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://app.hanzo.bot" class="nav-cta mobile-cta" target="_blank" rel="noopener">Get Started Free</a>
+      <a href="https://app.hanzo.bot/auth/login" class="mobile-link">Log in</a>
+      <a href="https://app.hanzo.bot" class="nav-cta mobile-cta" target="_blank" rel="noopener">Try Hanzo Cloud</a>
     </div>
   </div>
 </header>
@@ -178,6 +228,25 @@ const currentPath = Astro.url.pathname;
     if (e.key === 'Escape') {
       dropdown?.classList.remove('open');
       trigger?.setAttribute('aria-expanded', 'false');
+      tryDropdown?.classList.remove('open');
+      tryTrigger?.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Try Hanzo dropdown
+  const tryTrigger = document.getElementById('try-hanzo-trigger');
+  const tryDropdown = document.getElementById('try-hanzo-dropdown');
+
+  tryTrigger?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = tryDropdown?.classList.toggle('open');
+    tryTrigger?.setAttribute('aria-expanded', String(!!open));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!document.getElementById('try-hanzo-wrapper')?.contains(e.target as Node)) {
+      tryDropdown?.classList.remove('open');
+      tryTrigger?.setAttribute('aria-expanded', 'false');
     }
   });
 </script>
@@ -410,21 +479,20 @@ const currentPath = Astro.url.pathname;
     margin-left: auto;
   }
 
-  .nav-github {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .nav-login {
+    font-family: var(--font-display, 'Inter', system-ui, sans-serif);
+    font-size: 0.85rem;
+    font-weight: 500;
     color: var(--text-secondary, #8892b0);
-    transition: color 0.2s ease;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
   }
 
-  .nav-github:hover {
+  .nav-login:hover {
     color: var(--text-primary, #f0f4ff);
-  }
-
-  .nav-github svg {
-    width: 20px;
-    height: 20px;
+    background: rgba(255, 255, 255, 0.05);
   }
 
   .nav-cta {
@@ -444,6 +512,112 @@ const currentPath = Astro.url.pathname;
     background: #e8e8e8;
     transform: translateY(-1px);
     box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+  }
+
+  /* Try Hanzo Dropdown */
+  .try-hanzo-wrapper {
+    position: relative;
+  }
+
+  .try-hanzo-trigger {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .try-chevron {
+    width: 13px;
+    height: 13px;
+    transition: transform 0.2s ease;
+  }
+
+  .try-hanzo-trigger[aria-expanded="true"] .try-chevron {
+    transform: rotate(180deg);
+  }
+
+  .try-hanzo-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 280px;
+    background: rgba(10, 15, 26, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(136, 146, 176, 0.15);
+    border-radius: 14px;
+    padding: 6px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    z-index: 200;
+  }
+
+  .try-hanzo-dropdown.open {
+    display: block;
+    animation: dropdownIn 0.15s ease-out;
+  }
+
+  .try-section-label {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-muted, #5a6480);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 8px 12px 4px;
+  }
+
+  .try-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-primary, #f0f4ff);
+    transition: all 0.15s ease;
+  }
+
+  .try-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .try-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    flex-shrink: 0;
+    font-size: 1rem;
+    color: var(--text-secondary, #8892b0);
+  }
+
+  .try-item-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .try-item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .try-item-label {
+    font-family: var(--font-display, system-ui);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .try-item-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted, #5a6480);
+  }
+
+  .try-divider {
+    height: 1px;
+    background: rgba(136, 146, 176, 0.1);
+    margin: 4px 8px;
   }
 
   .nav-mobile-toggle {
