@@ -14,8 +14,8 @@
     "clean": "rimraf .next out"
   },
   "dependencies": {
-    "@hanzo/docs-base-ui": "^16.6.5",
-    "@hanzo/docs-core": "^16.6.5",
+    "@hanzo/docs-base-ui": "^16.5.3",
+    "@hanzo/docs-core": "^16.5.3",
     "@hanzo/docs-mdx": "^14.2.8",
     "@hanzo/mdx-runtime": "^1.6.1",
     "@hanzo/ui": "^5.3.34",
