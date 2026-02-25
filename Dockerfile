@@ -1,4 +1,5 @@
 FROM node:22-alpine AS build
+RUN apk add --no-cache git
 WORKDIR /app
 RUN corepack enable
 COPY package.json pnpm-lock.yaml* ./
