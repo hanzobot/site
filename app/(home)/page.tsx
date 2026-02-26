@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { cn } from '@/lib/cn';
-import { cva } from 'class-variance-authority';
 import {
   HomeIcon, MessageCircleIcon, BrainIcon, GlobeIcon,
   TerminalIcon, PuzzleIcon, MonitorIcon, ShieldIcon,
@@ -13,16 +12,6 @@ import { InstallTabs } from './_components/install-tabs';
 import { IntegrationPills } from './_components/integration-pills';
 import { NinjaHero } from './_components/ninja-hero';
 
-const headingVariants = cva('font-medium tracking-tight', {
-  variants: {
-    variant: {
-      h1: 'text-4xl lg:text-5xl xl:text-6xl',
-      h2: 'text-3xl lg:text-4xl',
-      h3: 'text-xl lg:text-2xl',
-    },
-  },
-});
-
 const models = [
   { provider: 'Anthropic', names: 'Claude Opus 4.6, Sonnet 4.5' },
   { provider: 'OpenAI', names: 'GPT-5.2, GPT-5.1 Codex' },
@@ -33,11 +22,11 @@ const models = [
 ];
 
 const features = [
-  { icon: HomeIcon, title: 'Runs on Your Machine', desc: 'Mac, Windows, or Linux. Anthropic, OpenAI, or local models. Private by default\u2014your data stays yours.', href: 'https://github.com/hanzoai/bot' },
+  { icon: HomeIcon, title: 'Runs on Your Machine', desc: 'Mac, Windows, or Linux. Anthropic, OpenAI, or local models. Private by default\u2014your data stays yours.', href: '/get-started' },
   { icon: MessageCircleIcon, title: 'Any Chat App', desc: 'Talk to it on WhatsApp, Telegram, Discord, Slack, Signal, or iMessage. Works in DMs and group chats.', href: '/integrations' },
-  { icon: BrainIcon, title: 'Persistent Memory', desc: 'Remembers you and becomes uniquely yours. Your preferences, your context, your AI.', href: 'https://github.com/hanzoai/bot' },
-  { icon: GlobeIcon, title: 'Browser Control', desc: 'It can browse the web, fill forms, and extract data from any site.', href: 'https://github.com/hanzoai/bot' },
-  { icon: TerminalIcon, title: 'Full System Access', desc: 'Read and write files, run shell commands, execute scripts. Full access or sandboxed\u2014your choice.', href: 'https://github.com/hanzoai/bot' },
+  { icon: BrainIcon, title: 'Persistent Memory', desc: 'Remembers you and becomes uniquely yours. Your preferences, your context, your AI.', href: '/docs/features/memory' },
+  { icon: GlobeIcon, title: 'Browser Control', desc: 'It can browse the web, fill forms, and extract data from any site.', href: '/docs/features/browser' },
+  { icon: TerminalIcon, title: 'Full System Access', desc: 'Read and write files, run shell commands, execute scripts. Full access or sandboxed\u2014your choice.', href: '/docs/features/system-access' },
   { icon: PuzzleIcon, title: 'Skills & Plugins', desc: 'Extend with community skills or build your own. It can even write its own.', href: '/skills' },
 ];
 

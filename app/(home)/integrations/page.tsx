@@ -56,38 +56,38 @@ const I = (size = 32) => ({ className: `w-[${size}px] h-[${size}px]` });
 
 const chatProviders: Integration[] = [
   { name: 'WhatsApp', icon: <MessageSquareIcon {...I()} />, color: '#25D366', desc: 'QR pairing via Baileys', docs: 'https://skills.hanzo.bot/skills/wacli' },
-  { name: 'Telegram', icon: <SmartphoneIcon {...I()} />, color: '#26A5E4', desc: 'Bot API via grammY', docs: 'https://github.com/hanzoai/bot' },
+  { name: 'Telegram', icon: <SmartphoneIcon {...I()} />, color: '#26A5E4', desc: 'Bot API via grammY', docs: 'https://skills.hanzo.bot/skills/telegram' },
   { name: 'Discord', icon: <MessageSquareIcon {...I()} />, color: '#5865F2', desc: 'Servers, channels & DMs', docs: 'https://skills.hanzo.bot/skills/discord' },
   { name: 'Slack', icon: <HashIcon {...I()} />, color: '#E01E5A', desc: 'Workspace apps via Bolt', docs: 'https://skills.hanzo.bot/skills/slack' },
   { name: 'Signal', icon: <MessageSquareIcon {...I()} />, color: '#3A76F0', desc: 'Privacy-focused via signal-cli', docs: 'https://skills.hanzo.bot/skills/sag' },
-  { name: 'iMessage', icon: <SmartphoneIcon {...I()} />, color: '#007AFF', desc: 'AppleScript bridge', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'Teams', icon: <UsersIcon {...I()} />, color: '#6264A7', desc: 'Enterprise support', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'Matrix', icon: <GlobeIcon {...I()} />, color: '#FFFFFF', desc: 'Matrix protocol', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'Nostr', icon: <MessageCircleIcon {...I()} />, color: '#8F2CFF', desc: 'Decentralized DMs', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'WebChat', icon: <GlobeIcon {...I()} />, color: '#00E5CC', desc: 'Browser-based UI', docs: 'https://github.com/hanzoai/bot' },
+  { name: 'iMessage', icon: <SmartphoneIcon {...I()} />, color: '#007AFF', desc: 'AppleScript bridge', docs: 'https://skills.hanzo.bot/skills/imessage' },
+  { name: 'Teams', icon: <UsersIcon {...I()} />, color: '#6264A7', desc: 'Enterprise support', docs: 'https://skills.hanzo.bot/skills/teams' },
+  { name: 'Matrix', icon: <GlobeIcon {...I()} />, color: '#FFFFFF', desc: 'Matrix protocol', docs: 'https://skills.hanzo.bot/skills/matrix' },
+  { name: 'Nostr', icon: <MessageCircleIcon {...I()} />, color: '#8F2CFF', desc: 'Decentralized DMs', docs: 'https://skills.hanzo.bot/skills/nostr' },
+  { name: 'WebChat', icon: <GlobeIcon {...I()} />, color: '#00E5CC', desc: 'Browser-based UI', docs: '/docs/channels/webchat' },
 ];
 
 const modelProviders: Integration[] = [
-  { name: 'Anthropic', icon: <BrainCircuitIcon {...I()} />, color: '#D4A574', desc: 'Claude Opus 4.6', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'OpenAI', icon: <BotIcon {...I()} />, color: '#00A67E', desc: 'GPT-5, o3, o4-mini', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'Google', icon: <GlobeIcon {...I()} />, color: '#4285F4', desc: 'Gemini 3 Pro/Flash', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'xAI', icon: <ZapIcon {...I()} />, color: '#FFFFFF', desc: 'Grok 3 & 4', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'OpenRouter', icon: <ZapIcon {...I()} />, color: '#6366F1', desc: 'Unified API gateway', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'Mistral', icon: <BrainCircuitIcon {...I()} />, color: '#FF7000', desc: 'Mistral Large & Codestral', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'DeepSeek', icon: <BrainCircuitIcon {...I()} />, color: '#4D6BFE', desc: 'DeepSeek V3 & R1', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'Perplexity', icon: <SearchIcon {...I()} />, color: '#20B8CD', desc: 'Search-augmented AI', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'Hugging Face', icon: <BotIcon {...I()} />, color: '#FFD21E', desc: 'Open-source models', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'Local Models', icon: <BotIcon {...I()} />, color: '#FFFFFF', desc: 'Ollama, LM Studio', docs: 'https://github.com/hanzoai/bot' },
+  { name: 'Anthropic', icon: <BrainCircuitIcon {...I()} />, color: '#D4A574', desc: 'Claude Opus 4.6', docs: '/docs/models/anthropic' },
+  { name: 'OpenAI', icon: <BotIcon {...I()} />, color: '#00A67E', desc: 'GPT-5, o3, o4-mini', docs: '/docs/models/openai' },
+  { name: 'Google', icon: <GlobeIcon {...I()} />, color: '#4285F4', desc: 'Gemini 3 Pro/Flash', docs: '/docs/models/google' },
+  { name: 'xAI', icon: <ZapIcon {...I()} />, color: '#FFFFFF', desc: 'Grok 3 & 4', docs: '/docs/models/xai' },
+  { name: 'OpenRouter', icon: <ZapIcon {...I()} />, color: '#6366F1', desc: 'Unified API gateway', docs: '/docs/models/openrouter' },
+  { name: 'Mistral', icon: <BrainCircuitIcon {...I()} />, color: '#FF7000', desc: 'Mistral Large & Codestral', docs: '/docs/models/mistral' },
+  { name: 'DeepSeek', icon: <BrainCircuitIcon {...I()} />, color: '#4D6BFE', desc: 'DeepSeek V3 & R1', docs: '/docs/models/deepseek' },
+  { name: 'Perplexity', icon: <SearchIcon {...I()} />, color: '#20B8CD', desc: 'Search-augmented AI', docs: '/docs/models/perplexity' },
+  { name: 'Hugging Face', icon: <BotIcon {...I()} />, color: '#FFD21E', desc: 'Open-source models', docs: '/docs/models/huggingface' },
+  { name: 'Local Models', icon: <BotIcon {...I()} />, color: '#FFFFFF', desc: 'Ollama, LM Studio', docs: '/docs/models/local' },
 ];
 
 const productivityApps: Integration[] = [
   { name: 'Apple Notes', icon: <StickyNoteIcon {...I()} />, color: '#FFCC00', desc: 'Native macOS/iOS notes', docs: 'https://skills.hanzo.bot/skills/apple-notes' },
   { name: 'Apple Reminders', icon: <CheckSquareIcon {...I()} />, color: '#FF9500', desc: 'Task management', docs: 'https://skills.hanzo.bot/skills/apple-reminders' },
   { name: 'Things 3', icon: <ListTodoIcon {...I()} />, color: '#4A90D9', desc: 'GTD task manager', docs: 'https://skills.hanzo.bot/skills/things-mac' },
-  { name: 'Notion', icon: <StickyNoteIcon {...I()} />, color: '#FFFFFF', desc: 'Workspace & databases', docs: 'https://skills.hanzo.bot/skills' },
+  { name: 'Notion', icon: <StickyNoteIcon {...I()} />, color: '#FFFFFF', desc: 'Workspace & databases', docs: 'https://skills.hanzo.bot/skills/notion' },
   { name: 'Obsidian', icon: <PenToolIcon {...I()} />, color: '#7C3AED', desc: 'Knowledge graph notes', docs: 'https://skills.hanzo.bot/skills/obsidian' },
   { name: 'Trello', icon: <ListTodoIcon {...I()} />, color: '#0079BF', desc: 'Kanban boards', docs: 'https://skills.hanzo.bot/skills/trello' },
-  { name: 'GitHub', icon: <GlobeIcon {...I()} />, color: '#FFFFFF', desc: 'Code, issues, PRs', docs: 'https://skills.hanzo.bot/skills' },
+  { name: 'GitHub', icon: <GlobeIcon {...I()} />, color: '#FFFFFF', desc: 'Code, issues, PRs', docs: 'https://skills.hanzo.bot/skills/github' },
 ];
 
 const musicAudio: Integration[] = [
@@ -104,19 +104,19 @@ const smartHome: Integration[] = [
 
 const tools: Integration[] = [
   { name: 'Browser', icon: <GlobeIcon {...I()} />, color: '#4285F4', desc: 'Chrome/Chromium control', docs: 'https://skills.hanzo.bot/skills/verify-on-browser' },
-  { name: 'Canvas', icon: <MonitorSmartphoneIcon {...I()} />, color: '#FF4500', desc: 'Visual workspace + A2UI', docs: 'https://github.com/hanzoai/bot' },
+  { name: 'Canvas', icon: <MonitorSmartphoneIcon {...I()} />, color: '#FF4500', desc: 'Visual workspace + A2UI', docs: '/docs/features/canvas' },
   { name: 'Voice', icon: <MicIcon {...I()} />, color: '#9B59B6', desc: 'Voice Wake + Talk Mode', docs: 'https://skills.hanzo.bot/skills/voice-transcribe' },
-  { name: 'Gmail', icon: <MailIcon {...I()} />, color: '#EA4335', desc: 'Pub/Sub email triggers', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'Cron', icon: <ClockIcon {...I()} />, color: '#F39C12', desc: 'Scheduled tasks', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'Webhooks', icon: <WebhookIcon {...I()} />, color: '#1ABC9C', desc: 'External triggers', docs: 'https://github.com/hanzoai/bot' },
+  { name: 'Gmail', icon: <MailIcon {...I()} />, color: '#EA4335', desc: 'Pub/Sub email triggers', docs: 'https://skills.hanzo.bot/skills/gmail' },
+  { name: 'Cron', icon: <ClockIcon {...I()} />, color: '#F39C12', desc: 'Scheduled tasks', docs: '/docs/features/cron' },
+  { name: 'Webhooks', icon: <WebhookIcon {...I()} />, color: '#1ABC9C', desc: 'External triggers', docs: '/docs/features/webhooks' },
   { name: 'Weather', icon: <CloudSunIcon {...I()} />, color: '#FFB300', desc: 'Forecasts & conditions', docs: 'https://skills.hanzo.bot/skills/weather' },
 ];
 
 const mediaCreative: Integration[] = [
-  { name: 'Image Gen', icon: <ImageIcon {...I()} />, color: '#E91E63', desc: 'AI image generation', docs: 'https://skills.hanzo.bot/skills' },
+  { name: 'Image Gen', icon: <ImageIcon {...I()} />, color: '#E91E63', desc: 'AI image generation', docs: 'https://skills.hanzo.bot/skills/image-gen' },
   { name: 'GIF Search', icon: <SearchIcon {...I()} />, color: '#00DCDC', desc: 'Find the perfect GIF', docs: 'https://skills.hanzo.bot/skills/gifgrep' },
   { name: 'Peekaboo', icon: <EyeIcon {...I()} />, color: '#FF6B6B', desc: 'Screen capture & control', docs: 'https://skills.hanzo.bot/skills/peekaboo' },
-  { name: 'Camera', icon: <CameraIcon {...I()} />, color: '#607D8B', desc: 'Photo/video capture', docs: 'https://skills.hanzo.bot/skills' },
+  { name: 'Camera', icon: <CameraIcon {...I()} />, color: '#607D8B', desc: 'Photo/video capture', docs: 'https://skills.hanzo.bot/skills/camera' },
 ];
 
 const socialComms: Integration[] = [
@@ -125,10 +125,10 @@ const socialComms: Integration[] = [
 ];
 
 const showcase: Integration[] = [
-  { name: 'Tesco Autopilot', icon: <ShoppingCartIcon {...I()} />, color: '#00539F', desc: 'Automated grocery shopping', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'Bambu Control', icon: <PrinterIcon {...I()} />, color: '#00AE42', desc: '3D printer management', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'Oura Ring', icon: <HeartIcon {...I()} />, color: '#E4B363', desc: 'Health data insights', docs: 'https://github.com/hanzoai/bot' },
-  { name: 'Food Ordering', icon: <UtensilsCrossedIcon {...I()} />, color: '#FF5A5F', desc: 'Foodora integration', docs: 'https://github.com/hanzoai/bot' },
+  { name: 'Tesco Autopilot', icon: <ShoppingCartIcon {...I()} />, color: '#00539F', desc: 'Automated grocery shopping', docs: 'https://skills.hanzo.bot/skills/tesco-autopilot' },
+  { name: 'Bambu Control', icon: <PrinterIcon {...I()} />, color: '#00AE42', desc: '3D printer management', docs: 'https://skills.hanzo.bot/skills/bambu-control' },
+  { name: 'Oura Ring', icon: <HeartIcon {...I()} />, color: '#E4B363', desc: 'Health data insights', docs: 'https://skills.hanzo.bot/skills/oura-ring' },
+  { name: 'Food Ordering', icon: <UtensilsCrossedIcon {...I()} />, color: '#FF5A5F', desc: 'Foodora integration', docs: 'https://skills.hanzo.bot/skills/food-ordering' },
 ];
 
 const popularIntegrations = [
