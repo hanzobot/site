@@ -7,7 +7,7 @@
  *
  * Options (via data attributes on the script tag):
  *   data-token      - Bot gateway auth token (required for remote)
- *   data-url        - Gateway WebSocket URL (default: wss://bot.hanzo.ai)
+ *   data-url        - Gateway WebSocket URL (default: wss://gw.hanzo.bot)
  *   data-agent      - Default agent ID (default: vi)
  *   data-position   - Widget position: bottom-right | bottom-left (default: bottom-right)
  *   data-theme      - Theme: dark | light (default: dark)
@@ -20,7 +20,7 @@
   const SCRIPT = document.currentScript;
   const CFG = {
     token: SCRIPT?.getAttribute('data-token') || '',
-    url: SCRIPT?.getAttribute('data-url') || 'wss://bot.hanzo.ai',
+    url: SCRIPT?.getAttribute('data-url') || 'wss://gw.hanzo.bot',
     agent: SCRIPT?.getAttribute('data-agent') || 'vi',
     position: SCRIPT?.getAttribute('data-position') || 'bottom-right',
     theme: SCRIPT?.getAttribute('data-theme') || 'dark',
@@ -40,7 +40,7 @@
       --hcw-accent-hover: #e03e3e;
       --hcw-user-bg: #fd4444;
       --hcw-bot-bg: ${CFG.theme === 'light' ? '#e8e8e8' : '#1e293b'};
-      --hcw-font: 'Geist', system-ui, -apple-system, sans-serif;
+      --hcw-font: var(--font-sans, 'Geist'), system-ui, -apple-system, sans-serif;
       position: fixed;
       ${CFG.position === 'bottom-left' ? 'left: 20px;' : 'right: 20px;'}
       bottom: 20px;
