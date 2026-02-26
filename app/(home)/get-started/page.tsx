@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { cn } from '@/lib/cn';
 import {
   CheckIcon, ArrowRightIcon, DownloadIcon, CloudIcon,
-  CrownIcon, LogInIcon, ExternalLinkIcon,
+  ServerIcon, CrownIcon, LogInIcon, ExternalLinkIcon,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 import { BillingFaq } from '../_components/billing-faq';
@@ -37,22 +37,21 @@ const plans = [
     ],
   },
   {
-    id: 'cloud',
-    name: 'Cloud',
+    id: 'starter',
+    name: 'Starter',
     price: '$5',
     period: '/mo per bot',
     icon: CloudIcon,
-    desc: 'Always-on Linux VM in Hanzo Cloud. 100+ AI models included. No hardware needed.',
+    desc: 'Always-on Linux VM. Up to 5 VMs. Zen Mini model included.',
     cta: 'Start Free Trial',
-    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=cloud',
+    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=starter',
     external: true,
-    highlight: true,
     badge: '14-day free trial',
     features: [
-      'Full Linux desktop VM (Ubuntu)',
-      '100+ AI models via Hanzo LLM Gateway',
-      'Always-on with daily backups',
-      'Web dashboard at app.hanzo.bot',
+      'Full Linux VM (Ubuntu)',
+      'Up to 5 VMs per account',
+      'Zen Mini model included',
+      '100+ models via LLM Gateway',
     ],
     steps: [
       'Create your account (no credit card needed)',
@@ -62,20 +61,45 @@ const plans = [
     ],
   },
   {
-    id: 'cloud-pro',
-    name: 'Cloud Pro',
+    id: 'dev',
+    name: 'Dev',
+    price: '$15',
+    period: '/mo per bot',
+    icon: ServerIcon,
+    desc: 'More power, more VMs. Up to 25 VMs with Zen models included.',
+    cta: 'Get Dev',
+    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=dev',
+    external: true,
+    highlight: true,
+    badge: 'Most Popular',
+    features: [
+      'Up to 25 VMs per account',
+      '2 vCPU, 4 GB RAM, 50 GB SSD',
+      'All Zen models included',
+      'Priority model access',
+    ],
+    steps: [
+      'Create your account',
+      'Choose your bot name and personality',
+      'Connect your chat apps',
+      'Your bot is live — 24/7',
+    ],
+  },
+  {
+    id: 'pro',
+    name: 'Pro',
     price: '$25',
     period: '/mo per bot',
     icon: CrownIcon,
-    desc: 'macOS or Windows VM for native desktop apps. Priority access and team collaboration.',
-    cta: 'Get Cloud Pro',
-    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=cloud-pro',
+    desc: 'Dedicated CPU, macOS or Windows VM. Priority access and team collaboration.',
+    cta: 'Get Pro',
+    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=pro',
     external: true,
     features: [
-      'macOS or Windows desktop VM',
-      'Run native apps (Xcode, Figma, etc.)',
-      'Priority model access & faster inference',
-      'Team collaboration & SSO',
+      'Dedicated CPU cores',
+      'macOS or Windows VM option',
+      'Priority inference & SSO',
+      'Team collaboration built-in',
     ],
     steps: [
       'Create your account',
@@ -111,7 +135,7 @@ export default function GetStartedPage() {
           <h2 className="text-2xl font-bold text-fd-foreground">Choose Your Plan</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {plans.map((plan) => {
             const Icon = plan.icon;
             return (
@@ -176,7 +200,7 @@ export default function GetStartedPage() {
           <h2 className="text-2xl font-bold text-fd-foreground">Set Up in Minutes</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {plans.map((plan) => (
             <div
               key={plan.id}
