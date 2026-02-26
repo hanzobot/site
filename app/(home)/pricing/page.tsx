@@ -35,7 +35,7 @@ const tiers = [
     name: 'Cloud',
     price: '$5',
     period: '/mo per bot',
-    desc: 'Always-on Linux VM in Hanzo Cloud. No hardware needed.',
+    desc: 'Always-on Linux VM in Hanzo Cloud. 1 vCPU, 1 GB RAM, 20 GB SSD.',
     cta: 'Start Free Trial',
     ctaHref: 'https://app.hanzo.bot/auth/signup?plan=cloud',
     signupHref: 'https://app.hanzo.bot/auth/signup?plan=cloud',
@@ -43,6 +43,7 @@ const tiers = [
     badge: 'Most Popular',
     features: [
       'Full Linux desktop VM (Ubuntu)',
+      '1 vCPU, 1 GB RAM, 20 GB SSD',
       '100+ AI models included via Hanzo LLM Gateway',
       'Always-on — never goes to sleep',
       'All chat integrations',
@@ -56,12 +57,13 @@ const tiers = [
     name: 'Cloud Pro',
     price: '$25',
     period: '/mo per bot',
-    desc: 'Mac or Windows VM for native desktop apps.',
+    desc: 'Dedicated CPU VM for native desktop apps. 2 vCPU, 8 GB RAM, 80 GB SSD.',
     cta: 'Get Started',
     ctaHref: 'https://app.hanzo.bot/auth/signup?plan=cloud-pro',
     signupHref: 'https://app.hanzo.bot/auth/signup?plan=cloud-pro',
     features: [
       'macOS or Windows desktop VM',
+      '2 dedicated vCPU, 8 GB RAM, 80 GB SSD',
       'Run native desktop apps (Xcode, Figma, etc.)',
       'Priority model access & faster inference',
       'Advanced browser automation (Playwright)',
@@ -78,7 +80,7 @@ type CellValue = true | false | string;
 
 const comparisonRows: { feature: string; free: CellValue; cloud: CellValue; pro: CellValue }[] = [
   { feature: 'Self-hosted (Mac/Win/Linux)', free: true, cloud: false, pro: false },
-  { feature: 'Cloud VM (always-on)', free: false, cloud: 'Linux (Ubuntu)', pro: 'macOS or Windows' },
+  { feature: 'Cloud VM (always-on)', free: false, cloud: 'Linux — 1 vCPU, 1 GB', pro: 'macOS/Win — 2 vCPU, 8 GB' },
   { feature: 'AI models included', free: false, cloud: '100+ via LLM Gateway', pro: '100+ with priority access' },
   { feature: 'Bring your own API keys', free: true, cloud: true, pro: true },
   { feature: 'Chat integrations', free: 'All', cloud: 'All', pro: 'All' },

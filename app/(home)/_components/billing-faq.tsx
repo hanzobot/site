@@ -5,11 +5,11 @@ const billingFaqs = [
   },
   {
     q: 'What does the $5/mo Cloud plan include?',
-    a: 'A full Linux desktop VM running in Hanzo Cloud with access to 100+ AI models via the Hanzo LLM Gateway. Your bot is always on, backed up daily, and accessible from any device. All chat integrations are included.',
+    a: 'A full Linux desktop VM (1 vCPU, 1 GB RAM, 20 GB SSD) running in Hanzo Cloud with access to 100+ AI models via the Hanzo LLM Gateway. Your bot is always on, backed up daily, and accessible from any device. All chat integrations are included. Available in US, Europe, and Singapore.',
   },
   {
     q: 'Why is Cloud Pro $25/mo?',
-    a: 'Cloud Pro runs a full macOS or Windows VM, which requires significantly more resources than a Linux container. You also get priority model access, faster inference, advanced browser automation, and team collaboration features.',
+    a: 'Cloud Pro runs a full macOS or Windows VM with 2 dedicated vCPU, 8 GB RAM, and 80 GB SSD. The dedicated CPU and extra resources ensure consistent performance for native desktop apps, browser automation, and demanding workloads. You also get priority model access, faster inference, and team collaboration features.',
   },
   {
     q: 'How does usage-based pricing work?',
