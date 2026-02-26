@@ -137,7 +137,7 @@ Quick answers plus deeper troubleshooting for real-world setups (local dev, VPS,
   - [What model do you recommend?](#what-model-do-you-recommend)
   - [How do I switch models without wiping my config?](#how-do-i-switch-models-without-wiping-my-config)
   - [Can I use self-hosted models (llama.cpp, vLLM, Ollama)?](#can-i-use-selfhosted-models-llamacpp-vllm-ollama)
-  - [What do Clawd, Flawd, and Krill use for models?](#what-do-bot-flawd-and-krill-use-for-models)
+  - [What models do the default agents use?](#what-models-do-the-default-agents-use)
   - [How do I switch models on the fly (without restarting)?](#how-do-i-switch-models-on-the-fly-without-restarting)
   - [Can I use GPT 5.2 for daily tasks and Codex 5.2 for coding](#can-i-use-gpt-52-for-daily-tasks-and-codex-52-for-coding)
   - [Why do I see “Model … is not allowed” and then no reply?](#why-do-i-see-model-is-not-allowed-and-then-no-reply)
@@ -1911,10 +1911,10 @@ If you did overwrite config, restore from backup or re-run `bot doctor` to repai
 
 Docs: [Models](/concepts/models), [Configure](/cli/configure), [Config](/cli/config), [Doctor](/gateway/doctor).
 
-### What do Bot Flawd and Krill use for models
+### What models do the default agents use
 
-- **Bot + Flawd:** Anthropic Opus (`anthropic/claude-opus-4-5`) - see [Anthropic](/providers/anthropic).
-- **Krill:** MiniMax M2.1 (`minimax/MiniMax-M2.1`) - see [MiniMax](/providers/minimax).
+- **Primary agent:** Anthropic Opus (`anthropic/claude-opus-4-5`) — see [Anthropic](/providers/anthropic).
+- **Lightweight agent:** MiniMax M2.1 (`minimax/MiniMax-M2.1`) — see [MiniMax](/providers/minimax).
 
 ### How do I switch models on the fly without restarting
 

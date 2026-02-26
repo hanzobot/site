@@ -15,7 +15,7 @@
     "exec-approvals",
     "firecrawl",
     "llm-task",
-    "lobster",
+    "pipeline",
     "reactions",
     "skills",
     "skills-config",

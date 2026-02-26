@@ -1,4 +1,4 @@
-import { BookOpenIcon, LayoutGridIcon, LogInIcon, MonitorIcon, DollarSignIcon } from 'lucide-react';
+import { BookOpenIcon, CoinsIcon, GitCompareArrowsIcon, HistoryIcon, LayoutGridIcon, LogInIcon, MonitorIcon, NewspaperIcon, DollarSignIcon } from 'lucide-react';
 import type { BaseLayoutProps, LinkItemType } from '@hanzo/docs-base-ui/layouts/shared';
 
 const HanzoLogo = () => (
@@ -32,6 +32,11 @@ export const linkItems: LinkItemType[] = [
     url: '/solutions',
   },
   {
+    icon: <CoinsIcon />,
+    text: 'Crypto',
+    url: '/crypto',
+  },
+  {
     icon: <MonitorIcon />,
     text: 'Platform',
     url: '/platform',
@@ -40,6 +45,21 @@ export const linkItems: LinkItemType[] = [
     icon: <DollarSignIcon />,
     text: 'Pricing',
     url: '/pricing',
+  },
+  {
+    icon: <NewspaperIcon />,
+    text: 'Blog',
+    url: '/blog',
+  },
+  {
+    icon: <HistoryIcon />,
+    text: 'Changelog',
+    url: '/changelog',
+  },
+  {
+    icon: <GitCompareArrowsIcon />,
+    text: 'Compare',
+    url: '/comparison',
   },
   {
     icon: <BookOpenIcon />,

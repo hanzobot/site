@@ -423,16 +423,16 @@ function Main {
     if ($isUpgrade) {
         $updateMessages = @(
             "Leveled up! New skills unlocked. You're welcome.",
-            "Fresh code, same lobster. Miss me?",
+            "Fresh code, same bot. Miss me?",
             "Back and better. Did you even notice I was gone?",
             "Update complete. I learned some new tricks while I was out.",
             "Upgraded! Now with 23% more sass.",
             "I've evolved. Try to keep up.",
             "New version, who dis? Oh right, still me but shinier.",
-            "Patched, polished, and ready to pinch. Let's go.",
-            "The lobster has molted. Harder shell, sharper claws.",
+            "Patched, polished, and ready to ship. Let's go.",
+            "The bot has evolved. Smarter brain, faster reflexes.",
             "Update done! Check the changelog or just trust me, it's good.",
-            "Reborn from the boiling waters of npm. Stronger now.",
+            "Reborn from the depths of npm. Stronger now.",
             "I went away and came back smarter. You should try it sometime.",
             "Update complete. The bugs feared me, so they left.",
             "New version installed. Old version sends its regards.",
@@ -440,7 +440,7 @@ function Main {
             "I've seen things you wouldn't believe. Anyway, I'm updated.",
             "Back online. The changelog is long but our friendship is longer.",
             "Upgraded! Peter fixed stuff. Blame him if it breaks.",
-            "Molting complete. Please don't look at my soft shell phase.",
+            "Rebooted. Please don't look at my startup logs.",
             "Version bump! Same chaos energy, fewer crashes (probably)."
         )
         Write-Host (Get-Random -InputObject $updateMessages) -ForegroundColor Gray
@@ -454,8 +454,8 @@ function Main {
             "Settled in. Time to automate your life whether you're ready or not.",
             "Cozy. I've already read your calendar. We need to talk.",
             "Finally unpacked. Now point me at your problems.",
-            "cracks claws Alright, what are we building?",
-            "The lobster has landed. Your terminal will never be the same.",
+            "*cracks knuckles* Alright, what are we building?",
+            "The bot has landed. Your terminal will never be the same.",
             "All done! I promise to only judge your code a little bit."
         )
         Write-Host (Get-Random -InputObject $completionMessages) -ForegroundColor Gray

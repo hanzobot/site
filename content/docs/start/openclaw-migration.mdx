@@ -1,0 +1,155 @@
+---
+title: "Migrating from OpenClaw"
+description: "How to move from OpenClaw to Hanzo Bot — what maps, what changes, and what you gain"
+---
+
+# Migrating from OpenClaw
+
+Hanzo Bot and OpenClaw share many concepts — messaging-first agents, tool use, LLM flexibility. This guide maps OpenClaw concepts to their Hanzo Bot equivalents so you can migrate smoothly.
+
+## Concept mapping
+
+| OpenClaw | Hanzo Bot | Notes |
+|----------|-----------|-------|
+| `~/.openclaw/config.json` | `bot.json` (or `bot.yaml`) | Same role — agent config, model selection, tool settings |
+| Personas | Agents (`agents.list[]`) | Named agents with independent models, tools, and system prompts |
+| Local-first runtime | Gateway + tiered runtimes | Cloud gateway coordinates; local/terminal/EC2 are tiers |
+| Telegram/Signal/Discord | All of those + Slack, WhatsApp, iMessage, Teams | [Channels](/channels) |
+| `AGENTS.md` | `AGENTS.md` + `SOUL.md` | Same file works; `SOUL.md` adds personality layer |
+| Tools (filesystem, web) | Tools + Skills + MCP | Core tools built in; [skills](/tools/skills) add community packages |
+| `openclaw serve` | `bot gateway` | Starts the main agent loop |
+| `openclaw run` | `bot run` | One-shot agent turn |
+
+## Install Hanzo Bot
+
+```bash
+# macOS / Linux
+curl -fsSL https://hanzo.bot/install.sh | bash
+
+# Windows (PowerShell)
+irm hanzo.bot/install.ps1 | iex
+```
+
+## Migrate your config
+
+### 1. Models
+
+OpenClaw uses provider/model strings like `anthropic/claude-opus-4-5`. Hanzo Bot uses the same format:
+
+```json5
+// bot.json
+{
+  agents: {
+    defaults: {
+      model: "anthropic/claude-opus-4-5"
+    }
+  }
+}
+```
+
+The difference: Hanzo Bot routes through a **unified LLM gateway** that supports 100+ providers. You can mix models per agent, per cron job, or per tool call.
+
+```json5
+{
+  agents: {
+    list: [
+      { id: "main", model: "anthropic/claude-opus-4-5" },
+      { id: "scout", model: "openai/gpt-5.2" },
+      { id: "fast", model: "minimax/MiniMax-M2.1" }
+    ]
+  }
+}
+```
+
+### 2. System prompts
+
+If you have an `AGENTS.md`, it works as-is. Hanzo Bot also reads:
+- `SOUL.md` — personality, tone, guardrails
+- `HEARTBEAT.md` — periodic check instructions (replaces OpenClaw's polling patterns)
+
+### 3. Channels
+
+OpenClaw channel config maps to Hanzo Bot's channel sections:
+
+```json5
+// bot.json
+{
+  channels: {
+    discord: {
+      enabled: true,
+      token: "...",
+      guilds: { /* per-guild config */ }
+    },
+    telegram: {
+      enabled: true,
+      token: "..."
+    },
+    slack: {
+      enabled: true,
+      appToken: "...",
+      botToken: "..."
+    }
+  }
+}
+```
+
+See [Channels](/channels) for full setup for each platform.
+
+### 4. Tools
+
+OpenClaw's built-in tools (filesystem, web, shell) map to Hanzo Bot's core tools:
+
+| OpenClaw tool | Hanzo Bot tool | Group |
+|---------------|---------------|-------|
+| File read/write | `read`, `write`, `edit` | `group:fs` |
+| Shell exec | `exec`, `process` | `group:runtime` |
+| Web browse | `browser` | `group:ui` |
+| Web search | `web_search` | `group:web` |
+| Web fetch | `web_fetch` | `group:web` |
+
+You can also restrict tools per agent using [tool profiles](/tools#tool-profiles-base-allowlist).
+
+### 5. Scheduling
+
+OpenClaw uses basic interval scheduling. Hanzo Bot gives you two mechanisms:
+
+- **Heartbeat**: periodic agent turn in the main session (batches multiple checks)
+- **Cron**: precise 5-field scheduling with isolated sessions, model overrides, delivery targets
+
+See [Cron vs Heartbeat](/automation/cron-vs-heartbeat) for when to use each.
+
+## What you gain
+
+### Multi-org / team support
+Hanzo Bot supports organization, team, and project scoping. Multiple people can interact with the same agent, and sessions are isolated per context.
+
+### Cloud-native deployment
+Run on K8s with `bot gateway` in a container. The gateway handles sessions, cron, heartbeat, channels, and tool execution.
+
+### Native crypto
+Agent wallets, x402 payments, USDC on Base, 100+ chain support. See [Crypto skills](/crypto).
+
+### Browser automation
+Built-in Playwright-powered browser with snapshot, act, screenshot. No plugins needed.
+
+### Canvas & nodes
+Drive macOS companion app screens, capture camera/screen, run commands on paired devices.
+
+### Pipeline workflows
+Deterministic multi-step tool pipelines with approval gates and resume tokens. See [Pipeline](/tools/pipeline).
+
+### Self-improvement
+Telemetry loops, friction detection, continuous learning extensions. The bot gets better over time.
+
+## Common gotchas
+
+1. **Config format**: Hanzo Bot supports both `bot.json` and `bot.yaml`. YAML is recommended for readability.
+2. **Gateway is required**: Unlike OpenClaw's local-only mode, Hanzo Bot's full feature set requires the gateway process (`bot gateway`). For quick one-shots, `bot run` works standalone.
+3. **Tool allowlists**: By default, all core tools are available. Use `tools.profile` to restrict (e.g., `messaging` profile for a chat-only agent).
+4. **No `openclaw plugins`**: Hanzo Bot uses [skills](/tools/skills) (community tool packages) and [plugins](/plugins) (extensions). Most OpenClaw plugin functionality has a Hanzo Bot equivalent.
+
+## Need help?
+
+- [Getting Started](/getting-started)
+- [FAQ](/help/faq)
+- [Discord community](https://discord.gg/hanzo)
