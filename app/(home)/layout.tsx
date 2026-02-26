@@ -9,10 +9,16 @@ export default function Layout({ children }: { children: ReactNode }) {
       links={linkItems}
       nav={{
         title: (
-          <>
+          <div className="flex items-center gap-3">
             {logo}
             <span className="font-bold">Hanzo Bot</span>
-          </>
+            <a
+              href="https://app.hanzo.bot"
+              className="hidden md:inline-flex items-center gap-1.5 bg-white text-black hover:bg-neutral-200 rounded-full h-7 px-3.5 text-xs font-semibold transition-all duration-200 no-underline whitespace-nowrap"
+            >
+              Try Hanzo
+            </a>
+          </div>
         ),
       }}
     >

@@ -25,9 +25,9 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
     <section className="mb-14 overflow-hidden -mx-6 px-6">
       <div className="flex items-center justify-between mb-5 px-6">
         <h2 className="text-xl font-semibold flex items-center gap-2.5">
-          <span className="text-brand font-bold">&#x27E9;</span> What People Say
+          <span className="text-white font-bold">&#x27E9;</span> What People Say
         </h2>
-        <a href="/shoutouts" className="text-sm text-brand font-medium hover:text-[#00e5cc] transition-colors">
+        <a href="/shoutouts" className="text-sm text-white font-medium hover:text-white transition-colors">
           View all →
         </a>
       </div>
@@ -48,11 +48,11 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
               href={t.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 p-4 min-w-[320px] max-w-[400px] rounded-xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm no-underline text-fd-foreground transition-all duration-250 hover:border-brand hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,77,77,0.15)] shrink-0"
+              className="flex items-start gap-3 p-4 min-w-[320px] max-w-[400px] rounded-xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm no-underline text-fd-foreground transition-all duration-250 hover:border-neutral-600 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.15)] shrink-0"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={`https://ui-avatars.com/api/?name=${encodeURIComponent(t.author)}&background=fd4444&color=fff&size=88&bold=true`}
+                src={`https://ui-avatars.com/api/?name=${encodeURIComponent(t.author)}&background=a3a3a3&color=fff&size=88&bold=true`}
                 alt={t.author}
                 className="w-11 h-11 rounded-full shrink-0 border-2 border-fd-border bg-fd-muted"
                 loading="lazy"
@@ -61,7 +61,7 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
                 <p className="text-sm leading-snug text-fd-muted-foreground line-clamp-3">
                   &ldquo;{t.quote}&rdquo;
                 </p>
-                <span className="text-xs font-semibold text-brand">@{t.author}</span>
+                <span className="text-xs font-semibold text-white">@{t.author}</span>
               </div>
             </a>
           ))}
@@ -76,11 +76,11 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
               href={t.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 p-4 min-w-[320px] max-w-[400px] rounded-xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm no-underline text-fd-foreground transition-all duration-250 hover:border-brand hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,77,77,0.15)] shrink-0"
+              className="flex items-start gap-3 p-4 min-w-[320px] max-w-[400px] rounded-xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm no-underline text-fd-foreground transition-all duration-250 hover:border-neutral-600 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.15)] shrink-0"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={`https://ui-avatars.com/api/?name=${encodeURIComponent(t.author)}&background=fd4444&color=fff&size=88&bold=true`}
+                src={`https://ui-avatars.com/api/?name=${encodeURIComponent(t.author)}&background=a3a3a3&color=fff&size=88&bold=true`}
                 alt={t.author}
                 className="w-11 h-11 rounded-full shrink-0 border-2 border-fd-border bg-fd-muted"
                 loading="lazy"
@@ -89,7 +89,7 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
                 <p className="text-sm leading-snug text-fd-muted-foreground line-clamp-3">
                   &ldquo;{t.quote}&rdquo;
                 </p>
-                <span className="text-xs font-semibold text-brand">@{t.author}</span>
+                <span className="text-xs font-semibold text-white">@{t.author}</span>
               </div>
             </a>
           ))}

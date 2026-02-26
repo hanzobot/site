@@ -95,7 +95,7 @@ export default function GetStartedPage() {
       {/* Header */}
       <header className="text-center mb-12 animate-[fadeInUp_0.8s_ease-out]">
         <h1 className="text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
-          <span className="bg-gradient-to-br from-fd-foreground via-brand to-[#00e5cc] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
+          <span className="bg-gradient-to-br from-fd-foreground via-neutral-400 to-[#a3a3a3] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
             Get Started
           </span>
         </h1>
@@ -107,7 +107,7 @@ export default function GetStartedPage() {
       {/* Step 1: Choose Plan */}
       <section className="mb-14 animate-[fadeInUp_0.8s_ease-out_0.2s_both]">
         <div className="flex items-center gap-3 mb-6">
-          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-brand text-[#050810] text-sm font-bold shrink-0">1</span>
+          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-[#050810] text-sm font-bold shrink-0">1</span>
           <h2 className="text-2xl font-bold text-fd-foreground">Choose Your Plan</h2>
         </div>
 
@@ -120,17 +120,17 @@ export default function GetStartedPage() {
                 className={cn(
                   'relative flex flex-col p-6 rounded-2xl border backdrop-blur-sm transition-all hover:-translate-y-1',
                   plan.highlight
-                    ? 'border-brand bg-gradient-to-br from-[rgba(255,77,77,0.08)] to-[rgba(10,15,26,0.8)] shadow-[0_4px_24px_rgba(255,77,77,0.2)]'
+                    ? 'border-neutral-600 bg-gradient-to-br from-[rgba(255,255,255,0.08)] to-[rgba(10,15,26,0.8)] shadow-[0_4px_24px_rgba(255,255,255,0.2)]'
                     : 'border-fd-border bg-[rgba(10,15,26,0.6)]',
                 )}
               >
                 {plan.badge && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 text-xs font-bold bg-brand text-white rounded-full whitespace-nowrap">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 text-xs font-bold bg-white text-[#050810] rounded-full whitespace-nowrap">
                     {plan.badge}
                   </span>
                 )}
                 <div className="flex items-center gap-2 mb-2">
-                  <Icon className="w-5 h-5 text-brand" />
+                  <Icon className="w-5 h-5 text-white" />
                   <h3 className="text-lg font-bold text-fd-foreground">{plan.name}</h3>
                 </div>
                 <div className="flex items-baseline gap-1 mb-2">
@@ -141,7 +141,7 @@ export default function GetStartedPage() {
                 <ul className="flex flex-col gap-2 mb-6 flex-1">
                   {plan.features.map((feat) => (
                     <li key={feat} className="flex items-start gap-2 text-sm text-fd-muted-foreground">
-                      <CheckIcon className="w-4 h-4 text-brand shrink-0 mt-0.5" />
+                      <CheckIcon className="w-4 h-4 text-white shrink-0 mt-0.5" />
                       {feat}
                     </li>
                   ))}
@@ -153,8 +153,8 @@ export default function GetStartedPage() {
                   className={cn(
                     'inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold no-underline transition-all hover:-translate-y-0.5 text-center',
                     plan.highlight
-                      ? 'bg-gradient-to-br from-brand to-[#e03e3e] text-[#050810] hover:shadow-[0_8px_40px_rgba(255,77,77,0.45)] shadow-[0_4px_24px_rgba(255,77,77,0.3)]'
-                      : 'bg-[rgba(255,255,255,0.05)] border border-fd-border text-fd-foreground hover:border-brand',
+                      ? 'bg-gradient-to-br from-white to-[#d4d4d4] text-[#050810] hover:shadow-[0_8px_40px_rgba(255,255,255,0.45)] shadow-[0_4px_24px_rgba(255,255,255,0.3)]'
+                      : 'bg-[rgba(255,255,255,0.05)] border border-fd-border text-fd-foreground hover:border-neutral-600',
                   )}
                 >
                   {plan.cta}
@@ -172,7 +172,7 @@ export default function GetStartedPage() {
       {/* Step 2: How It Works */}
       <section className="mb-14 animate-[fadeInUp_0.8s_ease-out_0.35s_both]">
         <div className="flex items-center gap-3 mb-6">
-          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-brand text-[#050810] text-sm font-bold shrink-0">2</span>
+          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-[#050810] text-sm font-bold shrink-0">2</span>
           <h2 className="text-2xl font-bold text-fd-foreground">Set Up in Minutes</h2>
         </div>
 
@@ -186,7 +186,7 @@ export default function GetStartedPage() {
               <ol className="flex flex-col gap-3">
                 {plan.steps.map((step, i) => (
                   <li key={step} className="flex items-start gap-2.5 text-sm text-fd-muted-foreground">
-                    <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[rgba(255,77,77,0.15)] text-brand text-xs font-bold shrink-0 mt-0.5">
+                    <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[rgba(255,255,255,0.15)] text-white text-xs font-bold shrink-0 mt-0.5">
                       {i + 1}
                     </span>
                     {step}
@@ -201,7 +201,7 @@ export default function GetStartedPage() {
       {/* Quick Install (for Free tier) */}
       <section className="mb-14 animate-[fadeInUp_0.8s_ease-out_0.4s_both]">
         <div className="flex items-center gap-3 mb-6">
-          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[rgba(0,229,204,0.2)] text-[#00e5cc] text-sm font-bold shrink-0">?</span>
+          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[rgba(163,163,163,0.2)] text-[#a3a3a3] text-sm font-bold shrink-0">?</span>
           <h2 className="text-2xl font-bold text-fd-foreground">Quick Install (Free)</h2>
         </div>
         <div className="p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm">
@@ -210,19 +210,19 @@ export default function GetStartedPage() {
           </p>
           <div className="space-y-3">
             <div>
-              <span className="text-xs font-semibold text-brand uppercase tracking-wider">macOS / Linux</span>
+              <span className="text-xs font-semibold text-white uppercase tracking-wider">macOS / Linux</span>
               <pre className="mt-1 p-3 rounded-lg bg-[rgba(0,0,0,0.4)] text-sm text-fd-foreground font-mono overflow-x-auto">
                 <code>curl -fsSL https://hanzo.bot/install | bash</code>
               </pre>
             </div>
             <div>
-              <span className="text-xs font-semibold text-brand uppercase tracking-wider">Windows (PowerShell)</span>
+              <span className="text-xs font-semibold text-white uppercase tracking-wider">Windows (PowerShell)</span>
               <pre className="mt-1 p-3 rounded-lg bg-[rgba(0,0,0,0.4)] text-sm text-fd-foreground font-mono overflow-x-auto">
                 <code>irm https://hanzo.bot/install.ps1 | iex</code>
               </pre>
             </div>
             <div>
-              <span className="text-xs font-semibold text-brand uppercase tracking-wider">Docker</span>
+              <span className="text-xs font-semibold text-white uppercase tracking-wider">Docker</span>
               <pre className="mt-1 p-3 rounded-lg bg-[rgba(0,0,0,0.4)] text-sm text-fd-foreground font-mono overflow-x-auto">
                 <code>docker run -d --name bot ghcr.io/hanzoai/bot</code>
               </pre>
@@ -230,7 +230,7 @@ export default function GetStartedPage() {
           </div>
           <p className="mt-4 text-xs text-fd-muted-foreground">
             See the{' '}
-            <Link href="/docs" className="text-brand hover:text-[#00e5cc] transition-colors no-underline">
+            <Link href="/docs" className="text-white hover:text-white transition-colors no-underline">
               full documentation
             </Link>{' '}
             for detailed setup instructions.
@@ -249,7 +249,7 @@ export default function GetStartedPage() {
             href="https://app.hanzo.bot"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-2.5 font-semibold text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:border-brand"
+            className="inline-flex items-center gap-2 px-6 py-2.5 font-semibold text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:border-neutral-600"
           >
             <LogInIcon className="w-4 h-4" />
             Sign in to app.hanzo.bot
@@ -269,7 +269,7 @@ export default function GetStartedPage() {
           href="https://app.hanzo.bot/auth/signup?plan=cloud"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2.5 px-9 py-4 text-lg font-semibold text-[#050810] bg-gradient-to-br from-brand to-[#e03e3e] rounded-2xl no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,77,77,0.45)] shadow-[0_4px_24px_rgba(255,77,77,0.3)]"
+          className="inline-flex items-center gap-2.5 px-9 py-4 text-lg font-semibold text-[#050810] bg-gradient-to-br from-white to-[#d4d4d4] rounded-2xl no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,255,255,0.45)] shadow-[0_4px_24px_rgba(255,255,255,0.3)]"
         >
           Start Free Trial
           <ArrowRightIcon className="w-5 h-5" />

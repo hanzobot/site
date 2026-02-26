@@ -29,7 +29,7 @@ function CopyButton({ text }: { text: string }) {
     <button
       onClick={copy}
       className={`opacity-60 group-hover/line:opacity-100 ml-auto flex items-center justify-center w-7 h-7 border-none rounded-md cursor-pointer transition-all shrink-0 ${
-        copied ? 'bg-[rgba(0,229,204,0.2)] text-[#00e5cc]' : 'bg-[rgba(255,255,255,0.1)] text-fd-muted-foreground hover:bg-[rgba(255,255,255,0.2)] hover:text-fd-foreground'
+        copied ? 'bg-[rgba(163,163,163,0.2)] text-[#a3a3a3]' : 'bg-[rgba(255,255,255,0.1)] text-fd-muted-foreground hover:bg-[rgba(255,255,255,0.2)] hover:text-fd-foreground'
       }`}
       title="Copy"
     >
@@ -47,14 +47,14 @@ function TabButton({ active, onClick, children, variant = 'mode' }: {
   const base = 'font-mono text-[0.7rem] px-2.5 py-1 border-none rounded cursor-pointer transition-all';
   const styles = {
     mode: active
-      ? `${base} bg-[#00e5cc] text-[#050810] font-semibold`
+      ? `${base} bg-[#a3a3a3] text-[#050810] font-semibold`
       : `${base} bg-transparent text-fd-muted-foreground hover:text-fd-secondary-foreground`,
     option: active
-      ? `${base} bg-brand text-[#050810] font-semibold`
+      ? `${base} bg-white text-[#050810] font-semibold`
       : `${base} bg-transparent text-fd-muted-foreground hover:text-fd-secondary-foreground`,
     beta: active
-      ? `${base} bg-[rgba(0,229,204,0.15)] border border-[#00e5cc] text-[#00e5cc]`
-      : `${base} bg-transparent border border-fd-border text-fd-muted-foreground hover:border-[#00e5cc] hover:text-[#00e5cc]`,
+      ? `${base} bg-[rgba(163,163,163,0.15)] border border-[#a3a3a3] text-[#a3a3a3]`
+      : `${base} bg-transparent border border-fd-border text-fd-muted-foreground hover:border-neutral-600 hover:text-white`,
   };
   return <button onClick={onClick} className={styles[variant]}>{children}</button>;
 }
@@ -100,7 +100,7 @@ export function InstallTabs() {
   return (
     <section className="mb-14">
       <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-5">
-        <span className="text-brand font-bold">&#x27E9;</span> Quick Start
+        <span className="text-white font-bold">&#x27E9;</span> Quick Start
       </h2>
       <div className="rounded-xl border border-fd-border bg-fd-muted/30 overflow-hidden">
         {/* Header */}
@@ -122,7 +122,7 @@ export function InstallTabs() {
               <span className="text-fd-secondary-foreground">{os === 'unix' ? 'macOS/Linux' : 'Windows'}</span>
               <button
                 onClick={() => setOsPickerOpen(true)}
-                className="bg-none border-none text-brand font-mono text-[0.7rem] cursor-pointer px-1.5 py-0.5 rounded hover:bg-[rgba(255,77,77,0.15)] hover:text-[#00e5cc] transition-all"
+                className="bg-none border-none text-white font-mono text-[0.7rem] cursor-pointer px-1.5 py-0.5 rounded hover:bg-[rgba(255,255,255,0.15)] hover:text-white transition-all"
               >
                 change
               </button>
@@ -173,7 +173,7 @@ export function InstallTabs() {
             <>
               <div className="text-fd-muted-foreground italic py-1">{comments.oneliner}</div>
               <div className="flex items-center gap-2 py-1 group/line">
-                <span className="text-brand select-none">$</span>
+                <span className="text-white select-none">$</span>
                 <span>{getOnelinerCmd()}</span>
                 <CopyButton text={getOnelinerCmd()} />
               </div>
@@ -184,13 +184,13 @@ export function InstallTabs() {
             <>
               <div className="text-fd-muted-foreground italic py-1">{comments.quickInstall}</div>
               <div className="flex items-center gap-2 py-1 group/line">
-                <span className="text-brand select-none">$</span>
-                <span className="text-[#00e5cc]">{getInstallCmd()}</span>
+                <span className="text-white select-none">$</span>
+                <span className="text-[#a3a3a3]">{getInstallCmd()}</span>
                 <CopyButton text={getInstallCmd()} />
               </div>
               <div className="text-fd-muted-foreground italic py-1">{comments.quickOnboard}</div>
               <div className="flex items-center gap-2 py-1 group/line">
-                <span className="text-brand select-none">$</span>
+                <span className="text-white select-none">$</span>
                 <span>hanzo-bot onboard</span>
                 <CopyButton text="hanzo-bot onboard" />
               </div>
@@ -201,7 +201,7 @@ export function InstallTabs() {
             <>
               <div className="text-fd-muted-foreground italic py-1"># For those who read source code for fun</div>
               <div className="flex items-center gap-2 py-1 group/line">
-                <span className="text-brand select-none">$</span>
+                <span className="text-white select-none">$</span>
                 <span>curl -fsSL https://hanzo.bot/install.sh | bash -s -- --install-method git</span>
                 <CopyButton text="curl -fsSL https://hanzo.bot/install.sh | bash -s -- --install-method git" />
               </div>
@@ -212,18 +212,18 @@ export function InstallTabs() {
             <>
               <div className="text-fd-muted-foreground italic py-1"># You clearly know what you&apos;re doing</div>
               <div className="flex items-center gap-2 py-1 group/line">
-                <span className="text-brand select-none">$</span>
+                <span className="text-white select-none">$</span>
                 <span>git clone https://github.com/hanzoai/bot.git</span>
                 <CopyButton text="git clone https://github.com/hanzoai/bot.git" />
               </div>
               <div className="flex items-center gap-2 py-1 group/line">
-                <span className="text-brand select-none">$</span>
+                <span className="text-white select-none">$</span>
                 <span>cd hanzo-bot && pnpm install && pnpm run build</span>
                 <CopyButton text="cd hanzo-bot && pnpm install && pnpm run build" />
               </div>
               <div className="text-fd-muted-foreground italic py-1"># You built it, now meet it</div>
               <div className="flex items-center gap-2 py-1 group/line">
-                <span className="text-brand select-none">$</span>
+                <span className="text-white select-none">$</span>
                 <span>pnpm run hanzo-bot onboard</span>
                 <CopyButton text="pnpm run hanzo-bot onboard" />
               </div>
@@ -240,7 +240,7 @@ export function InstallTabs() {
                 href="https://github.com/hanzoai/bot/releases/latest"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-br from-brand to-[#991b1b] rounded-xl text-white font-semibold no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(255,77,77,0.4)]"
+                className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-br from-white to-neutral-300 rounded-xl text-[#050810] font-semibold no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(255,255,255,0.4)]"
               >
                 <DownloadIcon className="w-5 h-5" />
                 Download for macOS

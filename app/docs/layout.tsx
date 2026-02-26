@@ -28,7 +28,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             return {
               ...option,
               icon: (
-                <div className="[&_svg]:size-full rounded-lg size-full text-brand max-md:bg-brand/10 max-md:border max-md:p-1.5">
+                <div className="[&_svg]:size-full rounded-lg size-full text-white max-md:bg-white/10 max-md:border max-md:p-1.5">
                   {node.icon}
                 </div>
               ),

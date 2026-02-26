@@ -40,44 +40,44 @@ const steps = [
 const archLayers = [
   {
     label: 'Channels',
-    color: 'text-[#00e5cc]',
-    borderColor: 'border-[rgba(0,229,204,0.25)]',
-    bgColor: 'bg-[rgba(0,229,204,0.04)]',
+    color: 'text-[#a3a3a3]',
+    borderColor: 'border-[rgba(163,163,163,0.25)]',
+    bgColor: 'bg-[rgba(163,163,163,0.04)]',
     items: ['WhatsApp', 'Slack', 'Discord', 'Email', 'Web', 'SMS', 'Telegram', 'iMessage'],
   },
   {
     label: 'Gateway',
-    color: 'text-brand',
-    borderColor: 'border-[rgba(255,77,77,0.25)]',
-    bgColor: 'bg-[rgba(255,77,77,0.04)]',
+    color: 'text-white',
+    borderColor: 'border-[rgba(255,255,255,0.25)]',
+    bgColor: 'bg-[rgba(255,255,255,0.04)]',
     items: ['Routing', 'Auth', 'Rate Limiting', 'Load Balancing', 'Webhooks'],
   },
   {
     label: 'Agents',
-    color: 'text-[#a78bfa]',
-    borderColor: 'border-[rgba(167,139,250,0.25)]',
-    bgColor: 'bg-[rgba(167,139,250,0.04)]',
+    color: 'text-neutral-400',
+    borderColor: 'border-[rgba(163,163,163,0.25)]',
+    bgColor: 'bg-[rgba(163,163,163,0.04)]',
     items: ['Support', 'Sales', 'Engineering', 'Marketing', 'Operations', 'Custom'],
   },
   {
     label: 'Runtime',
-    color: 'text-[#f59e0b]',
-    borderColor: 'border-[rgba(245,158,11,0.25)]',
-    bgColor: 'bg-[rgba(245,158,11,0.04)]',
+    color: 'text-[#a3a3a3]',
+    borderColor: 'border-[rgba(163,163,163,0.25)]',
+    bgColor: 'bg-[rgba(163,163,163,0.04)]',
     items: ['Linux VM', 'macOS VM', 'Browser', 'Terminal', 'File System', 'Memory'],
   },
   {
     label: 'AI',
-    color: 'text-[#ec4899]',
-    borderColor: 'border-[rgba(236,72,153,0.25)]',
-    bgColor: 'bg-[rgba(236,72,153,0.04)]',
+    color: 'text-[#a3a3a3]',
+    borderColor: 'border-[rgba(163,163,163,0.25)]',
+    bgColor: 'bg-[rgba(163,163,163,0.04)]',
     items: ['Claude', 'GPT', 'Gemini', 'Qwen', 'Llama', '+100 models'],
   },
   {
     label: 'Infra',
-    color: 'text-[#38bdf8]',
-    borderColor: 'border-[rgba(56,189,248,0.25)]',
-    bgColor: 'bg-[rgba(56,189,248,0.04)]',
+    color: 'text-[#a3a3a3]',
+    borderColor: 'border-[rgba(163,163,163,0.25)]',
+    bgColor: 'bg-[rgba(163,163,163,0.04)]',
     items: ['K8s', 'Docker', 'MCP', 'Skills', 'Integrations', 'Storage'],
   },
 ];
@@ -138,7 +138,7 @@ export default function PlatformPage() {
         </p>
 
         <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
-          <span className="bg-gradient-to-br from-fd-foreground via-brand to-[#00e5cc] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
+          <span className="bg-gradient-to-br from-fd-foreground via-neutral-400 to-[#a3a3a3] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
             The AI Workforce
           </span>
           <br />
@@ -154,7 +154,7 @@ export default function PlatformPage() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
           <Link
             href="/get-started"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold text-[#050810] bg-gradient-to-br from-brand to-[#e03e3e] rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,77,77,0.45)] shadow-[0_4px_24px_rgba(255,77,77,0.3)]"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold text-[#050810] bg-gradient-to-br from-white to-[#d4d4d4] rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,255,255,0.45)] shadow-[0_4px_24px_rgba(255,255,255,0.3)]"
           >
             <DownloadIcon className="size-5" />
             Get Started Free
@@ -163,7 +163,7 @@ export default function PlatformPage() {
             href="https://app.hanzo.bot"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:bg-[rgba(0,229,204,0.08)] hover:border-[#00e5cc] hover:shadow-[0_8px_40px_rgba(0,229,204,0.2)]"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:bg-[rgba(255,255,255,0.08)] hover:border-neutral-600 hover:shadow-[0_8px_40px_rgba(163,163,163,0.2)]"
           >
             <CloudIcon className="size-5" />
             Launch in Cloud
@@ -174,7 +174,7 @@ export default function PlatformPage() {
       {/* How It Works */}
       <section className="mb-16 animate-[fadeInUp_0.8s_ease-out_0.2s_both]">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-2">
-          <span className="text-brand font-bold">&#x27E9;</span> How It Works
+          <span className="text-white font-bold">&#x27E9;</span> How It Works
         </h2>
         <p className="text-sm text-fd-muted-foreground mb-6">
           Three steps to deploy your AI workforce.
@@ -186,20 +186,20 @@ export default function PlatformPage() {
             return (
               <div
                 key={step.num}
-                className="relative flex flex-col p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-brand"
+                className="relative flex flex-col p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-neutral-600"
               >
-                <span className="font-mono text-xs text-brand font-bold mb-3">
+                <span className="font-mono text-xs text-white font-bold mb-3">
                   {step.num}
                 </span>
                 <div className="flex items-center gap-2 mb-3">
-                  <Icon className="size-5 text-brand" />
+                  <Icon className="size-5 text-white" />
                   <h3 className="text-sm font-bold text-fd-foreground">{step.title}</h3>
                 </div>
                 <p className="text-xs text-fd-muted-foreground leading-relaxed mb-3">
                   {step.desc}
                 </p>
                 {step.code && (
-                  <code className="block text-[11px] text-[#00e5cc] bg-[rgba(0,229,204,0.06)] border border-[rgba(0,229,204,0.15)] rounded-lg px-3 py-2 font-mono break-all">
+                  <code className="block text-[11px] text-[#a3a3a3] bg-[rgba(163,163,163,0.06)] border border-[rgba(163,163,163,0.15)] rounded-lg px-3 py-2 font-mono break-all">
                     {step.code}
                   </code>
                 )}
@@ -217,7 +217,7 @@ export default function PlatformPage() {
       {/* Architecture Diagram */}
       <section className="mb-16 animate-[fadeInUp_0.8s_ease-out_0.3s_both]">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-2">
-          <span className="text-brand font-bold">&#x27E9;</span> Architecture
+          <span className="text-white font-bold">&#x27E9;</span> Architecture
         </h2>
         <p className="text-sm text-fd-muted-foreground mb-6">
           Full-stack AI workforce infrastructure, from channels to compute.
@@ -267,7 +267,7 @@ export default function PlatformPage() {
       {/* Key Capabilities */}
       <section className="mb-16 animate-[fadeInUp_0.8s_ease-out_0.4s_both]">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-2">
-          <span className="text-brand font-bold">&#x27E9;</span> Key Capabilities
+          <span className="text-white font-bold">&#x27E9;</span> Key Capabilities
         </h2>
         <p className="text-sm text-fd-muted-foreground mb-6">
           Everything you need to deploy and manage an AI workforce.
@@ -279,10 +279,10 @@ export default function PlatformPage() {
             return (
               <div
                 key={cap.title}
-                className="flex flex-col p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-brand hover:shadow-[0_12px_40px_rgba(255,77,77,0.2)]"
+                className="flex flex-col p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(255,255,255,0.2)]"
               >
                 <div className="flex items-center justify-center mb-3">
-                  <Icon className="size-7 text-brand" />
+                  <Icon className="size-7 text-white" />
                 </div>
                 <h3 className="text-sm font-semibold text-fd-foreground mb-1.5">{cap.title}</h3>
                 <p className="text-xs text-fd-muted-foreground leading-relaxed">{cap.desc}</p>
@@ -305,21 +305,21 @@ export default function PlatformPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <div className="flex items-center gap-2">
-              <CheckIcon className="size-4 text-[#00e5cc]" />
+              <CheckIcon className="size-4 text-[#a3a3a3]" />
               <span className="text-fd-muted-foreground">Free locally, forever</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckIcon className="size-4 text-[#00e5cc]" />
+              <CheckIcon className="size-4 text-[#a3a3a3]" />
               <span className="text-fd-muted-foreground">Cloud from $5/mo</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckIcon className="size-4 text-[#00e5cc]" />
+              <CheckIcon className="size-4 text-[#a3a3a3]" />
               <span className="text-fd-muted-foreground">Cancel anytime</span>
             </div>
           </div>
           <Link
             href="/pricing"
-            className="inline-flex items-center gap-2 px-7 py-3 font-semibold text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:border-brand"
+            className="inline-flex items-center gap-2 px-7 py-3 font-semibold text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:border-neutral-600"
           >
             View Full Pricing
             <ArrowRightIcon className="size-4" />
@@ -330,7 +330,7 @@ export default function PlatformPage() {
       {/* Solutions */}
       <section className="mb-16 animate-[fadeInUp_0.8s_ease-out_0.55s_both]">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-2">
-          <span className="text-brand font-bold">&#x27E9;</span> Solutions
+          <span className="text-white font-bold">&#x27E9;</span> Solutions
         </h2>
         <p className="text-sm text-fd-muted-foreground mb-5">
           Purpose-built AI teams for every department.
@@ -341,7 +341,7 @@ export default function PlatformPage() {
             <Link
               key={sol.label}
               href={sol.href}
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border rounded-full no-underline transition-all hover:-translate-y-0.5 hover:border-brand hover:bg-[rgba(255,77,77,0.06)]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border rounded-full no-underline transition-all hover:-translate-y-0.5 hover:border-neutral-600 hover:bg-[rgba(255,255,255,0.06)]"
             >
               {sol.label}
               <ArrowRightIcon className="size-3.5" />
@@ -354,7 +354,7 @@ export default function PlatformPage() {
       <div className="text-center mb-8 animate-[fadeInUp_0.8s_ease-out_0.6s_both]">
         <Link
           href="/get-started"
-          className="inline-flex items-center gap-2.5 px-9 py-4 text-lg font-semibold text-[#050810] bg-gradient-to-br from-brand to-[#e03e3e] rounded-2xl no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,77,77,0.45)] shadow-[0_4px_24px_rgba(255,77,77,0.3)]"
+          className="inline-flex items-center gap-2.5 px-9 py-4 text-lg font-semibold text-[#050810] bg-gradient-to-br from-white to-[#d4d4d4] rounded-2xl no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,255,255,0.45)] shadow-[0_4px_24px_rgba(255,255,255,0.3)]"
         >
           <SparklesIcon className="size-5" />
           Get Started Free

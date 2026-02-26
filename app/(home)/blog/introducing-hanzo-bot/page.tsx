@@ -15,14 +15,14 @@ export default function Post() {
 
       <Link
         href="/blog"
-        className="inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground hover:text-brand transition-colors no-underline mb-8"
+        className="inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground hover:text-white transition-colors no-underline mb-8"
       >
         <ArrowLeftIcon className="size-3.5" /> Back to Blog
       </Link>
 
       <header className="mb-10 animate-[fadeInUp_0.8s_ease-out]">
         <div className="flex items-center gap-3 text-xs mb-4">
-          <span className="px-2.5 py-0.5 rounded-full border font-medium text-brand border-brand/30 bg-brand/8">
+          <span className="px-2.5 py-0.5 rounded-full border font-medium text-white border-neutral-600/30 bg-white/8">
             Announcement
           </span>
           <span className="flex items-center gap-1.5 text-fd-muted-foreground">
@@ -68,7 +68,7 @@ export default function Post() {
 
         <h2 className="text-xl font-semibold text-fd-foreground mt-10 mb-4">Install in 30 Seconds</h2>
         <div className="my-6">
-          <code className="block text-sm text-[#00e5cc] bg-[rgba(0,229,204,0.06)] border border-[rgba(0,229,204,0.15)] rounded-xl px-4 py-3 font-mono">
+          <code className="block text-sm text-[#a3a3a3] bg-[rgba(163,163,163,0.06)] border border-[rgba(163,163,163,0.15)] rounded-xl px-4 py-3 font-mono">
             curl -fsSL https://hanzo.bot/install.sh | sh
           </code>
         </div>
@@ -81,7 +81,7 @@ export default function Post() {
         <h2 className="text-xl font-semibold text-fd-foreground mt-10 mb-4">Open Source</h2>
         <p>
           The entire framework is open source at{' '}
-          <a href="https://github.com/hanzoai/bot" target="_blank" rel="noopener noreferrer" className="text-brand hover:underline">
+          <a href="https://github.com/hanzoai/bot" target="_blank" rel="noopener noreferrer" className="text-white hover:underline">
             github.com/hanzoai/bot
           </a>
           . We believe the infrastructure layer for AI should be open, composable, and owned by the
@@ -95,15 +95,15 @@ export default function Post() {
         </p>
         <p>
           Join us on{' '}
-          <a href="https://discord.gg/hanzo" target="_blank" rel="noopener noreferrer" className="text-[#5865F2] hover:underline">
+          <a href="https://discord.gg/hanzo" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:underline">
             Discord
           </a>
           , star us on{' '}
-          <a href="https://github.com/hanzoai/bot" target="_blank" rel="noopener noreferrer" className="text-brand hover:underline">
+          <a href="https://github.com/hanzoai/bot" target="_blank" rel="noopener noreferrer" className="text-white hover:underline">
             GitHub
           </a>
           , and{' '}
-          <a href="/get-started" className="text-brand hover:underline">
+          <a href="/get-started" className="text-white hover:underline">
             get started free
           </a>
           .

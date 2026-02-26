@@ -24,10 +24,10 @@ interface Release {
 }
 
 const typeConfig: Record<ChangeType, { icon: typeof PlusIcon; color: string; label: string }> = {
-  added: { icon: PlusIcon, color: 'text-[#00e5cc]', label: 'Added' },
-  improved: { icon: ZapIcon, color: 'text-[#a78bfa]', label: 'Improved' },
-  fixed: { icon: BugIcon, color: 'text-[#f59e0b]', label: 'Fixed' },
-  security: { icon: ShieldCheckIcon, color: 'text-brand', label: 'Security' },
+  added: { icon: PlusIcon, color: 'text-[#a3a3a3]', label: 'Added' },
+  improved: { icon: ZapIcon, color: 'text-neutral-400', label: 'Improved' },
+  fixed: { icon: BugIcon, color: 'text-[#a3a3a3]', label: 'Fixed' },
+  security: { icon: ShieldCheckIcon, color: 'text-white', label: 'Security' },
 };
 
 const releases: Release[] = [
@@ -117,7 +117,7 @@ export default function ChangelogPage() {
           Changelog
         </p>
         <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4">
-          <span className="bg-gradient-to-br from-fd-foreground via-brand to-[#00e5cc] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
+          <span className="bg-gradient-to-br from-fd-foreground via-neutral-400 to-[#a3a3a3] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
             What&apos;s New
           </span>
         </h1>
@@ -139,13 +139,13 @@ export default function ChangelogPage() {
             >
               {/* Timeline dot */}
               <div className="hidden sm:flex shrink-0 w-10 pt-6 justify-center">
-                <div className="size-3 rounded-full bg-brand ring-4 ring-[rgba(255,77,77,0.15)]" />
+                <div className="size-3 rounded-full bg-white ring-4 ring-[rgba(255,255,255,0.15)]" />
               </div>
 
               {/* Card */}
               <div className="flex-1 p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm">
                 <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <span className="font-mono text-sm font-bold text-brand">
+                  <span className="font-mono text-sm font-bold text-white">
                     v{release.version}
                   </span>
                   <span className="text-xs text-fd-muted-foreground">

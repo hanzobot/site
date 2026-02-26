@@ -40,7 +40,7 @@ export default function EngineeringPage() {
 
       {/* Breadcrumb */}
       <nav className="mb-8 animate-[fadeInUp_0.4s_ease-out]">
-        <Link href="/solutions" className="inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground hover:text-brand transition-colors no-underline">
+        <Link href="/solutions" className="inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground hover:text-white transition-colors no-underline">
           <ArrowRightIcon className="w-3.5 h-3.5 rotate-180" />
           Solutions
         </Link>
@@ -49,10 +49,10 @@ export default function EngineeringPage() {
       {/* Hero */}
       <header className="mb-14 animate-[fadeInUp_0.6s_ease-out]">
         <div className="flex items-center gap-3 mb-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[rgba(0,229,204,0.12)]">
-            <CodeIcon className="w-6 h-6 text-[#00E5CC]" />
+          <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[rgba(163,163,163,0.12)]">
+            <CodeIcon className="w-6 h-6 text-[#a3a3a3]" />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-br from-fd-foreground via-brand to-[#00e5cc] bg-[length:200%_200%] bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-br from-fd-foreground via-neutral-400 to-[#a3a3a3] bg-[length:200%_200%] bg-clip-text text-transparent">
             Engineering
           </h1>
         </div>
@@ -65,15 +65,15 @@ export default function EngineeringPage() {
       {/* How It Works */}
       <section className="mb-14">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-2">
-          <span className="text-brand font-bold">&#x27E9;</span> How It Works
+          <span className="text-white font-bold">&#x27E9;</span> How It Works
         </h2>
         <p className="text-sm text-fd-muted-foreground mb-5 leading-relaxed">
           From repo connection to automated engineering workflows.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {steps.map((step) => (
-            <div key={step.num} className="flex flex-col gap-3 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-brand">
-              <span className="text-2xl font-bold text-brand">{step.num}</span>
+            <div key={step.num} className="flex flex-col gap-3 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-neutral-600">
+              <span className="text-2xl font-bold text-white">{step.num}</span>
               <h3 className="text-sm font-bold text-fd-foreground">{step.title}</h3>
               <p className="text-xs text-fd-muted-foreground leading-relaxed">{step.desc}</p>
             </div>
@@ -84,7 +84,7 @@ export default function EngineeringPage() {
       {/* Features */}
       <section className="mb-14">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-2">
-          <span className="text-brand font-bold">&#x27E9;</span> Capabilities
+          <span className="text-white font-bold">&#x27E9;</span> Capabilities
         </h2>
         <p className="text-sm text-fd-muted-foreground mb-5 leading-relaxed">
           An AI engineering teammate that handles the work nobody wants to do.
@@ -93,8 +93,8 @@ export default function EngineeringPage() {
           {features.map((f) => {
             const Icon = f.icon;
             return (
-              <div key={f.title} className="flex flex-col gap-3 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-brand">
-                <Icon className="w-6 h-6 text-brand" />
+              <div key={f.title} className="flex flex-col gap-3 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-neutral-600">
+                <Icon className="w-6 h-6 text-white" />
                 <h3 className="text-sm font-bold text-fd-foreground">{f.title}</h3>
                 <p className="text-xs text-fd-muted-foreground leading-relaxed">{f.desc}</p>
               </div>
@@ -106,17 +106,17 @@ export default function EngineeringPage() {
       {/* Integrations */}
       <section className="mb-14">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-2">
-          <span className="text-brand font-bold">&#x27E9;</span> Dev Tool Integrations
+          <span className="text-white font-bold">&#x27E9;</span> Dev Tool Integrations
         </h2>
         <p className="text-sm text-fd-muted-foreground mb-5 leading-relaxed">
           Connects to the tools your engineering team already relies on.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {integrations.map((intg) => (
-            <div key={intg.name} className="flex flex-col gap-3 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-[#00e5cc]">
+            <div key={intg.name} className="flex flex-col gap-3 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-neutral-600">
               <h3 className="text-base font-semibold text-fd-foreground">{intg.name}</h3>
               <p className="text-xs text-fd-muted-foreground leading-relaxed">{intg.desc}</p>
-              <span className="inline-flex items-center gap-1.5 text-xs text-[#00e5cc] font-medium">
+              <span className="inline-flex items-center gap-1.5 text-xs text-[#a3a3a3] font-medium">
                 <CheckIcon className="w-3.5 h-3.5" /> Supported
               </span>
             </div>
@@ -134,7 +134,7 @@ export default function EngineeringPage() {
             { value: '24/7', label: 'Pipeline Monitoring' },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col items-center gap-1 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm text-center">
-              <span className="text-2xl font-bold text-brand">{stat.value}</span>
+              <span className="text-2xl font-bold text-white">{stat.value}</span>
               <span className="text-xs text-fd-muted-foreground">{stat.label}</span>
             </div>
           ))}
@@ -152,14 +152,14 @@ export default function EngineeringPage() {
             href="https://app.hanzo.bot/auth/signup"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-[#050810] bg-gradient-to-br from-brand to-[#e03e3e] no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,77,77,0.45)] shadow-[0_4px_24px_rgba(255,77,77,0.3)]"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-[#050810] bg-gradient-to-br from-white to-[#d4d4d4] no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,255,255,0.45)] shadow-[0_4px_24px_rgba(255,255,255,0.3)]"
           >
             <SparklesIcon className="w-5 h-5" />
             Get Started Free
           </a>
           <Link
             href="/solutions"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border no-underline transition-all hover:-translate-y-0.5 hover:border-brand"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border no-underline transition-all hover:-translate-y-0.5 hover:border-neutral-600"
           >
             View All Solutions
           </Link>

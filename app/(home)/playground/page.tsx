@@ -61,10 +61,10 @@ export default function PlaygroundPage() {
 
       {/* Hero */}
       <header className="text-center mb-12 animate-[fadeInUp_0.6s_ease-out]">
-        <span className="inline-block font-mono text-xs font-semibold text-[#00e5cc] bg-[rgba(255,255,255,0.04)] border border-fd-border px-3 py-1 rounded-full mb-4 tracking-wider">
+        <span className="inline-block font-mono text-xs font-semibold text-[#a3a3a3] bg-[rgba(255,255,255,0.04)] border border-fd-border px-3 py-1 rounded-full mb-4 tracking-wider">
           Now Live at app.hanzo.bot
         </span>
-        <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-3 bg-gradient-to-br from-fd-foreground to-brand bg-clip-text text-transparent">
+        <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-3 bg-gradient-to-br from-fd-foreground to-neutral-400 bg-clip-text text-transparent">
           Hanzo Playground
         </h1>
         <p className="text-lg text-fd-muted-foreground mb-4">
@@ -88,7 +88,7 @@ export default function PlaygroundPage() {
             href="https://github.com/hanzoai/playground"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-fd-foreground border border-fd-border bg-[rgba(255,255,255,0.03)] rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:border-brand"
+            className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-fd-foreground border border-fd-border bg-[rgba(255,255,255,0.03)] rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:border-neutral-600"
           >
             <GithubIcon />
             View Source
@@ -110,7 +110,7 @@ export default function PlaygroundPage() {
           <div className="flex h-[340px] max-sm:h-[260px]">
             <div className="w-[140px] border-r border-fd-border p-3 shrink-0 max-sm:hidden">
               {['Playground', 'Dashboard', 'Workflows', 'Teams'].map((item, i) => (
-                <div key={item} className={`flex items-center gap-2 px-2.5 py-2 rounded-lg text-xs ${i === 0 ? 'text-brand bg-[rgba(255,255,255,0.04)]' : 'text-fd-muted-foreground'}`}>
+                <div key={item} className={`flex items-center gap-2 px-2.5 py-2 rounded-lg text-xs ${i === 0 ? 'text-white bg-[rgba(255,255,255,0.04)]' : 'text-fd-muted-foreground'}`}>
                   <span className="text-[0.8rem] opacity-70">{['\u25CB', '\u25A1', '\u25B7', '\u2630'][i]}</span>
                   <span className="font-medium">{item}</span>
                 </div>
@@ -128,10 +128,10 @@ export default function PlaygroundPage() {
               ].map((node) => (
                 <div
                   key={node.name}
-                  className="absolute px-3.5 py-2.5 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.9)] backdrop-blur-sm flex flex-col gap-0.5 transition-all hover:border-brand hover:-translate-y-0.5"
+                  className="absolute px-3.5 py-2.5 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.9)] backdrop-blur-sm flex flex-col gap-0.5 transition-all hover:border-neutral-600 hover:-translate-y-0.5"
                   style={{ top: node.top, left: node.left }}
                 >
-                  <span className={`absolute top-2 right-2 w-2 h-2 rounded-full ${node.busy ? 'bg-[#00e5cc] shadow-[0_0_8px_rgba(0,229,204,0.5)] animate-[pulse_2s_ease-in-out_infinite]' : 'bg-fd-muted-foreground'}`} />
+                  <span className={`absolute top-2 right-2 w-2 h-2 rounded-full ${node.busy ? 'bg-[#a3a3a3] shadow-[0_0_8px_rgba(163,163,163,0.5)] animate-[pulse_2s_ease-in-out_infinite]' : 'bg-fd-muted-foreground'}`} />
                   <span className="text-[0.8rem] font-semibold text-fd-foreground">{node.name}</span>
                   <span className="font-mono text-[0.6rem] text-fd-muted-foreground">{node.model}</span>
                 </div>
@@ -140,11 +140,11 @@ export default function PlaygroundPage() {
                 <span className="text-xl text-fd-muted-foreground font-light">+</span>
                 <span className="text-[0.7rem] text-fd-muted-foreground">Add a bot</span>
               </div>
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 px-3.5 py-2 rounded-full border border-brand/30 bg-[rgba(10,15,26,0.95)] backdrop-blur-xl font-mono text-[0.7rem] whitespace-nowrap">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 px-3.5 py-2 rounded-full border border-neutral-600/30 bg-[rgba(10,15,26,0.95)] backdrop-blur-xl font-mono text-[0.7rem] whitespace-nowrap">
                 <span className="text-fd-muted-foreground">bash: npm test</span>
                 <span className="flex gap-1.5">
-                  <span className="text-[#00e5cc] font-semibold">Approve</span>
-                  <span className="text-brand font-semibold">Deny</span>
+                  <span className="text-[#a3a3a3] font-semibold">Approve</span>
+                  <span className="text-white font-semibold">Deny</span>
                 </span>
               </div>
             </div>
@@ -155,14 +155,14 @@ export default function PlaygroundPage() {
       {/* Features */}
       <section className="mb-14">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-5">
-          <span className="text-brand font-bold">&#x27E9;</span> Everything in One Canvas
+          <span className="text-white font-bold">&#x27E9;</span> Everything in One Canvas
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map((f) => {
             const Icon = f.icon;
             return (
-              <div key={f.title} className="flex flex-col gap-3 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-brand">
-                <div className={`flex items-center justify-center w-10 h-10 rounded-xl bg-[rgba(255,255,255,0.04)] ${f.cyan ? 'text-[#00e5cc]' : 'text-brand'}`}>
+              <div key={f.title} className="flex flex-col gap-3 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-neutral-600">
+                <div className={`flex items-center justify-center w-10 h-10 rounded-xl bg-[rgba(255,255,255,0.04)] ${f.cyan ? 'text-[#a3a3a3]' : 'text-white'}`}>
                   <Icon className="w-5 h-5" />
                 </div>
                 <h3 className="text-sm font-semibold text-fd-foreground">{f.title}</h3>
@@ -176,14 +176,14 @@ export default function PlaygroundPage() {
       {/* Team Presets */}
       <section className="mb-14">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-2">
-          <span className="text-brand font-bold">&#x27E9;</span> One-Click Team Presets
+          <span className="text-white font-bold">&#x27E9;</span> One-Click Team Presets
         </h2>
         <p className="text-sm text-fd-muted-foreground mb-5 leading-relaxed">
           Provision an entire team of specialized agents with a single click.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {teams.map((t) => (
-            <div key={t.name} className="flex flex-col items-center gap-1.5 p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] text-center transition-all hover:-translate-y-1 hover:border-[#00e5cc]">
+            <div key={t.name} className="flex flex-col items-center gap-1.5 p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] text-center transition-all hover:-translate-y-1 hover:border-neutral-600">
               <span className="text-3xl mb-1">{t.emoji}</span>
               <span className="text-sm font-semibold text-fd-foreground">{t.name}</span>
               <span className="font-mono text-[0.7rem] text-fd-muted-foreground">{t.roles}</span>
@@ -195,12 +195,12 @@ export default function PlaygroundPage() {
       {/* How It Works */}
       <section className="mb-14">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-5">
-          <span className="text-brand font-bold">&#x27E9;</span> How It Works
+          <span className="text-white font-bold">&#x27E9;</span> How It Works
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {steps.map((s) => (
-            <div key={s.num} className="flex flex-col gap-2 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] transition-all hover:-translate-y-1 hover:border-brand">
-              <span className="font-mono text-[0.7rem] font-bold text-brand">{s.num}</span>
+            <div key={s.num} className="flex flex-col gap-2 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] transition-all hover:-translate-y-1 hover:border-neutral-600">
+              <span className="font-mono text-[0.7rem] font-bold text-white">{s.num}</span>
               <h3 className="text-base font-semibold text-fd-foreground">{s.title}</h3>
               <p className="text-xs text-fd-muted-foreground leading-relaxed">{s.desc}</p>
             </div>
@@ -211,7 +211,7 @@ export default function PlaygroundPage() {
       {/* Keyboard Shortcuts */}
       <section className="mb-14">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-5">
-          <span className="text-brand font-bold">&#x27E9;</span> Keyboard-First
+          <span className="text-white font-bold">&#x27E9;</span> Keyboard-First
         </h2>
         <div className="flex flex-wrap gap-3">
           {shortcuts.map((s) => (
@@ -228,14 +228,14 @@ export default function PlaygroundPage() {
       {/* Architecture */}
       <section className="mb-14">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-5">
-          <span className="text-brand font-bold">&#x27E9;</span> Architecture
+          <span className="text-white font-bold">&#x27E9;</span> Architecture
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {archCards.map((a) => (
-            <div key={a.title} className="flex flex-col gap-2 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] transition-all hover:-translate-y-1 hover:border-brand">
+            <div key={a.title} className="flex flex-col gap-2 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] transition-all hover:-translate-y-1 hover:border-neutral-600">
               <h3 className="text-base font-semibold text-fd-foreground">{a.title}</h3>
               <p className="text-xs text-fd-muted-foreground leading-relaxed">{a.desc}</p>
-              <span className="font-mono text-[0.7rem] text-[#00e5cc] bg-[rgba(255,255,255,0.03)] px-2 py-0.5 rounded w-fit">{a.tech}</span>
+              <span className="font-mono text-[0.7rem] text-[#a3a3a3] bg-[rgba(255,255,255,0.03)] px-2 py-0.5 rounded w-fit">{a.tech}</span>
             </div>
           ))}
         </div>
@@ -258,7 +258,7 @@ export default function PlaygroundPage() {
             href="https://docs.hanzo.ai/docs/bot"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-fd-foreground border border-fd-border bg-[rgba(255,255,255,0.03)] no-underline transition-all hover:-translate-y-0.5 hover:border-brand"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-fd-foreground border border-fd-border bg-[rgba(255,255,255,0.03)] no-underline transition-all hover:-translate-y-0.5 hover:border-neutral-600"
           >
             Read the Docs
           </a>

@@ -26,7 +26,7 @@ function IntegrationCard({ item }: { item: Integration }) {
       href={item.docs}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex flex-col items-center text-center p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm no-underline text-fd-foreground transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(255,77,77,0.2)]"
+      className="flex flex-col items-center text-center p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm no-underline text-fd-foreground transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(255,255,255,0.2)]"
       style={{ '--accent': item.color } as React.CSSProperties}
     >
       <span className="flex items-center justify-center mb-3 drop-shadow-md" style={{ color: item.color }}>
@@ -42,7 +42,7 @@ function Section({ title, desc, children, className }: { title: string; desc: st
   return (
     <section className="mb-14">
       <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-2">
-        <span className="text-brand font-bold">&#x27E9;</span> {title}
+        <span className="text-white font-bold">&#x27E9;</span> {title}
       </h2>
       <p className="text-sm text-fd-muted-foreground mb-5 leading-relaxed">{desc}</p>
       <div className={className || 'grid grid-cols-2 sm:grid-cols-4 gap-4'}>
@@ -55,80 +55,80 @@ function Section({ title, desc, children, className }: { title: string; desc: st
 const I = (size = 32) => ({ className: `w-[${size}px] h-[${size}px]` });
 
 const chatProviders: Integration[] = [
-  { name: 'WhatsApp', icon: <MessageSquareIcon {...I()} />, color: '#25D366', desc: 'QR pairing via Baileys', docs: 'https://skills.hanzo.bot/skills/wacli' },
-  { name: 'Telegram', icon: <SmartphoneIcon {...I()} />, color: '#26A5E4', desc: 'Bot API via grammY', docs: 'https://skills.hanzo.bot/skills/telegram' },
-  { name: 'Discord', icon: <MessageSquareIcon {...I()} />, color: '#5865F2', desc: 'Servers, channels & DMs', docs: 'https://skills.hanzo.bot/skills/discord' },
-  { name: 'Slack', icon: <HashIcon {...I()} />, color: '#E01E5A', desc: 'Workspace apps via Bolt', docs: 'https://skills.hanzo.bot/skills/slack' },
-  { name: 'Signal', icon: <MessageSquareIcon {...I()} />, color: '#3A76F0', desc: 'Privacy-focused via signal-cli', docs: 'https://skills.hanzo.bot/skills/sag' },
-  { name: 'iMessage', icon: <SmartphoneIcon {...I()} />, color: '#007AFF', desc: 'AppleScript bridge', docs: 'https://skills.hanzo.bot/skills/imessage' },
-  { name: 'Teams', icon: <UsersIcon {...I()} />, color: '#6264A7', desc: 'Enterprise support', docs: 'https://skills.hanzo.bot/skills/teams' },
+  { name: 'WhatsApp', icon: <MessageSquareIcon {...I()} />, color: '#a3a3a3', desc: 'QR pairing via Baileys', docs: 'https://skills.hanzo.bot/skills/wacli' },
+  { name: 'Telegram', icon: <SmartphoneIcon {...I()} />, color: '#FFFFFF', desc: 'Bot API via grammY', docs: 'https://skills.hanzo.bot/skills/telegram' },
+  { name: 'Discord', icon: <MessageSquareIcon {...I()} />, color: '#a3a3a3', desc: 'Servers, channels & DMs', docs: 'https://skills.hanzo.bot/skills/discord' },
+  { name: 'Slack', icon: <HashIcon {...I()} />, color: '#a3a3a3', desc: 'Workspace apps via Bolt', docs: 'https://skills.hanzo.bot/skills/slack' },
+  { name: 'Signal', icon: <MessageSquareIcon {...I()} />, color: '#FFFFFF', desc: 'Privacy-focused via signal-cli', docs: 'https://skills.hanzo.bot/skills/sag' },
+  { name: 'iMessage', icon: <SmartphoneIcon {...I()} />, color: '#FFFFFF', desc: 'AppleScript bridge', docs: 'https://skills.hanzo.bot/skills/imessage' },
+  { name: 'Teams', icon: <UsersIcon {...I()} />, color: '#FFFFFF', desc: 'Enterprise support', docs: 'https://skills.hanzo.bot/skills/teams' },
   { name: 'Matrix', icon: <GlobeIcon {...I()} />, color: '#FFFFFF', desc: 'Matrix protocol', docs: 'https://skills.hanzo.bot/skills/matrix' },
-  { name: 'Nostr', icon: <MessageCircleIcon {...I()} />, color: '#8F2CFF', desc: 'Decentralized DMs', docs: 'https://skills.hanzo.bot/skills/nostr' },
-  { name: 'WebChat', icon: <GlobeIcon {...I()} />, color: '#00E5CC', desc: 'Browser-based UI', docs: '/docs/channels/webchat' },
+  { name: 'Nostr', icon: <MessageCircleIcon {...I()} />, color: '#FFFFFF', desc: 'Decentralized DMs', docs: 'https://skills.hanzo.bot/skills/nostr' },
+  { name: 'WebChat', icon: <GlobeIcon {...I()} />, color: '#a3a3a3', desc: 'Browser-based UI', docs: '/docs/channels/webchat' },
 ];
 
 const modelProviders: Integration[] = [
-  { name: 'Anthropic', icon: <BrainCircuitIcon {...I()} />, color: '#D4A574', desc: 'Claude Opus 4.6', docs: '/docs/models/anthropic' },
-  { name: 'OpenAI', icon: <BotIcon {...I()} />, color: '#00A67E', desc: 'GPT-5, o3, o4-mini', docs: '/docs/models/openai' },
-  { name: 'Google', icon: <GlobeIcon {...I()} />, color: '#4285F4', desc: 'Gemini 3 Pro/Flash', docs: '/docs/models/google' },
+  { name: 'Anthropic', icon: <BrainCircuitIcon {...I()} />, color: '#FFFFFF', desc: 'Claude Opus 4.6', docs: '/docs/models/anthropic' },
+  { name: 'OpenAI', icon: <BotIcon {...I()} />, color: '#FFFFFF', desc: 'GPT-5, o3, o4-mini', docs: '/docs/models/openai' },
+  { name: 'Google', icon: <GlobeIcon {...I()} />, color: '#FFFFFF', desc: 'Gemini 3 Pro/Flash', docs: '/docs/models/google' },
   { name: 'xAI', icon: <ZapIcon {...I()} />, color: '#FFFFFF', desc: 'Grok 3 & 4', docs: '/docs/models/xai' },
-  { name: 'OpenRouter', icon: <ZapIcon {...I()} />, color: '#6366F1', desc: 'Unified API gateway', docs: '/docs/models/openrouter' },
-  { name: 'Mistral', icon: <BrainCircuitIcon {...I()} />, color: '#FF7000', desc: 'Mistral Large & Codestral', docs: '/docs/models/mistral' },
-  { name: 'DeepSeek', icon: <BrainCircuitIcon {...I()} />, color: '#4D6BFE', desc: 'DeepSeek V3 & R1', docs: '/docs/models/deepseek' },
-  { name: 'Perplexity', icon: <SearchIcon {...I()} />, color: '#20B8CD', desc: 'Search-augmented AI', docs: '/docs/models/perplexity' },
-  { name: 'Hugging Face', icon: <BotIcon {...I()} />, color: '#FFD21E', desc: 'Open-source models', docs: '/docs/models/huggingface' },
+  { name: 'OpenRouter', icon: <ZapIcon {...I()} />, color: '#a3a3a3', desc: 'Unified API gateway', docs: '/docs/models/openrouter' },
+  { name: 'Mistral', icon: <BrainCircuitIcon {...I()} />, color: '#FFFFFF', desc: 'Mistral Large & Codestral', docs: '/docs/models/mistral' },
+  { name: 'DeepSeek', icon: <BrainCircuitIcon {...I()} />, color: '#FFFFFF', desc: 'DeepSeek V3 & R1', docs: '/docs/models/deepseek' },
+  { name: 'Perplexity', icon: <SearchIcon {...I()} />, color: '#FFFFFF', desc: 'Search-augmented AI', docs: '/docs/models/perplexity' },
+  { name: 'Hugging Face', icon: <BotIcon {...I()} />, color: '#FFFFFF', desc: 'Open-source models', docs: '/docs/models/huggingface' },
   { name: 'Local Models', icon: <BotIcon {...I()} />, color: '#FFFFFF', desc: 'Ollama, LM Studio', docs: '/docs/models/local' },
 ];
 
 const productivityApps: Integration[] = [
-  { name: 'Apple Notes', icon: <StickyNoteIcon {...I()} />, color: '#FFCC00', desc: 'Native macOS/iOS notes', docs: 'https://skills.hanzo.bot/skills/apple-notes' },
-  { name: 'Apple Reminders', icon: <CheckSquareIcon {...I()} />, color: '#FF9500', desc: 'Task management', docs: 'https://skills.hanzo.bot/skills/apple-reminders' },
-  { name: 'Things 3', icon: <ListTodoIcon {...I()} />, color: '#4A90D9', desc: 'GTD task manager', docs: 'https://skills.hanzo.bot/skills/things-mac' },
+  { name: 'Apple Notes', icon: <StickyNoteIcon {...I()} />, color: '#FFFFFF', desc: 'Native macOS/iOS notes', docs: 'https://skills.hanzo.bot/skills/apple-notes' },
+  { name: 'Apple Reminders', icon: <CheckSquareIcon {...I()} />, color: '#FFFFFF', desc: 'Task management', docs: 'https://skills.hanzo.bot/skills/apple-reminders' },
+  { name: 'Things 3', icon: <ListTodoIcon {...I()} />, color: '#FFFFFF', desc: 'GTD task manager', docs: 'https://skills.hanzo.bot/skills/things-mac' },
   { name: 'Notion', icon: <StickyNoteIcon {...I()} />, color: '#FFFFFF', desc: 'Workspace & databases', docs: 'https://skills.hanzo.bot/skills/notion' },
-  { name: 'Obsidian', icon: <PenToolIcon {...I()} />, color: '#7C3AED', desc: 'Knowledge graph notes', docs: 'https://skills.hanzo.bot/skills/obsidian' },
-  { name: 'Trello', icon: <ListTodoIcon {...I()} />, color: '#0079BF', desc: 'Kanban boards', docs: 'https://skills.hanzo.bot/skills/trello' },
+  { name: 'Obsidian', icon: <PenToolIcon {...I()} />, color: '#FFFFFF', desc: 'Knowledge graph notes', docs: 'https://skills.hanzo.bot/skills/obsidian' },
+  { name: 'Trello', icon: <ListTodoIcon {...I()} />, color: '#FFFFFF', desc: 'Kanban boards', docs: 'https://skills.hanzo.bot/skills/trello' },
   { name: 'GitHub', icon: <GlobeIcon {...I()} />, color: '#FFFFFF', desc: 'Code, issues, PRs', docs: 'https://skills.hanzo.bot/skills/github' },
 ];
 
 const musicAudio: Integration[] = [
-  { name: 'Spotify', icon: <MusicIcon {...I()} />, color: '#1DB954', desc: 'Music playback control', docs: 'https://skills.hanzo.bot/skills/spotify-player' },
+  { name: 'Spotify', icon: <MusicIcon {...I()} />, color: '#FFFFFF', desc: 'Music playback control', docs: 'https://skills.hanzo.bot/skills/spotify-player' },
   { name: 'Sonos', icon: <MusicIcon {...I()} />, color: '#FFFFFF', desc: 'Multi-room audio', docs: 'https://skills.hanzo.bot/skills/sonoscli' },
-  { name: 'Shazam', icon: <SearchIcon {...I()} />, color: '#0088FF', desc: 'Song recognition', docs: 'https://skills.hanzo.bot/skills/songsee' },
+  { name: 'Shazam', icon: <SearchIcon {...I()} />, color: '#FFFFFF', desc: 'Song recognition', docs: 'https://skills.hanzo.bot/skills/songsee' },
 ];
 
 const smartHome: Integration[] = [
-  { name: 'Philips Hue', icon: <ZapIcon {...I()} />, color: '#0065D3', desc: 'Smart lighting', docs: 'https://skills.hanzo.bot/skills/openhue' },
-  { name: '8Sleep', icon: <BedIcon {...I()} />, color: '#00B4D8', desc: 'Smart mattress', docs: 'https://skills.hanzo.bot/skills/eightctl' },
-  { name: 'Home Assistant', icon: <GlobeIcon {...I()} />, color: '#41BDF5', desc: 'Home automation hub', docs: 'https://skills.hanzo.bot/skills/homeassistant' },
+  { name: 'Philips Hue', icon: <ZapIcon {...I()} />, color: '#FFFFFF', desc: 'Smart lighting', docs: 'https://skills.hanzo.bot/skills/openhue' },
+  { name: '8Sleep', icon: <BedIcon {...I()} />, color: '#FFFFFF', desc: 'Smart mattress', docs: 'https://skills.hanzo.bot/skills/eightctl' },
+  { name: 'Home Assistant', icon: <GlobeIcon {...I()} />, color: '#FFFFFF', desc: 'Home automation hub', docs: 'https://skills.hanzo.bot/skills/homeassistant' },
 ];
 
 const tools: Integration[] = [
-  { name: 'Browser', icon: <GlobeIcon {...I()} />, color: '#4285F4', desc: 'Chrome/Chromium control', docs: 'https://skills.hanzo.bot/skills/verify-on-browser' },
-  { name: 'Canvas', icon: <MonitorSmartphoneIcon {...I()} />, color: '#FF4500', desc: 'Visual workspace + A2UI', docs: '/docs/features/canvas' },
-  { name: 'Voice', icon: <MicIcon {...I()} />, color: '#9B59B6', desc: 'Voice Wake + Talk Mode', docs: 'https://skills.hanzo.bot/skills/voice-transcribe' },
-  { name: 'Gmail', icon: <MailIcon {...I()} />, color: '#EA4335', desc: 'Pub/Sub email triggers', docs: 'https://skills.hanzo.bot/skills/gmail' },
-  { name: 'Cron', icon: <ClockIcon {...I()} />, color: '#F39C12', desc: 'Scheduled tasks', docs: '/docs/features/cron' },
-  { name: 'Webhooks', icon: <WebhookIcon {...I()} />, color: '#1ABC9C', desc: 'External triggers', docs: '/docs/features/webhooks' },
-  { name: 'Weather', icon: <CloudSunIcon {...I()} />, color: '#FFB300', desc: 'Forecasts & conditions', docs: 'https://skills.hanzo.bot/skills/weather' },
+  { name: 'Browser', icon: <GlobeIcon {...I()} />, color: '#FFFFFF', desc: 'Chrome/Chromium control', docs: 'https://skills.hanzo.bot/skills/verify-on-browser' },
+  { name: 'Canvas', icon: <MonitorSmartphoneIcon {...I()} />, color: '#FFFFFF', desc: 'Visual workspace + A2UI', docs: '/docs/features/canvas' },
+  { name: 'Voice', icon: <MicIcon {...I()} />, color: '#FFFFFF', desc: 'Voice Wake + Talk Mode', docs: 'https://skills.hanzo.bot/skills/voice-transcribe' },
+  { name: 'Gmail', icon: <MailIcon {...I()} />, color: '#a3a3a3', desc: 'Pub/Sub email triggers', docs: 'https://skills.hanzo.bot/skills/gmail' },
+  { name: 'Cron', icon: <ClockIcon {...I()} />, color: '#FFFFFF', desc: 'Scheduled tasks', docs: '/docs/features/cron' },
+  { name: 'Webhooks', icon: <WebhookIcon {...I()} />, color: '#FFFFFF', desc: 'External triggers', docs: '/docs/features/webhooks' },
+  { name: 'Weather', icon: <CloudSunIcon {...I()} />, color: '#FFFFFF', desc: 'Forecasts & conditions', docs: 'https://skills.hanzo.bot/skills/weather' },
 ];
 
 const mediaCreative: Integration[] = [
-  { name: 'Image Gen', icon: <ImageIcon {...I()} />, color: '#E91E63', desc: 'AI image generation', docs: 'https://skills.hanzo.bot/skills/image-gen' },
-  { name: 'GIF Search', icon: <SearchIcon {...I()} />, color: '#00DCDC', desc: 'Find the perfect GIF', docs: 'https://skills.hanzo.bot/skills/gifgrep' },
-  { name: 'Peekaboo', icon: <EyeIcon {...I()} />, color: '#FF6B6B', desc: 'Screen capture & control', docs: 'https://skills.hanzo.bot/skills/peekaboo' },
-  { name: 'Camera', icon: <CameraIcon {...I()} />, color: '#607D8B', desc: 'Photo/video capture', docs: 'https://skills.hanzo.bot/skills/camera' },
+  { name: 'Image Gen', icon: <ImageIcon {...I()} />, color: '#a3a3a3', desc: 'AI image generation', docs: 'https://skills.hanzo.bot/skills/image-gen' },
+  { name: 'GIF Search', icon: <SearchIcon {...I()} />, color: '#FFFFFF', desc: 'Find the perfect GIF', docs: 'https://skills.hanzo.bot/skills/gifgrep' },
+  { name: 'Peekaboo', icon: <EyeIcon {...I()} />, color: '#FFFFFF', desc: 'Screen capture & control', docs: 'https://skills.hanzo.bot/skills/peekaboo' },
+  { name: 'Camera', icon: <CameraIcon {...I()} />, color: '#FFFFFF', desc: 'Photo/video capture', docs: 'https://skills.hanzo.bot/skills/camera' },
 ];
 
 const socialComms: Integration[] = [
   { name: 'Twitter/X', icon: <GlobeIcon {...I()} />, color: '#FFFFFF', desc: 'Tweet, reply, search', docs: 'https://skills.hanzo.bot/skills/bird' },
-  { name: 'Email', icon: <MailIcon {...I()} />, color: '#D44638', desc: 'Send & read emails', docs: 'https://skills.hanzo.bot/skills/himalaya' },
+  { name: 'Email', icon: <MailIcon {...I()} />, color: '#FFFFFF', desc: 'Send & read emails', docs: 'https://skills.hanzo.bot/skills/himalaya' },
 ];
 
 const showcase: Integration[] = [
-  { name: 'Tesco Autopilot', icon: <ShoppingCartIcon {...I()} />, color: '#00539F', desc: 'Automated grocery shopping', docs: 'https://skills.hanzo.bot/skills/tesco-autopilot' },
-  { name: 'Bambu Control', icon: <PrinterIcon {...I()} />, color: '#00AE42', desc: '3D printer management', docs: 'https://skills.hanzo.bot/skills/bambu-control' },
-  { name: 'Oura Ring', icon: <HeartIcon {...I()} />, color: '#E4B363', desc: 'Health data insights', docs: 'https://skills.hanzo.bot/skills/oura-ring' },
-  { name: 'Food Ordering', icon: <UtensilsCrossedIcon {...I()} />, color: '#FF5A5F', desc: 'Foodora integration', docs: 'https://skills.hanzo.bot/skills/food-ordering' },
+  { name: 'Tesco Autopilot', icon: <ShoppingCartIcon {...I()} />, color: '#FFFFFF', desc: 'Automated grocery shopping', docs: 'https://skills.hanzo.bot/skills/tesco-autopilot' },
+  { name: 'Bambu Control', icon: <PrinterIcon {...I()} />, color: '#FFFFFF', desc: '3D printer management', docs: 'https://skills.hanzo.bot/skills/bambu-control' },
+  { name: 'Oura Ring', icon: <HeartIcon {...I()} />, color: '#FFFFFF', desc: 'Health data insights', docs: 'https://skills.hanzo.bot/skills/oura-ring' },
+  { name: 'Food Ordering', icon: <UtensilsCrossedIcon {...I()} />, color: '#FFFFFF', desc: 'Foodora integration', docs: 'https://skills.hanzo.bot/skills/food-ordering' },
 ];
 
 const popularIntegrations = [
@@ -152,7 +152,7 @@ export default function IntegrationsPage() {
       <div className="nebula" />
 
       <header className="text-center mb-12 animate-[fadeInUp_0.6s_ease-out]">
-        <h1 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-br from-fd-foreground via-brand to-[#00e5cc] bg-[length:200%_200%] bg-clip-text text-transparent">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-br from-fd-foreground via-neutral-400 to-[#a3a3a3] bg-[length:200%_200%] bg-clip-text text-transparent">
           Integrations
         </h1>
         <p className="text-lg text-fd-muted-foreground max-w-[600px] mx-auto leading-relaxed">
@@ -201,15 +201,15 @@ export default function IntegrationsPage() {
       {/* Automation Platform */}
       <section className="mb-14">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-2">
-          <span className="text-brand font-bold">&#x27E9;</span> Automation Platform
+          <span className="text-white font-bold">&#x27E9;</span> Automation Platform
         </h2>
         <p className="text-sm text-fd-muted-foreground mb-5 leading-relaxed">
           {automationsData.total} automation integrations powered by <strong>Hanzo Auto</strong> — connect any service, trigger any workflow, automate anything.
         </p>
         <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-3 mb-6">
           {autoCategories.map((cat: any) => (
-            <div key={cat.id} className="flex flex-col items-center gap-1 p-4 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:border-[#00e5cc] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,229,204,0.12)]">
-              <span className="text-xl font-bold text-[#00e5cc]">{cat.count}</span>
+            <div key={cat.id} className="flex flex-col items-center gap-1 p-4 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:border-neutral-600 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(163,163,163,0.12)]">
+              <span className="text-xl font-bold text-[#a3a3a3]">{cat.count}</span>
               <span className="text-xs text-fd-muted-foreground text-center leading-snug">{cat.label}</span>
             </div>
           ))}
@@ -218,11 +218,11 @@ export default function IntegrationsPage() {
           <p className="text-xs text-fd-muted-foreground mb-3">Popular integrations:</p>
           <div className="flex flex-wrap gap-2">
             {popularIntegrations.map((name) => (
-              <span key={name} className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-fd-border bg-[rgba(10,15,26,0.5)] text-xs text-fd-muted-foreground transition-all hover:border-brand hover:text-fd-foreground">
+              <span key={name} className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-fd-border bg-[rgba(10,15,26,0.5)] text-xs text-fd-muted-foreground transition-all hover:border-neutral-600 hover:text-fd-foreground">
                 {name}
               </span>
             ))}
-            <span className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-[#00e5cc] text-xs text-[#00e5cc] font-medium">
+            <span className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-[#a3a3a3] text-xs text-[#a3a3a3] font-medium">
               +{automationsData.total - popularIntegrations.length} more
             </span>
           </div>
@@ -230,7 +230,7 @@ export default function IntegrationsPage() {
         <div className="text-center mt-6">
           <a
             href="https://app.hanzo.bot"
-            className="inline-block px-7 py-3 rounded-xl bg-gradient-to-br from-[#00e5cc] to-[#14b8a6] text-[#050810] font-semibold no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,229,204,0.4)]"
+            className="inline-block px-7 py-3 rounded-xl bg-gradient-to-br from-white to-neutral-400 text-[#050810] font-semibold no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(163,163,163,0.4)]"
           >
             Launch Hanzo Auto →
           </a>
@@ -243,7 +243,7 @@ export default function IntegrationsPage() {
         <p className="text-fd-muted-foreground mb-6">Install Hanzo Bot and connect your first provider in minutes.</p>
         <Link
           href="/"
-          className="inline-block px-8 py-3.5 rounded-xl bg-gradient-to-br from-brand to-[#991b1b] text-white font-semibold no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,77,77,0.4)]"
+          className="inline-block px-8 py-3.5 rounded-xl bg-gradient-to-br from-white to-neutral-300 text-[#050810] font-semibold no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.4)]"
         >
           Get Started
         </Link>
@@ -257,7 +257,7 @@ export default function IntegrationsPage() {
         </p>
         <Link
           href="/skills"
-          className="inline-block px-8 py-3.5 rounded-xl bg-gradient-to-br from-[#00e5cc] to-[#14b8a6] text-[#050810] font-semibold no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,229,204,0.4)]"
+          className="inline-block px-8 py-3.5 rounded-xl bg-gradient-to-br from-white to-neutral-400 text-[#050810] font-semibold no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(163,163,163,0.4)]"
         >
           Browse Skill Hub →
         </Link>

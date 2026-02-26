@@ -15,14 +15,14 @@ export default function Post() {
 
       <Link
         href="/blog"
-        className="inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground hover:text-brand transition-colors no-underline mb-8"
+        className="inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground hover:text-white transition-colors no-underline mb-8"
       >
         <ArrowLeftIcon className="size-3.5" /> Back to Blog
       </Link>
 
       <header className="mb-10 animate-[fadeInUp_0.8s_ease-out]">
         <div className="flex items-center gap-3 text-xs mb-4">
-          <span className="px-2.5 py-0.5 rounded-full border font-medium text-[#a78bfa] border-[#a78bfa]/30 bg-[#a78bfa]/8">
+          <span className="px-2.5 py-0.5 rounded-full border font-medium text-neutral-400 border-[#a3a3a3]/30 bg-[#a3a3a3]/8">
             Architecture
           </span>
           <span className="flex items-center gap-1.5 text-fd-muted-foreground">
@@ -159,7 +159,7 @@ export default function Post() {
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col p-4 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.6)] no-underline transition-all hover:-translate-y-0.5 hover:border-brand"
+              className="flex flex-col p-4 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.6)] no-underline transition-all hover:-translate-y-0.5 hover:border-neutral-600"
             >
               <span className="text-sm font-semibold text-fd-foreground">{item.label}</span>
               <span className="text-xs text-fd-muted-foreground">{item.desc}</span>

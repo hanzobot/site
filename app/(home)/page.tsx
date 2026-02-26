@@ -35,49 +35,57 @@ const pricingTiers = [
     name: 'Free',
     price: '$0',
     period: 'forever',
-    desc: 'Run locally on your own hardware.',
+    desc: 'Run locally. Full power.',
     cta: 'Download Free',
     ctaHref: '#quickstart',
     features: [
-      'Runs on Mac, Windows, Linux',
+      'Mac, Windows, Linux',
       'Bring your own API keys',
       'All chat integrations',
-      'Full system access',
-      'Community skills & plugins',
       'Open source',
     ],
   },
   {
-    name: 'Cloud',
+    name: 'Starter',
     price: '$5',
-    period: '/mo per bot',
-    desc: 'Full VM in Hanzo Cloud. Always on.',
-    cta: 'Start Free Trial',
-    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=cloud',
-    highlight: true,
-    badge: 'Most Popular',
+    period: '/mo',
+    desc: 'Linux VM. Up to 5 VMs.',
+    cta: 'Start Free',
+    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=starter',
     features: [
-      'Full Linux desktop VM',
-      '100+ AI models included',
-      'Always-on, no hardware needed',
-      'All chat integrations',
-      'Persistent memory & files',
-      'Auto-updates & backups',
+      '1 vCPU, 1 GB, 20 GB SSD',
+      'Zen Mini model included',
+      '100+ models via gateway',
+      'Always-on 24/7',
     ],
   },
   {
-    name: 'Cloud Pro',
-    price: '$25',
-    period: '/mo per bot',
-    desc: 'Mac or Windows VM for native apps.',
-    cta: 'Get Started',
-    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=cloud-pro',
+    name: 'Dev',
+    price: '$15',
+    period: '/mo',
+    desc: '2 vCPU, 8 GB. Up to 25 VMs.',
+    cta: 'Start Free Trial',
+    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=dev',
+    highlight: true,
+    badge: 'Most Popular',
     features: [
-      'macOS or Windows desktop VM',
-      'Run native desktop apps',
+      '2 vCPU, 8 GB, 25 GB SSD',
+      'Up to 25 VMs',
       'Priority model access',
-      'Advanced browser automation',
-      'Team collaboration tools',
+      'Browser automation',
+    ],
+  },
+  {
+    name: 'Pro',
+    price: '$25',
+    period: '/mo',
+    desc: 'Dedicated CPU. 80 GB SSD.',
+    cta: 'Get Started',
+    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=pro',
+    features: [
+      '2 dedicated vCPU, 8 GB',
+      'macOS or Windows VM',
+      'SSO & enterprise auth',
       'Priority support',
     ],
   },
@@ -94,14 +102,14 @@ export default function Page() {
         <NinjaHero />
 
         <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
-          <span className="bg-gradient-to-br from-fd-foreground via-brand to-[#00e5cc] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
+          <span className="bg-gradient-to-br from-fd-foreground via-neutral-400 to-[#a3a3a3] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
             Your AI Team.
           </span>
           <br />
           <span className="text-fd-foreground">In a Box.</span>
         </h1>
 
-        <p className="text-brand text-sm font-medium tracking-[0.15em] uppercase mb-6 animate-[fadeInUp_0.8s_ease-out_0.15s_both]">
+        <p className="text-white text-sm font-medium tracking-[0.15em] uppercase mb-6 animate-[fadeInUp_0.8s_ease-out_0.15s_both]">
           One bot. Every role. Every channel.
         </p>
 
@@ -114,7 +122,7 @@ export default function Page() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8 animate-[fadeInUp_0.8s_ease-out_0.45s_both]">
           <Link
             href="/get-started"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold text-[#050810] bg-gradient-to-br from-brand to-[#e03e3e] rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,77,77,0.45)] shadow-[0_4px_24px_rgba(255,77,77,0.3)]"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold text-[#050810] bg-gradient-to-br from-white to-[#d4d4d4] rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,255,255,0.45)] shadow-[0_4px_24px_rgba(255,255,255,0.3)]"
           >
             <DownloadIcon className="w-5 h-5" />
             Get Started Free
@@ -123,7 +131,7 @@ export default function Page() {
             href="https://app.hanzo.bot"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:bg-[rgba(0,229,204,0.08)] hover:border-[#00e5cc] hover:shadow-[0_8px_40px_rgba(0,229,204,0.2)]"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:bg-[rgba(255,255,255,0.08)] hover:border-neutral-600 hover:shadow-[0_8px_40px_rgba(163,163,163,0.2)]"
           >
             <LogInIcon className="w-5 h-5" />
             Launch in Cloud &mdash; $5/mo
@@ -134,7 +142,7 @@ export default function Page() {
       {/* Why You Need a Bot */}
       <section className="mb-14 animate-[fadeInUp_0.8s_ease-out_0.5s_both]">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-5">
-          <span className="text-brand font-bold">&#x27E9;</span> Why Everyone Needs Their Own Bot
+          <span className="text-white font-bold">&#x27E9;</span> Why Everyone Needs Their Own Bot
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
@@ -142,7 +150,7 @@ export default function Page() {
             { emoji: '⚡', title: 'Ship 10x Faster', desc: 'Instant code reviews, automated testing, docs written as you code. No more waiting on teammates.' },
             { emoji: '🔒', title: 'Private by Default', desc: 'Your data stays on your machine. No training on your code. Full control, always.' },
           ].map((item) => (
-            <div key={item.title} className="flex flex-col items-center text-center gap-3 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-brand">
+            <div key={item.title} className="flex flex-col items-center text-center gap-3 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-neutral-600">
               <span className="text-3xl">{item.emoji}</span>
               <h3 className="text-sm font-bold text-fd-foreground">{item.title}</h3>
               <p className="text-xs text-fd-muted-foreground leading-relaxed">{item.desc}</p>
@@ -154,12 +162,12 @@ export default function Page() {
       {/* Models */}
       <section className="mb-14">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-5">
-          <span className="text-brand font-bold">&#x27E9;</span> 100+ AI Models
+          <span className="text-white font-bold">&#x27E9;</span> 100+ AI Models
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {models.map((m) => (
-            <div key={m.provider} className="flex flex-col gap-1 p-4 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:border-brand hover:-translate-y-0.5">
-              <span className="text-xs font-semibold text-brand uppercase tracking-wider">{m.provider}</span>
+            <div key={m.provider} className="flex flex-col gap-1 p-4 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:border-neutral-600 hover:-translate-y-0.5">
+              <span className="text-xs font-semibold text-white uppercase tracking-wider">{m.provider}</span>
               <span className="text-sm text-fd-muted-foreground">{m.names}</span>
             </div>
           ))}
@@ -180,7 +188,7 @@ export default function Page() {
       {/* Features */}
       <section className="mb-14">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-5">
-          <span className="text-brand font-bold">&#x27E9;</span> What It Does
+          <span className="text-white font-bold">&#x27E9;</span> What It Does
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           {features.map((f) => {
@@ -193,10 +201,10 @@ export default function Page() {
                 key={f.title}
                 href={f.href}
                 {...props}
-                className="block p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm no-underline text-inherit transition-all hover:-translate-y-1 hover:border-brand hover:shadow-[0_12px_40px_rgba(255,77,77,0.2)]"
+                className="block p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm no-underline text-inherit transition-all hover:-translate-y-1 hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(255,255,255,0.2)]"
               >
                 <div className="flex items-center justify-center mb-3">
-                  <Icon className="w-7 h-7 text-brand" />
+                  <Icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-sm font-semibold text-fd-foreground mb-1.5">{f.title}</h3>
                 <p className="text-xs text-fd-muted-foreground leading-relaxed">{f.desc}</p>
@@ -212,24 +220,24 @@ export default function Page() {
       {/* Pricing */}
       <section className="mb-14" id="pricing">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-2">
-          <span className="text-brand font-bold">&#x27E9;</span> Simple Pricing
+          <span className="text-white font-bold">&#x27E9;</span> Simple Pricing
         </h2>
         <p className="text-sm text-fd-muted-foreground mb-6">
           Get started free. Scale when you&apos;re ready.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {pricingTiers.map((tier) => (
             <div
               key={tier.name}
               className={cn(
                 'relative flex flex-col p-6 rounded-2xl border backdrop-blur-sm transition-all hover:-translate-y-1',
                 tier.highlight
-                  ? 'border-brand bg-gradient-to-br from-[rgba(255,77,77,0.08)] to-[rgba(10,15,26,0.8)] shadow-[0_4px_24px_rgba(255,77,77,0.2)]'
+                  ? 'border-neutral-600 bg-gradient-to-br from-[rgba(255,255,255,0.08)] to-[rgba(10,15,26,0.8)] shadow-[0_4px_24px_rgba(255,255,255,0.2)]'
                   : 'border-fd-border bg-[rgba(10,15,26,0.6)]',
               )}
             >
               {tier.badge && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 text-xs font-bold bg-brand text-white rounded-full">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 text-xs font-bold bg-white text-[#050810] rounded-full">
                   {tier.badge}
                 </span>
               )}
@@ -242,7 +250,7 @@ export default function Page() {
               <ul className="flex flex-col gap-2 mb-6 flex-1">
                 {tier.features.map((feat) => (
                   <li key={feat} className="flex items-start gap-2 text-sm text-fd-muted-foreground">
-                    <CheckIcon className="w-4 h-4 text-brand shrink-0 mt-0.5" />
+                    <CheckIcon className="w-4 h-4 text-white shrink-0 mt-0.5" />
                     {feat}
                   </li>
                 ))}
@@ -254,8 +262,8 @@ export default function Page() {
                 className={cn(
                   'inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold no-underline transition-all hover:-translate-y-0.5 text-center',
                   tier.highlight
-                    ? 'bg-gradient-to-br from-brand to-[#e03e3e] text-[#050810] hover:shadow-[0_8px_40px_rgba(255,77,77,0.45)] shadow-[0_4px_24px_rgba(255,77,77,0.3)]'
-                    : 'bg-[rgba(255,255,255,0.05)] border border-fd-border text-fd-foreground hover:border-brand',
+                    ? 'bg-gradient-to-br from-white to-[#d4d4d4] text-[#050810] hover:shadow-[0_8px_40px_rgba(255,255,255,0.45)] shadow-[0_4px_24px_rgba(255,255,255,0.3)]'
+                    : 'bg-[rgba(255,255,255,0.05)] border border-fd-border text-fd-foreground hover:border-neutral-600',
                 )}
               >
                 {tier.cta}
@@ -265,7 +273,7 @@ export default function Page() {
           ))}
         </div>
         <div className="mt-6 text-center">
-          <Link href="/pricing" className="text-sm text-brand font-medium hover:text-[#00e5cc] transition-colors no-underline">
+          <Link href="/pricing" className="text-sm text-white font-medium hover:text-white transition-colors no-underline">
             View full pricing & FAQ →
           </Link>
         </div>
@@ -274,10 +282,10 @@ export default function Page() {
       {/* Why Hanzo Bot */}
       <section className="mb-14">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-5">
-          <span className="text-brand font-bold">&#x27E9;</span> Why Hanzo Bot
+          <span className="text-white font-bold">&#x27E9;</span> Why Hanzo Bot
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div className="flex flex-col items-center gap-4 p-6 rounded-2xl border border-[rgba(255,77,77,0.3)] bg-gradient-to-br from-[rgba(255,77,77,0.05)] to-[rgba(10,15,26,0.7)] backdrop-blur-sm text-center transition-all hover:-translate-y-1 hover:border-brand hover:shadow-[0_12px_40px_rgba(255,77,77,0.15)]">
+          <div className="flex flex-col items-center gap-4 p-6 rounded-2xl border border-[rgba(255,255,255,0.3)] bg-gradient-to-br from-[rgba(255,255,255,0.05)] to-[rgba(10,15,26,0.7)] backdrop-blur-sm text-center transition-all hover:-translate-y-1 hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(255,255,255,0.15)]">
             <div className="flex items-center gap-2.5">
               <MonitorIcon className="w-7 h-7 text-fd-muted-foreground" />
               <span className="text-lg font-semibold text-fd-muted-foreground">Full Desktop VMs</span>
@@ -285,9 +293,9 @@ export default function Page() {
             <blockquote className="text-sm font-medium leading-relaxed italic">
               Each agent gets a full cloud desktop environment. Browse, code, design &mdash; just like a real team member.
             </blockquote>
-            <span className="text-sm text-brand font-medium">Powered by Hanzo Cloud</span>
+            <span className="text-sm text-white font-medium">Powered by Hanzo Cloud</span>
           </div>
-          <div className="flex flex-col items-center gap-4 p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm text-center transition-all hover:-translate-y-1 hover:border-brand hover:shadow-[0_12px_40px_rgba(255,77,77,0.15)]">
+          <div className="flex flex-col items-center gap-4 p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm text-center transition-all hover:-translate-y-1 hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(255,255,255,0.15)]">
             <div className="flex items-center gap-2.5">
               <ShieldIcon className="w-7 h-7 text-fd-muted-foreground" />
               <span className="text-lg font-semibold text-fd-muted-foreground">Secure by Default</span>
@@ -295,7 +303,7 @@ export default function Page() {
             <blockquote className="text-sm font-medium leading-relaxed italic">
               Your data stays yours. Hanzo IAM for auth, encrypted at rest, isolated per-agent. No data leaves your infrastructure.
             </blockquote>
-            <span className="text-sm text-brand font-medium">Enterprise Ready</span>
+            <span className="text-sm text-white font-medium">Enterprise Ready</span>
           </div>
         </div>
       </section>
@@ -303,7 +311,7 @@ export default function Page() {
       {/* Explore Hanzo Ecosystem */}
       <section className="mb-14">
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-5">
-          <span className="text-brand font-bold">&#x27E9;</span> The Hanzo Ecosystem
+          <span className="text-white font-bold">&#x27E9;</span> The Hanzo Ecosystem
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
           {[
@@ -319,7 +327,7 @@ export default function Page() {
               href={product.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col gap-1 p-4 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm no-underline text-inherit transition-all hover:border-[#00e5cc] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,229,204,0.15)]"
+              className="flex flex-col gap-1 p-4 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm no-underline text-inherit transition-all hover:border-neutral-600 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(163,163,163,0.15)]"
             >
               <span className="text-sm font-semibold text-fd-foreground">{product.name}</span>
               <span className="text-xs text-fd-muted-foreground">{product.desc}</span>
@@ -334,7 +342,7 @@ export default function Page() {
           href="https://app.hanzo.bot"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2.5 px-9 py-4 text-lg font-semibold text-[#050810] bg-gradient-to-br from-brand to-[#e03e3e] rounded-2xl no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,77,77,0.45)] shadow-[0_4px_24px_rgba(255,77,77,0.3)]"
+          className="inline-flex items-center gap-2.5 px-9 py-4 text-lg font-semibold text-[#050810] bg-gradient-to-br from-white to-[#d4d4d4] rounded-2xl no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,255,255,0.45)] shadow-[0_4px_24px_rgba(255,255,255,0.3)]"
         >
           <SparklesIcon className="w-5 h-5" />
           Deploy Your AI Team
@@ -345,10 +353,10 @@ export default function Page() {
       {/* CTA Grid */}
       <nav className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-14">
         {[
-          { href: 'https://app.hanzo.bot', icon: UsersIcon, label: 'Dashboard', sub: 'Launch app.hanzo.bot', className: 'border-[rgba(255,77,77,0.25)] bg-[rgba(255,77,77,0.06)] hover:border-brand hover:shadow-[0_12px_40px_rgba(255,77,77,0.25)]' },
-          { href: 'https://discord.gg/hanzo', icon: MessageCircleIcon, label: 'Discord', sub: 'Join community', className: 'hover:border-[#5865F2] hover:shadow-[0_12px_40px_rgba(88,101,242,0.2)]' },
+          { href: 'https://app.hanzo.bot', icon: UsersIcon, label: 'Dashboard', sub: 'Launch app.hanzo.bot', className: 'border-[rgba(255,255,255,0.25)] bg-[rgba(255,255,255,0.06)] hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(255,255,255,0.25)]' },
+          { href: 'https://discord.gg/hanzo', icon: MessageCircleIcon, label: 'Discord', sub: 'Join community', className: 'hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(255,255,255,0.2)]' },
           { href: 'https://github.com/hanzoai/bot', icon: GlobeIcon, label: 'GitHub', sub: 'View source', className: 'hover:border-fd-foreground hover:shadow-[0_12px_40px_rgba(240,244,255,0.1)]' },
-          { href: '/docs', icon: BookOpenIcon, label: 'Docs', sub: 'Get started', className: 'hover:border-[#00e5cc] hover:shadow-[0_12px_40px_rgba(0,229,204,0.15)]' },
+          { href: '/docs', icon: BookOpenIcon, label: 'Docs', sub: 'Get started', className: 'hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(163,163,163,0.15)]' },
         ].map((cta) => {
           const Icon = cta.icon;
           const isExternal = cta.href.startsWith('http');
@@ -364,7 +372,7 @@ export default function Page() {
                 cta.className,
               )}
             >
-              <Icon className="w-7 h-7 text-brand transition-transform hover:scale-110" />
+              <Icon className="w-7 h-7 text-white transition-transform hover:scale-110" />
               <span className="font-semibold">{cta.label}</span>
               <span className="text-xs text-fd-muted-foreground">{cta.sub}</span>
             </El>

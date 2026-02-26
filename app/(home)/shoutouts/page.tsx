@@ -12,7 +12,7 @@ export default function ShoutoutsPage() {
 
       <header className="text-center mb-12 animate-[fadeInUp_0.6s_ease-out]">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-          <span className="text-brand">&#x27E9;</span> Shoutouts
+          <span className="text-white">&#x27E9;</span> Shoutouts
         </h1>
         <p className="text-fd-muted-foreground text-lg">What the community is saying about Hanzo Bot</p>
       </header>
@@ -24,7 +24,7 @@ export default function ShoutoutsPage() {
             href={t.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-start gap-3.5 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm no-underline text-fd-foreground transition-all hover:border-brand hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(255,77,77,0.15)]"
+            className="flex items-start gap-3.5 p-5 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm no-underline text-fd-foreground transition-all hover:border-neutral-600 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(255,255,255,0.15)]"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -37,7 +37,7 @@ export default function ShoutoutsPage() {
               <p className="text-sm leading-relaxed text-fd-muted-foreground">
                 &ldquo;{t.quote}&rdquo;
               </p>
-              <span className="text-sm font-semibold text-brand">@{t.author}</span>
+              <span className="text-sm font-semibold text-white">@{t.author}</span>
             </div>
           </a>
         ))}

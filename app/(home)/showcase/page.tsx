@@ -24,7 +24,7 @@ export default function ShowcasePage() {
 
       <header className="text-center mb-12 animate-[fadeInUp_0.6s_ease-out]">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-          <span className="text-brand">&#x27E9;</span> What People Are Building
+          <span className="text-white">&#x27E9;</span> What People Are Building
         </h1>
         <p className="text-fd-muted-foreground text-lg">Real projects, real automation, real magic.</p>
       </header>
@@ -36,7 +36,7 @@ export default function ShowcasePage() {
             href={`https://x.com/${item.author}/status/${item.id}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col gap-4 p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm no-underline text-fd-foreground transition-all hover:border-brand hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(255,77,77,0.15)]"
+            className="flex flex-col gap-4 p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm no-underline text-fd-foreground transition-all hover:border-neutral-600 hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(255,255,255,0.15)]"
           >
             <div className="flex items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -47,7 +47,7 @@ export default function ShowcasePage() {
                 loading="lazy"
               />
               <div className="flex flex-col gap-0.5 flex-1">
-                <span className="font-semibold text-brand text-sm">@{item.author}</span>
+                <span className="font-semibold text-white text-sm">@{item.author}</span>
                 <span className="text-xs text-fd-muted-foreground">
                   {categoryLabels[item.category] || item.category}
                 </span>
@@ -69,7 +69,7 @@ export default function ShowcasePage() {
                 ))}
               </div>
             )}
-            <span className="text-sm text-fd-muted-foreground pt-3 border-t border-fd-border transition-colors group-hover:text-brand">
+            <span className="text-sm text-fd-muted-foreground pt-3 border-t border-fd-border transition-colors group-hover:text-white">
               View on X →
             </span>
           </a>
@@ -84,13 +84,13 @@ export default function ShowcasePage() {
             href="https://twitter.com/intent/tweet?text=Check%20out%20what%20I%20built%20with%20%40hanzoai%20%23hanzobot"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-xl font-semibold text-white bg-gradient-to-br from-brand to-[#991b1b] no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(255,77,77,0.4)]"
+            className="px-6 py-3 rounded-xl font-semibold text-[#050810] bg-gradient-to-br from-white to-neutral-300 no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(255,255,255,0.4)]"
           >
             Share on X
           </a>
           <a
             href="/skills"
-            className="px-6 py-3 rounded-xl font-semibold text-[#00e5cc] border border-[#00e5cc] bg-[rgba(0,229,204,0.15)] no-underline transition-all hover:-translate-y-0.5 hover:bg-[rgba(0,229,204,0.25)]"
+            className="px-6 py-3 rounded-xl font-semibold text-[#a3a3a3] border border-[#a3a3a3] bg-[rgba(163,163,163,0.15)] no-underline transition-all hover:-translate-y-0.5 hover:bg-[rgba(255,255,255,0.25)]"
           >
             Browse Skills
           </a>
@@ -98,7 +98,7 @@ export default function ShowcasePage() {
             href="https://discord.gg/hanzo"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-xl font-semibold text-[#5865F2] border border-[#5865F2] bg-[rgba(88,101,242,0.15)] no-underline transition-all hover:-translate-y-0.5 hover:bg-[rgba(88,101,242,0.25)]"
+            className="px-6 py-3 rounded-xl font-semibold text-neutral-400 border border-neutral-600 bg-[rgba(255,255,255,0.15)] no-underline transition-all hover:-translate-y-0.5 hover:bg-[rgba(255,255,255,0.25)]"
           >
             Join Discord
           </a>
@@ -107,7 +107,7 @@ export default function ShowcasePage() {
 
       <p className="text-center text-fd-muted-foreground text-sm">
         Looking for more? Check out{' '}
-        <a href="https://github.com/hanzoai/bot" target="_blank" rel="noopener noreferrer" className="text-[#00e5cc] no-underline hover:underline">
+        <a href="https://github.com/hanzoai/bot" target="_blank" rel="noopener noreferrer" className="text-[#a3a3a3] no-underline hover:underline">
           even more examples in our docs
         </a>{' '}→
       </p>

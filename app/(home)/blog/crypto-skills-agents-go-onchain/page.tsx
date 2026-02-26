@@ -15,14 +15,14 @@ export default function Post() {
 
       <Link
         href="/blog"
-        className="inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground hover:text-brand transition-colors no-underline mb-8"
+        className="inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground hover:text-white transition-colors no-underline mb-8"
       >
         <ArrowLeftIcon className="size-3.5" /> Back to Blog
       </Link>
 
       <header className="mb-10 animate-[fadeInUp_0.8s_ease-out]">
         <div className="flex items-center gap-3 text-xs mb-4">
-          <span className="px-2.5 py-0.5 rounded-full border font-medium text-[#f7931a] border-[#f7931a]/30 bg-[#f7931a]/8">
+          <span className="px-2.5 py-0.5 rounded-full border font-medium text-neutral-400 border-[#a3a3a3]/30 bg-[#a3a3a3]/8">
             Launch
           </span>
           <span className="flex items-center gap-1.5 text-fd-muted-foreground">
@@ -51,10 +51,10 @@ export default function Post() {
 
         <div className="flex flex-col gap-4 my-6 not-prose">
           {[
-            { icon: WalletIcon, color: 'text-[#f7931a]', title: 'Wallet as identity', desc: 'An agent uses its wallet as both identity and payment source.' },
-            { icon: PlugIcon, color: 'text-[#00e5cc]', title: 'Call any API', desc: 'They interact with Crypto APIs: RPC, NFT, Portfolio, or Prices.' },
-            { icon: BanknoteIcon, color: 'text-[#2775ca]', title: 'HTTP 402 → pay in USDC', desc: 'If payment is required, Crypto returns an HTTP 402 with the amount and payment instructions. The agent pays in USDC on Base via x402.' },
-            { icon: ZapIcon, color: 'text-[#a78bfa]', title: 'Data flows back', desc: 'Crypto processes the request and returns the blockchain data, drawing from the newly funded balance.' },
+            { icon: WalletIcon, color: 'text-neutral-400', title: 'Wallet as identity', desc: 'An agent uses its wallet as both identity and payment source.' },
+            { icon: PlugIcon, color: 'text-[#a3a3a3]', title: 'Call any API', desc: 'They interact with Crypto APIs: RPC, NFT, Portfolio, or Prices.' },
+            { icon: BanknoteIcon, color: 'text-neutral-400', title: 'HTTP 402 → pay in USDC', desc: 'If payment is required, Crypto returns an HTTP 402 with the amount and payment instructions. The agent pays in USDC on Base via x402.' },
+            { icon: ZapIcon, color: 'text-neutral-400', title: 'Data flows back', desc: 'Crypto processes the request and returns the blockchain data, drawing from the newly funded balance.' },
           ].map((step, i) => {
             const Icon = step.icon;
             return (
@@ -87,7 +87,7 @@ export default function Post() {
             'Multi-chain: Ethereum, Base, Solana, Bitcoin, Polygon, Arbitrum, Optimism, Lux',
           ].map((item) => (
             <div key={item} className="flex items-center gap-2.5">
-              <CheckIcon className="size-4 text-[#00e5cc] shrink-0" />
+              <CheckIcon className="size-4 text-[#a3a3a3] shrink-0" />
               <span className="text-sm text-fd-muted-foreground">{item}</span>
             </div>
           ))}
@@ -95,7 +95,7 @@ export default function Post() {
 
         <h2 className="text-xl font-semibold text-fd-foreground mt-10 mb-4">Install Now</h2>
         <div className="my-6">
-          <code className="block text-sm text-[#00e5cc] bg-[rgba(0,229,204,0.06)] border border-[rgba(0,229,204,0.15)] rounded-xl px-4 py-3 font-mono">
+          <code className="block text-sm text-[#a3a3a3] bg-[rgba(163,163,163,0.06)] border border-[rgba(163,163,163,0.15)] rounded-xl px-4 py-3 font-mono">
             npx skills add https://github.com/hanzoskill/crypto --yes
           </code>
         </div>
@@ -113,15 +113,15 @@ export default function Post() {
         <h2 className="text-xl font-semibold text-fd-foreground mt-10 mb-4">Get Started</h2>
         <p>
           Read the full docs at{' '}
-          <Link href="/crypto" className="text-[#f7931a] hover:underline">
+          <Link href="/crypto" className="text-neutral-400 hover:underline">
             hanzo.bot/crypto
           </Link>
           , explore the source on{' '}
-          <a href="https://github.com/hanzoskill/crypto" target="_blank" rel="noopener noreferrer" className="text-brand hover:underline">
+          <a href="https://github.com/hanzoskill/crypto" target="_blank" rel="noopener noreferrer" className="text-white hover:underline">
             GitHub
           </a>
           , or{' '}
-          <a href="https://discord.gg/hanzo" target="_blank" rel="noopener noreferrer" className="text-[#5865F2] hover:underline">
+          <a href="https://discord.gg/hanzo" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:underline">
             join the conversation on Discord
           </a>
           .

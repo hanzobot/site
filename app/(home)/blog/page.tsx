@@ -11,20 +11,20 @@ export const metadata: Metadata = {
 
 const posts = [
   {
-    slug: 'introducing-hanzo-bot',
-    title: 'Introducing Hanzo Bot',
-    description: 'Your AI team in a box — one bot, every role, every channel. Deploy autonomous AI agents that run locally or in the cloud.',
-    date: '2026-02-20',
-    tag: 'Announcement',
-    tagColor: 'text-brand border-brand/30 bg-brand/8',
+    slug: 'hanzo-bot-vs-ai-coding-agents',
+    title: 'Hanzo Bot vs Every AI Coding Agent',
+    description: 'Cursor costs $20/mo. Claude Code costs $20/mo. Copilot costs $19/mo. Devin costs $500/mo. Hanzo Bot starts free and does more at $15/mo. Here\'s the full breakdown.',
+    date: '2026-02-26',
+    tag: 'Deep Dive',
+    tagColor: 'text-white border-neutral-500/30 bg-neutral-500/8',
   },
   {
-    slug: 'vertically-integrated-ai-cloud',
-    title: 'The Vertically Integrated AI Cloud',
-    description: 'What every agentic harness actually needs — and why owning the full stack from LLM gateway to compute tiers changes everything.',
-    date: '2026-02-24',
-    tag: 'Architecture',
-    tagColor: 'text-[#a78bfa] border-[#a78bfa]/30 bg-[#a78bfa]/8',
+    slug: 'ai-marketing-agents',
+    title: 'AI Marketing Agents: Automate Your Growth Stack',
+    description: 'Stop paying $50K/yr for marketing tools. Deploy an AI marketing agent that handles content, campaigns, analytics, and engagement across every channel for $15/mo.',
+    date: '2026-02-26',
+    tag: 'Guide',
+    tagColor: 'text-neutral-300 border-neutral-500/30 bg-neutral-500/8',
   },
   {
     slug: 'crypto-skills-agents-go-onchain',
@@ -32,7 +32,23 @@ const posts = [
     description: 'Pay, trade, build apps — no human in the loop. Agents can now use crypto autonomously with USDC on Base via x402.',
     date: '2026-02-26',
     tag: 'Launch',
-    tagColor: 'text-[#f7931a] border-[#f7931a]/30 bg-[#f7931a]/8',
+    tagColor: 'text-neutral-400 border-[#a3a3a3]/30 bg-[#a3a3a3]/8',
+  },
+  {
+    slug: 'vertically-integrated-ai-cloud',
+    title: 'The Vertically Integrated AI Cloud',
+    description: 'What every agentic harness actually needs — and why owning the full stack from LLM gateway to compute tiers changes everything.',
+    date: '2026-02-24',
+    tag: 'Architecture',
+    tagColor: 'text-neutral-400 border-[#a3a3a3]/30 bg-[#a3a3a3]/8',
+  },
+  {
+    slug: 'introducing-hanzo-bot',
+    title: 'Introducing Hanzo Bot',
+    description: 'Your AI team in a box — one bot, every role, every channel. Deploy autonomous AI agents that run locally or in the cloud.',
+    date: '2026-02-20',
+    tag: 'Announcement',
+    tagColor: 'text-white border-neutral-600/30 bg-white/8',
   },
 ];
 
@@ -49,7 +65,7 @@ export default function BlogPage() {
           Blog
         </p>
         <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4">
-          <span className="bg-gradient-to-br from-fd-foreground via-brand to-[#00e5cc] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
+          <span className="bg-gradient-to-br from-fd-foreground via-neutral-400 to-[#a3a3a3] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
             News & Guides
           </span>
         </h1>
@@ -63,7 +79,7 @@ export default function BlogPage() {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group flex flex-col gap-3 p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm no-underline transition-all hover:-translate-y-1 hover:border-brand hover:shadow-[0_12px_40px_rgba(255,77,77,0.12)]"
+            className="group flex flex-col gap-3 p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm no-underline transition-all hover:-translate-y-1 hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(255,255,255,0.12)]"
             style={{ animationDelay: `${0.1 + i * 0.08}s` }}
           >
             <div className="flex items-center gap-3 text-xs">
@@ -75,13 +91,13 @@ export default function BlogPage() {
                 {new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
               </span>
             </div>
-            <h2 className="text-lg font-semibold text-fd-foreground group-hover:text-brand transition-colors">
+            <h2 className="text-lg font-semibold text-fd-foreground group-hover:text-white transition-colors">
               {post.title}
             </h2>
             <p className="text-sm text-fd-muted-foreground leading-relaxed">
               {post.description}
             </p>
-            <span className="flex items-center gap-1.5 text-sm font-medium text-brand mt-1">
+            <span className="flex items-center gap-1.5 text-sm font-medium text-white mt-1">
               Read more <ArrowRightIcon className="size-3.5 transition-transform group-hover:translate-x-1" />
             </span>
           </Link>
