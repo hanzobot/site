@@ -56,8 +56,6 @@ const archCards = [
 export default function PlaygroundPage() {
   return (
     <main className="relative z-[1] max-w-[960px] mx-auto px-6 py-10">
-      <div className="stars" />
-      <div className="nebula" />
 
       {/* Hero */}
       <header className="text-center mb-12 animate-[fadeInUp_0.6s_ease-out]">

@@ -63,8 +63,6 @@ const comparisons = [
 export default function VsIndexPage() {
   return (
     <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
-      <div className="stars" />
-      <div className="nebula" />
 
       <header className="mb-12 animate-[fadeInUp_0.8s_ease-out]">
         <p className="text-sm font-mono text-neutral-400 tracking-widest uppercase mb-4">

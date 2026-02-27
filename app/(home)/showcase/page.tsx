@@ -19,8 +19,6 @@ export const metadata = {
 export default function ShowcasePage() {
   return (
     <main className="relative z-[1] max-w-[1200px] mx-auto px-4 sm:px-6 py-10">
-      <div className="stars" />
-      <div className="nebula" />
 
       <header className="text-center mb-12 animate-[fadeInUp_0.6s_ease-out]">
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">

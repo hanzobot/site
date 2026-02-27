@@ -109,8 +109,6 @@ const releases: Release[] = [
 export default function ChangelogPage() {
   return (
     <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
-      <div className="stars" />
-      <div className="nebula" />
 
       <header className="text-center mb-12 animate-[fadeInUp_0.8s_ease-out]">
         <p className="font-mono text-xs uppercase tracking-wider text-fd-muted-foreground mb-4">

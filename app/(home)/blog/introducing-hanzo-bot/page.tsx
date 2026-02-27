@@ -10,8 +10,6 @@ export const metadata: Metadata = {
 export default function Post() {
   return (
     <main className="relative z-[1] max-w-[720px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
-      <div className="stars" />
-      <div className="nebula" />
 
       <Link
         href="/blog"

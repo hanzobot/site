@@ -34,8 +34,6 @@ export const metadata = {
 export default function MarketingPage() {
   return (
     <main className="relative z-[1] max-w-[1000px] mx-auto px-4 sm:px-6 py-10">
-      <div className="stars" />
-      <div className="nebula" />
 
       {/* Breadcrumb */}
       <nav className="mb-8 animate-[fadeInUp_0.4s_ease-out]">

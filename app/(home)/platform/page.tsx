@@ -128,8 +128,6 @@ const solutions = [
 export default function PlatformPage() {
   return (
     <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
-      <div className="stars" />
-      <div className="nebula" />
 
       {/* Hero */}
       <header className="text-center mb-16 animate-[fadeInUp_0.8s_ease-out]">
