@@ -104,12 +104,12 @@ export function InstallTabs() {
       </h2>
       <div className="rounded-xl border border-fd-border bg-fd-muted/30 overflow-hidden">
         {/* Header */}
-        <div className="flex items-center gap-2 px-4 py-3 bg-[rgba(0,0,0,0.3)] border-b border-fd-border flex-wrap">
-          <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
-          <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
-          <span className="w-3 h-3 rounded-full bg-[#28c840]" />
+        <div className="flex items-center gap-2 px-3 sm:px-4 py-3 bg-[rgba(0,0,0,0.3)] border-b border-fd-border flex-wrap">
+          <span className="w-3 h-3 rounded-full bg-[#ff5f57] hidden sm:block" />
+          <span className="w-3 h-3 rounded-full bg-[#febc2e] hidden sm:block" />
+          <span className="w-3 h-3 rounded-full bg-[#28c840] hidden sm:block" />
 
-          <div className="flex gap-1 bg-[rgba(0,0,0,0.3)] p-0.5 rounded-md ml-2">
+          <div className="flex gap-0.5 sm:gap-1 bg-[rgba(0,0,0,0.3)] p-0.5 rounded-md sm:ml-2">
             {(['oneliner', 'quick', 'hackable', 'macos'] as Mode[]).map((m) => (
               <TabButton key={m} active={mode === m} onClick={() => { setMode(m); setOsPickerOpen(false); }} variant="mode">
                 {m === 'oneliner' ? 'One-liner' : m === 'quick' ? 'npm' : m === 'hackable' ? 'Hackable' : 'macOS'}
@@ -168,11 +168,11 @@ export function InstallTabs() {
         </div>
 
         {/* Content */}
-        <div className="px-5 py-4 font-mono text-sm leading-relaxed">
+        <div className="px-3 sm:px-5 py-4 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto">
           {mode === 'oneliner' && (
             <>
               <div className="text-fd-muted-foreground italic py-1">{comments.oneliner}</div>
-              <div className="flex items-center gap-2 py-1 group/line">
+              <div className="flex items-center gap-2 py-1 group/line min-w-0">
                 <span className="text-white select-none">$</span>
                 <span>{getOnelinerCmd()}</span>
                 <CopyButton text={getOnelinerCmd()} />
@@ -183,13 +183,13 @@ export function InstallTabs() {
           {mode === 'quick' && (
             <>
               <div className="text-fd-muted-foreground italic py-1">{comments.quickInstall}</div>
-              <div className="flex items-center gap-2 py-1 group/line">
+              <div className="flex items-center gap-2 py-1 group/line min-w-0">
                 <span className="text-white select-none">$</span>
                 <span className="text-[#a3a3a3]">{getInstallCmd()}</span>
                 <CopyButton text={getInstallCmd()} />
               </div>
               <div className="text-fd-muted-foreground italic py-1">{comments.quickOnboard}</div>
-              <div className="flex items-center gap-2 py-1 group/line">
+              <div className="flex items-center gap-2 py-1 group/line min-w-0">
                 <span className="text-white select-none">$</span>
                 <span>hanzo-bot onboard</span>
                 <CopyButton text="hanzo-bot onboard" />
@@ -200,7 +200,7 @@ export function InstallTabs() {
           {mode === 'hackable' && hackable === 'installer' && (
             <>
               <div className="text-fd-muted-foreground italic py-1"># For those who read source code for fun</div>
-              <div className="flex items-center gap-2 py-1 group/line">
+              <div className="flex items-center gap-2 py-1 group/line min-w-0">
                 <span className="text-white select-none">$</span>
                 <span>curl -fsSL https://hanzo.bot/install.sh | bash -s -- --install-method git</span>
                 <CopyButton text="curl -fsSL https://hanzo.bot/install.sh | bash -s -- --install-method git" />
@@ -211,18 +211,18 @@ export function InstallTabs() {
           {mode === 'hackable' && hackable === 'pnpm' && (
             <>
               <div className="text-fd-muted-foreground italic py-1"># You clearly know what you&apos;re doing</div>
-              <div className="flex items-center gap-2 py-1 group/line">
+              <div className="flex items-center gap-2 py-1 group/line min-w-0">
                 <span className="text-white select-none">$</span>
                 <span>git clone https://github.com/hanzoai/bot.git</span>
                 <CopyButton text="git clone https://github.com/hanzoai/bot.git" />
               </div>
-              <div className="flex items-center gap-2 py-1 group/line">
+              <div className="flex items-center gap-2 py-1 group/line min-w-0">
                 <span className="text-white select-none">$</span>
                 <span>cd hanzo-bot && pnpm install && pnpm run build</span>
                 <CopyButton text="cd hanzo-bot && pnpm install && pnpm run build" />
               </div>
               <div className="text-fd-muted-foreground italic py-1"># You built it, now meet it</div>
-              <div className="flex items-center gap-2 py-1 group/line">
+              <div className="flex items-center gap-2 py-1 group/line min-w-0">
                 <span className="text-white select-none">$</span>
                 <span>pnpm run hanzo-bot onboard</span>
                 <CopyButton text="pnpm run hanzo-bot onboard" />
