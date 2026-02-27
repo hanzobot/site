@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Hanzo Bot vs Competitors — Compare AI Agent Platforms',
   description:
-    'Compare Hanzo Bot to Cursor, Claude Code, GitHub Copilot, Devin, and exe.dev. See why teams switch to the only AI agent with 100+ models, 7+ chat channels, native crypto, and cloud VMs starting at $5/mo.',
+    'Compare Hanzo Bot to Cursor, Claude Code, GitHub Copilot, Devin, OpenAI Codex, Gemini, and exe.dev. See why teams switch to the only AI agent with 100+ models, 7+ chat channels, native crypto, and cloud VMs starting at $5/mo.',
 };
 
 const comparisons = [
@@ -36,6 +36,20 @@ const comparisons = [
     tagline: 'Expensive black box vs transparent platform',
     theirPrice: '$500/mo (Team)',
     pain: 'Proprietary model, Slack-only, no crypto, opaque pricing with ACU charges.',
+  },
+  {
+    slug: 'openai-codex',
+    name: 'OpenAI Codex',
+    tagline: 'Cloud-only sandbox vs open multi-model platform',
+    theirPrice: '$20/mo (Plus)',
+    pain: 'OpenAI-only, cloud-only, no SSH, no messaging, no crypto, no local option.',
+  },
+  {
+    slug: 'gemini',
+    name: 'Google Gemini',
+    tagline: 'Chat assistant vs autonomous AI agent',
+    theirPrice: '$20/mo (Advanced)',
+    pain: 'Google-only, no VMs, no deployment, no messaging, no crypto, no autonomy.',
   },
   {
     slug: 'exe-dev',
