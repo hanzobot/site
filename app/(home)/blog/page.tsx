@@ -98,6 +98,46 @@ const posts = [
     tag: 'Announcement',
     tagColor: 'text-white border-neutral-600/30 bg-white/8',
   },
+  {
+    slug: 'from-eliza-to-hanzo-bot',
+    title: 'From ElizaOS to Hanzo Bot: Building the AI Workforce Platform',
+    description: 'The full origin story — from ElizaOS experiments to OpenClaw to Hanzo Bot. How two years of open-source AI infrastructure became a unified agent platform.',
+    date: '2026-01-15',
+    tag: 'Origin Story',
+    tagColor: 'text-white border-neutral-600/30 bg-white/8',
+  },
+  {
+    slug: 'agent-sdk-multi-agent-orchestration',
+    title: 'Agent SDK: Multi-Agent Orchestration for Production',
+    description: 'How we built an agent SDK that coordinates multiple AI agents with shared memory, tool delegation, and OpenAI-compatible APIs — powering everything from code review to deployment.',
+    date: '2025-05-20',
+    tag: 'Launch',
+    tagColor: 'text-neutral-400 border-[#a3a3a3]/30 bg-[#a3a3a3]/8',
+  },
+  {
+    slug: 'operative-computer-use-for-claude',
+    title: 'Operative: Computer Use for Claude',
+    description: 'We open-sourced Operative — a computer-use framework that gives Claude eyes and hands. Screen capture, mouse control, keyboard input, and browser automation in one package.',
+    date: '2024-11-01',
+    tag: 'Launch',
+    tagColor: 'text-neutral-400 border-[#a3a3a3]/30 bg-[#a3a3a3]/8',
+  },
+  {
+    slug: 'jin-multimodal-ai-architecture',
+    title: 'Jin: Our Multimodal AI Architecture',
+    description: 'Inside Jin — a unified multimodal architecture that processes text, images, audio, video, and 3D data through a single model. Built on JEPA principles for true cross-modal understanding.',
+    date: '2024-08-15',
+    tag: 'Research',
+    tagColor: 'text-neutral-400 border-[#a3a3a3]/30 bg-[#a3a3a3]/8',
+  },
+  {
+    slug: 'llm-gateway-100-models-one-api',
+    title: 'LLM Gateway: 100+ Models, One API',
+    description: 'Why we built a unified LLM gateway that routes to 100+ models from every major provider. One API key, automatic fallback, cost tracking, and rate limiting built in.',
+    date: '2024-03-10',
+    tag: 'Architecture',
+    tagColor: 'text-neutral-400 border-[#a3a3a3]/30 bg-[#a3a3a3]/8',
+  },
 ];
 
 /* ---- Page ---- */
