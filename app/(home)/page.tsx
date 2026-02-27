@@ -93,7 +93,7 @@ const pricingTiers = [
 
 export default function Page() {
   return (
-    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
+    <main className="relative z-[1] max-w-[860px] w-full mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
       <div className="stars" />
       <div className="nebula" />
 

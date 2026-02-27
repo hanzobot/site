@@ -256,8 +256,8 @@
     "maxSizeGB": 16384
   },
   "summary": {
-    "updated": "2026-02-27T03:21:14.323Z",
-    "zenModels": 32,
+    "updated": "2026-02-27T08:01:25.418Z",
+    "zenModels": 40,
     "thirdPartyModels": 344,
     "freeModels": 29,
     "featuredModels": 12,
@@ -553,9 +553,9 @@
         "paid": 1
       }
     },
-    "totalModels": 376,
+    "totalModels": 384,
     "cloudPlans": 11,
     "cloudRegions": 4
   },
-  "fetchedAt": "2026-02-27T03:48:19.530Z"
+  "fetchedAt": "2026-02-27T08:13:00.824Z"
 }

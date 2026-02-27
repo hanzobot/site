@@ -316,7 +316,7 @@ function CellValue({ value }: { value: boolean | string }) {
 
 export default function ComparisonPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Hero */}
       <section className="relative py-12 sm:py-24 px-4 sm:px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/20 via-transparent to-transparent" />
@@ -346,7 +346,7 @@ export default function ComparisonPage() {
               <h2 className="text-2xl font-bold mb-6 text-neutral-200">
                 {section.category}
               </h2>
-              <div className="overflow-x-auto -mx-2 px-0 sm:mx-0">
+              <div className="overflow-x-auto">
                 <table className="w-full border-collapse min-w-[700px]">
                   <thead>
                     <tr className="border-b border-neutral-800">

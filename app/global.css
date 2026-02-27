@@ -80,6 +80,13 @@
 
 html {
   scrollbar-gutter: stable;
+  overflow-x: hidden;
+}
+
+/* Prevent home layout from causing horizontal overflow */
+#nd-home-layout {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 html:has(body[data-scroll-locked]) {

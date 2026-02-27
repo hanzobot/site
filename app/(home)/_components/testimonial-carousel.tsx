@@ -22,8 +22,8 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
   const duration2 = (bottomRow.length * pixelsPerItem) / pixelsPerSecond;
 
   return (
-    <section className="mb-14 overflow-hidden -mx-4 px-4 sm:-mx-6 sm:px-6">
-      <div className="flex items-center justify-between mb-5 px-4 sm:px-6">
+    <section className="mb-14 overflow-hidden">
+      <div className="flex items-center justify-between mb-5">
         <h2 className="text-xl font-semibold flex items-center gap-2.5">
           <span className="text-white font-bold">&#x27E9;</span> What People Say
         </h2>
