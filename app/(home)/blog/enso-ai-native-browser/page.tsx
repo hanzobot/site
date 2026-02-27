@@ -3,13 +3,13 @@ import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Enso: The AI-Native Browser',
+  title: 'Enso: From Diffusion LLM to AI-Native Browser',
   description:
-    'Enso is not a browser with AI bolted on — it is an AI-native browser with multimodal diffusion intelligence built into the rendering engine. Browsing becomes understanding.',
+    'Enso started as a dLLM — a diffusion language model for text generation. It evolved into an AI-native browser with multimodal diffusion intelligence built into the rendering engine.',
   openGraph: {
-    title: 'Enso: The AI-Native Browser',
+    title: 'Enso: From Diffusion LLM to AI-Native Browser',
     description:
-      'AI in the browser core, not an extension. Multimodal diffusion intelligence for visual understanding. The browser that sees the web like humans do.',
+      'From text diffusion model to AI browser. Enso uses diffusion intelligence for visual understanding — the browser that sees the web like humans do.',
   },
 };
 
@@ -37,16 +37,43 @@ export default function EnsoPage() {
           </span>
         </div>
         <h1 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-fd-foreground">
-          Enso: The AI-Native Browser
+          Enso: From Diffusion LLM to AI-Native Browser
         </h1>
         <p className="text-lg text-fd-muted-foreground leading-relaxed">
-          Every AI browser today is the same thing: a regular browser with an LLM sidebar.
-          Enso takes a different approach — multimodal diffusion intelligence built into the
-          browser core. It doesn&apos;t just parse the DOM. It sees the page.
+          Enso started as a dLLM — a diffusion language model that generates text through
+          iterative denoising instead of autoregressive token prediction. It evolved into
+          something bigger: an AI-native browser with diffusion intelligence built into the
+          rendering engine. It doesn&apos;t just parse the DOM. It sees the page.
         </p>
       </header>
 
       <article className="prose prose-invert max-w-none animate-[fadeInUp_0.8s_ease-out_0.15s_both]">
+        <section className="mb-10">
+          <h2 className="text-2xl font-bold text-fd-foreground mb-4">The diffusion language model</h2>
+          <div className="p-6 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.4)]">
+            <p className="text-sm text-fd-muted-foreground leading-relaxed mb-4">
+              Before it was a browser, Enso was a text diffusion model. Traditional LLMs
+              generate text one token at a time, left to right. Diffusion LLMs work differently —
+              they start with noise and iteratively refine the entire output simultaneously,
+              like a diffusion image model but for text.
+            </p>
+            <p className="text-sm text-fd-muted-foreground leading-relaxed mb-4">
+              This approach has advantages for certain tasks: parallel generation (faster for
+              long outputs), natural support for infilling (editing the middle of text without
+              rewriting everything), and better global coherence (the model considers the
+              full output at every step, not just what came before).
+            </p>
+            <p className="text-sm text-fd-muted-foreground leading-relaxed">
+              The dLLM research fed directly into{' '}
+              <a href="https://github.com/hanzoai/sho" className="text-white hover:text-neutral-300 transition-colors" target="_blank" rel="noopener noreferrer">
+                Sho
+              </a>
+              {' '}(our high-performance text diffusion engine) and informed how we think about
+              AI understanding of visual content — which led to the browser.
+            </p>
+          </div>
+        </section>
+
         <section className="mb-10">
           <h2 className="text-2xl font-bold text-fd-foreground mb-4">Beyond browser extensions</h2>
           <div className="p-6 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.4)]">

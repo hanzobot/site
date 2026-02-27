@@ -132,8 +132,8 @@ const posts = [
   },
   {
     slug: 'enso-ai-native-browser',
-    title: 'Enso: The AI-Native Browser',
-    description: 'Not a browser with AI bolted on. An AI-native browser with multimodal diffusion intelligence built into the rendering engine. Browsing becomes understanding.',
+    title: 'Enso: From Diffusion LLM to AI-Native Browser',
+    description: 'Enso started as a dLLM — a diffusion language model for text generation. It evolved into an AI-native browser with diffusion intelligence built into the rendering engine.',
     date: '2024-04-01',
     tag: 'Research',
     tagColor: 'text-neutral-400 border-[#a3a3a3]/30 bg-[#a3a3a3]/8',
