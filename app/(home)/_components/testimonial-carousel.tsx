@@ -22,8 +22,8 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
   const duration2 = (bottomRow.length * pixelsPerItem) / pixelsPerSecond;
 
   return (
-    <section className="mb-14 overflow-hidden -mx-6 px-6">
-      <div className="flex items-center justify-between mb-5 px-6">
+    <section className="mb-14 overflow-hidden -mx-4 px-4 sm:-mx-6 sm:px-6">
+      <div className="flex items-center justify-between mb-5 px-4 sm:px-6">
         <h2 className="text-xl font-semibold flex items-center gap-2.5">
           <span className="text-white font-bold">&#x27E9;</span> What People Say
         </h2>
@@ -32,7 +32,7 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
         </a>
       </div>
       <div
-        className="flex flex-col gap-2 -mx-6 overflow-hidden"
+        className="flex flex-col gap-2 overflow-hidden"
         style={{
           maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
@@ -48,7 +48,7 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
               href={t.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 p-4 min-w-[320px] max-w-[400px] rounded-xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm no-underline text-fd-foreground transition-all duration-250 hover:border-neutral-600 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.15)] shrink-0"
+              className="flex items-start gap-3 p-4 min-w-[280px] max-w-[360px] sm:min-w-[320px] sm:max-w-[400px] rounded-xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm no-underline text-fd-foreground transition-all duration-250 hover:border-neutral-600 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.15)] shrink-0"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -76,7 +76,7 @@ export function TestimonialCarousel({ testimonials }: { testimonials: Testimonia
               href={t.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-3 p-4 min-w-[320px] max-w-[400px] rounded-xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm no-underline text-fd-foreground transition-all duration-250 hover:border-neutral-600 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.15)] shrink-0"
+              className="flex items-start gap-3 p-4 min-w-[280px] max-w-[360px] sm:min-w-[320px] sm:max-w-[400px] rounded-xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm no-underline text-fd-foreground transition-all duration-250 hover:border-neutral-600 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.15)] shrink-0"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img

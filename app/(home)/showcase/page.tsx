@@ -18,7 +18,7 @@ export const metadata = {
 
 export default function ShowcasePage() {
   return (
-    <main className="relative z-[1] max-w-[1200px] mx-auto px-6 py-10">
+    <main className="relative z-[1] max-w-[1200px] mx-auto px-4 sm:px-6 py-10">
       <div className="stars" />
       <div className="nebula" />
 
@@ -26,10 +26,10 @@ export default function ShowcasePage() {
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           <span className="text-white">&#x27E9;</span> What People Are Building
         </h1>
-        <p className="text-fd-muted-foreground text-lg">Real projects, real automation, real magic.</p>
+        <p className="text-fd-muted-foreground text-base sm:text-lg">Real projects, real automation, real magic.</p>
       </header>
 
-      <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(340px,1fr))] gap-5 mb-14">
+      <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-5 mb-14">
         {showcaseData.map((item) => (
           <a
             key={item.id}
@@ -56,7 +56,7 @@ export default function ShowcasePage() {
             </div>
             <p className="text-sm leading-relaxed text-fd-muted-foreground whitespace-pre-line">{item.quote}</p>
             {item.images && item.images.length > 0 && (
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-2 mt-3">
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-2 mt-3">
                 {item.images.map((img: string, idx: number) => (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -76,8 +76,8 @@ export default function ShowcasePage() {
         ))}
       </div>
 
-      <section className="text-center p-12 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm mb-12">
-        <h2 className="text-2xl font-semibold mb-2">Built something cool?</h2>
+      <section className="text-center p-6 sm:p-12 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.7)] backdrop-blur-sm mb-12">
+        <h2 className="text-xl sm:text-2xl font-semibold mb-2">Built something cool?</h2>
         <p className="text-fd-muted-foreground mb-6">Share your Hanzo Bot creation with the community</p>
         <div className="flex gap-4 justify-center flex-wrap">
           <a

@@ -32,7 +32,7 @@ export const metadata = {
 
 export default function SalesPage() {
   return (
-    <main className="relative z-[1] max-w-[1000px] mx-auto px-6 py-10">
+    <main className="relative z-[1] max-w-[1000px] mx-auto px-4 sm:px-6 py-10">
       <div className="stars" />
       <div className="nebula" />
 
@@ -54,7 +54,7 @@ export default function SalesPage() {
             Sales
           </h1>
         </div>
-        <p className="text-lg text-fd-muted-foreground max-w-[650px] leading-relaxed">
+        <p className="text-base sm:text-lg text-fd-muted-foreground max-w-[650px] leading-relaxed">
           AI sales reps that qualify leads, manage your CRM, run outbound sequences, and keep your pipeline
           moving. Never miss a follow-up again.
         </p>

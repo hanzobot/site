@@ -55,7 +55,7 @@ export const metadata = {
 
 export default function SolutionsPage() {
   return (
-    <main className="relative z-[1] max-w-[1000px] mx-auto px-6 py-10">
+    <main className="relative z-[1] max-w-[1000px] mx-auto px-4 sm:px-6 py-10">
       <div className="stars" />
       <div className="nebula" />
 
@@ -63,9 +63,9 @@ export default function SolutionsPage() {
         <h1 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-br from-fd-foreground via-neutral-400 to-[#a3a3a3] bg-[length:200%_200%] bg-clip-text text-transparent">
           Solutions
         </h1>
-        <p className="text-lg text-fd-muted-foreground max-w-[600px] mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg text-fd-muted-foreground max-w-[600px] mx-auto leading-relaxed">
           AI agents purpose-built for every department.
-          <br />
+          <br className="hidden sm:block" />
           Deploy in minutes. Results from day one.
         </p>
       </header>
@@ -125,7 +125,7 @@ export default function SolutionsPage() {
       </section>
 
       {/* CTA */}
-      <section className="text-center p-12 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm mb-10">
+      <section className="text-center p-6 sm:p-12 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm mb-10">
         <h2 className="text-2xl font-semibold mb-2">Ready to deploy your AI team?</h2>
         <p className="text-fd-muted-foreground mb-6 max-w-[500px] mx-auto">
           Start with one solution or deploy them all. Free locally, $5/mo in the cloud.

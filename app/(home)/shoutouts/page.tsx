@@ -6,7 +6,7 @@ export const metadata = {
 
 export default function ShoutoutsPage() {
   return (
-    <main className="relative z-[1] max-w-[1200px] mx-auto px-6 py-10">
+    <main className="relative z-[1] max-w-[1200px] mx-auto px-4 sm:px-6 py-10">
       <div className="stars" />
       <div className="nebula" />
 
@@ -14,10 +14,10 @@ export default function ShoutoutsPage() {
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           <span className="text-white">&#x27E9;</span> Shoutouts
         </h1>
-        <p className="text-fd-muted-foreground text-lg">What the community is saying about Hanzo Bot</p>
+        <p className="text-fd-muted-foreground text-base sm:text-lg">What the community is saying about Hanzo Bot</p>
       </header>
 
-      <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-5 animate-[fadeInUp_0.6s_ease-out_0.15s_both]">
+      <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-5 animate-[fadeInUp_0.6s_ease-out_0.15s_both]">
         {allTestimonials.map((t, i) => (
           <a
             key={i}

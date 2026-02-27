@@ -39,7 +39,7 @@ export default function SkillsPage() {
   }, [skills, query]);
 
   return (
-    <main className="relative z-[1] max-w-[1200px] mx-auto px-6 py-10">
+    <main className="relative z-[1] max-w-[1200px] mx-auto px-4 sm:px-6 py-10">
       <div className="stars" />
       <div className="nebula" />
 
@@ -47,7 +47,7 @@ export default function SkillsPage() {
         <h1 className="text-3xl sm:text-4xl font-bold mb-3">
           <span className="text-white">&#x27E9;</span> Skills Hub
         </h1>
-        <p className="text-fd-muted-foreground text-lg mb-6">
+        <p className="text-fd-muted-foreground text-base sm:text-lg mb-6">
           {skills.length} skills from {totalAuthors} contributors — install with one command
         </p>
         <div className="relative max-w-[480px] mx-auto">
@@ -70,7 +70,7 @@ export default function SkillsPage() {
         <span className="text-[#a3a3a3] font-medium">Open source</span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-4 mb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4 mb-12">
         {filtered.map((skill) => (
           <div
             key={`${skill.author}/${skill.slug}`}

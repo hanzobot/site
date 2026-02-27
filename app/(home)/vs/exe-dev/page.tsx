@@ -41,7 +41,7 @@ function CellValue({ value }: { value: boolean | string }) {
 
 export default function VsExeDevPage() {
   return (
-    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-10 overflow-hidden">
+    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
       <div className="stars" />
       <div className="nebula" />
 
@@ -59,7 +59,7 @@ export default function VsExeDevPage() {
         <h1 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-fd-foreground">
           Hanzo Bot vs exe.dev
         </h1>
-        <p className="text-lg text-fd-muted-foreground leading-relaxed">
+        <p className="text-base sm:text-lg text-fd-muted-foreground leading-relaxed">
           exe.dev gives you sandbox VMs with an AI agent for $20/mo. Hanzo Bot gives you
           production infrastructure with 100+ models, 7+ chat channels, native crypto,
           260+ MCP tools, and cloud VMs — starting at $5/mo.
@@ -130,7 +130,7 @@ export default function VsExeDevPage() {
 
       <section className="mb-16 animate-[fadeInUp_0.8s_ease-out_0.35s_both]">
         <div className="rounded-2xl border border-neutral-700 bg-[rgba(10,15,26,0.6)] backdrop-blur-sm p-8 text-center">
-          <h2 className="text-2xl font-bold text-fd-foreground mb-3">
+          <h2 className="text-xl sm:text-2xl font-bold text-fd-foreground mb-3">
             75% less. Production-grade. Open source.
           </h2>
           <p className="text-fd-muted-foreground max-w-[540px] mx-auto mb-2">

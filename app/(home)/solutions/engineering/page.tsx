@@ -34,7 +34,7 @@ export const metadata = {
 
 export default function EngineeringPage() {
   return (
-    <main className="relative z-[1] max-w-[1000px] mx-auto px-6 py-10">
+    <main className="relative z-[1] max-w-[1000px] mx-auto px-4 sm:px-6 py-10">
       <div className="stars" />
       <div className="nebula" />
 
@@ -56,7 +56,7 @@ export default function EngineeringPage() {
             Engineering
           </h1>
         </div>
-        <p className="text-lg text-fd-muted-foreground max-w-[650px] leading-relaxed">
+        <p className="text-base sm:text-lg text-fd-muted-foreground max-w-[650px] leading-relaxed">
           AI engineers that review code, monitor CI/CD, respond to incidents, and keep your documentation
           up to date. Your team ships faster with less toil.
         </p>

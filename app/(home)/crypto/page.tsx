@@ -120,7 +120,7 @@ const compatible = [
 
 export default function CryptoPage() {
   return (
-    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-10 overflow-hidden">
+    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
       <div className="stars" />
       <div className="nebula" />
 
@@ -130,7 +130,7 @@ export default function CryptoPage() {
           Crypto Skills
         </p>
 
-        <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
           <span className="bg-gradient-to-br from-fd-foreground via-neutral-300 to-neutral-500 bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
             Crypto for Agents
           </span>
@@ -261,7 +261,7 @@ export default function CryptoPage() {
         </div>
 
         {/* Payment badges */}
-        <div className="flex gap-3 mt-4 justify-center">
+        <div className="flex flex-wrap gap-2 sm:gap-3 mt-4 justify-center">
           <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[rgba(163,163,163,0.3)] bg-[rgba(163,163,163,0.08)]">
             <CoinsIcon className="size-4 text-neutral-400" />
             <span className="text-sm font-medium text-neutral-400">USDC on Base</span>
@@ -378,9 +378,9 @@ export default function CryptoPage() {
 
       {/* Compatibility */}
       <section className="mb-16 animate-[fadeInUp_0.8s_ease-out_0.5s_both]">
-        <div className="flex flex-col items-center gap-5 p-8 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm text-center">
+        <div className="flex flex-col items-center gap-5 p-6 sm:p-8 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm text-center">
           <PlugIcon className="size-8 text-[#a3a3a3]" />
-          <h2 className="text-2xl font-bold text-fd-foreground">
+          <h2 className="text-xl sm:text-2xl font-bold text-fd-foreground">
             Works Everywhere
           </h2>
           <p className="text-fd-muted-foreground max-w-[500px]">

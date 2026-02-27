@@ -62,7 +62,7 @@ const comparisons = [
 
 export default function VsIndexPage() {
   return (
-    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-10 overflow-hidden">
+    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
       <div className="stars" />
       <div className="nebula" />
 
@@ -70,10 +70,10 @@ export default function VsIndexPage() {
         <p className="text-sm font-mono text-neutral-400 tracking-widest uppercase mb-4">
           Comparisons
         </p>
-        <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-fd-foreground">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-fd-foreground">
           Hanzo Bot vs the field
         </h1>
-        <p className="text-lg text-fd-muted-foreground leading-relaxed max-w-[640px]">
+        <p className="text-base sm:text-lg text-fd-muted-foreground leading-relaxed max-w-[640px]">
           Every AI coding tool does autocomplete. Hanzo Bot does autocomplete,
           deployment, monitoring, marketing, support, crypto, and ops — starting
           at $5/mo. See how we compare.

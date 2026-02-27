@@ -160,7 +160,7 @@ const posts = [
 
 export default function BlogPage() {
   return (
-    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-10 overflow-hidden">
+    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
       <div className="stars" />
       <div className="nebula" />
 
@@ -168,7 +168,7 @@ export default function BlogPage() {
         <p className="font-mono text-xs uppercase tracking-wider text-fd-muted-foreground mb-4">
           Blog
         </p>
-        <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
           <span className="bg-gradient-to-br from-fd-foreground via-neutral-400 to-[#a3a3a3] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
             News & Guides
           </span>

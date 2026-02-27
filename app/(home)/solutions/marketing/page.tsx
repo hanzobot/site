@@ -33,7 +33,7 @@ export const metadata = {
 
 export default function MarketingPage() {
   return (
-    <main className="relative z-[1] max-w-[1000px] mx-auto px-6 py-10">
+    <main className="relative z-[1] max-w-[1000px] mx-auto px-4 sm:px-6 py-10">
       <div className="stars" />
       <div className="nebula" />
 
@@ -55,7 +55,7 @@ export default function MarketingPage() {
             Marketing
           </h1>
         </div>
-        <p className="text-lg text-fd-muted-foreground max-w-[650px] leading-relaxed">
+        <p className="text-base sm:text-lg text-fd-muted-foreground max-w-[650px] leading-relaxed">
           AI marketers that create content, manage social media, analyze campaigns, and optimize spend.
           Your marketing engine runs 24/7 without burning out.
         </p>

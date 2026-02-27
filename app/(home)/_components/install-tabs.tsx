@@ -173,8 +173,8 @@ export function InstallTabs() {
             <>
               <div className="text-fd-muted-foreground italic py-1">{comments.oneliner}</div>
               <div className="flex items-center gap-2 py-1 group/line min-w-0">
-                <span className="text-white select-none">$</span>
-                <span>{getOnelinerCmd()}</span>
+                <span className="text-white select-none shrink-0">$</span>
+                <span className="break-all min-w-0">{getOnelinerCmd()}</span>
                 <CopyButton text={getOnelinerCmd()} />
               </div>
             </>
@@ -184,14 +184,14 @@ export function InstallTabs() {
             <>
               <div className="text-fd-muted-foreground italic py-1">{comments.quickInstall}</div>
               <div className="flex items-center gap-2 py-1 group/line min-w-0">
-                <span className="text-white select-none">$</span>
-                <span className="text-[#a3a3a3]">{getInstallCmd()}</span>
+                <span className="text-white select-none shrink-0">$</span>
+                <span className="text-[#a3a3a3] break-all min-w-0">{getInstallCmd()}</span>
                 <CopyButton text={getInstallCmd()} />
               </div>
               <div className="text-fd-muted-foreground italic py-1">{comments.quickOnboard}</div>
               <div className="flex items-center gap-2 py-1 group/line min-w-0">
-                <span className="text-white select-none">$</span>
-                <span>hanzo-bot onboard</span>
+                <span className="text-white select-none shrink-0">$</span>
+                <span className="break-all min-w-0">hanzo-bot onboard</span>
                 <CopyButton text="hanzo-bot onboard" />
               </div>
             </>
@@ -201,8 +201,8 @@ export function InstallTabs() {
             <>
               <div className="text-fd-muted-foreground italic py-1"># For those who read source code for fun</div>
               <div className="flex items-center gap-2 py-1 group/line min-w-0">
-                <span className="text-white select-none">$</span>
-                <span>curl -fsSL https://hanzo.bot/install.sh | bash -s -- --install-method git</span>
+                <span className="text-white select-none shrink-0">$</span>
+                <span className="break-all min-w-0">curl -fsSL https://hanzo.bot/install.sh | bash -s -- --install-method git</span>
                 <CopyButton text="curl -fsSL https://hanzo.bot/install.sh | bash -s -- --install-method git" />
               </div>
             </>
@@ -212,19 +212,19 @@ export function InstallTabs() {
             <>
               <div className="text-fd-muted-foreground italic py-1"># You clearly know what you&apos;re doing</div>
               <div className="flex items-center gap-2 py-1 group/line min-w-0">
-                <span className="text-white select-none">$</span>
-                <span>git clone https://github.com/hanzoai/bot.git</span>
+                <span className="text-white select-none shrink-0">$</span>
+                <span className="break-all min-w-0">git clone https://github.com/hanzoai/bot.git</span>
                 <CopyButton text="git clone https://github.com/hanzoai/bot.git" />
               </div>
               <div className="flex items-center gap-2 py-1 group/line min-w-0">
-                <span className="text-white select-none">$</span>
-                <span>cd hanzo-bot && pnpm install && pnpm run build</span>
+                <span className="text-white select-none shrink-0">$</span>
+                <span className="break-all min-w-0">cd hanzo-bot && pnpm install && pnpm run build</span>
                 <CopyButton text="cd hanzo-bot && pnpm install && pnpm run build" />
               </div>
               <div className="text-fd-muted-foreground italic py-1"># You built it, now meet it</div>
               <div className="flex items-center gap-2 py-1 group/line min-w-0">
-                <span className="text-white select-none">$</span>
-                <span>pnpm run hanzo-bot onboard</span>
+                <span className="text-white select-none shrink-0">$</span>
+                <span className="break-all min-w-0">pnpm run hanzo-bot onboard</span>
                 <CopyButton text="pnpm run hanzo-bot onboard" />
               </div>
             </>

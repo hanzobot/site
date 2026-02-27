@@ -40,7 +40,7 @@ function CellValue({ value }: { value: boolean | string }) {
 
 export default function VsClaudeCodePage() {
   return (
-    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-10 overflow-hidden">
+    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
       <div className="stars" />
       <div className="nebula" />
 
@@ -59,7 +59,7 @@ export default function VsClaudeCodePage() {
         <h1 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-fd-foreground">
           Hanzo Bot vs Claude Code
         </h1>
-        <p className="text-lg text-fd-muted-foreground leading-relaxed">
+        <p className="text-base sm:text-lg text-fd-muted-foreground leading-relaxed">
           Claude Code is a terminal tool locked to a single model provider.
           Hanzo Bot is a full-stack AI agent platform with 100+ models, 7+ chat channels,
           native crypto, cloud VMs, and 260+ MCP tools. Claude Code requires a $20/mo Max plan.
@@ -134,7 +134,7 @@ export default function VsClaudeCodePage() {
       {/* Price Callout */}
       <section className="mb-16 animate-[fadeInUp_0.8s_ease-out_0.35s_both]">
         <div className="rounded-2xl border border-neutral-700 bg-[rgba(10,15,26,0.6)] backdrop-blur-sm p-8 text-center">
-          <h2 className="text-2xl font-bold text-fd-foreground mb-3">
+          <h2 className="text-xl sm:text-2xl font-bold text-fd-foreground mb-3">
             75% less. Every model. Every channel.
           </h2>
           <p className="text-fd-muted-foreground max-w-[540px] mx-auto mb-2">

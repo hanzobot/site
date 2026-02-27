@@ -112,18 +112,18 @@ const plans = [
 
 export default function GetStartedPage() {
   return (
-    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-10 overflow-hidden">
+    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
       <div className="stars" />
       <div className="nebula" />
 
       {/* Header */}
       <header className="text-center mb-12 animate-[fadeInUp_0.8s_ease-out]">
-        <h1 className="text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
           <span className="bg-gradient-to-br from-fd-foreground via-neutral-400 to-[#a3a3a3] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
             Get Started
           </span>
         </h1>
-        <p className="text-lg text-fd-muted-foreground max-w-[600px] mx-auto">
+        <p className="text-base sm:text-lg text-fd-muted-foreground max-w-[600px] mx-auto">
           Choose your path. Run free on your own machine, or deploy to Hanzo Cloud in under a minute.
         </p>
       </header>
@@ -135,7 +135,7 @@ export default function GetStartedPage() {
           <h2 className="text-2xl font-bold text-fd-foreground">Choose Your Plan</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {plans.map((plan) => {
             const Icon = plan.icon;
             return (
@@ -200,7 +200,7 @@ export default function GetStartedPage() {
           <h2 className="text-2xl font-bold text-fd-foreground">Set Up in Minutes</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {plans.map((plan) => (
             <div
               key={plan.id}

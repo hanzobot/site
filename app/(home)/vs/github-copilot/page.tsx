@@ -40,7 +40,7 @@ function CellValue({ value }: { value: boolean | string }) {
 
 export default function VsGitHubCopilotPage() {
   return (
-    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-10 overflow-hidden">
+    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
       <div className="stars" />
       <div className="nebula" />
 
@@ -58,7 +58,7 @@ export default function VsGitHubCopilotPage() {
         <h1 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-fd-foreground">
           Hanzo Bot vs GitHub Copilot
         </h1>
-        <p className="text-lg text-fd-muted-foreground leading-relaxed">
+        <p className="text-base sm:text-lg text-fd-muted-foreground leading-relaxed">
           GitHub Copilot is code autocomplete in your IDE. Hanzo Bot is a full-stack AI agent
           that writes code, deploys infrastructure, manages support channels, runs marketing,
           handles crypto, and operates 24/7 in cloud VMs. Copilot starts at $10/mo.
@@ -130,7 +130,7 @@ export default function VsGitHubCopilotPage() {
 
       <section className="mb-16 animate-[fadeInUp_0.8s_ease-out_0.35s_both]">
         <div className="rounded-2xl border border-neutral-700 bg-[rgba(10,15,26,0.6)] backdrop-blur-sm p-8 text-center">
-          <h2 className="text-2xl font-bold text-fd-foreground mb-3">
+          <h2 className="text-xl sm:text-2xl font-bold text-fd-foreground mb-3">
             Half the price. 100x more capability.
           </h2>
           <p className="text-fd-muted-foreground max-w-[540px] mx-auto mb-2">

@@ -335,4 +335,19 @@ body {
   .ninja-role {
     font-size: 0.7rem;
   }
+
+  /* Prevent horizontal overflow on mobile */
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* Tables: ensure horizontal scroll with visual hint */
+  table {
+    font-size: 0.8125rem;
+  }
+
+  /* Ensure code blocks don't overflow on mobile */
+  pre, code {
+    word-break: break-all;
+  }
 }

@@ -318,19 +318,19 @@ export default function ComparisonPage() {
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Hero */}
-      <section className="relative py-24 px-6 overflow-hidden">
+      <section className="relative py-12 sm:py-24 px-4 sm:px-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/20 via-transparent to-transparent" />
         <div className="relative max-w-7xl mx-auto text-center">
           <p className="text-sm font-mono text-neutral-400 tracking-widest uppercase mb-4">
             Comparison
           </p>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6">
             Hanzo Bot vs{' '}
             <span className="bg-gradient-to-r from-neutral-200 to-white bg-clip-text text-transparent">
               the field
             </span>
           </h1>
-          <p className="text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed">
             How does Hanzo Bot compare to OpenClaw, Claude Code, Cursor, Codex, and exe.dev?
             We built the AI agent platform we wanted to use — with native crypto,
             multiplayer collaboration, and production-grade infrastructure.
@@ -339,35 +339,35 @@ export default function ComparisonPage() {
       </section>
 
       {/* Comparison Table */}
-      <section className="px-6 pb-12">
+      <section className="px-4 sm:px-6 pb-12">
         <div className="max-w-7xl mx-auto">
           {features.map((section) => (
             <div key={section.category} className="mb-12">
               <h2 className="text-2xl font-bold mb-6 text-neutral-200">
                 {section.category}
               </h2>
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
+              <div className="overflow-x-auto -mx-2 px-0 sm:mx-0">
+                <table className="w-full border-collapse min-w-[700px]">
                   <thead>
                     <tr className="border-b border-neutral-800">
-                      <th className="text-left py-3 px-4 text-sm text-neutral-500 font-medium w-1/6">
+                      <th className="text-left py-3 px-3 sm:px-4 text-sm text-neutral-500 font-medium w-1/6">
                         Feature
                       </th>
-                      <th className="text-left py-3 px-4 text-sm font-medium w-1/6">
+                      <th className="text-left py-3 px-3 sm:px-4 text-sm font-medium w-1/6">
                         <span className="bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent font-bold">
                           Hanzo Bot
                         </span>
                       </th>
-                      <th className="text-left py-3 px-4 text-sm text-neutral-400 font-medium w-1/6">
+                      <th className="text-left py-3 px-3 sm:px-4 text-sm text-neutral-400 font-medium w-1/6">
                         OpenClaw
                       </th>
-                      <th className="text-left py-3 px-4 text-sm text-neutral-400 font-medium w-1/6">
+                      <th className="text-left py-3 px-3 sm:px-4 text-sm text-neutral-400 font-medium w-1/6">
                         Claude Code
                       </th>
-                      <th className="text-left py-3 px-4 text-sm text-neutral-400 font-medium w-1/6">
+                      <th className="text-left py-3 px-3 sm:px-4 text-sm text-neutral-400 font-medium w-1/6">
                         Cursor
                       </th>
-                      <th className="text-left py-3 px-4 text-sm text-neutral-400 font-medium w-1/6">
+                      <th className="text-left py-3 px-3 sm:px-4 text-sm text-neutral-400 font-medium w-1/6">
                         exe.dev
                       </th>
                     </tr>
@@ -380,22 +380,22 @@ export default function ComparisonPage() {
                           i % 2 === 0 ? 'bg-neutral-950/50' : ''
                         }`}
                       >
-                        <td className="py-3 px-4 text-sm text-neutral-400">
+                        <td className="py-3 px-3 sm:px-4 text-sm text-neutral-400">
                           {item.name}
                         </td>
-                        <td className="py-3 px-4 text-sm">
+                        <td className="py-3 px-3 sm:px-4 text-sm">
                           <CellValue value={item.hanzo} />
                         </td>
-                        <td className="py-3 px-4 text-sm">
+                        <td className="py-3 px-3 sm:px-4 text-sm">
                           <CellValue value={item.openclaw} />
                         </td>
-                        <td className="py-3 px-4 text-sm">
+                        <td className="py-3 px-3 sm:px-4 text-sm">
                           <CellValue value={item.claudeCode} />
                         </td>
-                        <td className="py-3 px-4 text-sm">
+                        <td className="py-3 px-3 sm:px-4 text-sm">
                           <CellValue value={item.cursor} />
                         </td>
-                        <td className="py-3 px-4 text-sm">
+                        <td className="py-3 px-3 sm:px-4 text-sm">
                           <CellValue value={item.exe} />
                         </td>
                       </tr>
@@ -409,12 +409,12 @@ export default function ComparisonPage() {
       </section>
 
       {/* Key Differentiators */}
-      <section className="px-6 py-20 border-t border-neutral-800">
+      <section className="px-4 sm:px-6 py-12 sm:py-20 border-t border-neutral-800">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">
             Why teams choose Hanzo Bot
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
                 title: 'Production infrastructure',
@@ -461,12 +461,12 @@ export default function ComparisonPage() {
       </section>
 
       {/* Pricing CTA */}
-      <section className="px-6 py-20 border-t border-neutral-800">
+      <section className="px-4 sm:px-6 py-12 sm:py-20 border-t border-neutral-800">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
             Better infrastructure. Better price.
           </h2>
-          <p className="text-neutral-400 text-lg mb-8 leading-relaxed">
+          <p className="text-neutral-400 text-base sm:text-lg mb-8 leading-relaxed">
             Hanzo Bot Dev at $15/mo gives you 2 vCPU, 8 GB RAM, 25 GB SSD, 3 TB transfer,
             100+ AI models, and all chat integrations. exe.dev starts at $20/mo for a sandbox VM.
           </p>
@@ -490,12 +490,12 @@ export default function ComparisonPage() {
       </section>
 
       {/* Migration CTA */}
-      <section className="px-6 py-20 border-t border-neutral-800">
+      <section className="px-4 sm:px-6 py-12 sm:py-20 border-t border-neutral-800">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
             Coming from OpenClaw?
           </h2>
-          <p className="text-neutral-400 text-lg mb-8 leading-relaxed">
+          <p className="text-neutral-400 text-base sm:text-lg mb-8 leading-relaxed">
             Hanzo Bot is compatible with OpenClaw skills and shares many concepts.
             Most configs translate directly. Read the migration guide to get started.
           </p>

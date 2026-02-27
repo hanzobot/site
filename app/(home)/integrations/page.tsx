@@ -45,7 +45,7 @@ function Section({ title, desc, children, className }: { title: string; desc: st
         <span className="text-white font-bold">&#x27E9;</span> {title}
       </h2>
       <p className="text-sm text-fd-muted-foreground mb-5 leading-relaxed">{desc}</p>
-      <div className={className || 'grid grid-cols-2 sm:grid-cols-4 gap-4'}>
+      <div className={className || 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4'}>
         {children}
       </div>
     </section>
@@ -147,7 +147,7 @@ export default function IntegrationsPage() {
     .slice(0, 14);
 
   return (
-    <main className="relative z-[1] max-w-[1000px] mx-auto px-6 py-10">
+    <main className="relative z-[1] max-w-[1000px] mx-auto px-4 sm:px-6 py-10">
       <div className="stars" />
       <div className="nebula" />
 
@@ -155,9 +155,9 @@ export default function IntegrationsPage() {
         <h1 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-br from-fd-foreground via-neutral-400 to-[#a3a3a3] bg-[length:200%_200%] bg-clip-text text-transparent">
           Integrations
         </h1>
-        <p className="text-lg text-fd-muted-foreground max-w-[600px] mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg text-fd-muted-foreground max-w-[600px] mx-auto leading-relaxed">
           600+ integrations with the apps and services you already use.
-          <br />
+          <br className="hidden sm:block" />
           Chat from your phone, control from your desktop, automate everything.
         </p>
       </header>
@@ -206,7 +206,7 @@ export default function IntegrationsPage() {
         <p className="text-sm text-fd-muted-foreground mb-5 leading-relaxed">
           {automationsData.total} automation integrations powered by <strong>Hanzo Auto</strong> — connect any service, trigger any workflow, automate anything.
         </p>
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-3 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-3 mb-6">
           {autoCategories.map((cat: any) => (
             <div key={cat.id} className="flex flex-col items-center gap-1 p-4 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:border-neutral-600 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(163,163,163,0.12)]">
               <span className="text-xl font-bold text-[#a3a3a3]">{cat.count}</span>
@@ -238,7 +238,7 @@ export default function IntegrationsPage() {
       </section>
 
       {/* CTA */}
-      <section className="text-center p-12 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm mb-10">
+      <section className="text-center p-6 sm:p-12 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm mb-10">
         <h2 className="text-2xl font-semibold mb-2">Ready to get started?</h2>
         <p className="text-fd-muted-foreground mb-6">Install Hanzo Bot and connect your first provider in minutes.</p>
         <Link
@@ -250,7 +250,7 @@ export default function IntegrationsPage() {
       </section>
 
       {/* Skills CTA */}
-      <section className="text-center p-12 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm mb-10">
+      <section className="text-center p-6 sm:p-12 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm mb-10">
         <h2 className="text-2xl font-semibold mb-2">Want More Skills?</h2>
         <p className="text-fd-muted-foreground mb-6 max-w-[600px] mx-auto">
           Discover 700+ community-built skills on the Hanzo Skill Hub — the public registry for sharing and discovering agent capabilities.

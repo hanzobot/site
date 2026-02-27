@@ -93,7 +93,7 @@ const pricingTiers = [
 
 export default function Page() {
   return (
-    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-10 overflow-hidden">
+    <main className="relative z-[1] max-w-[860px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
       <div className="stars" />
       <div className="nebula" />
 
@@ -101,7 +101,7 @@ export default function Page() {
       <header className="text-center mb-16 animate-[fadeInUp_0.8s_ease-out]">
         <NinjaHero />
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-4 leading-[1.1]">
           <span className="bg-gradient-to-br from-fd-foreground via-neutral-400 to-[#a3a3a3] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
             Your AI Team.
           </span>
@@ -164,7 +164,7 @@ export default function Page() {
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-5">
           <span className="text-white font-bold">&#x27E9;</span> 100+ AI Models
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {models.map((m) => (
             <div key={m.provider} className="flex flex-col gap-1 p-4 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm transition-all hover:border-neutral-600 hover:-translate-y-0.5">
               <span className="text-xs font-semibold text-white uppercase tracking-wider">{m.provider}</span>
@@ -190,7 +190,7 @@ export default function Page() {
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-5">
           <span className="text-white font-bold">&#x27E9;</span> What It Does
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {features.map((f) => {
             const Icon = f.icon;
             const isExternal = f.href.startsWith('http');
@@ -225,7 +225,7 @@ export default function Page() {
         <p className="text-sm text-fd-muted-foreground mb-6">
           Get started free. Scale when you&apos;re ready.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {pricingTiers.map((tier) => (
             <div
               key={tier.name}
@@ -313,7 +313,7 @@ export default function Page() {
         <h2 className="text-xl font-semibold flex items-center gap-2.5 mb-5">
           <span className="text-white font-bold">&#x27E9;</span> The Hanzo Ecosystem
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {[
             { name: 'LLM Gateway', desc: '200+ AI models, one API', href: 'https://docs.hanzo.ai/docs/llm' },
             { name: 'MCP', desc: '260+ tools for agents', href: 'https://docs.hanzo.ai/docs/mcp' },
@@ -351,7 +351,7 @@ export default function Page() {
       </div>
 
       {/* CTA Grid */}
-      <nav className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-14">
+      <nav className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4 mb-14">
         {[
           { href: 'https://app.hanzo.bot', icon: UsersIcon, label: 'Dashboard', sub: 'Launch app.hanzo.bot', className: 'border-[rgba(255,255,255,0.25)] bg-[rgba(255,255,255,0.06)] hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(255,255,255,0.25)]' },
           { href: 'https://discord.gg/hanzo', icon: MessageCircleIcon, label: 'Discord', sub: 'Join community', className: 'hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(255,255,255,0.2)]' },

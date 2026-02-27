@@ -134,18 +134,18 @@ function CellDisplay({ value }: { value: CellValue }) {
 
 export default function PricingPage() {
   return (
-    <main className="relative z-[1] max-w-[1080px] mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-10 overflow-hidden">
+    <main className="relative z-[1] max-w-[1080px] mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
       <div className="stars" />
       <div className="nebula" />
 
       {/* Header */}
       <header className="text-center mb-12 animate-[fadeInUp_0.8s_ease-out]">
-        <h1 className="text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
           <span className="bg-gradient-to-br from-fd-foreground via-fd-foreground/80 to-fd-muted-foreground bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
             Simple Pricing
           </span>
         </h1>
-        <p className="text-lg text-fd-muted-foreground max-w-[600px] mx-auto mb-4">
+        <p className="text-base sm:text-lg text-fd-muted-foreground max-w-[600px] mx-auto mb-4">
           Get started free. Run locally forever, or deploy to Hanzo Cloud starting at $5/mo.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 text-xs text-fd-muted-foreground">
@@ -159,7 +159,7 @@ export default function PricingPage() {
       </header>
 
       {/* Pricing Cards */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16 animate-[fadeInUp_0.8s_ease-out_0.2s_both]">
+      <section className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-16 animate-[fadeInUp_0.8s_ease-out_0.2s_both]">
         {tiers.map((tier) => (
           <div
             key={tier.name}
@@ -223,15 +223,15 @@ export default function PricingPage() {
             Hanzo Cloud scales from $5/mo to $3,999/mo. 4 global regions. No egress fees. DDoS protection included.
           </p>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-sm min-w-[500px]">
               <thead>
                 <tr className="border-b border-fd-border">
-                  <th className="text-left py-2.5 px-3 text-fd-foreground font-semibold">Plan</th>
-                  <th className="text-left py-2.5 px-3 text-fd-muted-foreground font-medium">vCPUs</th>
-                  <th className="text-left py-2.5 px-3 text-fd-muted-foreground font-medium">RAM</th>
-                  <th className="text-left py-2.5 px-3 text-fd-muted-foreground font-medium">SSD</th>
-                  <th className="text-left py-2.5 px-3 text-fd-muted-foreground font-medium">Transfer</th>
-                  <th className="text-right py-2.5 px-3 text-fd-foreground font-semibold">Price</th>
+                  <th className="text-left py-2.5 px-2 sm:px-3 text-fd-foreground font-semibold">Plan</th>
+                  <th className="text-left py-2.5 px-2 sm:px-3 text-fd-muted-foreground font-medium">vCPUs</th>
+                  <th className="text-left py-2.5 px-2 sm:px-3 text-fd-muted-foreground font-medium">RAM</th>
+                  <th className="text-left py-2.5 px-2 sm:px-3 text-fd-muted-foreground font-medium">SSD</th>
+                  <th className="text-left py-2.5 px-2 sm:px-3 text-fd-muted-foreground font-medium">Transfer</th>
+                  <th className="text-right py-2.5 px-2 sm:px-3 text-fd-foreground font-semibold">Price</th>
                 </tr>
               </thead>
               <tbody>
@@ -277,14 +277,14 @@ export default function PricingPage() {
           Feature Comparison
         </h2>
         <div className="overflow-x-auto rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm min-w-[600px]">
             <thead>
               <tr className="border-b border-fd-border">
-                <th className="text-left p-4 text-fd-foreground font-semibold">Feature</th>
-                <th className="p-4 text-center text-fd-foreground font-semibold">Free</th>
-                <th className="p-4 text-center text-fd-foreground font-semibold">Starter</th>
-                <th className="p-4 text-center text-fd-foreground font-semibold">Dev</th>
-                <th className="p-4 text-center text-fd-foreground font-semibold">Pro</th>
+                <th className="text-left p-3 sm:p-4 text-fd-foreground font-semibold">Feature</th>
+                <th className="p-3 sm:p-4 text-center text-fd-foreground font-semibold">Free</th>
+                <th className="p-3 sm:p-4 text-center text-fd-foreground font-semibold">Starter</th>
+                <th className="p-3 sm:p-4 text-center text-fd-foreground font-semibold">Dev</th>
+                <th className="p-3 sm:p-4 text-center text-fd-foreground font-semibold">Pro</th>
               </tr>
             </thead>
             <tbody>
@@ -347,7 +347,7 @@ export default function PricingPage() {
         <p className="text-sm text-fd-muted-foreground text-center mb-8 max-w-[500px] mx-auto">
           Cloud plans include generous free tiers. Pay only for what you use beyond the included limits.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {/* Messages */}
           <div className="p-6 rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm">
             <div className="flex items-center gap-2 mb-3">
@@ -453,7 +453,7 @@ export default function PricingPage() {
       <section className="mb-16 animate-[fadeInUp_0.8s_ease-out_0.4s_both]">
         <div className="rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm p-6 sm:p-8">
           <h2 className="text-lg font-bold text-fd-foreground mb-4">Included with every cloud deployment</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm text-fd-muted-foreground">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-sm text-fd-muted-foreground">
             <div className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-fd-foreground shrink-0" /> DDoS protection</div>
             <div className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-fd-foreground shrink-0" /> Automated backups</div>
             <div className="flex items-center gap-2"><CheckIcon className="w-3.5 h-3.5 text-fd-foreground shrink-0" /> IPv4 + IPv6</div>
@@ -561,15 +561,15 @@ export default function PricingPage() {
           Other tools charge more for less. Hanzo Bot is the only platform combining coding, marketing, ops, crypto, and cloud infrastructure.
         </p>
         <div className="overflow-x-auto rounded-2xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm min-w-[580px]">
             <thead>
               <tr className="border-b border-fd-border">
-                <th className="text-left p-4 text-fd-foreground font-semibold">Platform</th>
-                <th className="p-4 text-center text-fd-foreground font-semibold">Price</th>
-                <th className="p-4 text-center text-fd-foreground font-semibold">Models</th>
-                <th className="p-4 text-center text-fd-foreground font-semibold">Channels</th>
-                <th className="p-4 text-center text-fd-foreground font-semibold">VMs</th>
-                <th className="p-4 text-center text-fd-foreground font-semibold">Crypto</th>
+                <th className="text-left p-3 sm:p-4 text-fd-foreground font-semibold">Platform</th>
+                <th className="p-3 sm:p-4 text-center text-fd-foreground font-semibold">Price</th>
+                <th className="p-3 sm:p-4 text-center text-fd-foreground font-semibold">Models</th>
+                <th className="p-3 sm:p-4 text-center text-fd-foreground font-semibold">Channels</th>
+                <th className="p-3 sm:p-4 text-center text-fd-foreground font-semibold">VMs</th>
+                <th className="p-3 sm:p-4 text-center text-fd-foreground font-semibold">Crypto</th>
               </tr>
             </thead>
             <tbody>
