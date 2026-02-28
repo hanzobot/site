@@ -1,4 +1,4 @@
-import { BookOpenIcon, CoinsIcon, GitCompareArrowsIcon, HistoryIcon, LayoutGridIcon, LogInIcon, MonitorIcon, NewspaperIcon, DollarSignIcon } from 'lucide-react';
+import { BookOpenIcon, LayoutGridIcon, DollarSignIcon } from 'lucide-react';
 import type { BaseLayoutProps, LinkItemType } from '@hanzo/docs-base-ui/layouts/shared';
 
 const HanzoLogo = () => (
@@ -21,10 +21,9 @@ export const GithubIcon = () => (
 
 export const linkItems: LinkItemType[] = [
   {
-    icon: <LogInIcon />,
-    text: 'Login',
-    url: 'https://app.hanzo.bot',
-    external: true,
+    icon: <LayoutGridIcon />,
+    text: 'Features',
+    url: '/docs/features',
   },
   {
     icon: <LayoutGridIcon />,
@@ -32,34 +31,9 @@ export const linkItems: LinkItemType[] = [
     url: '/solutions',
   },
   {
-    icon: <CoinsIcon />,
-    text: 'Crypto',
-    url: '/crypto',
-  },
-  {
-    icon: <MonitorIcon />,
-    text: 'Platform',
-    url: '/platform',
-  },
-  {
     icon: <DollarSignIcon />,
     text: 'Pricing',
     url: '/pricing',
-  },
-  {
-    icon: <NewspaperIcon />,
-    text: 'Blog',
-    url: '/blog',
-  },
-  {
-    icon: <HistoryIcon />,
-    text: 'Changelog',
-    url: '/changelog',
-  },
-  {
-    icon: <GitCompareArrowsIcon />,
-    text: 'Compare',
-    url: '/comparison',
   },
   {
     icon: <BookOpenIcon />,
