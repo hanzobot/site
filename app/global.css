@@ -68,6 +68,7 @@ body {
 
 :root {
   color-scheme: dark;
+  --header-height: 60px;
   --color-fd-background: hsl(0, 0%, 2%);
   --color-fd-foreground: hsl(0, 0%, 96%);
   --color-fd-muted: hsl(0, 0%, 10%);
