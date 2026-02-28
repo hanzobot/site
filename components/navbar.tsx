@@ -4,11 +4,14 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Search, ChevronDown, ArrowRight, Menu, X,
+  Search, ChevronDown, ArrowRight, Menu, X, ExternalLink,
   TerminalIcon, BrainIcon, MessageCircleIcon, GlobeIcon,
   PuzzleIcon, MonitorIcon, ShieldIcon, DownloadIcon,
   ServerIcon, UsersIcon, CodeIcon, ZapIcon, BotIcon,
   AppWindowIcon, LayoutDashboardIcon,
+  BookOpenIcon, MessageSquareIcon, GithubIcon, FileTextIcon,
+  FlaskConicalIcon, HelpCircleIcon, HeartHandshakeIcon,
+  LightbulbIcon, NewspaperIcon, PlayIcon,
 } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import { logo } from '@/lib/layout.shared'
@@ -42,13 +45,13 @@ const FeaturesContent = ({ closeMenu }: { closeMenu: () => void }) => (
         <MenuLink href="/docs/features/mcp" icon={ZapIcon} label="MCP Integration" description="260+ tools via Model Context Protocol." closeMenu={closeMenu} />
       </div>
     </div>
-    <div className="p-4 rounded-xl bg-gradient-to-br from-[rgba(255,77,77,0.08)] to-fd-secondary border border-fd-border">
+    <div className="p-4 rounded-xl bg-gradient-to-br from-[rgba(255,255,255,0.03)] to-fd-secondary border border-fd-border">
       <h3 className="text-fd-foreground font-semibold mb-1">Hanzo Bot</h3>
       <p className="text-fd-muted-foreground text-xs mb-3 leading-relaxed">
         One bot. Every role. Every channel. A full computer-using AI agent.
       </p>
       <div className="space-y-2 border-t border-fd-border/30 pt-3">
-        <Link href="/get-started" onClick={closeMenu} className="flex items-center gap-2 text-sm text-brand hover:text-fd-foreground transition-colors font-medium">
+        <Link href="/get-started" onClick={closeMenu} className="flex items-center gap-2 text-sm text-fd-foreground hover:text-fd-foreground/80 transition-colors font-medium">
           <DownloadIcon className="h-3.5 w-3.5" />
           Get Started Free
         </Link>
@@ -95,10 +98,49 @@ const SolutionsContent = ({ closeMenu }: { closeMenu: () => void }) => (
       <p className="text-fd-muted-foreground text-xs mb-3 leading-relaxed">
         One bot replaces the cost of multiple specialized hires. It never sleeps, never takes PTO.
       </p>
-      <Link href="/pricing" onClick={closeMenu} className="flex items-center gap-2 text-sm text-brand hover:text-fd-foreground transition-colors font-medium">
+      <Link href="/pricing" onClick={closeMenu} className="flex items-center gap-2 text-sm text-fd-foreground hover:text-fd-foreground/80 transition-colors font-medium">
         View Pricing
         <ArrowRight className="h-3.5 w-3.5" />
       </Link>
+    </div>
+  </div>
+)
+
+/* ─── Resources dropdown content ─── */
+const ResourcesContent = ({ closeMenu }: { closeMenu: () => void }) => (
+  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+    <div>
+      <h3 className="text-fd-muted-foreground text-xs font-medium mb-3 uppercase tracking-wider">Learn</h3>
+      <div className="space-y-3">
+        <MenuLink href="/docs/guides" icon={BookOpenIcon} label="Guides" description="Step-by-step tutorials and walkthroughs." closeMenu={closeMenu} />
+        <MenuLink href="/docs/features" icon={PlayIcon} label="Getting Started" description="Quick start and first steps." closeMenu={closeMenu} />
+        <MenuLink href="/blog" icon={NewspaperIcon} label="Blog" description="Product updates and engineering posts." closeMenu={closeMenu} />
+        <MenuLink href="/changelog" icon={FileTextIcon} label="Changelog" description="What's new in every release." closeMenu={closeMenu} />
+      </div>
+    </div>
+    <div>
+      <h3 className="text-fd-muted-foreground text-xs font-medium mb-3 uppercase tracking-wider">Community</h3>
+      <div className="space-y-3">
+        <MenuLink href="https://discord.gg/hanzo" icon={MessageSquareIcon} label="Discord" description="Chat with the community." closeMenu={closeMenu} external />
+        <MenuLink href="https://github.com/hanzoai/bot/discussions" icon={GithubIcon} label="GitHub Discussions" description="Ask questions and share ideas." closeMenu={closeMenu} external />
+        <MenuLink href="https://github.com/hanzoai/hips" icon={LightbulbIcon} label="HIPs" description="Hanzo Improvement Proposals." closeMenu={closeMenu} external />
+      </div>
+    </div>
+    <div>
+      <h3 className="text-fd-muted-foreground text-xs font-medium mb-3 uppercase tracking-wider">Research</h3>
+      <div className="space-y-3">
+        <MenuLink href="/research" icon={FlaskConicalIcon} label="Research" description="Our published work and findings." closeMenu={closeMenu} />
+        <MenuLink href="/comparison" icon={CodeIcon} label="Comparisons" description="How Bot stacks up." closeMenu={closeMenu} />
+        <MenuLink href="/integrations" icon={PuzzleIcon} label="Integrations" description="Tools and platforms we work with." closeMenu={closeMenu} />
+      </div>
+    </div>
+    <div>
+      <h3 className="text-fd-muted-foreground text-xs font-medium mb-3 uppercase tracking-wider">Support</h3>
+      <div className="space-y-3">
+        <MenuLink href="/docs/faq" icon={HelpCircleIcon} label="FAQs" description="Answers to common questions." closeMenu={closeMenu} />
+        <MenuLink href="https://hanzo.ai/contact" icon={HeartHandshakeIcon} label="Contact Sales" description="Talk to our team." closeMenu={closeMenu} external />
+        <MenuLink href="https://github.com/hanzoai/bot/issues" icon={GithubIcon} label="Report Issue" description="File a bug or feature request." closeMenu={closeMenu} external />
+      </div>
     </div>
   </div>
 )
@@ -115,11 +157,14 @@ function MenuLink({
   external?: boolean
 }) {
   const content = (
-    <div className="group flex items-start gap-2 py-1">
-      <Icon className="h-3.5 w-3.5 mt-0.5 text-fd-muted-foreground group-hover:text-fd-foreground transition-colors shrink-0" />
+    <div className="group flex items-start gap-2.5 py-1">
+      <Icon className="h-4 w-4 mt-0.5 text-fd-muted-foreground group-hover:text-fd-foreground transition-colors shrink-0" />
       <div>
-        <span className="text-sm text-fd-foreground/80 group-hover:text-fd-foreground transition-colors">{label}</span>
-        {description && <p className="text-xs text-fd-muted-foreground">{description}</p>}
+        <span className="text-sm text-fd-foreground/80 group-hover:text-fd-foreground transition-colors flex items-center gap-1">
+          {label}
+          {external && <ExternalLink className="h-2.5 w-2.5 opacity-40" />}
+        </span>
+        {description && <p className="text-xs text-fd-muted-foreground leading-snug">{description}</p>}
       </div>
     </div>
   )
@@ -128,123 +173,6 @@ function MenuLink({
     return <a href={href} target="_blank" rel="noopener noreferrer" className="block">{content}</a>
   }
   return <Link href={href} onClick={closeMenu} className="block">{content}</Link>
-}
-
-/* ─── Try Hanzo dropdown (right side) ─── */
-function TryHanzoDropdown() {
-  const [isOpen, setIsOpen] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsOpen(false)
-    }
-    if (isOpen) document.addEventListener('keydown', handleEscape)
-    return () => document.removeEventListener('keydown', handleEscape)
-  }, [isOpen])
-
-  return (
-    <div
-      className="relative"
-      ref={ref}
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
-    >
-      <button className="inline-flex items-center gap-1.5 bg-brand text-brand-foreground hover:bg-brand/90 rounded-full h-9 px-4 text-sm font-semibold transition-all cursor-pointer">
-        Try Hanzo
-        <ChevronDown className={cn('w-3.5 h-3.5 transition-transform duration-200', isOpen && 'rotate-180')} />
-      </button>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.96 }}
-            transition={{ duration: 0.15 }}
-            className="absolute right-0 mt-2 w-[340px] bg-fd-secondary/95 backdrop-blur-xl border border-fd-border rounded-2xl shadow-2xl overflow-hidden z-[100]"
-          >
-            {/* Get Started */}
-            <div className="p-3">
-              <div className="px-1 mb-2">
-                <span className="text-[10px] font-semibold text-fd-muted-foreground uppercase tracking-wider">Get Started</span>
-              </div>
-              <div className="space-y-1">
-                <Link href="/get-started" onClick={() => setIsOpen(false)} className="group flex items-start gap-3 p-3 rounded-xl hover:bg-fd-accent transition-colors">
-                  <div className="w-8 h-8 rounded-lg bg-fd-accent flex items-center justify-center shrink-0 group-hover:bg-brand/20 transition-colors">
-                    <DownloadIcon className="w-4 h-4 text-fd-muted-foreground group-hover:text-brand transition-colors" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-fd-foreground">Download Free</span>
-                      <span className="text-[9px] font-semibold tracking-wider uppercase text-fd-muted-foreground bg-fd-accent px-1.5 py-px rounded">CLI</span>
-                    </div>
-                    <p className="text-xs text-fd-muted-foreground leading-tight mt-0.5">Run locally on your own hardware.</p>
-                  </div>
-                </Link>
-                <a href="https://app.hanzo.bot/auth/signup?plan=cloud" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)} className="group flex items-start gap-3 p-3 rounded-xl hover:bg-fd-accent transition-colors">
-                  <div className="w-8 h-8 rounded-lg bg-fd-accent flex items-center justify-center shrink-0 group-hover:bg-brand/20 transition-colors">
-                    <ServerIcon className="w-4 h-4 text-fd-muted-foreground group-hover:text-brand transition-colors" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-fd-foreground">Launch in Cloud</span>
-                      <span className="text-[9px] font-semibold tracking-wider uppercase text-brand bg-brand/10 px-1.5 py-px rounded">$5/mo</span>
-                    </div>
-                    <p className="text-xs text-fd-muted-foreground leading-tight mt-0.5">Full Linux VM. Always on. No setup.</p>
-                  </div>
-                </a>
-              </div>
-            </div>
-
-            <div className="border-t border-fd-border" />
-
-            {/* Apps */}
-            <div className="p-3">
-              <div className="px-1 mb-1.5">
-                <span className="text-[10px] font-semibold text-fd-muted-foreground uppercase tracking-wider">Apps</span>
-              </div>
-              <div className="grid grid-cols-2 gap-1">
-                {[
-                  { label: 'Hanzo App', desc: 'AI workspace', href: 'https://hanzo.app', icon: AppWindowIcon, external: true },
-                  { label: 'Hanzo Bot', desc: 'Agent platform', href: 'https://app.hanzo.bot', icon: BotIcon, external: true },
-                  { label: 'Hanzo Chat', desc: 'Chat with 100+ models', href: 'https://hanzo.chat', icon: MessageCircleIcon, external: true },
-                  { label: 'Hanzo Dev', desc: 'AI coding agent', href: 'https://hanzo.ai/dev', icon: TerminalIcon, external: true },
-                ].map((item) => {
-                  const Icon = item.icon
-                  return (
-                    <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
-                      className="group flex items-center gap-2 py-2 px-2.5 rounded-lg hover:bg-fd-accent transition-colors">
-                      <Icon className="w-3.5 h-3.5 text-fd-muted-foreground group-hover:text-fd-foreground shrink-0 transition-colors" />
-                      <div className="min-w-0">
-                        <div className="text-[13px] font-medium text-fd-foreground">{item.label}</div>
-                        <div className="text-[10px] text-fd-muted-foreground truncate">{item.desc}</div>
-                      </div>
-                    </a>
-                  )
-                })}
-              </div>
-            </div>
-
-            {/* CTA */}
-            <div className="p-3 pt-0">
-              <a
-                href="https://app.hanzo.bot"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-brand text-brand-foreground text-sm font-medium hover:bg-brand/90 transition"
-              >
-                <LayoutDashboardIcon className="w-3.5 h-3.5" />
-                Open Dashboard
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  )
 }
 
 /* ─── Mobile Menu ─── */
@@ -262,27 +190,25 @@ function MobileMenu({ isOpen, onClose, onOpenSearch }: { isOpen: boolean; onClos
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-fd-background/95 backdrop-blur-md z-50"
+      className="fixed inset-0 bg-fd-background/98 backdrop-blur-md z-50"
       style={{ top: 'var(--header-height, 60px)' }}
     >
-      <div className="flex flex-col gap-1 p-4 overflow-y-auto h-full">
+      <div className="flex flex-col gap-1 p-5 overflow-y-auto h-full">
         <button
           onClick={() => { onOpenSearch(); onClose() }}
-          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-fd-secondary border border-fd-border text-fd-muted-foreground text-sm w-full text-left"
+          className="flex items-center gap-3 px-4 py-3 rounded-xl bg-fd-secondary border border-fd-border text-fd-muted-foreground text-sm w-full text-left mb-2"
         >
           <Search className="w-4 h-4" />
           Search...
           <kbd className="ml-auto text-[10px] font-mono bg-fd-accent px-1.5 py-0.5 rounded">⌘K</kbd>
         </button>
 
-        <div className="mt-4 space-y-1">
+        <div className="space-y-0.5">
           {[
             { label: 'Features', href: '/docs/features' },
             { label: 'Solutions', href: '/solutions' },
             { label: 'Pricing', href: '/pricing' },
             { label: 'Docs', href: '/docs' },
-            { label: 'Skills', href: '/skills' },
-            { label: 'Integrations', href: '/integrations' },
           ].map((item) => (
             <Link key={item.label} href={item.href} onClick={onClose}
               className="block px-4 py-3 text-fd-foreground text-base font-medium hover:bg-fd-accent rounded-lg transition-colors">
@@ -291,24 +217,63 @@ function MobileMenu({ isOpen, onClose, onOpenSearch }: { isOpen: boolean; onClos
           ))}
         </div>
 
-        <div className="border-t border-fd-border my-4" />
+        <div className="border-t border-fd-border/50 my-3" />
 
-        <a href="https://hanzo.ai/contact" target="_blank" rel="noopener noreferrer"
-          className="block px-4 py-3 text-fd-muted-foreground text-sm hover:text-fd-foreground transition-colors">
-          Contact Sales
-        </a>
+        <div className="px-1 mb-2">
+          <span className="text-[10px] font-semibold text-fd-muted-foreground uppercase tracking-wider px-3">Resources</span>
+        </div>
+        <div className="space-y-0.5">
+          {[
+            { label: 'Guides', href: '/docs/guides' },
+            { label: 'Blog', href: '/blog' },
+            { label: 'Changelog', href: '/changelog' },
+            { label: 'Integrations', href: '/integrations' },
+            { label: 'Skills', href: '/skills' },
+            { label: 'FAQs', href: '/docs/faq' },
+          ].map((item) => (
+            <Link key={item.label} href={item.href} onClick={onClose}
+              className="block px-4 py-2.5 text-fd-muted-foreground text-sm hover:text-fd-foreground hover:bg-fd-accent rounded-lg transition-colors">
+              {item.label}
+            </Link>
+          ))}
+        </div>
 
-        <div className="mt-4 space-y-2">
-          <Link href="/get-started" onClick={onClose}
-            className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-fd-border text-fd-foreground font-semibold text-sm hover:bg-fd-accent transition-colors">
-            <DownloadIcon className="w-4 h-4" />
-            Get Started Free
+        <div className="border-t border-fd-border/50 my-3" />
+
+        <div className="px-1 mb-2">
+          <span className="text-[10px] font-semibold text-fd-muted-foreground uppercase tracking-wider px-3">Community</span>
+        </div>
+        <div className="space-y-0.5">
+          {[
+            { label: 'Discord', href: 'https://discord.gg/hanzo', external: true },
+            { label: 'GitHub Discussions', href: 'https://github.com/hanzoai/bot/discussions', external: true },
+            { label: 'HIPs', href: 'https://github.com/hanzoai/hips', external: true },
+            { label: 'Research', href: '/research' },
+          ].map((item) => (
+            'external' in item ? (
+              <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" onClick={onClose}
+                className="flex items-center gap-2 px-4 py-2.5 text-fd-muted-foreground text-sm hover:text-fd-foreground hover:bg-fd-accent rounded-lg transition-colors">
+                {item.label}
+                <ExternalLink className="w-3 h-3 opacity-40" />
+              </a>
+            ) : (
+              <Link key={item.label} href={item.href} onClick={onClose}
+                className="block px-4 py-2.5 text-fd-muted-foreground text-sm hover:text-fd-foreground hover:bg-fd-accent rounded-lg transition-colors">
+                {item.label}
+              </Link>
+            )
+          ))}
+        </div>
+
+        <div className="mt-auto pt-4 space-y-2">
+          <Link href="https://app.hanzo.bot" onClick={onClose}
+            className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-fd-muted-foreground text-sm font-medium hover:text-fd-foreground transition-colors">
+            Log in
           </Link>
-          <a href="https://app.hanzo.bot" target="_blank" rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-brand text-brand-foreground font-semibold text-sm hover:bg-brand/90 transition-colors">
-            <MonitorIcon className="w-4 h-4" />
-            Launch in Cloud &mdash; $5/mo
-          </a>
+          <Link href="/get-started" onClick={onClose}
+            className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-fd-foreground text-fd-background font-semibold text-sm hover:bg-fd-foreground/90 transition-colors">
+            Try Hanzo Bot
+          </Link>
         </div>
       </div>
     </motion.div>
@@ -347,22 +312,40 @@ export function Navbar() {
         className={cn(
           'fixed w-full z-50 transition-all duration-300',
           isScrolled
-            ? 'bg-fd-background/80 backdrop-blur-lg shadow-sm border-b border-fd-border/50'
-            : 'bg-fd-background/50 backdrop-blur-sm'
+            ? 'bg-fd-background/80 backdrop-blur-xl border-b border-fd-border/40'
+            : 'bg-transparent'
         )}
       >
         <div className="w-full max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex items-center h-[var(--header-height,60px)]">
-            {/* Left: Logo */}
-            <div className="shrink-0 min-w-[140px]">
-              <Link href="/" className="flex items-center gap-2 text-fd-foreground no-underline">
-                {logo}
-                <span className="font-bold text-base">Hanzo Bot</span>
+            {/* Left: Logo — collapses to icon on scroll */}
+            <div className="shrink-0">
+              <Link href="/" className="flex items-center gap-2.5 text-fd-foreground no-underline">
+                <motion.div
+                  className="flex items-center"
+                  animate={{ scale: isScrolled ? 1.1 : 1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {logo}
+                </motion.div>
+                <AnimatePresence>
+                  {!isScrolled && (
+                    <motion.span
+                      initial={{ opacity: 1, width: 'auto' }}
+                      exit={{ opacity: 0, width: 0 }}
+                      animate={{ opacity: 1, width: 'auto' }}
+                      transition={{ duration: 0.2 }}
+                      className="font-semibold text-[15px] tracking-tight overflow-hidden whitespace-nowrap"
+                    >
+                      Hanzo Bot
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </Link>
             </div>
 
             {/* Center: Desktop Nav */}
-            <div className="flex-1 hidden md:flex justify-center items-center gap-5">
+            <div className="flex-1 hidden md:flex justify-center items-center gap-1">
               <NavMenu label="Features">
                 {(closeMenu) => <FeaturesContent closeMenu={closeMenu} />}
               </NavMenu>
@@ -371,46 +354,52 @@ export function Navbar() {
                 {(closeMenu) => <SolutionsContent closeMenu={closeMenu} />}
               </NavMenu>
 
-              <Link href="/docs" className="text-fd-muted-foreground hover:text-fd-foreground transition-colors text-sm font-medium">
-                Docs
+              <NavMenu label="Resources">
+                {(closeMenu) => <ResourcesContent closeMenu={closeMenu} />}
+              </NavMenu>
+
+              <Link href="/pricing" className="text-fd-muted-foreground hover:text-fd-foreground transition-colors text-sm font-medium px-3 py-2 rounded-md hover:bg-fd-accent/50">
+                Pricing
               </Link>
 
-              <Link href="/pricing" className="text-fd-muted-foreground hover:text-fd-foreground transition-colors text-sm font-medium">
-                Pricing
+              <Link href="/docs" className="text-fd-muted-foreground hover:text-fd-foreground transition-colors text-sm font-medium px-3 py-2 rounded-md hover:bg-fd-accent/50">
+                Docs
               </Link>
             </div>
 
-            {/* Right: Auth / CTA (Desktop) */}
-            <div className="hidden md:flex items-center gap-3 shrink-0">
+            {/* Right: Search + Login + CTA (Desktop) */}
+            <div className="hidden md:flex items-center gap-2 shrink-0">
               {/* Search / ⌘K */}
               <button
                 onClick={openCommandPalette}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-fd-secondary border border-fd-border/50 text-fd-muted-foreground hover:text-fd-foreground hover:border-fd-border transition-all text-sm cursor-pointer"
+                className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-fd-muted-foreground hover:text-fd-foreground transition-all text-sm cursor-pointer hover:bg-fd-accent/50"
                 aria-label="Search (⌘K)"
               >
                 <Search className="h-4 w-4" />
-                <span className="hidden lg:inline text-xs">Search...</span>
-                <kbd className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-mono bg-fd-accent border border-fd-border/50 rounded text-fd-muted-foreground">
+                <kbd className="hidden lg:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-mono bg-fd-accent/50 border border-fd-border/30 rounded text-fd-muted-foreground">
                   <span className="text-xs">⌘</span>K
                 </kbd>
               </button>
 
-              {/* Contact Sales */}
+              {/* Login */}
               <a
-                href="https://hanzo.ai/contact"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full h-9 px-4 text-sm font-medium text-fd-foreground/80 hover:text-fd-foreground transition-all"
+                href="https://app.hanzo.bot"
+                className="inline-flex items-center justify-center rounded-md h-9 px-4 text-sm font-medium text-fd-muted-foreground hover:text-fd-foreground transition-all"
               >
-                Contact Sales
+                Log in
               </a>
 
-              {/* Try Hanzo CTA */}
-              <TryHanzoDropdown />
+              {/* Try Hanzo CTA — solid button like Anthropic's "Try Claude" */}
+              <Link
+                href="/get-started"
+                className="inline-flex items-center justify-center rounded-full h-9 px-5 text-sm font-semibold bg-fd-foreground text-fd-background hover:bg-fd-foreground/90 transition-all"
+              >
+                Try Hanzo Bot
+              </Link>
             </div>
 
             {/* Mobile: Hamburger */}
-            <div className="md:hidden ml-auto flex items-center gap-2">
+            <div className="md:hidden ml-auto flex items-center gap-1">
               <button
                 onClick={openCommandPalette}
                 className="p-2 text-fd-muted-foreground hover:text-fd-foreground transition-colors cursor-pointer"
