@@ -285,11 +285,20 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false)
+  const [isLogoHovered, setIsLogoHovered] = useState(false)
+  const [showIntroWordmark, setShowIntroWordmark] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 10)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Intro animation: show wordmark briefly then hide (matches hanzo.ai)
+  useEffect(() => {
+    const animTimer = setTimeout(() => setShowIntroWordmark(true), 1200)
+    const hideTimer = setTimeout(() => setShowIntroWordmark(false), 2500)
+    return () => { clearTimeout(animTimer); clearTimeout(hideTimer) }
   }, [])
 
   useEffect(() => {
@@ -306,6 +315,9 @@ export function Navbar() {
   const openCommandPalette = useCallback(() => setIsCommandPaletteOpen(true), [])
   const closeCommandPalette = useCallback(() => setIsCommandPaletteOpen(false), [])
 
+  // Show wordmark on hover or during intro, like hanzo.ai
+  const shouldShowWordmark = isLogoHovered || showIntroWordmark
+
   return (
     <>
       <nav
@@ -318,29 +330,36 @@ export function Navbar() {
       >
         <div className="w-full max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex items-center h-[var(--header-height,60px)]">
-            {/* Left: Logo — collapses to icon on scroll */}
+            {/* Left: Logo with origami 3D flip + sliding wordmark */}
             <div className="shrink-0">
-              <Link href="/" className="flex items-center gap-2.5 text-fd-foreground no-underline">
+              <Link
+                href="/"
+                className="relative flex items-center group cursor-pointer text-fd-foreground no-underline"
+                onMouseEnter={() => setIsLogoHovered(true)}
+                onMouseLeave={() => setIsLogoHovered(false)}
+              >
+                {/* H icon — origami 3D flip entrance */}
                 <motion.div
-                  className="flex items-center"
-                  animate={{ scale: isScrolled ? 1.1 : 1 }}
-                  transition={{ duration: 0.2 }}
+                  initial={{ opacity: 0, rotateY: 180, scale: 0.6 }}
+                  animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="w-5 h-5 relative flex-shrink-0"
+                  style={{ transformOrigin: 'center center' }}
                 >
                   {logo}
                 </motion.div>
-                <AnimatePresence>
-                  {!isScrolled && (
-                    <motion.span
-                      initial={{ opacity: 1, width: 'auto' }}
-                      exit={{ opacity: 0, width: 0 }}
-                      animate={{ opacity: 1, width: 'auto' }}
-                      transition={{ duration: 0.2 }}
-                      className="font-semibold text-[15px] tracking-tight overflow-hidden whitespace-nowrap"
-                    >
-                      Hanzo Bot
-                    </motion.span>
-                  )}
-                </AnimatePresence>
+
+                {/* Wordmark — slides in on intro + hover, slides out otherwise */}
+                <div className="absolute left-7 overflow-hidden">
+                  <span
+                    className={cn(
+                      'font-semibold text-[15px] text-fd-foreground whitespace-nowrap block transition-transform duration-300 ease-out',
+                      shouldShowWordmark ? 'translate-x-0' : '-translate-x-full'
+                    )}
+                  >
+                    Hanzo Bot
+                  </span>
+                </div>
               </Link>
             </div>
 
