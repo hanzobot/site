@@ -10,3 +10,4 @@ docs/json-schema/
 
 # OS
 .DS_Store
+.astro/
