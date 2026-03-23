@@ -1,0 +1,66 @@
+---
+title: "Runs Locally"
+description: "Install Hanzo Bot on Mac, Windows, or Linux. Your data stays on your machine -- private by default."
+---
+
+# Runs Locally
+
+Hanzo Bot is a local-first AI agent. It runs on your own hardware, uses your own API keys, and keeps your data on your machine. Nothing is sent to Hanzo servers unless you explicitly deploy to Hanzo Cloud.
+
+## Supported platforms
+
+| Platform | Install method | Notes |
+|----------|---------------|-------|
+| **macOS** | `curl -fsSL https://hanzo.bot/install.sh \| bash` | Native .app also available |
+| **Linux** | `curl -fsSL https://hanzo.bot/install.sh \| bash` | Debian, Ubuntu, Fedora, Arch |
+| **Windows** | `irm https://hanzo.bot/install.ps1 \| iex` | PowerShell 7+ recommended |
+| **Docker** | `docker pull ghcr.io/hanzoai/bot` | Any OS with Docker |
+| **npm** | `npm i -g bot` | Node 22+ or Bun |
+
+## Privacy by default
+
+- **No telemetry** -- the CLI sends zero analytics data.
+- **Local storage** -- conversations, memory, and credentials live in `~/.hanzo/bot/`.
+- **Your API keys** -- bring your own keys from Anthropic, OpenAI, Google, or any supported provider. They are stored in an encrypted local credential store and never leave your machine.
+- **Sandboxing** -- optionally restrict the agent to specific directories and commands.
+
+## System requirements
+
+- **CPU**: Any modern x86_64 or ARM64 processor.
+- **RAM**: 2 GB minimum, 8 GB recommended for browser automation.
+- **Disk**: 500 MB for the runtime, plus space for agent workspaces.
+- **Runtime**: Node.js 22+ or Bun 1.1+. The install script handles this automatically.
+- **GPU**: Not required for cloud-hosted models. Local model inference (Ollama, LM Studio) benefits from GPU acceleration.
+
+## How it works
+
+```
+┌─────────────┐     ┌──────────────┐     ┌────────────────┐
+│  Your Phone  │────▶│  Bot Gateway  │────▶│  Model Provider │
+│  (WhatsApp,  │◀────│  (local)      │◀────│  (Anthropic,   │
+│   Telegram)  │     └──────────────┘     │   OpenAI, etc) │
+└─────────────┘            │              └────────────────┘
+                           │
+                    ┌──────▼──────┐
+                    │ Your Machine │
+                    │  Files, CLI, │
+                    │  Browser     │
+                    └─────────────┘
+```
+
+The gateway runs as a background process on your machine. It receives messages from connected chat platforms, routes them to your configured AI model, and executes tool calls (file access, shell commands, browser actions) locally.
+
+## Getting started
+
+```bash
+# Install
+curl -fsSL https://hanzo.bot/install.sh | bash
+
+# Run the setup wizard
+bot onboard
+
+# Start the gateway
+bot gateway run
+```
+
+See [Getting Started](/docs/start/getting-started) for the full walkthrough, or [Installation](/docs/install) for platform-specific instructions.

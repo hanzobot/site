@@ -30,24 +30,25 @@ const commands: CommandItem[] = [
   { id: 'dashboard', title: 'Open Dashboard', description: 'Manage your bots', href: 'https://app.hanzo.bot', icon: MonitorIcon, category: 'Quick Actions', external: true, keywords: ['dashboard', 'login', 'app'] },
 
   // Features
-  { id: 'local-runtime', title: 'Local Runtime', description: 'Mac, Windows, Linux — your data stays yours', href: '/docs/features/local', icon: Terminal, category: 'Features', keywords: ['local', 'mac', 'windows', 'linux'] },
-  { id: 'models', title: '100+ AI Models', description: 'Claude, GPT, Gemini, Llama, and more', href: '/docs/features/models', icon: Brain, category: 'Features', keywords: ['model', 'llm', 'claude', 'gpt'] },
+  { id: 'local-runtime', title: 'Local Runtime', description: 'Mac, Windows, Linux — your data stays yours', href: '/docs/install', icon: Terminal, category: 'Features', keywords: ['local', 'mac', 'windows', 'linux'] },
+  { id: 'models', title: '100+ AI Models', description: 'Claude, GPT, Gemini, Llama, and more', href: '/docs/providers/models', icon: Brain, category: 'Features', keywords: ['model', 'llm', 'claude', 'gpt'] },
   { id: 'chat-apps', title: 'Every Chat App', description: 'WhatsApp, Slack, Discord, Telegram, Signal', href: '/integrations', icon: MessageCircle, category: 'Features', keywords: ['whatsapp', 'slack', 'discord', 'telegram'] },
-  { id: 'memory', title: 'Persistent Memory', description: 'Remembers you across sessions', href: '/docs/features/memory', icon: Brain, category: 'Features', keywords: ['memory', 'remember', 'context'] },
-  { id: 'browser', title: 'Browser Control', description: 'Browse, fill forms, extract data', href: '/docs/features/browser', icon: Globe, category: 'Features', keywords: ['browser', 'web', 'scrape'] },
-  { id: 'system-access', title: 'Full System Access', description: 'Files, shell, scripts — sandboxed or full', href: '/docs/features/system-access', icon: Terminal, category: 'Features', keywords: ['shell', 'files', 'scripts'] },
+  { id: 'memory', title: 'Persistent Memory', description: 'Remembers you across sessions', href: '/docs/concepts/memory', icon: Brain, category: 'Features', keywords: ['memory', 'remember', 'context'] },
+  { id: 'browser', title: 'Browser Control', description: 'Browse, fill forms, extract data', href: '/docs/tools/browser', icon: Globe, category: 'Features', keywords: ['browser', 'web', 'scrape'] },
+  { id: 'system-access', title: 'Full System Access', description: 'Files, shell, scripts — sandboxed or full', href: '/docs/tools/exec', icon: Terminal, category: 'Features', keywords: ['shell', 'files', 'scripts'] },
   { id: 'skills', title: 'Skills & Plugins', description: 'Community skills or build your own', href: '/skills', icon: PuzzleIcon, category: 'Features', keywords: ['plugin', 'skill', 'extend'] },
-  { id: 'desktop-vm', title: 'Full Desktop VMs', description: 'Cloud agents with VNC desktop access', href: '/docs/features/cloud', icon: MonitorIcon, category: 'Features', keywords: ['vm', 'desktop', 'vnc', 'cloud'] },
+  { id: 'desktop-vm', title: 'Full Desktop VMs', description: 'Cloud agents with VNC desktop access', href: '/docs/platforms', icon: MonitorIcon, category: 'Features', keywords: ['vm', 'desktop', 'vnc', 'cloud'] },
 
   // Solutions
-  { id: 'sol-developers', title: 'For Developers', description: 'Code review, testing, documentation', href: '/solutions#developers', icon: Code, category: 'Solutions', keywords: ['developer', 'code', 'review'] },
-  { id: 'sol-devops', title: 'For DevOps', description: 'Automation, monitoring, deployment', href: '/solutions#devops', icon: Server, category: 'Solutions', keywords: ['devops', 'deploy', 'monitor'] },
-  { id: 'sol-teams', title: 'For Teams', description: 'Collaboration and knowledge sharing', href: '/solutions#teams', icon: Users, category: 'Solutions', keywords: ['team', 'collaborate'] },
-  { id: 'sol-enterprise', title: 'For Enterprise', description: 'Custom deployment, SSO, compliance', href: '/solutions#enterprise', icon: Shield, category: 'Solutions', keywords: ['enterprise', 'sso', 'compliance'] },
+  { id: 'sol-engineering', title: 'Engineering', description: 'Code review, CI/CD, incident response, documentation', href: '/solutions/engineering', icon: Code, category: 'Solutions', keywords: ['developer', 'code', 'review', 'engineering'] },
+  { id: 'sol-sales', title: 'Sales', description: 'Lead qualification, CRM, outbound sequences', href: '/solutions/sales', icon: Server, category: 'Solutions', keywords: ['sales', 'crm', 'leads'] },
+  { id: 'sol-marketing', title: 'Marketing', description: 'Content creation, social media, campaigns', href: '/solutions/marketing', icon: Users, category: 'Solutions', keywords: ['marketing', 'content', 'social'] },
+  { id: 'sol-operations', title: 'Operations', description: 'Process automation, monitoring, compliance', href: '/solutions/operations', icon: Shield, category: 'Solutions', keywords: ['operations', 'automation', 'compliance'] },
+  { id: 'sol-support', title: 'Customer Support', description: '24/7 AI agents across every channel', href: '/solutions/customer-support', icon: HelpCircle, category: 'Solutions', keywords: ['support', 'customer', 'help'] },
 
   // Docs & Resources
   { id: 'docs', title: 'Documentation', description: 'Guides, API reference, tutorials', href: '/docs', icon: BookOpen, category: 'Resources', keywords: ['docs', 'guide', 'tutorial'] },
-  { id: 'api-ref', title: 'API Reference', description: 'Bot API and SDK docs', href: '/docs/api', icon: FileText, category: 'Resources', keywords: ['api', 'sdk', 'reference'] },
+  { id: 'api-ref', title: 'API Reference', description: 'Bot API and SDK docs', href: '/docs/reference', icon: FileText, category: 'Resources', keywords: ['api', 'sdk', 'reference'] },
   { id: 'github', title: 'GitHub', description: 'Source code and issues', href: 'https://github.com/hanzoai/bot', icon: Code, category: 'Resources', external: true, keywords: ['github', 'source', 'code'] },
   { id: 'discord', title: 'Discord', description: 'Community chat', href: 'https://discord.gg/hanzo', icon: MessageCircle, category: 'Resources', external: true, keywords: ['discord', 'chat', 'community'] },
   { id: 'status', title: 'System Status', description: 'Service health and uptime', href: 'https://hanzo.ai/status', icon: Activity, category: 'Resources', external: true, keywords: ['status', 'uptime', 'health'] },

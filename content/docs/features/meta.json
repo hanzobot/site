@@ -1,0 +1,13 @@
+{
+  "title": "Features",
+  "pages": [
+    "index",
+    "local",
+    "models",
+    "memory",
+    "browser",
+    "system-access",
+    "cloud",
+    "mcp"
+  ]
+}

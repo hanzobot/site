@@ -1,0 +1,83 @@
+---
+title: "Cloud Desktop VMs"
+description: "Deploy Hanzo Bot to always-on cloud VMs with full desktop environments. Each agent gets its own isolated machine."
+---
+
+# Cloud Desktop VMs
+
+Hanzo Cloud gives each agent a full Linux desktop environment -- a dedicated virtual machine with a display, browser, file system, and all the tools a real team member would use. Agents run 24/7 without keeping your laptop open.
+
+## How it works
+
+When you deploy to Hanzo Cloud, each agent is provisioned on a dedicated VM:
+
+```
+┌──────────────────────────────────────────┐
+│  Hanzo Cloud VM                          │
+│  ┌────────────┐  ┌────────────────────┐  │
+│  │ Bot Runtime │  │ Desktop (Xfce)     │  │
+│  │ + Gateway   │  │ + Browser          │  │
+│  │ + Memory    │  │ + VS Code          │  │
+│  │ + Skills    │  │ + Terminal         │  │
+│  └────────────┘  └────────────────────┘  │
+│  ┌────────────────────────────────────┐  │
+│  │ Persistent Storage (SSD)           │  │
+│  └────────────────────────────────────┘  │
+└──────────────────────────────────────────┘
+```
+
+## Plans
+
+| Plan | CPU | RAM | Storage | VMs | Price |
+|------|-----|-----|---------|-----|-------|
+| **Starter** | 1 vCPU | 1 GB | 20 GB SSD | Up to 5 | $5/mo |
+| **Dev** | 2 vCPU | 8 GB | 25 GB SSD | Up to 25 | $15/mo |
+| **Pro** | 2 dedicated vCPU | 8 GB | 80 GB SSD | Unlimited | $25/mo |
+
+All plans include:
+- Always-on 24/7 hosting.
+- Gateway access to 100+ AI models.
+- Full desktop environment (browser, terminal, file manager).
+- Persistent storage across restarts.
+- SSH and VNC access.
+
+## Deploy
+
+```bash
+# Login to Hanzo Cloud
+bot cloud login
+
+# Deploy a new agent
+bot cloud deploy --plan dev --name my-agent
+
+# View running agents
+bot cloud list
+
+# SSH into an agent's VM
+bot cloud ssh my-agent
+```
+
+## What agents can do in the cloud
+
+Cloud agents have the same capabilities as local agents, plus:
+
+- **Always-on availability** -- respond to messages 24/7 without keeping your machine running.
+- **Full desktop** -- browse the web, use GUI applications, take screenshots.
+- **Dedicated resources** -- no contention with your local workloads.
+- **Team sharing** -- multiple team members can interact with the same agent.
+- **Auto-scaling** -- spin up additional VMs on demand.
+
+## macOS and Windows VMs
+
+Pro plan customers can request macOS or Windows VMs for platform-specific work (iOS development, Windows testing, etc.). Contact sales for availability.
+
+## Security
+
+Each VM is fully isolated:
+- Separate network namespace.
+- Encrypted storage at rest.
+- IAM-based authentication (SSO, RBAC).
+- No shared resources between agents.
+- Audit logging for all agent actions.
+
+See [Platforms](/docs/platforms) for platform-specific deployment guides and [Pricing](/pricing) for the full plan comparison.

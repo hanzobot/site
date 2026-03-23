@@ -1,17 +1,16 @@
 'use client'
 
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Search, ChevronDown, ArrowRight, Menu, X, ExternalLink,
+  Search, ArrowRight, Menu, X, ExternalLink,
   TerminalIcon, BrainIcon, MessageCircleIcon, GlobeIcon,
   PuzzleIcon, MonitorIcon, ShieldIcon, DownloadIcon,
-  ServerIcon, UsersIcon, CodeIcon, ZapIcon, BotIcon,
-  AppWindowIcon, LayoutDashboardIcon,
+  ServerIcon, UsersIcon, CodeIcon, ZapIcon,
   BookOpenIcon, MessageSquareIcon, GithubIcon, FileTextIcon,
   FlaskConicalIcon, HelpCircleIcon, HeartHandshakeIcon,
-  LightbulbIcon, NewspaperIcon, PlayIcon,
+  LightbulbIcon, NewspaperIcon, PlayIcon, MegaphoneIcon,
 } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import { logo } from '@/lib/layout.shared'
@@ -70,27 +69,27 @@ const SolutionsContent = ({ closeMenu }: { closeMenu: () => void }) => (
     <div>
       <h3 className="text-fd-muted-foreground text-xs font-medium mb-3 uppercase tracking-wider">By Role</h3>
       <div className="space-y-3">
-        <MenuLink href="/solutions#developers" icon={CodeIcon} label="Developers" description="Code review, testing, documentation." closeMenu={closeMenu} />
-        <MenuLink href="/solutions#devops" icon={ServerIcon} label="DevOps" description="Automation, monitoring, deployment." closeMenu={closeMenu} />
-        <MenuLink href="/solutions#teams" icon={UsersIcon} label="Teams" description="Collaboration and knowledge sharing." closeMenu={closeMenu} />
-        <MenuLink href="/solutions#enterprise" icon={ShieldIcon} label="Enterprise" description="Custom deployment, SSO, compliance." closeMenu={closeMenu} />
+        <MenuLink href="/solutions/engineering" icon={CodeIcon} label="Engineering" description="Code review, CI/CD, documentation." closeMenu={closeMenu} />
+        <MenuLink href="/solutions/operations" icon={ServerIcon} label="Operations" description="Automation, monitoring, deployment." closeMenu={closeMenu} />
+        <MenuLink href="/solutions/customer-support" icon={UsersIcon} label="Customer Support" description="24/7 AI agents across every channel." closeMenu={closeMenu} />
+        <MenuLink href="/solutions/sales" icon={ShieldIcon} label="Sales" description="Lead qualification, CRM, outbound." closeMenu={closeMenu} />
       </div>
     </div>
     <div>
       <h3 className="text-fd-muted-foreground text-xs font-medium mb-3 uppercase tracking-wider">Use Cases</h3>
       <div className="space-y-3">
-        <MenuLink href="/solutions#assistant" icon={BotIcon} label="AI Assistant" description="Personal AI that knows your context." closeMenu={closeMenu} />
-        <MenuLink href="/solutions#code-review" icon={CodeIcon} label="Code Review" description="Automated, thorough code reviews." closeMenu={closeMenu} />
-        <MenuLink href="/solutions#chat-support" icon={MessageCircleIcon} label="Chat Support" description="Customer support across all channels." closeMenu={closeMenu} />
-        <MenuLink href="/solutions#automation" icon={ZapIcon} label="Automation" description="Workflows, scripts, scheduled tasks." closeMenu={closeMenu} />
+        <MenuLink href="/solutions/marketing" icon={MegaphoneIcon} label="Marketing" description="Content, social media, campaign analysis." closeMenu={closeMenu} />
+        <MenuLink href="/solutions/engineering" icon={CodeIcon} label="Code Review" description="Automated, thorough code reviews." closeMenu={closeMenu} />
+        <MenuLink href="/solutions/customer-support" icon={MessageCircleIcon} label="Chat Support" description="Customer support across all channels." closeMenu={closeMenu} />
+        <MenuLink href="/solutions/operations" icon={ZapIcon} label="Automation" description="Workflows, scripts, scheduled tasks." closeMenu={closeMenu} />
       </div>
     </div>
     <div>
       <h3 className="text-fd-muted-foreground text-xs font-medium mb-3 uppercase tracking-wider">Industry</h3>
       <div className="space-y-3">
-        <MenuLink href="/solutions#startups" icon={ZapIcon} label="Startups" description="Ship 10x faster with fewer people." closeMenu={closeMenu} />
-        <MenuLink href="/solutions#agencies" icon={UsersIcon} label="Agencies" description="Scale without scaling headcount." closeMenu={closeMenu} />
-        <MenuLink href="/solutions#saas" icon={ServerIcon} label="SaaS" description="Automate support, onboarding, QA." closeMenu={closeMenu} />
+        <MenuLink href="/solutions" icon={ZapIcon} label="Startups" description="Ship 10x faster with fewer people." closeMenu={closeMenu} />
+        <MenuLink href="/solutions" icon={UsersIcon} label="Agencies" description="Scale without scaling headcount." closeMenu={closeMenu} />
+        <MenuLink href="/solutions" icon={ServerIcon} label="SaaS" description="Automate support, onboarding, QA." closeMenu={closeMenu} />
       </div>
     </div>
     <div className="p-4 rounded-xl bg-fd-secondary border border-fd-border">
@@ -112,8 +111,8 @@ const ResourcesContent = ({ closeMenu }: { closeMenu: () => void }) => (
     <div>
       <h3 className="text-fd-muted-foreground text-xs font-medium mb-3 uppercase tracking-wider">Learn</h3>
       <div className="space-y-3">
-        <MenuLink href="/docs/guides" icon={BookOpenIcon} label="Guides" description="Step-by-step tutorials and walkthroughs." closeMenu={closeMenu} />
-        <MenuLink href="/docs/features" icon={PlayIcon} label="Getting Started" description="Quick start and first steps." closeMenu={closeMenu} />
+        <MenuLink href="/guides" icon={BookOpenIcon} label="Guides" description="Step-by-step tutorials and walkthroughs." closeMenu={closeMenu} />
+        <MenuLink href="/docs/start/getting-started" icon={PlayIcon} label="Getting Started" description="Quick start and first steps." closeMenu={closeMenu} />
         <MenuLink href="/blog" icon={NewspaperIcon} label="Blog" description="Product updates and engineering posts." closeMenu={closeMenu} />
         <MenuLink href="/changelog" icon={FileTextIcon} label="Changelog" description="What's new in every release." closeMenu={closeMenu} />
       </div>
@@ -137,7 +136,7 @@ const ResourcesContent = ({ closeMenu }: { closeMenu: () => void }) => (
     <div>
       <h3 className="text-fd-muted-foreground text-xs font-medium mb-3 uppercase tracking-wider">Support</h3>
       <div className="space-y-3">
-        <MenuLink href="/docs/faq" icon={HelpCircleIcon} label="FAQs" description="Answers to common questions." closeMenu={closeMenu} />
+        <MenuLink href="/docs/help/faq" icon={HelpCircleIcon} label="FAQs" description="Answers to common questions." closeMenu={closeMenu} />
         <MenuLink href="https://hanzo.ai/contact" icon={HeartHandshakeIcon} label="Contact Sales" description="Talk to our team." closeMenu={closeMenu} external />
         <MenuLink href="https://github.com/hanzoai/bot/issues" icon={GithubIcon} label="Report Issue" description="File a bug or feature request." closeMenu={closeMenu} external />
       </div>
@@ -205,7 +204,7 @@ function MobileMenu({ isOpen, onClose, onOpenSearch }: { isOpen: boolean; onClos
 
         <div className="space-y-0.5">
           {[
-            { label: 'Features', href: '/docs/features' },
+            { label: 'Features', href: '/docs/start/getting-started' },
             { label: 'Solutions', href: '/solutions' },
             { label: 'Pricing', href: '/pricing' },
             { label: 'Docs', href: '/docs' },
@@ -224,12 +223,12 @@ function MobileMenu({ isOpen, onClose, onOpenSearch }: { isOpen: boolean; onClos
         </div>
         <div className="space-y-0.5">
           {[
-            { label: 'Guides', href: '/docs/guides' },
+            { label: 'Guides', href: '/guides' },
             { label: 'Blog', href: '/blog' },
             { label: 'Changelog', href: '/changelog' },
             { label: 'Integrations', href: '/integrations' },
             { label: 'Skills', href: '/skills' },
-            { label: 'FAQs', href: '/docs/faq' },
+            { label: 'FAQs', href: '/docs/help/faq' },
           ].map((item) => (
             <Link key={item.label} href={item.href} onClick={onClose}
               className="block px-4 py-2.5 text-fd-muted-foreground text-sm hover:text-fd-foreground hover:bg-fd-accent rounded-lg transition-colors">

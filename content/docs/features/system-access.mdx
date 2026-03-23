@@ -1,0 +1,107 @@
+---
+title: "System Access"
+description: "Hanzo Bot can read and write files, run shell commands, and execute scripts. Full access or sandboxed -- your choice."
+---
+
+# System Access
+
+Hanzo Bot has full access to your local machine -- file system, shell, and running processes. This is what makes it a true computer-using agent rather than just a chatbot.
+
+## Capabilities
+
+### File system
+
+The agent can read, write, create, and delete files anywhere on your system (or within sandboxed directories if configured):
+
+```
+You: Create a new React component at src/components/Header.tsx
+Bot: Created src/components/Header.tsx with a responsive header
+     component using your project's existing Tailwind patterns.
+```
+
+### Shell commands
+
+The agent can execute any shell command and process the output:
+
+```
+You: What's using port 3000?
+Bot: Running `lsof -i :3000`... The process is `node` (PID 42891),
+     which is your Next.js dev server started 2 hours ago.
+```
+
+### Script execution
+
+Run complex multi-step workflows:
+
+```
+You: Run the test suite and fix any failures
+Bot: Running `npm test`... 3 tests failed in auth.test.ts.
+     The issue is a missing mock for the new OAuth provider.
+     I've updated the mock and all 47 tests now pass.
+```
+
+## Sandboxing
+
+By default, Bot has unrestricted access. For shared or production environments, configure sandboxing to restrict what the agent can do:
+
+```json
+{
+  "sandbox": {
+    "mode": "restricted",
+    "allowedDirs": ["~/projects/my-app", "/tmp/bot-workspace"],
+    "blockedCommands": ["rm -rf", "sudo", "shutdown"],
+    "maxFileSize": "50MB",
+    "networkAccess": true
+  }
+}
+```
+
+### Sandbox modes
+
+| Mode | Description |
+|------|-------------|
+| `off` | Full unrestricted access (default for local installs) |
+| `non-main` | Sandbox group/channel sessions; main agent runs unrestricted |
+| `restricted` | Whitelist specific directories and commands |
+| `docker` | Run all commands in an isolated Docker container |
+
+## Execution approvals
+
+For sensitive operations, configure the agent to ask for your approval before executing:
+
+```json
+{
+  "exec": {
+    "approvals": {
+      "enabled": true,
+      "autoApprove": ["git status", "git diff", "ls", "cat"],
+      "requireApproval": ["git push", "rm", "npm publish"]
+    }
+  }
+}
+```
+
+When approval is required, the agent pauses and asks via your connected chat channel:
+
+```
+Bot: I need to run `git push origin main`. Approve? (yes/no)
+You: yes
+Bot: Pushed 3 commits to origin/main.
+```
+
+See [Exec Approvals](/docs/tools/exec-approvals) for the full configuration reference.
+
+## CLI reference
+
+```bash
+# Check what the agent can access
+bot system info
+
+# View sandbox configuration
+bot config get sandbox
+
+# Test a command in the sandbox
+bot sandbox exec "ls -la ~/projects"
+```
+
+See [Tools: Exec](/docs/tools/exec) for the exec tool reference and [Gateway: Sandboxing](/docs/gateway/sandboxing) for deployment-level sandbox configuration.

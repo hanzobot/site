@@ -104,11 +104,11 @@ const smartHome: Integration[] = [
 
 const tools: Integration[] = [
   { name: 'Browser', icon: <GlobeIcon {...I()} />, color: '#FFFFFF', desc: 'Chrome/Chromium control', docs: 'https://skills.hanzo.bot/skills/verify-on-browser' },
-  { name: 'Canvas', icon: <MonitorSmartphoneIcon {...I()} />, color: '#FFFFFF', desc: 'Visual workspace + A2UI', docs: '/docs/features/canvas' },
+  { name: 'Canvas', icon: <MonitorSmartphoneIcon {...I()} />, color: '#FFFFFF', desc: 'Visual workspace + A2UI', docs: '/docs/platforms/mac/canvas' },
   { name: 'Voice', icon: <MicIcon {...I()} />, color: '#FFFFFF', desc: 'Voice Wake + Talk Mode', docs: 'https://skills.hanzo.bot/skills/voice-transcribe' },
   { name: 'Gmail', icon: <MailIcon {...I()} />, color: '#a3a3a3', desc: 'Pub/Sub email triggers', docs: 'https://skills.hanzo.bot/skills/gmail' },
-  { name: 'Cron', icon: <ClockIcon {...I()} />, color: '#FFFFFF', desc: 'Scheduled tasks', docs: '/docs/features/cron' },
-  { name: 'Webhooks', icon: <WebhookIcon {...I()} />, color: '#FFFFFF', desc: 'External triggers', docs: '/docs/features/webhooks' },
+  { name: 'Cron', icon: <ClockIcon {...I()} />, color: '#FFFFFF', desc: 'Scheduled tasks', docs: '/docs/automation/cron-jobs' },
+  { name: 'Webhooks', icon: <WebhookIcon {...I()} />, color: '#FFFFFF', desc: 'External triggers', docs: '/docs/automation/webhook' },
   { name: 'Weather', icon: <CloudSunIcon {...I()} />, color: '#FFFFFF', desc: 'Forecasts & conditions', docs: 'https://skills.hanzo.bot/skills/weather' },
 ];
 

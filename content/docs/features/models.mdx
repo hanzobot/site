@@ -1,0 +1,90 @@
+---
+title: "100+ AI Models"
+description: "Use any AI model with Hanzo Bot -- Anthropic Claude, OpenAI GPT, Google Gemini, open-source models, or local inference via Ollama."
+---
+
+# 100+ AI Models
+
+Hanzo Bot supports every major AI model provider through a unified gateway. Switch models with a single config change -- no code modifications required.
+
+## Supported providers
+
+| Provider | Models | Setup |
+|----------|--------|-------|
+| **Anthropic** | Claude Opus 4.6, Sonnet 4.5, Haiku | API key from console.anthropic.com |
+| **OpenAI** | GPT-5.2, GPT-5.1 Codex, o3, o4-mini | API key from platform.openai.com |
+| **Google** | Gemini 3 Pro, Gemini 3 Flash | API key from ai.google.dev |
+| **xAI** | Grok 3, Grok 4 | API key from console.x.ai |
+| **Mistral** | Mistral Large, Codestral | API key from console.mistral.ai |
+| **DeepSeek** | DeepSeek V3, DeepSeek R1 | API key from platform.deepseek.com |
+| **OpenRouter** | 200+ models via one API | API key from openrouter.ai |
+| **Together AI** | DeepSeek, Mixtral, Llama, and more | API key from api.together.xyz |
+| **Local (Ollama)** | Llama, Qwen, Phi, CodeGemma | No API key needed |
+| **Local (LM Studio)** | Any GGUF model | No API key needed |
+
+## Configuration
+
+Set your default model provider:
+
+```bash
+bot config set ai.provider anthropic
+bot config set ai.apiKey sk-ant-...
+```
+
+Or configure per-channel routing (e.g., Claude for code review, GPT for customer support):
+
+```json
+{
+  "routing": {
+    "agents": {
+      "code-review": {
+        "provider": "anthropic",
+        "model": "claude-sonnet-4-5-20250514"
+      },
+      "support": {
+        "provider": "openai",
+        "model": "gpt-5.2"
+      }
+    }
+  }
+}
+```
+
+## Model failover
+
+The gateway supports automatic failover between providers. If your primary model is unavailable, requests are automatically routed to a backup:
+
+```json
+{
+  "ai": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-4-5-20250514",
+    "failover": [
+      { "provider": "openai", "model": "gpt-5.1-codex" },
+      { "provider": "ollama", "model": "qwen3:32b" }
+    ]
+  }
+}
+```
+
+See [Model Failover](/docs/concepts/model-failover) for details on retry logic and health checks.
+
+## Local models
+
+Run models entirely on your own hardware with no API key and no internet connection:
+
+```bash
+# Install Ollama
+curl -fsSL https://ollama.com/install.sh | sh
+
+# Pull a model
+ollama pull qwen3:32b
+
+# Configure Bot to use it
+bot config set ai.provider ollama
+bot config set ai.model qwen3:32b
+```
+
+Local models are fully private -- no data leaves your machine. GPU acceleration (CUDA, Metal, ROCm) is supported for faster inference.
+
+See [Model Providers](/docs/providers) for the full provider reference.

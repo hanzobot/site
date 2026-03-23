@@ -24,9 +24,9 @@ const models = [
 const features = [
   { icon: HomeIcon, title: 'Runs on Your Machine', desc: 'Mac, Windows, or Linux. Anthropic, OpenAI, or local models. Private by default\u2014your data stays yours.', href: '/get-started' },
   { icon: MessageCircleIcon, title: 'Any Chat App', desc: 'Talk to it on WhatsApp, Telegram, Discord, Slack, Signal, or iMessage. Works in DMs and group chats.', href: '/integrations' },
-  { icon: BrainIcon, title: 'Persistent Memory', desc: 'Remembers you and becomes uniquely yours. Your preferences, your context, your AI.', href: '/docs/features/memory' },
-  { icon: GlobeIcon, title: 'Browser Control', desc: 'It can browse the web, fill forms, and extract data from any site.', href: '/docs/features/browser' },
-  { icon: TerminalIcon, title: 'Full System Access', desc: 'Read and write files, run shell commands, execute scripts. Full access or sandboxed\u2014your choice.', href: '/docs/features/system-access' },
+  { icon: BrainIcon, title: 'Persistent Memory', desc: 'Remembers you and becomes uniquely yours. Your preferences, your context, your AI.', href: '/docs/concepts/memory' },
+  { icon: GlobeIcon, title: 'Browser Control', desc: 'It can browse the web, fill forms, and extract data from any site.', href: '/docs/tools/browser' },
+  { icon: TerminalIcon, title: 'Full System Access', desc: 'Read and write files, run shell commands, execute scripts. Full access or sandboxed\u2014your choice.', href: '/docs/tools/exec' },
   { icon: PuzzleIcon, title: 'Skills & Plugins', desc: 'Extend with community skills or build your own. It can even write its own.', href: '/skills' },
 ];
 

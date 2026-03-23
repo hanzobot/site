@@ -1,0 +1,90 @@
+---
+title: "Browser Control"
+description: "Hanzo Bot can browse the web, fill forms, click buttons, and extract data from any website."
+---
+
+# Browser Control
+
+Hanzo Bot includes a built-in browser automation system. The agent can navigate websites, fill forms, click buttons, extract data, take screenshots, and interact with web applications -- all through natural language commands.
+
+## How it works
+
+Bot manages a dedicated Chromium browser profile (separate from your personal browser) that the agent controls via a local control server. The agent sees the page through accessibility snapshots and screenshots, then executes actions (click, type, scroll, navigate).
+
+```
+┌─────────────┐     ┌──────────────┐     ┌────────────────┐
+│  Your Chat   │────▶│  Bot Agent    │────▶│  Bot Browser   │
+│  "check the  │     │  (interprets  │     │  (isolated     │
+│   order page"│     │   & plans)    │     │   Chromium)    │
+└─────────────┘     └──────────────┘     └────────────────┘
+```
+
+## Capabilities
+
+- **Navigate** -- open URLs, follow links, go back/forward, switch tabs.
+- **Read** -- extract text, tables, and structured data from any page.
+- **Interact** -- click buttons, fill forms, select dropdowns, drag elements.
+- **Screenshot** -- capture full-page or element-specific screenshots.
+- **PDF** -- generate PDF exports of any page.
+- **Multi-tab** -- manage multiple tabs simultaneously.
+- **Login** -- authenticate to sites using stored credentials.
+
+## Quick start
+
+Browser control is enabled by default. Ask your bot to browse:
+
+```
+You: Check the status of my Vercel deployment at vercel.com/dashboard
+Bot: Opening Vercel dashboard... I can see 3 deployments. The latest
+     "main" branch deployed 12 minutes ago with status "Ready".
+```
+
+## Configuration
+
+```json
+{
+  "browser": {
+    "profile": "bot",
+    "headless": true,
+    "viewport": { "width": 1920, "height": 1080 },
+    "timeout": 30000,
+    "userDataDir": "~/.hanzo/bot/browser"
+  }
+}
+```
+
+### Profiles
+
+| Profile | Description |
+|---------|-------------|
+| `bot` | Isolated, agent-managed profile (default). Orange accent bar. |
+| `chrome` | Uses system default Chromium via the extension relay. |
+| `remote` | Connects to a remote browser instance (cloud VMs). |
+
+## CLI commands
+
+```bash
+# Launch the browser manually
+bot browser open
+
+# List open tabs
+bot browser tabs
+
+# Take a screenshot
+bot browser screenshot https://example.com
+```
+
+## Security
+
+The bot browser profile is completely isolated from your personal browsing data. Cookies, history, and stored passwords in the bot profile are separate. You can configure which domains the agent is allowed to visit:
+
+```json
+{
+  "browser": {
+    "allowedDomains": ["*.example.com", "github.com"],
+    "blockedDomains": ["*.banking.com"]
+  }
+}
+```
+
+See [Tools: Browser](/docs/tools/browser) for the full technical reference and [Browser Login](/docs/tools/browser-login) for authentication workflows.

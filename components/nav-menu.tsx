@@ -55,8 +55,8 @@ export function NavMenu({ label, children }: NavMenuProps) {
     >
       <button
         className={cn(
-          'inline-flex items-center gap-1 text-sm font-medium transition-colors outline-none cursor-pointer',
-          isOpen ? 'text-fd-foreground' : 'text-fd-muted-foreground hover:text-fd-foreground'
+          'inline-flex items-center gap-1 text-sm font-medium transition-colors outline-none cursor-pointer px-3 py-2 rounded-md',
+          isOpen ? 'text-fd-foreground bg-fd-accent/50' : 'text-fd-muted-foreground hover:text-fd-foreground hover:bg-fd-accent/50'
         )}
       >
         {label}

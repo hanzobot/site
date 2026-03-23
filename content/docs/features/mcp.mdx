@@ -1,0 +1,101 @@
+---
+title: "MCP Integration"
+description: "Hanzo Bot supports 260+ tools via Model Context Protocol (MCP) -- the open standard for AI tool integration."
+---
+
+# MCP Integration
+
+Model Context Protocol (MCP) is the open standard that Hanzo Bot uses for tool integration. It allows agents to discover, install, and use tools dynamically at runtime. The Hanzo ecosystem provides 260+ MCP tools out of the box.
+
+## What is MCP?
+
+MCP defines a standard interface between AI agents and external tools. Instead of hard-coding tool integrations, agents discover available tools at runtime and call them through a typed, structured API.
+
+```
+┌──────────────┐     MCP      ┌──────────────┐
+│  Bot Agent   │◀────────────▶│  MCP Server   │
+│  (consumer)  │  discover /  │  (provider)   │
+│              │  invoke      │  e.g. GitHub,  │
+│              │              │  browser, fs   │
+└──────────────┘              └──────────────┘
+```
+
+## Available tools
+
+The Hanzo MCP ecosystem includes tools for:
+
+| Category | Examples | Count |
+|----------|----------|-------|
+| **Developer** | GitHub, GitLab, Linear, Jira | 40+ |
+| **Browser** | Navigate, screenshot, extract, fill forms | 15+ |
+| **File System** | Read, write, search, watch files | 20+ |
+| **Communication** | Slack, Discord, Email, SMS | 25+ |
+| **Productivity** | Calendar, Notes, Reminders, Notion | 30+ |
+| **Smart Home** | Hue, HomeAssistant, 8Sleep | 15+ |
+| **Media** | Image generation, Spotify, camera | 20+ |
+| **Data** | SQL, Redis, S3, vector stores | 25+ |
+| **Crypto** | Wallet, DeFi, NFT, on-chain data | 20+ |
+| **System** | Shell, process management, networking | 15+ |
+
+## Using MCP tools
+
+MCP tools are available to your agent automatically. Just ask:
+
+```
+You: Create a GitHub issue for the login bug we discussed
+Bot: Created issue #142 "Login redirect fails on Safari"
+     in hanzoai/app with the bug label and P1 priority.
+```
+
+## Installing MCP servers
+
+Add new tool providers:
+
+```bash
+# List available MCP servers
+bot plugins list --type mcp
+
+# Install a specific MCP server
+bot plugins install mcp-github
+
+# Configure credentials
+bot config set mcp.github.token ghp_...
+```
+
+## Configuration
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "github": {
+        "command": "mcp-github",
+        "env": {
+          "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+        }
+      },
+      "filesystem": {
+        "command": "mcp-filesystem",
+        "args": ["--root", "~/projects"]
+      }
+    }
+  }
+}
+```
+
+## Building MCP tools
+
+Create your own MCP server to expose custom tools to the agent:
+
+```typescript
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+
+const server = new McpServer({ name: "my-tools", version: "1.0.0" });
+
+server.tool("deploy", { env: "string" }, async ({ env }) => {
+  const result = await deployToEnvironment(env);
+  return { content: [{ type: "text", text: `Deployed to ${env}: ${result.url}` }] };
+});
+```
+
+See the [MCP specification](https://modelcontextprotocol.io) for the full protocol reference, and [Skills: Creating Skills](/docs/tools/creating-skills) for building custom integrations.

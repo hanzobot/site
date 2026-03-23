@@ -1,0 +1,60 @@
+---
+title: "Persistent Memory"
+description: "Bot remembers you across sessions using workspace files, daily logs, and long-term memory."
+---
+
+# Persistent Memory
+
+Bot writes durable notes to Markdown files in the workspace. Daily logs,
+long-term memory, and vector search mean the agent remembers your preferences,
+decisions, and context across sessions.
+
+## How it works
+
+Every agent has a workspace directory (default `~/bot/`). Inside it, Bot
+maintains structured memory files:
+
+- **Daily logs** -- a timestamped Markdown file per day captures key decisions,
+  summaries, and action items.
+- **Long-term memory** -- persistent notes that survive across sessions. The
+  agent writes these when it learns something worth remembering.
+- **Vector search** -- embeddings index over workspace files for semantic
+  retrieval during conversations.
+
+## Memory flush
+
+At the end of each session (or periodically during long ones), Bot flushes
+buffered observations into the workspace. This ensures nothing is lost even
+if the process is interrupted.
+
+## Configuration
+
+Memory behavior is configured per agent:
+
+```json5
+{
+  agents: {
+    defaults: {
+      memory: {
+        enabled: true,
+        flushIntervalMs: 300000,  // 5 minutes
+        workspace: "~/bot/"
+      }
+    }
+  }
+}
+```
+
+## CLI commands
+
+```bash
+bot memory list          # show all memory entries
+bot memory search <q>    # semantic search across memory
+bot memory flush         # force a memory flush now
+bot memory clear         # clear all memory (with confirmation)
+```
+
+For the full architecture of how memory works internally, see
+[Memory (concepts)](/docs/concepts/memory).
+
+For CLI reference, see [Memory CLI](/docs/cli/memory).
