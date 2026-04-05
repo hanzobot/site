@@ -11,6 +11,7 @@ import { TestimonialCarousel } from './_components/testimonial-carousel';
 import { InstallTabs } from './_components/install-tabs';
 import { IntegrationPills } from './_components/integration-pills';
 import { NinjaHero } from './_components/ninja-hero';
+import { GiveawayModal } from './_components/giveaway-form';
 
 const models = [
   { provider: 'Anthropic', names: 'Claude Opus 4.6, Sonnet 4.5' },
@@ -94,6 +95,7 @@ const pricingTiers = [
 export default function Page() {
   return (
     <main className="relative z-[1] max-w-[860px] w-full mx-auto px-4 sm:px-6 pt-8 sm:pt-16 pb-10 overflow-x-hidden">
+      <GiveawayModal />
 
       {/* Hero */}
       <header className="text-center mb-16 animate-[fadeInUp_0.8s_ease-out]">
