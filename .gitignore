@@ -8,6 +8,11 @@ docs/*.ts
 docs/*.mjs
 docs/json-schema/
 
+# Env
+.env
+.env.local
+.env.*.local
+
 # OS
 .DS_Store
 .astro/

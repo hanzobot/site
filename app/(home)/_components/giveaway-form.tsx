@@ -16,11 +16,23 @@ import {
 import { cn } from '@/lib/cn';
 
 const STORAGE_KEY = 'hanzo-giveaway-entered';
+const GIVEAWAY_URL = process.env.NEXT_PUBLIC_GIVEAWAY_URL ?? '';
 
 interface EntryState {
   entries: number;
   github: boolean;
   linkedin: boolean;
+}
+
+async function postEntry(payload: { email: string; action?: 'github' | 'linkedin' }): Promise<{ ok?: boolean; error?: string; entries?: number; github?: boolean; linkedin?: boolean }> {
+  // text/plain avoids the CORS preflight that Apps Script web apps don't answer.
+  const res = await fetch(GIVEAWAY_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload),
+    redirect: 'follow',
+  });
+  return res.json();
 }
 
 export function GiveawayModal() {
@@ -73,20 +85,14 @@ export function GiveawayModal() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/giveaway', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
+      const data = await postEntry({ email });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        setError(data.error ?? 'Something went wrong');
+      if (data.error) {
+        setError(data.error);
         return;
       }
 
-      setState({ entries: data.entries, github: data.github, linkedin: data.linkedin });
+      setState({ entries: data.entries ?? 1, github: data.github ?? false, linkedin: data.linkedin ?? false });
       setPhase('success');
 
       try {
@@ -106,16 +112,9 @@ export function GiveawayModal() {
     setBonusLoading(action);
 
     try {
-      const res = await fetch('/api/giveaway', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, action }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        setState({ entries: data.entries, github: data.github, linkedin: data.linkedin });
+      const data = await postEntry({ email, action });
+      if (!data.error && typeof data.entries === 'number') {
+        setState({ entries: data.entries, github: data.github ?? false, linkedin: data.linkedin ?? false });
       }
     } catch {
       // Silently fail — the follow still happened
@@ -139,12 +138,12 @@ export function GiveawayModal() {
       />
 
       {/* Modal panel */}
-      <div className="relative w-full max-w-[520px] max-h-[90vh] overflow-y-auto rounded-2xl border border-fd-border bg-[rgba(8,12,22,0.95)] backdrop-blur-xl shadow-[0_24px_80px_rgba(0,0,0,0.6)] animate-[fadeInUp_0.4s_ease-out]">
+      <div className="relative w-full max-w-[520px] max-h-[90vh] overflow-y-auto rounded-2xl border border-neutral-300 bg-white backdrop-blur-xl shadow-[0_24px_80px_rgba(0,0,0,0.3)] animate-[fadeInUp_0.4s_ease-out]">
         {/* Close button */}
         <button
           type="button"
           onClick={close}
-          className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-lg text-fd-muted-foreground hover:text-fd-foreground hover:bg-[rgba(255,255,255,0.08)] transition-colors"
+          className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-lg text-white hover:text-white hover:bg-[rgba(0,0,0,0.1)] transition-colors"
           aria-label="Close"
         >
           <XIcon className="w-5 h-5" />
@@ -155,7 +154,7 @@ export function GiveawayModal() {
             <>
               {/* Prize badge */}
               <div className="flex justify-center mb-5">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#050810] bg-gradient-to-r from-white to-[#d4d4d4] rounded-full">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white bg-black/40 rounded-full">
                   <GiftIcon className="w-3.5 h-3.5" />
                   Limited Time Giveaway
                 </span>
@@ -163,14 +162,14 @@ export function GiveawayModal() {
 
               {/* Headline */}
               <h2 className="text-xl sm:text-3xl font-bold tracking-tight text-center mb-3 leading-[1.15]">
-                <span className="bg-gradient-to-br from-fd-foreground via-neutral-400 to-[#a3a3a3] bg-[length:200%_200%] bg-clip-text text-transparent animate-[gradientShift_6s_ease_infinite]">
+                <span className="text-black">
                   Enter to Win Up to
                 </span>
                 <br />
-                <span className="text-fd-foreground">$50,000 in AI Credits</span>
+                <span className="text-black">$50,000 in AI Credits</span>
               </h2>
 
-              <p className="text-sm sm:text-base text-fd-muted-foreground text-center max-w-[420px] mx-auto mb-8 leading-relaxed">
+              <p className="text-sm sm:text-base text-black/80 text-center max-w-[420px] mx-auto mb-8 leading-relaxed">
                 Drop your email for a chance to win Hanzo Cloud credits.
                 One entry to start — earn bonus entries by following us.
               </p>
@@ -178,7 +177,7 @@ export function GiveawayModal() {
               {/* Email form */}
               <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 <div className="relative">
-                  <MailIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-fd-muted-foreground pointer-events-none" />
+                  <MailIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-black/60 pointer-events-none" />
                   <input
                     type="email"
                     required
@@ -186,13 +185,13 @@ export function GiveawayModal() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     autoFocus
-                    className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-fd-border bg-[rgba(10,15,26,0.6)] backdrop-blur-sm text-fd-foreground placeholder:text-fd-muted-foreground focus:outline-none focus:border-neutral-500 focus:shadow-[0_0_0_3px_rgba(255,255,255,0.05)] transition-all text-base"
+                    className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-neutral-400 bg-white/10 backdrop-blur-sm text-black placeholder:text-black/50 focus:outline-none focus:border-neutral-600 focus:shadow-[0_0_0_3px_rgba(0,0,0,0.08)] transition-all text-base"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="inline-flex items-center justify-center gap-2 w-full px-7 py-3.5 font-semibold text-[#050810] bg-gradient-to-br from-white to-[#d4d4d4] rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,255,255,0.45)] shadow-[0_4px_24px_rgba(255,255,255,0.3)] disabled:opacity-60 disabled:hover:translate-y-0"
+                  className="inline-flex items-center justify-center gap-2 w-full px-7 py-3.5 font-semibold text-white bg-black rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(0,0,0,0.4)] shadow-[0_4px_24px_rgba(0,0,0,0.25)] disabled:opacity-60 disabled:hover:translate-y-0"
                 >
                   {loading ? (
                     <LoaderIcon className="w-5 h-5 animate-spin" />
@@ -209,7 +208,7 @@ export function GiveawayModal() {
                 <p className="mt-3 text-center text-sm text-red-400">{error}</p>
               )}
 
-              <p className="mt-5 text-center text-xs text-fd-muted-foreground">
+              <p className="mt-5 text-center text-xs text-black/60">
                 No purchase necessary. One entry per email. Winners notified by email.
               </p>
             </>
