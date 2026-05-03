@@ -4,6 +4,7 @@ import {
   BarChart3Icon, SearchIcon, MailIcon, FlaskConicalIcon,
   SparklesIcon,
 } from 'lucide-react';
+import { SIGNUP_URL } from '@/lib/auth-urls';
 
 const features = [
   { icon: PenToolIcon, title: 'Content Generation', desc: 'Blog posts, landing pages, ad copy, and social captions in your brand voice. Drafts in seconds, not hours.' },
@@ -143,7 +144,7 @@ export default function MarketingPage() {
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <a
-            href="https://app.hanzo.bot/auth/signup"
+            href={SIGNUP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-[#050810] bg-gradient-to-br from-white to-[#d4d4d4] no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,255,255,0.45)] shadow-[0_4px_24px_rgba(255,255,255,0.3)]"

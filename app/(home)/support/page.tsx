@@ -5,6 +5,7 @@ import {
   ActivityIcon, ShieldCheckIcon, HeadphonesIcon,
   CodeIcon, LifeBuoyIcon, ClockIcon,
 } from 'lucide-react';
+import { SIGNUP_URL } from '@/lib/auth-urls';
 
 export const metadata = {
   title: 'Support — Hanzo Bot',
@@ -247,7 +248,7 @@ export default function SupportPage() {
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <a
-            href="https://app.hanzo.bot/auth/signup"
+            href={SIGNUP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-[#050810] bg-gradient-to-br from-white to-[#d4d4d4] no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,255,255,0.45)] shadow-[0_4px_24px_rgba(255,255,255,0.3)]"

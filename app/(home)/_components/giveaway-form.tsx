@@ -77,7 +77,17 @@ export function GiveawayModal() {
     }
   }, [open]);
 
-  const close = useCallback(() => setOpen(false), []);
+  const close = useCallback(() => {
+    setOpen(false);
+    try {
+      // Suppress for this browser for ~7 days so a dismissal is sticky.
+      // Form submission writes the same key on success — either path
+      // prevents the modal from re-opening on the next visit.
+      localStorage.setItem(STORAGE_KEY, String(Date.now()));
+    } catch {
+      // ignore
+    }
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -139,14 +149,14 @@ export function GiveawayModal() {
 
       {/* Modal panel */}
       <div className="relative w-full max-w-[520px] max-h-[90vh] overflow-y-auto rounded-2xl border border-neutral-300 bg-white backdrop-blur-xl shadow-[0_24px_80px_rgba(0,0,0,0.3)] animate-[fadeInUp_0.4s_ease-out]">
-        {/* Close button */}
+        {/* Close button — must be visible on the white modal background. */}
         <button
           type="button"
           onClick={close}
-          className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-lg text-white hover:text-white hover:bg-[rgba(0,0,0,0.1)] transition-colors"
-          aria-label="Close"
+          className="absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white text-black/70 shadow-sm transition-colors hover:border-black/20 hover:bg-black/5 hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-black/30"
+          aria-label="Close giveaway"
         >
-          <XIcon className="w-5 h-5" />
+          <XIcon className="h-5 w-5" />
         </button>
 
         <div className="p-6 sm:p-8">

@@ -9,6 +9,7 @@ import {
   MailIcon, ShoppingCartIcon, PrinterIcon, HeartIcon,
   UtensilsCrossedIcon, SmartphoneIcon,
 } from 'lucide-react';
+import { APP_DASHBOARD_URL } from '@/lib/auth-urls';
 import automationsData from '@/data/automations.json';
 import type { ReactNode } from 'react';
 
@@ -227,7 +228,7 @@ export default function IntegrationsPage() {
         </div>
         <div className="text-center mt-6">
           <a
-            href="https://app.hanzo.bot"
+            href={APP_DASHBOARD_URL}
             className="inline-block px-7 py-3 rounded-xl bg-gradient-to-br from-white to-neutral-400 text-[#050810] font-semibold no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(163,163,163,0.4)]"
           >
             Launch Hanzo Auto →

@@ -5,6 +5,7 @@ import {
   DownloadIcon, MonitorIcon, NetworkIcon, PuzzleIcon,
   RocketIcon, SparklesIcon, UsersIcon, WrenchIcon,
 } from 'lucide-react';
+import { APP_DASHBOARD_URL } from '@/lib/auth-urls';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -158,7 +159,7 @@ export default function PlatformPage() {
             Get Started Free
           </Link>
           <a
-            href="https://app.hanzo.bot"
+            href={APP_DASHBOARD_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:bg-[rgba(255,255,255,0.08)] hover:border-neutral-600 hover:shadow-[0_8px_40px_rgba(163,163,163,0.2)]"
