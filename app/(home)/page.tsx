@@ -354,7 +354,7 @@ export default function Page() {
       {/* CTA Grid */}
       <nav className="grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4 mb-14">
         {[
-          { href: 'https://app.hanzo.bot', icon: UsersIcon, label: 'Dashboard', sub: 'Launch app.hanzo.bot', className: 'border-[rgba(255,255,255,0.25)] bg-[rgba(255,255,255,0.06)] hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(255,255,255,0.25)]' },
+          { href: APP_DASHBOARD_URL, icon: UsersIcon, label: 'Dashboard', sub: 'Launch playground', className: 'border-[rgba(255,255,255,0.25)] bg-[rgba(255,255,255,0.06)] hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(255,255,255,0.25)]' },
           { href: 'https://discord.gg/hanzo', icon: MessageCircleIcon, label: 'Discord', sub: 'Join community', className: 'hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(255,255,255,0.2)]' },
           { href: 'https://github.com/hanzoai/bot', icon: GlobeIcon, label: 'GitHub', sub: 'View source', className: 'hover:border-fd-foreground hover:shadow-[0_12px_40px_rgba(240,244,255,0.1)]' },
           { href: '/docs', icon: BookOpenIcon, label: 'Docs', sub: 'Get started', className: 'hover:border-neutral-600 hover:shadow-[0_12px_40px_rgba(163,163,163,0.15)]' },
