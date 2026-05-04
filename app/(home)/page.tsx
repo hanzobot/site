@@ -6,6 +6,7 @@ import {
   DownloadIcon, LogInIcon, UsersIcon, BookOpenIcon,
   CheckIcon, ArrowRightIcon, SparklesIcon,
 } from 'lucide-react';
+import { signupUrlForPlan, APP_DASHBOARD_URL } from '@/lib/auth-urls';
 import testimonials from '@/data/testimonials.json';
 import { TestimonialCarousel } from './_components/testimonial-carousel';
 import { InstallTabs } from './_components/install-tabs';
@@ -52,7 +53,7 @@ const pricingTiers = [
     period: '/mo',
     desc: 'Linux VM. Up to 5 VMs.',
     cta: 'Start Free',
-    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=starter',
+    ctaHref: signupUrlForPlan('starter'),
     features: [
       '1 vCPU, 1 GB, 20 GB SSD',
       'Zen Mini model included',
@@ -66,7 +67,7 @@ const pricingTiers = [
     period: '/mo',
     desc: '2 vCPU, 8 GB. Up to 25 VMs.',
     cta: 'Start Free Trial',
-    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=dev',
+    ctaHref: signupUrlForPlan('dev'),
     highlight: true,
     badge: 'Most Popular',
     features: [
@@ -82,7 +83,7 @@ const pricingTiers = [
     period: '/mo',
     desc: 'Dedicated CPU. 80 GB SSD.',
     cta: 'Get Started',
-    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=pro',
+    ctaHref: signupUrlForPlan('pro'),
     features: [
       '2 dedicated vCPU, 8 GB',
       'macOS or Windows VM',
@@ -128,7 +129,7 @@ export default function Page() {
             Get Started Free
           </Link>
           <a
-            href="https://app.hanzo.bot"
+            href={APP_DASHBOARD_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:bg-[rgba(255,255,255,0.08)] hover:border-neutral-600 hover:shadow-[0_8px_40px_rgba(163,163,163,0.2)]"
@@ -339,7 +340,7 @@ export default function Page() {
       {/* Primary CTA */}
       <div className="text-center mb-8">
         <a
-          href="https://app.hanzo.bot"
+          href={APP_DASHBOARD_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2.5 px-9 py-4 text-lg font-semibold text-[#050810] bg-gradient-to-br from-white to-[#d4d4d4] rounded-2xl no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,255,255,0.45)] shadow-[0_4px_24px_rgba(255,255,255,0.3)]"

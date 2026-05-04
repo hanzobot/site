@@ -4,6 +4,7 @@ import {
   MessageSquareIcon, EyeIcon, FileTextIcon, ShieldIcon,
   ArrowRightIcon, SparklesIcon,
 } from 'lucide-react';
+import { APP_DASHBOARD_URL } from '@/lib/auth-urls';
 import { GithubIcon } from '@/lib/layout.shared';
 import type { Metadata } from 'next';
 
@@ -74,7 +75,7 @@ export default function PlaygroundPage() {
         </p>
         <div className="flex gap-3 justify-center flex-wrap">
           <a
-            href="https://app.hanzo.bot/ui/"
+            href={APP_DASHBOARD_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-[#050810] bg-white rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,255,255,0.25)]"
@@ -245,7 +246,7 @@ export default function PlaygroundPage() {
         <p className="text-fd-muted-foreground mb-6">Open the playground and start managing your AI agents visually.</p>
         <div className="flex gap-4 justify-center flex-wrap">
           <a
-            href="https://app.hanzo.bot/ui/"
+            href={APP_DASHBOARD_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-[#050810] bg-white no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,255,255,0.25)]"

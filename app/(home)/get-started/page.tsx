@@ -4,6 +4,7 @@ import {
   CheckIcon, ArrowRightIcon, DownloadIcon, CloudIcon,
   ServerIcon, CrownIcon, LogInIcon, ExternalLinkIcon,
 } from 'lucide-react';
+import { signupUrlForPlan, APP_DASHBOARD_URL } from '@/lib/auth-urls';
 import type { Metadata } from 'next';
 import { BillingFaq } from '../_components/billing-faq';
 
@@ -44,7 +45,7 @@ const plans = [
     icon: CloudIcon,
     desc: 'Always-on Linux VM. Up to 5 VMs. Zen Mini model included.',
     cta: 'Start Free Trial',
-    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=starter',
+    ctaHref: signupUrlForPlan('starter'),
     external: true,
     badge: '14-day free trial',
     features: [
@@ -68,7 +69,7 @@ const plans = [
     icon: ServerIcon,
     desc: 'More power, more VMs. Up to 25 VMs with Zen models included.',
     cta: 'Get Dev',
-    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=dev',
+    ctaHref: signupUrlForPlan('dev'),
     external: true,
     highlight: true,
     badge: 'Most Popular',
@@ -93,7 +94,7 @@ const plans = [
     icon: CrownIcon,
     desc: 'Dedicated CPU, macOS or Windows VM. Priority access and team collaboration.',
     cta: 'Get Pro',
-    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=pro',
+    ctaHref: signupUrlForPlan('pro'),
     external: true,
     features: [
       'Dedicated CPU cores',
@@ -268,7 +269,7 @@ export default function GetStartedPage() {
             Already have an account?
           </p>
           <a
-            href="https://app.hanzo.bot"
+            href={APP_DASHBOARD_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-2.5 font-semibold text-fd-foreground bg-[rgba(255,255,255,0.05)] border border-fd-border rounded-xl no-underline transition-all hover:-translate-y-0.5 hover:border-neutral-600"
@@ -288,7 +289,7 @@ export default function GetStartedPage() {
       {/* Bottom CTA */}
       <div className="text-center mb-8">
         <a
-          href="https://app.hanzo.bot/auth/signup?plan=cloud"
+          href={signupUrlForPlan('cloud')}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2.5 px-9 py-4 text-lg font-semibold text-[#050810] bg-gradient-to-br from-white to-[#d4d4d4] rounded-2xl no-underline transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(255,255,255,0.45)] shadow-[0_4px_24px_rgba(255,255,255,0.3)]"

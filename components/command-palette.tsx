@@ -10,6 +10,7 @@ import {
   BookOpen, Code, Users, FileText, Activity,
   Cpu, Server, Zap, HelpCircle, Briefcase, Heart,
 } from 'lucide-react'
+import { LOGIN_URL, APP_DASHBOARD_URL } from '@/lib/auth-urls'
 
 interface CommandItem {
   id: string
@@ -25,9 +26,10 @@ interface CommandItem {
 const commands: CommandItem[] = [
   // Quick Actions
   { id: 'get-started', title: 'Get Started Free', description: 'Download and run locally', href: '/get-started', icon: DownloadIcon, category: 'Quick Actions', keywords: ['install', 'download', 'start'] },
-  { id: 'launch-cloud', title: 'Launch in Cloud', description: 'Full VM — $5/mo per bot', href: 'https://app.hanzo.bot', icon: Server, category: 'Quick Actions', external: true, keywords: ['cloud', 'deploy', 'vm'] },
+  { id: 'launch-cloud', title: 'Launch in Cloud', description: 'Full VM — $5/mo per bot', href: APP_DASHBOARD_URL, icon: Server, category: 'Quick Actions', external: true, keywords: ['cloud', 'deploy', 'vm'] },
   { id: 'pricing', title: 'View Pricing', description: 'Free, Cloud, and Cloud Pro plans', href: '/pricing', icon: CreditCard, category: 'Quick Actions', keywords: ['cost', 'plan', 'price'] },
-  { id: 'dashboard', title: 'Open Dashboard', description: 'Manage your bots', href: 'https://app.hanzo.bot', icon: MonitorIcon, category: 'Quick Actions', external: true, keywords: ['dashboard', 'login', 'app'] },
+  { id: 'dashboard', title: 'Open Dashboard', description: 'Manage your bots', href: APP_DASHBOARD_URL, icon: MonitorIcon, category: 'Quick Actions', external: true, keywords: ['dashboard', 'login', 'app'] },
+  { id: 'login', title: 'Log in', description: 'Sign in via Hanzo IAM (hanzo.id)', href: LOGIN_URL, icon: Shield, category: 'Quick Actions', external: true, keywords: ['login', 'sign in', 'iam', 'sso'] },
 
   // Features
   { id: 'local-runtime', title: 'Local Runtime', description: 'Mac, Windows, Linux — your data stays yours', href: '/docs/install', icon: Terminal, category: 'Features', keywords: ['local', 'mac', 'windows', 'linux'] },

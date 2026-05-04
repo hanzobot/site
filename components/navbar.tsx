@@ -16,6 +16,7 @@ import { cn } from '@/lib/cn'
 import { logo } from '@/lib/layout.shared'
 import { NavMenu } from '@/components/nav-menu'
 import { CommandPalette } from '@/components/command-palette'
+import { LOGIN_URL, SIGNUP_URL, APP_DASHBOARD_URL } from '@/lib/auth-urls'
 
 /* ─── Features dropdown content ─── */
 const FeaturesContent = ({ closeMenu }: { closeMenu: () => void }) => (
@@ -54,7 +55,7 @@ const FeaturesContent = ({ closeMenu }: { closeMenu: () => void }) => (
           <DownloadIcon className="h-3.5 w-3.5" />
           Get Started Free
         </Link>
-        <a href="https://app.hanzo.bot" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-fd-muted-foreground hover:text-fd-foreground transition-colors">
+        <a href={APP_DASHBOARD_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-fd-muted-foreground hover:text-fd-foreground transition-colors">
           <MonitorIcon className="h-3.5 w-3.5" />
           Launch in Cloud
         </a>
@@ -265,14 +266,14 @@ function MobileMenu({ isOpen, onClose, onOpenSearch }: { isOpen: boolean; onClos
         </div>
 
         <div className="mt-auto pt-4 space-y-2">
-          <Link href="https://app.hanzo.bot" onClick={onClose}
+          <a href={LOGIN_URL} onClick={onClose}
             className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-fd-muted-foreground text-sm font-medium hover:text-fd-foreground transition-colors">
             Log in
-          </Link>
-          <Link href="/get-started" onClick={onClose}
+          </a>
+          <a href={SIGNUP_URL} onClick={onClose}
             className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-fd-foreground text-fd-background font-semibold text-sm hover:bg-fd-foreground/90 transition-colors">
             Try Hanzo Bot
-          </Link>
+          </a>
         </div>
       </div>
     </motion.div>
@@ -399,21 +400,21 @@ export function Navbar() {
                 </kbd>
               </button>
 
-              {/* Login */}
+              {/* Login — direct to Hanzo IAM (hanzo.id) */}
               <a
-                href="https://app.hanzo.bot"
+                href={LOGIN_URL}
                 className="inline-flex items-center justify-center rounded-md h-9 px-4 text-sm font-medium text-fd-muted-foreground hover:text-fd-foreground transition-all"
               >
                 Log in
               </a>
 
-              {/* Try Hanzo CTA — solid button like Anthropic's "Try Claude" */}
-              <Link
-                href="/get-started"
+              {/* Try Hanzo CTA — Hanzo IAM signup flow */}
+              <a
+                href={SIGNUP_URL}
                 className="inline-flex items-center justify-center rounded-full h-9 px-5 text-sm font-semibold bg-fd-foreground text-fd-background hover:bg-fd-foreground/90 transition-all"
               >
                 Try Hanzo Bot
-              </Link>
+              </a>
             </div>
 
             {/* Mobile: Hamburger */}

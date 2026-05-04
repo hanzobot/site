@@ -4,6 +4,7 @@ import {
   CheckIcon, ArrowRightIcon, MessageCircleIcon,
   DownloadIcon, SparklesIcon, XIcon, ServerIcon,
 } from 'lucide-react';
+import { signupUrlForPlan } from '@/lib/auth-urls';
 import type { Metadata } from 'next';
 import { BillingFaq } from '../_components/billing-faq';
 
@@ -20,7 +21,7 @@ const tiers = [
     desc: 'Run on your own hardware. Full power, no limits.',
     cta: 'Download Free',
     ctaHref: '/#quickstart',
-    signupHref: 'https://app.hanzo.bot/auth/signup?plan=free',
+    signupHref: signupUrlForPlan('free'),
     features: [
       'Runs on Mac, Windows, Linux',
       'Bring your own API keys (OpenAI, Anthropic, etc.)',
@@ -37,8 +38,8 @@ const tiers = [
     period: '/mo per bot',
     desc: 'Always-on Linux VM. Up to 5 VMs. Zen Mini model included.',
     cta: 'Start Free Trial',
-    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=starter',
-    signupHref: 'https://app.hanzo.bot/auth/signup?plan=starter',
+    ctaHref: signupUrlForPlan('starter'),
+    signupHref: signupUrlForPlan('starter'),
     badge: 'Free $5 Credit',
     features: [
       'Full Linux VM (Ubuntu)',
@@ -57,8 +58,8 @@ const tiers = [
     period: '/mo per bot',
     desc: 'The sweet spot. 2 vCPU, 8 GB RAM, 25 GB SSD. Beats exe.dev at $20/mo.',
     cta: 'Start Free Trial',
-    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=dev',
-    signupHref: 'https://app.hanzo.bot/auth/signup?plan=dev',
+    ctaHref: signupUrlForPlan('dev'),
+    signupHref: signupUrlForPlan('dev'),
     highlight: true,
     badge: 'Most Popular',
     features: [
@@ -78,8 +79,8 @@ const tiers = [
     period: '/mo per bot',
     desc: 'Dedicated CPU. Zero noisy neighbors. 2 vCPU, 8 GB RAM, 80 GB SSD.',
     cta: 'Get Started',
-    ctaHref: 'https://app.hanzo.bot/auth/signup?plan=pro',
-    signupHref: 'https://app.hanzo.bot/auth/signup?plan=pro',
+    ctaHref: signupUrlForPlan('pro'),
+    signupHref: signupUrlForPlan('pro'),
     features: [
       '2 dedicated vCPU, 8 GB RAM, 80 GB SSD',
       '2 TB transfer included',
@@ -301,7 +302,7 @@ export default function PricingPage() {
                 <td className="p-4" />
                 <td className="p-4 text-center">
                   <a
-                    href="https://app.hanzo.bot/auth/signup?plan=free"
+                    href={signupUrlForPlan('free')}
                     className="text-xs font-semibold text-fd-foreground hover:text-fd-muted-foreground transition-colors no-underline"
                   >
                     Sign Up Free
@@ -309,7 +310,7 @@ export default function PricingPage() {
                 </td>
                 <td className="p-4 text-center">
                   <a
-                    href="https://app.hanzo.bot/auth/signup?plan=starter"
+                    href={signupUrlForPlan('starter')}
                     className="text-xs font-semibold text-fd-foreground hover:text-fd-muted-foreground transition-colors no-underline"
                   >
                     Start Free Trial
@@ -317,7 +318,7 @@ export default function PricingPage() {
                 </td>
                 <td className="p-4 text-center">
                   <a
-                    href="https://app.hanzo.bot/auth/signup?plan=dev"
+                    href={signupUrlForPlan('dev')}
                     className="text-xs font-semibold text-fd-foreground hover:text-fd-muted-foreground transition-colors no-underline"
                   >
                     Start Free Trial
@@ -325,7 +326,7 @@ export default function PricingPage() {
                 </td>
                 <td className="p-4 text-center">
                   <a
-                    href="https://app.hanzo.bot/auth/signup?plan=pro"
+                    href={signupUrlForPlan('pro')}
                     className="text-xs font-semibold text-fd-foreground hover:text-fd-muted-foreground transition-colors no-underline"
                   >
                     Get Started
@@ -502,7 +503,7 @@ export default function PricingPage() {
                 ))}
               </ul>
               <a
-                href="https://app.hanzo.bot/auth/signup?plan=team"
+                href={signupUrlForPlan('team')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
